@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html style="">
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>Außendiensttool Viersen</title>
+	<!-- <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+	<meta http-equiv="ETag" content="000001" />
+	<script src="./at-viersen_files/mapbox-gl.js"></script>
+	<link href="./at-viersen_files/mapbox-gl.css" rel="stylesheet">
+	<script src="./at-viersen_files/sync_map.js"></script>
+	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
+	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
+	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
+	<script src="./at-viersen_files/at-viersen.js"></script>
+	<script src="./at-viersen_files/at-viersen-dienste.js"></script>
+	<link rel="stylesheet" type="text/css" href="./at-viersen_files/at-viersen.css">
+</head>
+
+<body>
+
+	<!-- Vollbildmenü -->
+	<div id="myNav" class="overlay">
+		<!-- Fadenkreuz-Farbwahl -->
+		<div class="ch-dropdown">
+			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
+			<div id="ch_dropdown_content" class="ch-dropdown-content">
+				<img src="./img/cross_black.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_red.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_orange.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_yellow.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_green.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_blue.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_pink.png" onclick="changeCrosshair(this.src)" />
+			</div>
+		</div>
+		<!-- Anzahl der Kartenfenster -->
+		<div class="button-box">
+			<label class="map-number-label">Anzahl Karten:</label>
+			<button id='button_1map' class="map-button" onclick="setMapNumber(1)">1</button>
+			<button id='button_2map' class="map-button" onclick="setMapNumber(2)">2</button>
+			<button id='button_3map' class="map-button" onclick="setMapNumber(3)">3</button>
+			<button id='button_4map' class="map-button" onclick="setMapNumber(4)" style="background:#444;border: 1px solid buttonface;border-radius: 5px;">4</button>
+		</div>
+		<!-- Einstellungen der Kartenfenster -->
+		<div class="overlay-content">
+			<!-- Einstellungen Karte 1 -->
+			<div id="menu_map_1" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 1</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay1()">
+					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_1" class="selector">
+						<option value="none" selected>keins</option>
+						<optgroup label="GeoBasis NRW">
+							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
+							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="ol_nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="ol_nw_schummerung">NRW Schummerung</option>
+							<option value="ol_nw_dtk">NRW DTK</option>
+							<option value="ol_nw_linfos">NRW LINFOS</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="ol_osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="ol_krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="ol_krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="ol_krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_1' class="slider-label">50%</span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer1()">
+					<label for="form_1" class="layer-label">Layer:</label>
+					<select id="form_1" class="selector">
+						<optgroup label="GeoBasis NRW">
+							<option value="nw_dop_rgb" selected>NRW Luftbild Farbe</option>
+							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="nw_schummerung">NRW Schummerung</option>
+							<option value="nw_dtk">NRW DTK</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 2 -->
+			<div id="menu_map_2" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 2</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay2()">
+					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_2" class="selector">
+						<option value="none" selected>keins</option>
+						<optgroup label="GeoBasis NRW">
+							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
+							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="ol_nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="ol_nw_schummerung">NRW Schummerung</option>
+							<option value="ol_nw_dtk">NRW DTK</option>
+							<option value="ol_nw_linfos">NRW LINFOS</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="ol_osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="ol_krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="ol_krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="ol_krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_2' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_2' class="slider-label">50%</span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer2()">
+					<label for="form_2" class="layer-label">Layer:</label>
+					<select id="form_2" class="selector">
+						<optgroup label="GeoBasis NRW">
+							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="nw_schummerung">NRW Schummerung</option>
+							<option value="nw_dtk">NRW DTK</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="osm_mapnik" selected>OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 3 -->
+			<div id="menu_map_3" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 3</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay3()">
+					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_3" class="selector">
+						<option value="none">keins</option>
+						<optgroup label="GeoBasis NRW">
+							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
+							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="ol_nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="ol_nw_schummerung">NRW Schummerung</option>
+							<option value="ol_nw_dtk">NRW DTK</option>
+							<option value="ol_nw_linfos">NRW LINFOS</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="ol_osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="ol_krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="ol_krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="ol_krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="ol_krzn_vie_geplgeb" selected>Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_3' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_3' class="slider-label">50%</span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer3()">
+					<label for="form_3" class="layer-label">Layer:</label>
+					<select id="form_3" class="selector">
+						<optgroup label="GeoBasis NRW">
+							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="nw_schummerung">NRW Schummerung</option>
+							<option value="nw_dtk">NRW DTK</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="krzn_vie_alkis_light" selected>Kreis Viersen ALKIS light</option>
+							<option value="krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 4 -->
+			<div id="menu_map_4" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 4</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay4()">
+					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_4" class="selector">
+						<option value="none" selected>keins</option>
+						<optgroup label="GeoBasis NRW">
+							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
+							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="ol_nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="ol_nw_schummerung">NRW Schummerung</option>
+							<option value="ol_nw_dtk">NRW DTK</option>
+							<option value="ol_nw_linfos">NRW LINFOS</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="ol_osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="ol_krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="ol_krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="ol_krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_4' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_4' class="slider-label">50%</span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer4()">
+					<label for="form_4" class="layer-label">Layer:</label>
+					<select id="form_4" class="selector">
+						<optgroup label="GeoBasis NRW">
+							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
+							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
+							<option value="nw_abk_stern">NRW Amtliche Basiskarte(ABK*)</option>
+							<option value="nw_alkis_tn">NRW ALKIS TN</option>
+							<option value="nw_schummerung">NRW Schummerung</option>
+							<option value="nw_dtk" selected>NRW DTK</option>
+						</optgroup>
+						<optgroup label="OpenStreetMap">
+							<option value="osm_mapnik">OSM Mapnik</option>
+						</optgroup>
+						<optgroup label="Esri">
+							<option value="esri_worldimagery">Esri World Imagery</option>
+						</optgroup>
+						<optgroup label="KRZN-Dienste">
+							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
+							<option value="krzn_kre_alkis_light">Stadt Krefeld ALKIS light</option>
+							<option value="krzn_wes_alkis_light">Kreis Wesel ALKIS light</option>
+							<option value="krzn_kle_alkis_light">Kreis Kleve ALKIS light</option>
+							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
+						</optgroup>
+					</select>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Menü-Button -->
+	<div class="menu-button" onclick="swapBars(this), toggleNav()">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+	<div id="mouse-info"></div>
+	<!-- Kartenfenster und Fadenkreuze -->
+	<div id="map_1" class="mapboxgl-map">	
+		<img src="./img/cross_black.png" id="cross_1" class="ch-image"/>
+	</div>
+	<div id="map_2" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_2" class="ch-image"/>
+	</div>
+	<div id="map_3" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_3" class="ch-image"/>
+	</div>
+	<div id="map_4" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_4" class="ch-image"/>
+	</div>
+	
+	<script>
+	
+		// Access Token:
+		mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
+		
+		// Vorprüfungen:
+		if (mapboxgl.supported()) {
+			console.log('MapGL: supported');
+		} else {
+			console.log('MapGL: NOT supported!');
+			alert('Your browser does not support Mapbox GL');
+		}
+		
+		if (document.fullscreenEnabled) {
+			console.log('Fullscreen: supported');
+		} else {
+			console.log('Fullscreen: NOT supported!');
+		}
+		
+		// Voreinstellung der dargestellten Layer:
+		var layer_id_1 = "nw_dop_rgb";
+		var layer_id_2 = "osm_mapnik";
+		var layer_id_3 = "krzn_vie_alkis_light";
+		var layer_id_4 = "nw_dtk";
+		
+		var overlay_id_1 = "";
+		var overlay_id_2 = "";
+		var overlay_id_3 = "ol_krzn_vie_geplgeb";
+		var overlay_id_4 = "";
+		
+		// Hinzufügen der Attribution-Controls:
+		var att_control_1 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_1)});
+		var att_control_2 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_2)});
+		var att_control_3 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_3)});
+		var att_control_4 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_4)});
+		
+		// Ansteuerung der Deckkraft-Einstellung für die Overlays:
+		var slider_1 = document.getElementById('slider_1');
+		var slider_value_1 = document.getElementById('slider_value_1');
+		var deckkraft_1 = parseInt(slider_1.value, 10)/100;
+		var slider_2 = document.getElementById('slider_2');
+		var slider_value_2 = document.getElementById('slider_value_2');
+		var deckkraft_2 = parseInt(slider_2.value, 10)/100;
+		var slider_3 = document.getElementById('slider_3');
+		var slider_value_3 = document.getElementById('slider_value_3');
+		var deckkraft_3 = parseInt(slider_3.value, 10)/100;
+		var slider_4 = document.getElementById('slider_4');
+		var slider_value_4 = document.getElementById('slider_value_4');
+		var deckkraft_4 = parseInt(slider_4.value, 10)/100;
+		
+		// Initialisierung der Kartenfenster:
+		var default_style = {
+			version:8,
+			name:"default_style",
+			metadata:{},
+			sources:{},
+			glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+			layers:[]
+		};
+		var default_center=[6.39333,51.25321];
+		var default_zoom=13;
+		var map_1 = new mapboxgl.Map({container:"map_1",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_1);
+		var map_2 = new mapboxgl.Map({container:"map_2",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_2);
+		var map_3 = new mapboxgl.Map({container:"map_3",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_3);
+		var map_4 = new mapboxgl.Map({container:"map_4",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_4);
+		
+		map_1.on("load",function(){
+			// Basiskarte:
+			map_1.addLayer(getPredefinedLayer(layer_id_1)),
+			// Overlays:
+			map_1.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_schummerung")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_dtk")),
+			map_1.addLayer(getPredefinedLayer("ol_nw_linfos")),
+			map_1.addLayer(getPredefinedLayer("ol_osm_mapnik")),
+			map_1.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
+			map_1.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
+			map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
+			map_1.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+			map_1.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
+			map_1.addLayer({
+				"id": "labels",
+				"type": "symbol",
+				"source": {
+					"type": "geojson",
+					"data": {
+						"type": "FeatureCollection",
+						"features": [{
+							"type": "Feature",
+							"geometry": {
+								"type": "Point",
+								"coordinates": []
+							},
+							"properties": {
+								"title": ""
+							}
+						}]
+					}
+				},
+				"layout": {
+					"icon-image": "",
+					"text-field": "{title}",
+					"text-offset": [0, 0.6],
+					"text-size": 30,
+					"text-justify": "center",
+					"text-anchor": "center"
+				},
+				"paint": {
+					"text-color": "#ffb200",
+					"text-halo-color": "#FFFFFF",
+					"text-halo-width": 5,
+					"text-halo-blur": 3
+				}
+			})
+		});
+		map_2.on("load",function(){
+			// Basiskarte:
+			map_2.addLayer(getPredefinedLayer(layer_id_2)),
+			// Overlays:
+			map_2.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_schummerung")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_dtk")),
+			map_2.addLayer(getPredefinedLayer("ol_nw_linfos")),
+			map_2.addLayer(getPredefinedLayer("ol_osm_mapnik")),
+			map_2.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
+			map_2.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
+			map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
+			map_2.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+			map_2.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb"))
+		});
+		map_3.on( "load",function(){
+			// Basiskarte:
+			map_3.addLayer(getPredefinedLayer(layer_id_3)),
+			<!-- map_3.setLayoutProperty(layer_id_3, 'visibility', 'none'), -->
+			// Overlays:
+			map_3.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_schummerung")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_dtk")),
+			map_3.addLayer(getPredefinedLayer("ol_nw_linfos")),
+			map_3.addLayer(getPredefinedLayer("ol_osm_mapnik")),
+			map_3.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
+			map_3.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
+			map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
+			map_3.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+			map_3.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
+			setOverlay3(ol_krzn_vie_geplgeb)
+		});
+		map_4.on("load",function(){
+			// Basiskarte:
+			map_4.addLayer(getPredefinedLayer(layer_id_4)),
+			<!-- map_4.setLayoutProperty(layer_id_4, 'visibility', 'none'), -->
+			// Overlays:
+			map_4.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_schummerung")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_dtk")),
+			map_4.addLayer(getPredefinedLayer("ol_nw_linfos")),
+			map_4.addLayer(getPredefinedLayer("ol_osm_mapnik")),
+			map_4.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
+			map_4.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
+			map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
+			map_4.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb"))
+		});
+		
+		// Fadenkreuze 3+4 initial ausblenden:
+		<!-- document.getElementById("cross_3").style.display = "none"; -->
+		<!-- document.getElementById("cross_4").style.display = "none"; -->
+		
+		// Kartenfenster synchronisieren:
+		syncMaps(map_1,map_3,map_2,map_4);
+		
+		// Weitere Controls hinzufügen:
+		map_1.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
+		map_1.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
+		map_1.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
+		map_1.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
+		map_2.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
+		map_2.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
+		map_2.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
+		map_2.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
+		map_3.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
+		map_3.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
+		map_3.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
+		map_3.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
+		
+		// Messfunktionen hinzufügen:
+		var draw = new MapboxDraw({
+			displayControlsDefault: false,
+			controls: {
+				line_string: true,
+				polygon: true,
+				trash: true
+			}
+		});
+		map_1.addControl(draw, "top-right");
+		
+		map_1.on('draw.create', updateArea);
+		map_1.on('draw.delete', updateArea);
+		map_1.on('draw.update', updateArea);
+		
+		map_1.on('draw.modechange', function() {
+			const data = draw.getAll();
+			if ((draw.getMode() == 'draw_polygon')||(draw.getMode() == 'draw_line_string')) {
+				var pids = []
+				const lid = data.features[data.features.length - 1].id
+				data.features.forEach((f) => {
+					if ((f.geometry.type === 'Polygon' && f.id !== lid)||(f.geometry.type === 'LineString' && f.id !== lid)) {
+						pids.push(f.id)
+					}
+				})
+				draw.delete(pids);
+				resetLabels();
+			}
+		});
+		
+		// Sichtbarkeit der Map Controls initial festlegen:
+		document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
+		document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
+		document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+		
+		// Steuerung der Deckkraft-Regler für die Overlays:
+		slider_1.addEventListener('input', function(e) {
+			deckkraft_1 = parseInt(e.target.value, 10) / 100;
+			if (!overlay_id_1 == "") {
+				map_1.setPaintProperty(overlay_id_1, 'raster-opacity', deckkraft_1);
+			}
+			slider_value_1.textContent = e.target.value + '%';
+		});
+		slider_2.addEventListener('input', function(e) {
+			deckkraft_2 = parseInt(e.target.value, 10) / 100;
+			if (!overlay_id_2 == "") {
+				map_2.setPaintProperty(overlay_id_2, 'raster-opacity', deckkraft_2);
+			}
+			slider_value_2.textContent = e.target.value + '%';
+		});
+		slider_3.addEventListener('input', function(e) {
+			deckkraft_3 = parseInt(e.target.value, 10) / 100;
+			if (!overlay_id_3 == "") {
+				map_3.setPaintProperty(overlay_id_3, 'raster-opacity', deckkraft_3);
+			}
+			slider_value_3.textContent = e.target.value + '%';
+		});
+		slider_4.addEventListener('input', function(e) {
+			deckkraft_4 = parseInt(e.target.value, 10) / 100;
+			if (!overlay_id_4 == "") {
+				map_4.setPaintProperty(overlay_id_4, 'raster-opacity', deckkraft_4);
+			}
+			slider_value_4.textContent = e.target.value + '%';
+		});
+		
+		// Ausblenden des Menüs bei Betätigung der Deckkraft-Regler:
+		slider_1.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
+		slider_1.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
+		slider_2.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
+		slider_2.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
+		slider_3.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
+		slider_3.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
+		slider_4.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
+		slider_4.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
+		
+		// Weitere Event-Listener:
+		<!-- document.getElementsByClassName("mapboxgl-ctrl-icon mapboxgl-ctrl-compass")[0].addEventListener("click", function() {map_1.easeTo({pitch:0,bearing:0})}); -->
+		
+		//map_1.on('click', function (e) {
+		//	// Get the snackbar DIV
+		//	var x = document.getElementById("mouse-info");
+		//	// Fire GetFeatureInfo-Request
+		//	var info_result = getFeatureInfoResult(e, map_1, layer_id_1);
+		//	console.log(info_result);
+		//	
+		//	// e.lngLat is the longitude, latitude geographical position of the event
+		//	<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat; -->
+		//	x.innerHTML = "Feature-Info: " + info_result;
+		//	// Add the "show" class to DIV
+		//	x.className = "show";			
+		//	// After 5 seconds, remove the show class from DIV
+		//	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
+		//});
+		
+		<!-- map_1.on('click', function (e) { -->
+			<!-- // Get the snackbar DIV -->
+			<!-- var x = document.getElementById("mouse-info");			 -->
+			<!-- // e.lngLat is the longitude, latitude geographical position of the event -->
+			<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat;			 -->
+			<!-- // Add the "show" class to DIV -->
+			<!-- x.className = "show";			 -->
+			<!-- // After 5 seconds, remove the show class from DIV -->
+			<!-- setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000); -->
+		<!-- }); -->
+		<!-- map_2.on('click', function (e) { -->
+			<!-- // Get the snackbar DIV -->
+			<!-- var x = document.getElementById("mouse-info");			 -->
+			<!-- // e.lngLat is the longitude, latitude geographical position of the event -->
+			<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat;			 -->
+			<!-- // Add the "show" class to DIV -->
+			<!-- x.className = "show";			 -->
+			<!-- // After 5 seconds, remove the show class from DIV -->
+			<!-- setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000); -->
+		<!-- }); -->
+		
+	</script>
+</body>
+
+</html>

@@ -133,6 +133,16 @@ var krzn_vie_geplgeb = {
 		tileSize:256},
 	paint:{}};
 
+// Nationaal-Georegister Dienste (NL)
+var Actueel_ortho25 = {
+	id:"Actueel_ortho25",
+	type:"raster",
+	source:{
+		type:"raster",
+		tiles:["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],
+		tileSize:256},
+	paint:{}};
+
 
 /*
 	Liste: Verfügbare Overlays
@@ -303,6 +313,16 @@ var ol_krzn_vie_geplgeb = {
 		tileSize:256},
 	layout:{visibility:'none'},
 	paint:{}};
+// Nationaal-Georegister Dienste (NL)
+var ol_Actueel_ortho25 = {
+	id:"ol_Actueel_ortho25",
+	type:"raster",
+	source:{
+		type:"raster",
+		tiles:["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],
+		tileSize:256},
+	layout:{visibility:'none'},
+	paint:{}};
 	
 
 /*
@@ -319,35 +339,37 @@ var layers = {
 	// Layer
 	"nw_dop_rgb": 					nw_dop_rgb,
 	"nw_vdop_rgb": 					nw_vdop_rgb,
-	"nw_dtk": 						nw_dtk,
-	"nw_alkis_flurstuecke":			nw_alkis_flurstuecke,
+	"nw_dtk": 					nw_dtk,
+	"nw_alkis_flurstuecke":				nw_alkis_flurstuecke,
 	"nw_abk_stern":					nw_abk_stern,
 	"nw_alkis_tn":					nw_alkis_tn,
 	"nw_schummerung":				nw_schummerung,
 	"osm_mapnik": 					osm_mapnik,
-	"esri_worldimagery":			esri_worldimagery,
-	"krzn_vie_alkis_light": 		krzn_vie_alkis_light,
-	"krzn_kre_alkis_light": 		krzn_kre_alkis_light,
-	"krzn_wes_alkis_light": 		krzn_wes_alkis_light,
-	"krzn_kle_alkis_light": 		krzn_kle_alkis_light,
+	"esri_worldimagery":				esri_worldimagery,
+	"krzn_vie_alkis_light": 			krzn_vie_alkis_light,
+	"krzn_kre_alkis_light": 			krzn_kre_alkis_light,
+	"krzn_wes_alkis_light": 			krzn_wes_alkis_light,
+	"krzn_kle_alkis_light": 			krzn_kle_alkis_light,
 	"krzn_vie_geplgeb":				krzn_vie_geplgeb,
+	"Actueel_ortho25":      		        Actueel_ortho25,
 	// Overlays
 	"ol_nw_dop_rgb": 				ol_nw_dop_rgb,
 	"ol_nw_vdop_rgb": 				ol_nw_vdop_rgb,
 	"ol_nw_dtk": 					ol_nw_dtk,
-	"ol_nw_dop_overlay": 			ol_nw_dop_overlay,
-	"ol_nw_alkis_flurstuecke":		ol_nw_alkis_flurstuecke,
+	"ol_nw_dop_overlay": 				ol_nw_dop_overlay,
+	"ol_nw_alkis_flurstuecke":			ol_nw_alkis_flurstuecke,
 	"ol_nw_abk_stern":				ol_nw_abk_stern,
 	"ol_nw_alkis_tn":				ol_nw_alkis_tn,
-	"ol_nw_schummerung":			ol_nw_schummerung,
+	"ol_nw_schummerung":				ol_nw_schummerung,
 	"ol_nw_linfos":					ol_nw_linfos,
 	"ol_osm_mapnik": 				ol_osm_mapnik,
-	"ol_esri_worldimagery":			ol_esri_worldimagery,
-	"ol_krzn_vie_alkis_light": 		ol_krzn_vie_alkis_light,
-	"ol_krzn_kre_alkis_light": 		ol_krzn_kre_alkis_light,
-	"ol_krzn_wes_alkis_light": 		ol_krzn_wes_alkis_light,
-	"ol_krzn_kle_alkis_light": 		ol_krzn_kle_alkis_light,
-	"ol_krzn_vie_geplgeb":			ol_krzn_vie_geplgeb
+	"ol_esri_worldimagery":				ol_esri_worldimagery,
+	"ol_krzn_vie_alkis_light": 			ol_krzn_vie_alkis_light,
+	"ol_krzn_kre_alkis_light": 			ol_krzn_kre_alkis_light,
+	"ol_krzn_wes_alkis_light": 			ol_krzn_wes_alkis_light,
+	"ol_krzn_kle_alkis_light": 			ol_krzn_kle_alkis_light,
+	"ol_krzn_vie_geplgeb":				ol_krzn_vie_geplgeb,
+	"ol_Actueel_ortho25":           		ol_Actueel_ortho25
 }
 
 
@@ -365,35 +387,36 @@ var layernames = {
 	// Layer
 	"nw_dop_rgb": 					"NRW Luftbild Farbe",
 	"nw_vdop_rgb": 					"NRW vDOP Farbe",
-	"nw_dtk": 						"NRW DTK",
-	"nw_alkis_flurstuecke":			"NRW ALKIS Flurstücke",
+	"nw_dtk": 					"NRW DTK",
+	"nw_alkis_flurstuecke":				"NRW ALKIS Flurstücke",
 	"nw_abk_stern":					"NRW ALKIS ABK*",
 	"nw_alkis_tn":					"NRW ALKIS TN",
 	"nw_schummerung":				"NRW Schummerung",
 	"osm_mapnik": 					"Open Street Maps",
-	"esri_worldimagery":			"Esri World Imagery",
-	"krzn_vie_alkis_light": 		"Kreis Viersen ALKIS (light)",
-	"krzn_kre_alkis_light": 		"Stadt Krefeld ALKIS (light)",
-	"krzn_wes_alkis_light": 		"Kreis Wesel ALKIS (light)",
-	"krzn_kle_alkis_light": 		"Kreis Kleve ALKIS (light)",
+	"esri_worldimagery":				"Esri World Imagery",
+	"krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
+	"krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
+	"krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
+	"krzn_kle_alkis_light": 			"Kreis Kleve ALKIS (light)",
 	"krzn_vie_geplgeb":				"KRZN VIE Geplante Gebäude",
 	// Overlays
 	"ol_nw_dop_rgb": 				"NRW Luftbild Farbe",
-	"ol_nw_dop_overlay":			"NRW Luftbild Overlay",
+	"ol_nw_dop_overlay":				"NRW Luftbild Overlay",
 	"ol_nw_vdop_rgb": 				"NRW vDOP Farbe",
 	"ol_nw_dtk": 					"NRW DTK",
-	"ol_nw_alkis_flurstuecke":		"NRW ALKIS Flurstücke",
+	"ol_nw_alkis_flurstuecke":			"NRW ALKIS Flurstücke",
 	"ol_nw_abk_stern":				"NRW ALKIS ABK*",
 	"ol_nw_alkis_tn":				"NRW ALKIS TN",
-	"ol_nw_schummerung":			"NRW Schummerung",
+	"ol_nw_schummerung":				"NRW Schummerung",
 	"ol_nw_linfos":					"NRW LINFOS",
 	"ol_osm_mapnik": 				"Open Street Maps",
-	"ol_esri_worldimagery":			"Esri World Imagery",
-	"ol_krzn_vie_alkis_light": 		"Kreis Viersen ALKIS (light)",
-	"ol_krzn_kre_alkis_light": 		"Stadt Krefeld ALKIS (light)",
-	"ol_krzn_wes_alkis_light": 		"Kreis Wesel ALKIS (light)",
-	"ol_krzn_kle_alkis_light": 		"Kreis Kleve ALKIS (light)",
-	"ol_krzn_vie_geplgeb":			"KRZN VIE Geplante Gebäude"
+	"ol_esri_worldimagery":				"Esri World Imagery",
+	"ol_krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
+	"ol_krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
+	"ol_krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
+	"ol_krzn_kle_alkis_light": 			"Kreis Kleve ALKIS (light)",
+	"ol_krzn_vie_geplgeb":				"KRZN VIE Geplante Gebäude",
+	"Actueel_ortho25":              		"NL Luftbild Farbe"
 }
 
 
@@ -415,6 +438,8 @@ function getCustomAttribution(layer_id) {
 		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.openstreetmap.org/copyright>OpenStreetMap</a>-Mitwirkende'; //
 	} else if (layer_id == "esri_worldimagery") {
 		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.esri.com/>Esri</a>-Mitwirkende'; //
+	} else if (layer_id == "Actueel_ortho25") {
+		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=http://geodata.nationaalgeoregister.nl/>Nationaal Georegister</a>'; //		
 	} else {
 		return '<b>'+layernames[layer_id]+'</b><br>&copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target="_blank" rel="noopener noreferrer" href=https://www.govdata.de/dl-de/zero-2-0>www.govdata.de/dl-de/zero-2-0</a>)';
 	}

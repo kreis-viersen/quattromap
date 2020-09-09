@@ -1,4 +1,4 @@
-/* HTML-Body */
+﻿/* HTML-Body */
 
 	body {
 		margin: 0;
@@ -127,7 +127,7 @@
 		height: 0;
 		width: 100%;
 		position: fixed;
-		z-index: 2;
+		z-index: 3;
 		left: 0;
 		bottom: 0;
 		background-color: rgb(0,0,0);
@@ -269,7 +269,7 @@
 		margin-top: 77px;
 		background-color: #444;
 		left: 31px;
-		z-index: 2;
+		z-index: 3;
 	}
 	
 	.ch-dropdown-content .ch-image:hover {
@@ -295,7 +295,7 @@
 		padding: 5px 10px;
 		border: none;
 		border-radius: 5px;
-		z-index: 3;
+		z-index: 4;
 		display: inline-block;
 	}
 	
@@ -342,7 +342,7 @@
 		position: fixed; /* Sit on top of the screen */
 		left: 50%; /* Center the snackbar */
 		bottom: 30px; /* 30px from the bottom */
-		z-index: 2;
+		z-index: 3;
 	}
 	
 	/* Show the snackbar when clicking on a button (class added with JavaScript) */

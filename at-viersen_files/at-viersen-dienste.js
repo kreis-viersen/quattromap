@@ -1,6 +1,6 @@
 /*
 	Liste: Verfügbare Basis-Layer
-	
+
 	Format der einzutragenden Layer:
 	var LAYER_ID = {
 	id:"LAYER_ID",
@@ -10,7 +10,7 @@
 		tiles:["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
 		tileSize:256},
 	paint:{}};
-	
+
 */
 
 // NRW-Dienste
@@ -70,7 +70,7 @@ var nw_dtk = {
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dtk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dtk_col"],
 		tileSize:256},
 	paint:{}};
-	
+
 // OSM-Dienste:
 var osm_mapnik = {
 	id: "osm_mapnik",
@@ -80,14 +80,14 @@ var osm_mapnik = {
 		tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
 		tileSize:256},
 	paint: {}};
-	
-// Esri-Dienste:
-var esri_worldimagery = {
-	id: "esri_worldimagery",
+
+// RVR-Dienste:
+var rvr_dop = {
+	id: "rvr_dop",
 	type: "raster",
 	source: {
 		type: "raster",
-		tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"],
+		tiles: ["http://geodaten.metropoleruhr.de:80/dop/dop?language=ger&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=dop&STYLES=&FORMAT=image/png"],
 		tileSize:256},
 	paint: {}};
 
@@ -123,7 +123,7 @@ var krzn_kle_alkis_light = {
 		type:"raster",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
 		tileSize:256},
-	paint:{}};	
+	paint:{}};
 var krzn_vie_geplgeb = {
 	id:"krzn_vie_geplgeb",
 	type:"raster",
@@ -146,7 +146,7 @@ var Actueel_ortho25 = {
 
 /*
 	Liste: Verfügbare Overlays
-	
+
 	Format der einzutragenden Layer:
 	var LAYER_ID = {
 	id:"LAYER_ID",
@@ -157,9 +157,9 @@ var Actueel_ortho25 = {
 		tileSize:256},
 	layout:{visibility:'none'},
 	paint:{}};
-	
+
 	Hinweis: Bei manchen Overlays empfielt es sich, den Parameter "&TRANSPARENT=true" in die URL einzubauen.
-	
+
 */
 
 // NRW-Dienste
@@ -256,13 +256,13 @@ var ol_osm_mapnik = {
 	layout:{visibility:'none'},
 	paint: {}};
 
-// Esri-Dienste:
-var ol_esri_worldimagery = {
-	id: "ol_esri_worldimagery",
+// RVR-Dienste:
+var ol_rvr_dop = {
+	id: "ol_rvr_dop",
 	type: "raster",
 	source: {
 		type: "raster",
-		tiles: ["https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}.png"],
+		tiles: ["http://geodaten.metropoleruhr.de:80/dop/dop?language=ger&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=dop&STYLES=&FORMAT=image/png"],
 		tileSize:256},
 	layout:{visibility:'none'},
 	paint: {}};
@@ -303,7 +303,7 @@ var ol_krzn_kle_alkis_light = {
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
-	paint:{}};	
+	paint:{}};
 var ol_krzn_vie_geplgeb = {
 	id:"ol_krzn_vie_geplgeb",
 	type:"raster",
@@ -323,16 +323,16 @@ var ol_Actueel_ortho25 = {
 		tileSize:256},
 	layout:{visibility:'none'},
 	paint:{}};
-	
+
 
 /*
 	Layerliste IDs
-	
+
 	Hier alle Layer-IDs eintragen. Auf Anführungszeichen ist zu achten.
-	
+
 	Format:
 	"LAYER_ID": LAYER_ID,
-	
+
 */
 
 var layers = {
@@ -345,7 +345,7 @@ var layers = {
 	"nw_alkis_tn":					nw_alkis_tn,
 	"nw_schummerung":				nw_schummerung,
 	"osm_mapnik": 					osm_mapnik,
-	"esri_worldimagery":				esri_worldimagery,
+	"rvr_dop":				rvr_dop,
 	"krzn_vie_alkis_light": 			krzn_vie_alkis_light,
 	"krzn_kre_alkis_light": 			krzn_kre_alkis_light,
 	"krzn_wes_alkis_light": 			krzn_wes_alkis_light,
@@ -363,7 +363,7 @@ var layers = {
 	"ol_nw_schummerung":				ol_nw_schummerung,
 	"ol_nw_linfos":					ol_nw_linfos,
 	"ol_osm_mapnik": 				ol_osm_mapnik,
-	"ol_esri_worldimagery":				ol_esri_worldimagery,
+	"ol_rvr_dop":				ol_rvr_dop,
 	"ol_krzn_vie_alkis_light": 			ol_krzn_vie_alkis_light,
 	"ol_krzn_kre_alkis_light": 			ol_krzn_kre_alkis_light,
 	"ol_krzn_wes_alkis_light": 			ol_krzn_wes_alkis_light,
@@ -375,12 +375,12 @@ var layers = {
 
 /*
 	Layerliste Layernamen
-	
+
 	Hier alle Layernamen eintragen. Auf Anführungszeichen ist zu achten.
-	
+
 	Format:
 	"LAYER_ID": "LAYER_NAME",
-	
+
 */
 
 var layernames = {
@@ -393,7 +393,7 @@ var layernames = {
 	"nw_alkis_tn":					"NRW ALKIS TN",
 	"nw_schummerung":				"NRW Schummerung",
 	"osm_mapnik": 					"Open Street Maps",
-	"esri_worldimagery":				"Esri World Imagery",
+	"rvr_dop":				"RVR Luftbild Farbe",
 	"krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
 	"krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
 	"krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
@@ -410,7 +410,7 @@ var layernames = {
 	"ol_nw_schummerung":				"NRW Schummerung",
 	"ol_nw_linfos":					"NRW LINFOS",
 	"ol_osm_mapnik": 				"Open Street Maps",
-	"ol_esri_worldimagery":				"Esri World Imagery",
+	"ol_rvr_dop":				"RVR Luftbild Farbe",
 	"ol_krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
 	"ol_krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
 	"ol_krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
@@ -436,10 +436,10 @@ function getPredefinedLayer(layer_id) {
 function getCustomAttribution(layer_id) {
 	if (layer_id == "osm_mapnik") {
 		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.openstreetmap.org/copyright>OpenStreetMap</a>-Mitwirkende'; //
-	} else if (layer_id == "esri_worldimagery") {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.esri.com/>Esri</a>-Mitwirkende'; //
+	} else if (layer_id == "rvr_dop") {
+		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/>Regionalverband Ruhr</a>'; //
 	} else if (layer_id == "Actueel_ortho25") {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=http://geodata.nationaalgeoregister.nl/>Nationaal Georegister</a>'; //		
+		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=http://geodata.nationaalgeoregister.nl/>Nationaal Georegister</a>'; //
 	} else {
 		return '<b>'+layernames[layer_id]+'</b><br>&copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target="_blank" rel="noopener noreferrer" href=https://www.govdata.de/dl-de/zero-2-0>www.govdata.de/dl-de/zero-2-0</a>)';
 	}
@@ -569,9 +569,9 @@ function setOverlay4() {
 
 /*
 	Funktionen für die GetFeatureRequest-Abfrage
-	
+
 	WICHTIG: Diese Funktionen sind noch nicht ausgereift!
-	
+
 */
 
 // Abfragbare Layer finden
@@ -655,7 +655,7 @@ function createGetFeatureRequest(map_event, map, layer_id) {
 	// Query-Layers:
 	var query_layers_string = "&QUERY_LAYERS=" + getQueryLayers(layer_id);
 	console.log("QueryLayers: " + query_layers_string);
-	
+
 	// Request zusammenbauen:
 	console.log("Parameter: " + base_url + base_parameters + bounds_string + height_width_string + click_string + layers_string + query_layers_string);
 	var request = base_url + base_parameters + bounds_string + height_width_string + click_string + layers_string + query_layers_string;

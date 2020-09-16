@@ -72,8 +72,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="ol_osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -105,8 +105,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -143,8 +143,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="ol_osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -176,8 +176,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="osm_mapnik" selected>OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -214,8 +214,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="ol_osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -247,8 +247,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="krzn_vie_alkis_light" selected>Kreis Viersen ALKIS light</option>
@@ -285,8 +285,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="ol_osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="ol_esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -318,8 +318,8 @@
 						<optgroup label="OpenStreetMap">
 							<option value="osm_mapnik">OSM Mapnik</option>
 						</optgroup>
-						<optgroup label="Esri">
-							<option value="esri_worldimagery">Esri World Imagery</option>
+						<optgroup label="RVR">
+							<option value="rvr_dop">RVR Luftbild Farbe</option>
 						</optgroup>
 						<optgroup label="KRZN-Dienste">
 							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
@@ -344,7 +344,7 @@
 	</div>
 	<div id="mouse-info"></div>
 	<!-- Kartenfenster und Fadenkreuze -->
-	<div id="map_1" class="mapboxgl-map">	
+	<div id="map_1" class="mapboxgl-map">
 		<img src="./img/cross_black.png" id="cross_1" class="ch-image"/>
 	</div>
 	<div id="map_2" class="mapboxgl-map">
@@ -356,12 +356,12 @@
 	<div id="map_4" class="mapboxgl-map">
 		<img src="./img/cross_black.png" id="cross_4" class="ch-image"/>
 	</div>
-	
+
 	<script>
-	
+
 		// Access Token:
 		mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
-		
+
 		// Vorprüfungen:
 		if (mapboxgl.supported()) {
 			console.log('MapGL: supported');
@@ -369,30 +369,30 @@
 			console.log('MapGL: NOT supported!');
 			alert('Your browser does not support Mapbox GL');
 		}
-		
+
 		if (document.fullscreenEnabled) {
 			console.log('Fullscreen: supported');
 		} else {
 			console.log('Fullscreen: NOT supported!');
 		}
-		
+
 		// Voreinstellung der dargestellten Layer:
 		var layer_id_1 = "nw_dop_rgb";
 		var layer_id_2 = "osm_mapnik";
 		var layer_id_3 = "krzn_vie_alkis_light";
 		var layer_id_4 = "nw_dtk";
-		
+
 		var overlay_id_1 = "";
 		var overlay_id_2 = "";
 		var overlay_id_3 = "ol_krzn_vie_geplgeb";
 		var overlay_id_4 = "";
-		
+
 		// Hinzufügen der Attribution-Controls:
 		var att_control_1 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_1)});
 		var att_control_2 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_2)});
 		var att_control_3 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_3)});
 		var att_control_4 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_4)});
-		
+
 		// Ansteuerung der Deckkraft-Einstellung für die Overlays:
 		var slider_1 = document.getElementById('slider_1');
 		var slider_value_1 = document.getElementById('slider_value_1');
@@ -406,7 +406,7 @@
 		var slider_4 = document.getElementById('slider_4');
 		var slider_value_4 = document.getElementById('slider_value_4');
 		var deckkraft_4 = parseInt(slider_4.value, 10)/100;
-		
+
 		// Initialisierung der Kartenfenster:
 		var default_style = {
 			version:8,
@@ -422,7 +422,7 @@
 		var map_2 = new mapboxgl.Map({container:"map_2",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_2);
 		var map_3 = new mapboxgl.Map({container:"map_3",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_3);
 		var map_4 = new mapboxgl.Map({container:"map_4",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_4);
-		
+
 		map_1.on("load",function(){
 			// Basiskarte:
 			map_1.addLayer(getPredefinedLayer(layer_id_1)),
@@ -437,7 +437,7 @@
 			map_1.addLayer(getPredefinedLayer("ol_nw_dtk")),
 			map_1.addLayer(getPredefinedLayer("ol_nw_linfos")),
 			map_1.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_1.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_1.addLayer(getPredefinedLayer("ol_rvr_dop")),
 			map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
 			map_1.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
 			map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
@@ -493,7 +493,7 @@
 			map_2.addLayer(getPredefinedLayer("ol_nw_dtk")),
 			map_2.addLayer(getPredefinedLayer("ol_nw_linfos")),
 			map_2.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_2.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_2.addLayer(getPredefinedLayer("ol_rvr_dop")),
 			map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
 			map_2.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
 			map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
@@ -516,7 +516,7 @@
 			map_3.addLayer(getPredefinedLayer("ol_nw_dtk")),
 			map_3.addLayer(getPredefinedLayer("ol_nw_linfos")),
 			map_3.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_3.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_3.addLayer(getPredefinedLayer("ol_rvr_dop")),
 			map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
 			map_3.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
 			map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
@@ -540,7 +540,7 @@
 			map_4.addLayer(getPredefinedLayer("ol_nw_dtk")),
 			map_4.addLayer(getPredefinedLayer("ol_nw_linfos")),
 			map_4.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_4.addLayer(getPredefinedLayer("ol_esri_worldimagery")),
+			map_4.addLayer(getPredefinedLayer("ol_rvr_dop")),
 			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
 			map_4.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
 			map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
@@ -548,14 +548,14 @@
 			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
 			map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
 		});
-		
+
 		// Fadenkreuze 3+4 initial ausblenden:
 		<!-- document.getElementById("cross_3").style.display = "none"; -->
 		<!-- document.getElementById("cross_4").style.display = "none"; -->
-		
+
 		// Kartenfenster synchronisieren:
 		syncMaps(map_1,map_3,map_2,map_4);
-		
+
 		// Weitere Controls hinzufügen:
 		map_1.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
 		map_1.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
@@ -569,7 +569,7 @@
 		map_3.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
 		map_3.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
 		map_3.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
-		
+
 		// Messfunktionen hinzufügen:
 		var draw = new MapboxDraw({
 			displayControlsDefault: false,
@@ -580,11 +580,11 @@
 			}
 		});
 		map_1.addControl(draw, "top-right");
-		
+
 		map_1.on('draw.create', updateArea);
 		map_1.on('draw.delete', updateArea);
 		map_1.on('draw.update', updateArea);
-		
+
 		map_1.on('draw.modechange', function() {
 			const data = draw.getAll();
 			if ((draw.getMode() == 'draw_polygon')||(draw.getMode() == 'draw_line_string')) {
@@ -599,12 +599,12 @@
 				resetLabels();
 			}
 		});
-		
+
 		// Sichtbarkeit der Map Controls initial festlegen:
 		document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
 		document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
 		document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
-		
+
 		// Steuerung der Deckkraft-Regler für die Overlays:
 		slider_1.addEventListener('input', function(e) {
 			deckkraft_1 = parseInt(e.target.value, 10) / 100;
@@ -634,7 +634,7 @@
 			}
 			slider_value_4.textContent = e.target.value + '%';
 		});
-		
+
 		// Ausblenden des Menüs bei Betätigung der Deckkraft-Regler:
 		slider_1.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
 		slider_1.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
@@ -644,26 +644,26 @@
 		slider_3.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
 		slider_4.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
 		slider_4.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-		
+
 		// Weitere Event-Listener:
 		<!-- document.getElementsByClassName("mapboxgl-ctrl-icon mapboxgl-ctrl-compass")[0].addEventListener("click", function() {map_1.easeTo({pitch:0,bearing:0})}); -->
-		
+
 		//map_1.on('click', function (e) {
 		//	// Get the snackbar DIV
 		//	var x = document.getElementById("mouse-info");
 		//	// Fire GetFeatureInfo-Request
 		//	var info_result = getFeatureInfoResult(e, map_1, layer_id_1);
 		//	console.log(info_result);
-		//	
+		//
 		//	// e.lngLat is the longitude, latitude geographical position of the event
 		//	<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat; -->
 		//	x.innerHTML = "Feature-Info: " + info_result;
 		//	// Add the "show" class to DIV
-		//	x.className = "show";			
+		//	x.className = "show";
 		//	// After 5 seconds, remove the show class from DIV
 		//	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
 		//});
-		
+
 		<!-- map_1.on('click', function (e) { -->
 			<!-- // Get the snackbar DIV -->
 			<!-- var x = document.getElementById("mouse-info");			 -->
@@ -684,7 +684,7 @@
 			<!-- // After 5 seconds, remove the show class from DIV -->
 			<!-- setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000); -->
 		<!-- }); -->
-		
+
 	</script>
 </body>
 

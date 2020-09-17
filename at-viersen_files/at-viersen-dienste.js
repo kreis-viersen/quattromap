@@ -351,7 +351,6 @@ var ol_Actueel_ortho25 = {
 	id:"ol_Actueel_ortho25",
 	type:"raster",
 	source:{
-		attribution: "overlay",
 		type:"raster",
 		attribution: "<br><b>Overlay: NL Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>-Mitwirkende",
 		tiles:["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],

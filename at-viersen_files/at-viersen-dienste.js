@@ -7,6 +7,7 @@
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution:"attribution string"
 		tiles:["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
 		tileSize:256},
 	paint:{}};
@@ -19,6 +20,7 @@ var nw_dop_rgb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW Luftbild Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dop_rgb"],
 		tileSize:256},
 	paint:{}};
@@ -27,6 +29,7 @@ var nw_vdop_rgb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW vDOP Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_vdop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_vdop_rgb"],
 		tileSize:256},
 	paint:{}};
@@ -35,6 +38,7 @@ var nw_alkis_flurstuecke = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW ALKIS Flurstücke</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_flurstuecke"],
 		tileSize:256},
 	paint:{}};
@@ -43,6 +47,7 @@ var nw_abk_stern = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW Amtliche Basiskarte (ABK*)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_abk_stern?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK_STERN"],
 		tileSize:256},
 	paint:{}};
@@ -51,6 +56,7 @@ var nw_alkis_tn = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW ALKIS TN</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_tatsaechliche_nutzung"],
 		tileSize:256},
 	paint:{}};
@@ -59,6 +65,7 @@ var nw_schummerung = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW Schummerung</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dgm-schummerung_pan"],
 		tileSize:256},
 	paint:{}};
@@ -67,6 +74,7 @@ var nw_dtk = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NRW DTK</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dtk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dtk_col"],
 		tileSize:256},
 	paint:{}};
@@ -77,6 +85,7 @@ var osm_mapnik = {
 	type: "raster",
 	source: {
 		type: "raster",
+		attribution: "<b>OpenStreetMap</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
 		tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
 		tileSize:256},
 	paint: {}};
@@ -87,6 +96,7 @@ var rvr_dop = {
 	type: "raster",
 	source: {
 		type: "raster",
+		attribution: "<b>RVR Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/'>Regionalverband Ruhr</a>-Mitwirkende",
 		tiles: ["http://geodaten.metropoleruhr.de:80/dop/dop?language=ger&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=dop&STYLES=&FORMAT=image/png"],
 		tileSize:256},
 	paint: {}};
@@ -97,6 +107,7 @@ var krzn_vie_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
 		tileSize:256},
 	paint:{}};
@@ -105,6 +116,7 @@ var krzn_kre_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Stadt Krefeld ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
 		tileSize:256},
 	paint:{}};
@@ -113,6 +125,7 @@ var krzn_wes_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Kreis Wesel ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
 		tileSize:256},
 	paint:{}};
@@ -121,6 +134,7 @@ var krzn_kle_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Kreis Kleve ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
 		tileSize:256},
 	paint:{}};
@@ -129,6 +143,7 @@ var krzn_vie_geplgeb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Kreis Viersen Geplante Gebäude</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=kvie_geplgeb&STYLES="],
 		tileSize:256},
 	paint:{}};
@@ -139,6 +154,7 @@ var Actueel_ortho25 = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>NL Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>-Mitwirkende",
 		tiles:["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],
 		tileSize:256},
 	paint:{}};
@@ -153,6 +169,7 @@ var Actueel_ortho25 = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution:"<br><b>Overlay: + attribution string"
 		tiles:["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -168,6 +185,7 @@ var ol_nw_dop_rgb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW Luftbild Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dop_rgb"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -177,6 +195,7 @@ var ol_nw_vdop_rgb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW vDOP Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_vdop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_vdop_rgb"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -186,6 +205,7 @@ var ol_nw_alkis_flurstuecke = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW ALKIS Flurstücke</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_flurstuecke&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -195,6 +215,7 @@ var ol_nw_abk_stern = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW Amtliche Basiskarte (ABK*)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_abk_stern?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK_STERN&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -204,6 +225,7 @@ var ol_nw_alkis_tn = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW ALKIS TN</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_tatsaechliche_nutzung&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -213,6 +235,7 @@ var ol_nw_schummerung = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW Schummerung</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dgm-schummerung_pan"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -222,6 +245,7 @@ var ol_nw_dtk = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW DTK</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dtk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dtk_col&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -231,6 +255,7 @@ var ol_nw_dop_overlay = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW Luftbild Overlay</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_DOP_OVERLAY&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -240,6 +265,7 @@ var ol_nw_linfos = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: NRW LINFOS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://www.wms.nrw.de/umwelt/linfos?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Naturschutzgebiete,Landschaftsschutzgebiet&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -250,6 +276,7 @@ var ol_osm_mapnik = {
 	id: "ol_osm_mapnik",
 	type: "raster",
 	source: {
+		attribution: "<br><b>Overlay: OpenStreetMap</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
 		type: "raster",
 		tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
 		tileSize:256},
@@ -262,6 +289,7 @@ var ol_rvr_dop = {
 	type: "raster",
 	source: {
 		type: "raster",
+		attribution: "<b>Overlay: RVR Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/'>Regionalverband Ruhr</a>-Mitwirkende",
 		tiles: ["http://geodaten.metropoleruhr.de:80/dop/dop?language=ger&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=dop&STYLES=&FORMAT=image/png"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -273,6 +301,7 @@ var ol_krzn_vie_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Overlay: Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -282,6 +311,7 @@ var ol_krzn_kre_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Overlay: Stadt Krefeld ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -291,6 +321,7 @@ var ol_krzn_wes_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<b>Overlay: Kreis Wesel ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -300,6 +331,7 @@ var ol_krzn_kle_alkis_light = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: Kreis Kleve ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -309,6 +341,7 @@ var ol_krzn_vie_geplgeb = {
 	type:"raster",
 	source:{
 		type:"raster",
+		attribution: "<br><b>Overlay: Kreis Viersen Geplante Gebäude</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
 		tiles:["https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=kvie_geplgeb&STYLES=&TRANSPARENT=true"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -318,7 +351,9 @@ var ol_Actueel_ortho25 = {
 	id:"ol_Actueel_ortho25",
 	type:"raster",
 	source:{
+		attribution: "overlay",
 		type:"raster",
+		attribution: "<br><b>Overlay: NL Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>-Mitwirkende",
 		tiles:["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],
 		tileSize:256},
 	layout:{visibility:'none'},
@@ -372,54 +407,6 @@ var layers = {
 	"ol_Actueel_ortho25":           		ol_Actueel_ortho25
 }
 
-
-/*
-	Layerliste Layernamen
-
-	Hier alle Layernamen eintragen. Auf Anführungszeichen ist zu achten.
-
-	Format:
-	"LAYER_ID": "LAYER_NAME",
-
-*/
-
-var layernames = {
-	// Layer
-	"nw_dop_rgb": 					"NRW Luftbild Farbe",
-	"nw_vdop_rgb": 					"NRW vDOP Farbe",
-	"nw_dtk": 					"NRW DTK",
-	"nw_alkis_flurstuecke":				"NRW ALKIS Flurstücke",
-	"nw_abk_stern":					"NRW ALKIS ABK*",
-	"nw_alkis_tn":					"NRW ALKIS TN",
-	"nw_schummerung":				"NRW Schummerung",
-	"osm_mapnik": 					"Open Street Maps",
-	"rvr_dop":				"RVR Luftbild Farbe",
-	"krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
-	"krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
-	"krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
-	"krzn_kle_alkis_light": 			"Kreis Kleve ALKIS (light)",
-	"krzn_vie_geplgeb":				"KRZN VIE Geplante Gebäude",
-	// Overlays
-	"ol_nw_dop_rgb": 				"NRW Luftbild Farbe",
-	"ol_nw_dop_overlay":				"NRW Luftbild Overlay",
-	"ol_nw_vdop_rgb": 				"NRW vDOP Farbe",
-	"ol_nw_dtk": 					"NRW DTK",
-	"ol_nw_alkis_flurstuecke":			"NRW ALKIS Flurstücke",
-	"ol_nw_abk_stern":				"NRW ALKIS ABK*",
-	"ol_nw_alkis_tn":				"NRW ALKIS TN",
-	"ol_nw_schummerung":				"NRW Schummerung",
-	"ol_nw_linfos":					"NRW LINFOS",
-	"ol_osm_mapnik": 				"Open Street Maps",
-	"ol_rvr_dop":				"RVR Luftbild Farbe",
-	"ol_krzn_vie_alkis_light": 			"Kreis Viersen ALKIS (light)",
-	"ol_krzn_kre_alkis_light": 			"Stadt Krefeld ALKIS (light)",
-	"ol_krzn_wes_alkis_light": 			"Kreis Wesel ALKIS (light)",
-	"ol_krzn_kle_alkis_light": 			"Kreis Kleve ALKIS (light)",
-	"ol_krzn_vie_geplgeb":				"KRZN VIE Geplante Gebäude",
-	"Actueel_ortho25":              		"NL Luftbild Farbe"
-}
-
-
 /*
 	Funktionen zur Layer- und Overlay-Auswahl
 */
@@ -428,23 +415,6 @@ var layernames = {
 function getPredefinedLayer(layer_id) {
 	return layers[layer_id];
 }
-
-
-/*
-	Attribution der verfügbaren Layer
-*/
-function getCustomAttribution(layer_id) {
-	if (layer_id == "osm_mapnik") {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.openstreetmap.org/copyright>OpenStreetMap</a>-Mitwirkende'; //
-	} else if (layer_id == "rvr_dop") {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/>Regionalverband Ruhr</a>'; //
-	} else if (layer_id == "Actueel_ortho25") {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; <a target="_blank" rel="noopener noreferrer" href=http://geodata.nationaalgeoregister.nl/>Nationaal Georegister</a>'; //
-	} else {
-		return '<b>'+layernames[layer_id]+'</b><br>&copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target="_blank" rel="noopener noreferrer" href=https://www.govdata.de/dl-de/zero-2-0>www.govdata.de/dl-de/zero-2-0</a>)';
-	}
-}
-
 
 /*
 	Funktionen zur Auswahl der Layer in den einzelnen Kartenfenstern
@@ -455,10 +425,7 @@ function setLayer1() {
 	var layer_id = document.getElementById("form_1").value;
 	map_1.removeLayer(layer_id_1);
 	map_1.removeSource(layer_id_1);
-	map_1.removeControl(att_control_1);
 	map_1.addLayer(getPredefinedLayer(layer_id),"ol_nw_dop_rgb"); // wird unter den Overlays hinzugefügt
-	att_control_1 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id)});
-	map_1.addControl(att_control_1);
 	layer_id_1 = layer_id;
 }
 
@@ -467,10 +434,7 @@ function setLayer2() {
 	var layer_id = document.getElementById("form_2").value;
 	map_2.removeLayer(layer_id_2);
 	map_2.removeSource(layer_id_2);
-	map_2.removeControl(att_control_2);
 	map_2.addLayer(getPredefinedLayer(layer_id),"ol_nw_dop_rgb"); // wird unter den Overlays hinzugefügt
-	att_control_2 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id)});
-	map_2.addControl(att_control_2);
 	layer_id_2 = layer_id;
 }
 
@@ -479,10 +443,7 @@ function setLayer3() {
 	var layer_id = document.getElementById("form_3").value;
 	map_3.removeLayer(layer_id_3);
 	map_3.removeSource(layer_id_3);
-	map_3.removeControl(att_control_3);
 	map_3.addLayer(getPredefinedLayer(layer_id),"ol_nw_dop_rgb"); // wird unter den Overlays hinzugefügt
-	att_control_3 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id)});
-	map_3.addControl(att_control_3);
 	layer_id_3 = layer_id;
 }
 
@@ -491,10 +452,7 @@ function setLayer4() {
 	var layer_id = document.getElementById("form_4").value;
 	map_4.removeLayer(layer_id_4);
 	map_4.removeSource(layer_id_4);
-	map_4.removeControl(att_control_4);
 	map_4.addLayer(getPredefinedLayer(layer_id),"ol_nw_dop_rgb"); // wird unter den Overlays hinzugefügt
-	att_control_4 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id)});
-	map_4.addControl(att_control_4);
 	layer_id_4 = layer_id;
 }
 

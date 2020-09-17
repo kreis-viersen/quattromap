@@ -387,12 +387,6 @@
 		var overlay_id_3 = "ol_krzn_vie_geplgeb";
 		var overlay_id_4 = "";
 
-		// Hinzufügen der Attribution-Controls:
-		var att_control_1 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_1)});
-		var att_control_2 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_2)});
-		var att_control_3 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_3)});
-		var att_control_4 = new mapboxgl.AttributionControl({compact:true,customAttribution:getCustomAttribution(layer_id_4)});
-
 		// Ansteuerung der Deckkraft-Einstellung für die Overlays:
 		var slider_1 = document.getElementById('slider_1');
 		var slider_value_1 = document.getElementById('slider_value_1');
@@ -418,10 +412,10 @@
 		};
 		var default_center=[6.39333,51.25321];
 		var default_zoom=13;
-		var map_1 = new mapboxgl.Map({container:"map_1",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_1);
-		var map_2 = new mapboxgl.Map({container:"map_2",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_2);
-		var map_3 = new mapboxgl.Map({container:"map_3",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_3);
-		var map_4 = new mapboxgl.Map({container:"map_4",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false}).addControl(att_control_4);
+		var map_1 = new mapboxgl.Map({container:"map_1",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
+		var map_2 = new mapboxgl.Map({container:"map_2",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
+		var map_3 = new mapboxgl.Map({container:"map_3",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
+		var map_4 = new mapboxgl.Map({container:"map_4",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
 
 		map_1.on("load",function(){
 			// Basiskarte:

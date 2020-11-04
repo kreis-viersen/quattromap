@@ -1,4 +1,4 @@
-/* 
+/*
 	Funktionen des Vollbild-Menüs
 */
 
@@ -24,7 +24,7 @@ function changeCrosshair(img_source) {
 	document.getElementById('cross_3').src=img_source;
 	document.getElementById('cross_4').src=img_source;
 	document.getElementById('ch_dropdown_content').style.display="none";
-	setTimeout("document.getElementById('ch_dropdown_content').style.display='';", 100);	
+	setTimeout("document.getElementById('ch_dropdown_content').style.display='';", 100);
 }
 
 // Anzahl der Kartenfenster auswählen
@@ -215,55 +215,4 @@ function resetLabels() {
 		}]
 	};
 	map_1.getSource("labels").setData(geojson);
-}
-
-
-// Angabe des Flächeninhalts in der Messfunktion aktualisieren
-function updateArea(e) {
-	var data = draw.getAll();
-	resetLabels();
-	if (data.features.length > 0) {
-		var distance = turf.lineDistance(data);
-		var area = turf.area(data);
-		// restrict results to 2 decimal points
-		var rounded_distance = Math.round(distance*100000)/100;
-		var rounded_area = Math.round(area*100)/100;
-		var centroid = turf.centroid(data);
-		// console.log("Centroid: "+centroid.geometry.coordinates);
-		if (area == 0) {
-			// console.log("Länge: "+rounded_distance + " m");
-			var geojson = {
-				"type": "FeatureCollection",
-				"features": [{
-					"type": "Feature",
-					"geometry": {
-						"type": "Point",
-						"coordinates": centroid.geometry.coordinates
-					},
-					"properties": {
-						"title": rounded_distance + " m"
-					}
-				}]
-			};
-			map_1.getSource("labels").setData(geojson);
-		} else {
-			// console.log("Fläche: "+rounded_area + ' m²');
-			var geojson = {
-				"type": "FeatureCollection",
-				"features": [{
-					"type": "Feature",
-					"geometry": {
-						"type": "Point",
-						"coordinates": centroid.geometry.coordinates
-					},
-					"properties": {
-						"title": rounded_area + " m²"
-					}
-				}]
-			};
-			map_1.getSource("labels").setData(geojson);
-		}
-	} else {
-		if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
-	}
 }

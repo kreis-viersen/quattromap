@@ -13,11 +13,8 @@
     	<script src="./at-viersen_files/mapbox-gl.js"></script>
 	<link href="./at-viersen_files/mapbox-gl.css" rel="stylesheet">
 	<script src="./at-viersen_files/sync_map.js"></script>
-	<script src='https://api.tiles.mapbox.com/mapbox.js/plugins/turf/v3.0.11/turf.min.js'></script>
-	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.js'></script>
 	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.min.js'></script>
 	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.3.0/mapbox-gl-geocoder.css' type='text/css' />
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-draw/v1.0.9/mapbox-gl-draw.css' type='text/css'/>
 	<script src="./at-viersen_files/at-viersen.js"></script>
     	<script src="./at-viersen_files/at-viersen-dienste.js"></script>
 	<link rel="stylesheet" type="text/css" href="./at-viersen_files/at-viersen.css">
@@ -564,36 +561,6 @@
 		map_3.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
 		map_3.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
 
-		// Messfunktionen hinzufügen:
-		var draw = new MapboxDraw({
-			displayControlsDefault: false,
-			controls: {
-				line_string: true,
-				polygon: true,
-				trash: true
-			}
-		});
-		map_1.addControl(draw, "top-right");
-
-		map_1.on('draw.create', updateArea);
-		map_1.on('draw.delete', updateArea);
-		map_1.on('draw.update', updateArea);
-
-		map_1.on('draw.modechange', function() {
-			const data = draw.getAll();
-			if ((draw.getMode() == 'draw_polygon')||(draw.getMode() == 'draw_line_string')) {
-				var pids = []
-				const lid = data.features[data.features.length - 1].id
-				data.features.forEach((f) => {
-					if ((f.geometry.type === 'Polygon' && f.id !== lid)||(f.geometry.type === 'LineString' && f.id !== lid)) {
-						pids.push(f.id)
-					}
-				})
-				draw.delete(pids);
-				resetLabels();
-			}
-		});
-
 		// Sichtbarkeit der Map Controls initial festlegen:
 		document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
 		document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
@@ -638,46 +605,6 @@
 		slider_3.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
 		slider_4.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
 		slider_4.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-
-		// Weitere Event-Listener:
-		<!-- document.getElementsByClassName("mapboxgl-ctrl-icon mapboxgl-ctrl-compass")[0].addEventListener("click", function() {map_1.easeTo({pitch:0,bearing:0})}); -->
-
-		//map_1.on('click', function (e) {
-		//	// Get the snackbar DIV
-		//	var x = document.getElementById("mouse-info");
-		//	// Fire GetFeatureInfo-Request
-		//	var info_result = getFeatureInfoResult(e, map_1, layer_id_1);
-		//	console.log(info_result);
-		//
-		//	// e.lngLat is the longitude, latitude geographical position of the event
-		//	<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat; -->
-		//	x.innerHTML = "Feature-Info: " + info_result;
-		//	// Add the "show" class to DIV
-		//	x.className = "show";
-		//	// After 5 seconds, remove the show class from DIV
-		//	setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000);
-		//});
-
-		<!-- map_1.on('click', function (e) { -->
-			<!-- // Get the snackbar DIV -->
-			<!-- var x = document.getElementById("mouse-info");			 -->
-			<!-- // e.lngLat is the longitude, latitude geographical position of the event -->
-			<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat;			 -->
-			<!-- // Add the "show" class to DIV -->
-			<!-- x.className = "show";			 -->
-			<!-- // After 5 seconds, remove the show class from DIV -->
-			<!-- setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000); -->
-		<!-- }); -->
-		<!-- map_2.on('click', function (e) { -->
-			<!-- // Get the snackbar DIV -->
-			<!-- var x = document.getElementById("mouse-info");			 -->
-			<!-- // e.lngLat is the longitude, latitude geographical position of the event -->
-			<!-- x.innerHTML = "Position: "+e.lngLat.lng + ", "+e.lngLat.lat;			 -->
-			<!-- // Add the "show" class to DIV -->
-			<!-- x.className = "show";			 -->
-			<!-- // After 5 seconds, remove the show class from DIV -->
-			<!-- setTimeout(function(){ x.className = x.className.replace("show", ""); }, 5000); -->
-		<!-- }); -->
 
 	</script>
 </body>

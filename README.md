@@ -6,6 +6,7 @@
 ```bash
 # clone the repository
 git clone https://github.com/kreis-viersen/quattromap/
+cd quattromap
 ```
 Install the deps, start the dev server and open the web browser on `http://localhost:8080/`.
 

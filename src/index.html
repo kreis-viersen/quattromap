@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html style="">
+<html>
 
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -10,14 +10,6 @@
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
 	<meta http-equiv="ETag" content="000001" />
-	<script src='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.js'></script>
-	<link href='https://api.mapbox.com/mapbox-gl-js/v1.12.0/mapbox-gl.css' rel='stylesheet' />
-  <script src="./quattromap_files/sync_map.js"></script>
-	<script src='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.min.js'></script>
-	<link rel='stylesheet' href='https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v4.5.1/mapbox-gl-geocoder.css' type='text/css' />
-	<script src="./quattromap_files/quattromap.js"></script>
-    	<script src="./quattromap_files/quattromap-dienste.js"></script>
-	<link rel="stylesheet" type="text/css" href="./quattromap_files/quattromap.css">
 </head>
 
 <body>
@@ -26,15 +18,15 @@
 	<div id="myNav" class="overlay">
 		<!-- Fadenkreuz-Farbwahl -->
 		<div class="ch-dropdown">
-			<img id="ch_dd_img" class="ch-dropdown-image" src="./quattromap_files/img/cross_black.png" />
+			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
 			<div id="ch_dropdown_content" class="ch-dropdown-content">
-				<img src="./quattromap_files/img/cross_black.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_red.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_orange.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_yellow.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_green.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_blue.png" onclick="changeCrosshair(this.src)" />
-				<img src="./quattromap_files/img/cross_pink.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_black.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_red.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_orange.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_yellow.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_green.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_blue.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_pink.png" onclick="changeCrosshair(this.src)" />
 			</div>
 		</div>
 		<!-- Anzahl der Kartenfenster -->
@@ -334,7 +326,7 @@
 		</div>
 	</div>
 	<!-- Menü-Button -->
-	<div class="menu-button" onclick="swapBars(this), toggleNav()">
+	<div class="menu-button" id="menu-button" onclick="swapBars(this), toggleNav()">
 		<div class="bar1"></div>
 		<div class="bar2"></div>
 		<div class="bar3"></div>
@@ -342,271 +334,19 @@
 	<div id="mouse-info"></div>
 	<!-- Kartenfenster und Fadenkreuze -->
 	<div id="map_1" class="mapboxgl-map">
-		<img src="./quattromap_files/img/cross_black.png" id="cross_1" class="ch-image"/>
+		<img src="./img/cross_black.png" id="cross_1" class="ch-image" />
 	</div>
 	<div id="map_2" class="mapboxgl-map">
-		<img src="./quattromap_files/img/cross_black.png" id="cross_2" class="ch-image"/>
+		<img src="./img/cross_black.png" id="cross_2" class="ch-image" />
 	</div>
 	<div id="map_3" class="mapboxgl-map">
-		<img src="./quattromap_files/img/cross_black.png" id="cross_3" class="ch-image"/>
+		<img src="./img/cross_black.png" id="cross_3" class="ch-image" />
 	</div>
 	<div id="map_4" class="mapboxgl-map">
-		<img src="./quattromap_files/img/cross_black.png" id="cross_4" class="ch-image"/>
+		<img src="./img/cross_black.png" id="cross_4" class="ch-image" />
 	</div>
 
-	<script>
-
-		// Access Token:
-		mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
-
-		// Vorprüfungen:
-		if (mapboxgl.supported()) {
-			console.log('MapGL: supported');
-		} else {
-			console.log('MapGL: NOT supported!');
-			alert('Your browser does not support Mapbox GL');
-		}
-
-		if (document.fullscreenEnabled) {
-			console.log('Fullscreen: supported');
-		} else {
-			console.log('Fullscreen: NOT supported!');
-		}
-
-		// Voreinstellung der dargestellten Layer:
-		var layer_id_1 = "nw_dop_rgb";
-		var layer_id_2 = "osm_mapnik";
-		var layer_id_3 = "krzn_vie_alkis_light";
-		var layer_id_4 = "nw_dtk";
-
-		var overlay_id_1 = "";
-		var overlay_id_2 = "";
-		var overlay_id_3 = "ol_krzn_vie_geplgeb";
-		var overlay_id_4 = "";
-
-		// Ansteuerung der Deckkraft-Einstellung für die Overlays:
-		var slider_1 = document.getElementById('slider_1');
-		var slider_value_1 = document.getElementById('slider_value_1');
-		var deckkraft_1 = parseInt(slider_1.value, 10)/100;
-		var slider_2 = document.getElementById('slider_2');
-		var slider_value_2 = document.getElementById('slider_value_2');
-		var deckkraft_2 = parseInt(slider_2.value, 10)/100;
-		var slider_3 = document.getElementById('slider_3');
-		var slider_value_3 = document.getElementById('slider_value_3');
-		var deckkraft_3 = parseInt(slider_3.value, 10)/100;
-		var slider_4 = document.getElementById('slider_4');
-		var slider_value_4 = document.getElementById('slider_value_4');
-		var deckkraft_4 = parseInt(slider_4.value, 10)/100;
-
-		// Initialisierung der Kartenfenster:
-		var default_style = {
-			version:8,
-			name:"default_style",
-			metadata:{},
-			sources:{},
-			glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
-			layers:[]
-		};
-		var default_center=[6.39333,51.25321];
-		var default_zoom=13;
-		var map_1 = new mapboxgl.Map({container:"map_1",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
-		var map_2 = new mapboxgl.Map({container:"map_2",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
-		var map_3 = new mapboxgl.Map({container:"map_3",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
-		var map_4 = new mapboxgl.Map({container:"map_4",style:default_style,zoom:default_zoom,center:default_center,pitchWithRotate:false,attributionControl: false}).addControl(new mapboxgl.AttributionControl({compact: true}));
-
-		map_1.on("load",function(){
-			// Basiskarte:
-			map_1.addLayer(getPredefinedLayer(layer_id_1)),
-			// Overlays:
-			map_1.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_schummerung")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_dtk")),
-			map_1.addLayer(getPredefinedLayer("ol_nw_linfos")),
-			map_1.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_1.addLayer(getPredefinedLayer("ol_rvr_dop")),
-			map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-			map_1.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-			map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-			map_1.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
-			map_1.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-			map_1.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
-			map_1.addLayer({
-				"id": "labels",
-				"type": "symbol",
-				"source": {
-					"type": "geojson",
-					"data": {
-						"type": "FeatureCollection",
-						"features": [{
-							"type": "Feature",
-							"geometry": {
-								"type": "Point",
-								"coordinates": []
-							},
-							"properties": {
-								"title": ""
-							}
-						}]
-					}
-				},
-				"layout": {
-					"icon-image": "",
-					"text-field": "{title}",
-					"text-offset": [0, 0.6],
-					"text-size": 30,
-					"text-justify": "center",
-					"text-anchor": "center"
-				},
-				"paint": {
-					"text-color": "#ffb200",
-					"text-halo-color": "#FFFFFF",
-					"text-halo-width": 5,
-					"text-halo-blur": 3
-				}
-			})
-		});
-		map_2.on("load",function(){
-			// Basiskarte:
-			map_2.addLayer(getPredefinedLayer(layer_id_2)),
-			// Overlays:
-			map_2.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_schummerung")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_dtk")),
-			map_2.addLayer(getPredefinedLayer("ol_nw_linfos")),
-			map_2.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_2.addLayer(getPredefinedLayer("ol_rvr_dop")),
-			map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-			map_2.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-			map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-			map_2.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
-			map_2.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-			map_2.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
-		});
-		map_3.on( "load",function(){
-			// Basiskarte:
-			map_3.addLayer(getPredefinedLayer(layer_id_3)),
-			<!-- map_3.setLayoutProperty(layer_id_3, 'visibility', 'none'), -->
-			// Overlays:
-			map_3.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_schummerung")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_dtk")),
-			map_3.addLayer(getPredefinedLayer("ol_nw_linfos")),
-			map_3.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_3.addLayer(getPredefinedLayer("ol_rvr_dop")),
-			map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-			map_3.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-			map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-			map_3.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
-			map_3.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-			map_3.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
-			setOverlay3(ol_krzn_vie_geplgeb)
-		});
-		map_4.on("load",function(){
-			// Basiskarte:
-			map_4.addLayer(getPredefinedLayer(layer_id_4)),
-			<!-- map_4.setLayoutProperty(layer_id_4, 'visibility', 'none'), -->
-			// Overlays:
-			map_4.addLayer(getPredefinedLayer("ol_nw_dop_rgb")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_schummerung")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_dtk")),
-			map_4.addLayer(getPredefinedLayer("ol_nw_linfos")),
-			map_4.addLayer(getPredefinedLayer("ol_osm_mapnik")),
-			map_4.addLayer(getPredefinedLayer("ol_rvr_dop")),
-			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-			map_4.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-			map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-			map_4.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
-			map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-			map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
-		});
-
-		// Fadenkreuze 3+4 initial ausblenden:
-		<!-- document.getElementById("cross_3").style.display = "none"; -->
-		<!-- document.getElementById("cross_4").style.display = "none"; -->
-
-		// Kartenfenster synchronisieren:
-		syncMaps(map_1,map_3,map_2,map_4);
-
-		// Weitere Controls hinzufügen:
-		map_1.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
-		map_1.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
-		map_1.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
-		map_1.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
-		map_2.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
-		map_2.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
-		map_2.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
-		map_2.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
-		map_3.addControl(new MapboxGeocoder({accessToken: mapboxgl.accessToken, mapboxgl: mapboxgl}), 'top-right');
-		map_3.addControl(new mapboxgl.NavigationControl({showZoom:false}), 'top-right');
-		map_3.addControl(new mapboxgl.FullscreenControl({container: document.querySelector('body')}), 'top-right');
-		map_3.addControl(new mapboxgl.GeolocateControl({positionOptions: {enableHighAccuracy: true},trackUserLocation: true}), 'top-right');
-
-		// Sichtbarkeit der Map Controls initial festlegen:
-		document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-		document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
-		document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
-
-		// Steuerung der Deckkraft-Regler für die Overlays:
-		slider_1.addEventListener('input', function(e) {
-			deckkraft_1 = parseInt(e.target.value, 10) / 100;
-			if (!overlay_id_1 == "") {
-				map_1.setPaintProperty(overlay_id_1, 'raster-opacity', deckkraft_1);
-			}
-			slider_value_1.textContent = e.target.value + '%';
-		});
-		slider_2.addEventListener('input', function(e) {
-			deckkraft_2 = parseInt(e.target.value, 10) / 100;
-			if (!overlay_id_2 == "") {
-				map_2.setPaintProperty(overlay_id_2, 'raster-opacity', deckkraft_2);
-			}
-			slider_value_2.textContent = e.target.value + '%';
-		});
-		slider_3.addEventListener('input', function(e) {
-			deckkraft_3 = parseInt(e.target.value, 10) / 100;
-			if (!overlay_id_3 == "") {
-				map_3.setPaintProperty(overlay_id_3, 'raster-opacity', deckkraft_3);
-			}
-			slider_value_3.textContent = e.target.value + '%';
-		});
-		slider_4.addEventListener('input', function(e) {
-			deckkraft_4 = parseInt(e.target.value, 10) / 100;
-			if (!overlay_id_4 == "") {
-				map_4.setPaintProperty(overlay_id_4, 'raster-opacity', deckkraft_4);
-			}
-			slider_value_4.textContent = e.target.value + '%';
-		});
-
-		// Ausblenden des Menüs bei Betätigung der Deckkraft-Regler:
-		slider_1.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
-		slider_1.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-		slider_2.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
-		slider_2.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-		slider_3.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
-		slider_3.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-		slider_4.addEventListener('pointerdown', function() {document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";});
-		slider_4.addEventListener('pointerup', function() {document.getElementById("myNav").style.background = "";});
-
-	</script>
+	<script src="bundle.js"></script>
 </body>
 
 </html>

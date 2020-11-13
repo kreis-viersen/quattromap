@@ -1,0 +1,28 @@
+{
+  "name": "quattromap",
+  "description": "Compare up to 4 maps at once",
+  "version": "1.0.0",
+  "license": "MIT",
+  "scripts": {
+    "start": "webpack-dev-server",
+    "build": "webpack"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kreis-viersen/quattromap"
+  },
+  "devDependencies": {
+    "copy-webpack-plugin": "^6.3.0",
+    "css-loader": "^5.0.1",
+    "style-loader": "^2.0.0",
+    "webpack": "^5.4.0",
+    "webpack-cli": "^3.3.12",
+    "webpack-dev-server": "^3.11.0",
+    "webpack-license-plugin": "^4.1.1"
+  },
+  "dependencies": {
+    "@mapbox/mapbox-gl-geocoder": "^4.7.0",
+    "@mapbox/mapbox-gl-sync-move": "^0.3.0",
+    "mapbox-gl": "^1.12.0"
+  }
+}

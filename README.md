@@ -31,3 +31,9 @@ Once the build is finished, you'll find it at `dist/`.
 # publish files to a gh-pages branch on GitHub
 npm run deploy
 ```
+
+### Search
+
+For the search functionality https://github.com/mapbox/mapbox-gl-geocoder is used.
+
+For your own quattroMap please use your own access token: https://docs.mapbox.com/help/how-mapbox-works/access-tokens/.

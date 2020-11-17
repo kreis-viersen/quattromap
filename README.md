@@ -5,6 +5,19 @@
 [github-action-ci]: https://github.com/kreis-viersen/quattromap/actions?query=workflow%3Aci
 [license]:          https://tldrlegal.com/license/mit-license
 
+Kreiseigene Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann. 
+
+Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. 
+
+Mit Hilfe der Anwendung können bis zu 4 verschiedene Karten mit gleichem Kartenausschnitt gleichzeitig dargestellt werden.
+Über die Schaltfläche in der linken unteren Ecke gelangt man zu den Einstellungen der Kartenfenster. Zur Auswahl der Kartenhintergründe stehen z. B.
+Luftbilder, Liegenschaftskataster, geplanteGebäude oder OpenStreetMap zur Verfügung. 
+
+In den Kartenfenstern können auch Überlagerungen (Overlays) benutzt werden, um bspw. Luftbilder und geplante Gebäude übereinander zu legen.
+
+Am rechten Bildschirmrand gibt es eine Suchfunktion (Mapbox GL Geocoder Control: https://github.com/mapbox/mapbox-gl-geocoder) sowie die Möglichkeit den Kartenausschnitt und den eigenen Standort über die Standortbestimmung des Geräts anzuzeigen (Standortbestimmung muss im Gerät eingeschaltet bzw. erlaubt sein).
+
+
 
 ## Develop
 

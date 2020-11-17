@@ -495,7 +495,7 @@ var krzn_wes_alkis_light = {
   source: {
     type: "raster",
     attribution: "<b>Kreis Wesel ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
+    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,lagebezeichnungen&STYLES="],
     tileSize: 256
   },
   paint: {}
@@ -766,7 +766,7 @@ var ol_krzn_kle_alkis_light = {
   source: {
     type: "raster",
     attribution: "<br><b>Overlay: Kreis Kleve ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
+    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,hausnummern,flurstuecksnummer,lagebezeichnungen,zuordnungspfeile&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {

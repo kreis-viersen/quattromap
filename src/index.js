@@ -109,7 +109,7 @@ map_1.on("load", function() {
     map_1.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
     map_1.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
     map_1.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-    map_1.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+    map_1.addLayer(getPredefinedLayer("ol_nw_abk")),
     map_1.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
     map_1.addLayer(getPredefinedLayer("ol_nw_schummerung")),
     map_1.addLayer(getPredefinedLayer("ol_nw_dtk")),
@@ -165,7 +165,7 @@ map_2.on("load", function() {
     map_2.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
     map_2.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
     map_2.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-    map_2.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+    map_2.addLayer(getPredefinedLayer("ol_nw_abk")),
     map_2.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
     map_2.addLayer(getPredefinedLayer("ol_nw_schummerung")),
     map_2.addLayer(getPredefinedLayer("ol_nw_dtk")),
@@ -187,7 +187,7 @@ map_3.on("load", function() {
     map_3.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
     map_3.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
     map_3.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-    map_3.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+    map_3.addLayer(getPredefinedLayer("ol_nw_abk")),
     map_3.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
     map_3.addLayer(getPredefinedLayer("ol_nw_schummerung")),
     map_3.addLayer(getPredefinedLayer("ol_nw_dtk")),
@@ -210,7 +210,7 @@ map_4.on("load", function() {
     map_4.addLayer(getPredefinedLayer("ol_nw_dop_overlay")),
     map_4.addLayer(getPredefinedLayer("ol_nw_vdop_rgb")),
     map_4.addLayer(getPredefinedLayer("ol_nw_alkis_flurstuecke")),
-    map_4.addLayer(getPredefinedLayer("ol_nw_abk_stern")),
+    map_4.addLayer(getPredefinedLayer("ol_nw_abk")),
     map_4.addLayer(getPredefinedLayer("ol_nw_alkis_tn")),
     map_4.addLayer(getPredefinedLayer("ol_nw_schummerung")),
     map_4.addLayer(getPredefinedLayer("ol_nw_dtk")),
@@ -395,13 +395,13 @@ var nw_alkis_flurstuecke = {
   },
   paint: {}
 };
-var nw_abk_stern = {
-  id: "nw_abk_stern",
+var nw_abk = {
+  id: "nw_abk",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<b>NRW Amtliche Basiskarte (ABK*)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_abk_stern?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK_STERN"],
+    attribution: "<b>NRW Amtliche Basiskarte (ABK)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_abk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK"],
     tileSize: 256
   },
   paint: {}
@@ -600,13 +600,13 @@ var ol_nw_alkis_flurstuecke = {
   },
   paint: {}
 };
-var ol_nw_abk_stern = {
-  id: "ol_nw_abk_stern",
+var ol_nw_abk = {
+  id: "ol_nw_abk",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<br><b>Overlay: NRW Amtliche Basiskarte (ABK*)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_abk_stern?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK_STERN&STYLES=&TRANSPARENT=true"],
+    attribution: "<br><b>Overlay: NRW Amtliche Basiskarte (ABK)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_abk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {
@@ -821,7 +821,7 @@ var layers = {
   "nw_vdop_rgb": nw_vdop_rgb,
   "nw_dtk": nw_dtk,
   "nw_alkis_flurstuecke": nw_alkis_flurstuecke,
-  "nw_abk_stern": nw_abk_stern,
+  "nw_abk": nw_abk,
   "nw_alkis_tn": nw_alkis_tn,
   "nw_schummerung": nw_schummerung,
   "osm_mapnik": osm_mapnik,
@@ -838,7 +838,7 @@ var layers = {
   "ol_nw_dtk": ol_nw_dtk,
   "ol_nw_dop_overlay": ol_nw_dop_overlay,
   "ol_nw_alkis_flurstuecke": ol_nw_alkis_flurstuecke,
-  "ol_nw_abk_stern": ol_nw_abk_stern,
+  "ol_nw_abk": ol_nw_abk,
   "ol_nw_alkis_tn": ol_nw_alkis_tn,
   "ol_nw_schummerung": ol_nw_schummerung,
   "ol_nw_linfos": ol_nw_linfos,

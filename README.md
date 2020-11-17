@@ -5,6 +5,8 @@
 [github-action-ci]: https://github.com/kreis-viersen/quattromap/actions?query=workflow%3Aci
 [license]:          https://tldrlegal.com/license/mit-license
 
+<a href="https://kreis-viersen.github.io/quattromap/"><img src="./quattromap_screenshot.png"></a>
+
 Kreiseigene Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann. 
 
 Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. 

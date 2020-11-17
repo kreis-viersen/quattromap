@@ -231,7 +231,8 @@ syncMaps(map_1, map_3, map_2, map_4);
 // Weitere Controls hinzufügen:
 map_1.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl
+  mapboxgl: mapboxgl,
+  types: "country,region,postcode,district,place,locality,neighborhood,address"
 }), 'top-right');
 map_1.addControl(new mapboxgl.NavigationControl({
   showZoom: false
@@ -247,7 +248,8 @@ map_1.addControl(new mapboxgl.GeolocateControl({
 }), 'top-right');
 map_2.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl
+  mapboxgl: mapboxgl,
+  types: "country,region,postcode,district,place,locality,neighborhood,address"
 }), 'top-right');
 map_2.addControl(new mapboxgl.NavigationControl({
   showZoom: false
@@ -263,7 +265,8 @@ map_2.addControl(new mapboxgl.GeolocateControl({
 }), 'top-right');
 map_3.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl
+  mapboxgl: mapboxgl,
+  types: "country,region,postcode,district,place,locality,neighborhood,address"
 }), 'top-right');
 map_3.addControl(new mapboxgl.NavigationControl({
   showZoom: false

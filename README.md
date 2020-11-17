@@ -1,4 +1,9 @@
 # quattroMap
+[![GitHub CI status](https://github.com/kreis-viersen/quattromap/workflows/ci/badge.svg)][github-action-ci]
+[![License](https://img.shields.io/badge/license-MIT-blue.svg)][license]
+
+[github-action-ci]: https://github.com/kreis-viersen/quattromap/actions?query=workflow%3Aci
+[license]:          https://tldrlegal.com/license/mit-license
 
 
 ## Develop
@@ -36,4 +41,5 @@ npm run deploy
 
 For the search functionality https://github.com/mapbox/mapbox-gl-geocoder is used.
 
-For your own quattroMap please use your own access token: https://docs.mapbox.com/help/how-mapbox-works/access-tokens/.
+For your own quattroMap please use your own access token: 
+https://docs.mapbox.com/help/how-mapbox-works/access-tokens/.

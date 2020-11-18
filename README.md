@@ -20,6 +20,32 @@ In den Kartenfenstern können auch Überlagerungen (Overlays) benutzt werden, um
 Am rechten Bildschirmrand gibt es eine Suchfunktion (Mapbox GL Geocoder Control: https://github.com/mapbox/mapbox-gl-geocoder) sowie die Möglichkeit den Kartenausschnitt und den eigenen Standort über die Standortbestimmung des Geräts anzuzeigen (Standortbestimmung muss im Gerät eingeschaltet bzw. erlaubt sein).
 Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. Ein Klick auf das Kompass-Symbol richtet die Karte(n) wieder nach Norden aus. 
 
+## Aktuell verfügbare Dienste
+
+### Layer
+
+|Name|Art|URL|Dienste Layer|
+|:---|:---|:---|:---|
+|**Geobasis NRW**|||| 
+|NRW Luftbild Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dop_rgb|  
+|NRW vDOP Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_vdop_rgb|  
+|NRW ALKIS FLURSTÜCKE|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_flurstuecke|  
+|NRW Amtliche Basiskarte (ABK)|WMS|https://www.wms.nrw.de/geobasis/wms_nw_abk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_ABK|  
+|NRW Alkis TN|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_tatsaechliche_nutzung| 
+|NRW Schummerung|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dgm-schummerung_pan|
+|NRW DTK|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dtk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dtk_col|
+|**OpenStreetMap**|||| 
+|OSM Mapnik|XYZ Tiles|https://www.openstreetmap.org||
+|**RVR**|||| 
+|RVR Luftbild Farbe|WMS|https://geodaten.metropoleruhr.de/dop/dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|dop|
+|**KRZN-Dienste**|||| 
+|Kreis Viersen ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
+|Stadt Krefeld ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
+|Kreis Wesel ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude_oberirdisch, lagebezeichnungen|
+|Kreis Kleve ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
+|Kreis Viersen Geplante Gebäude|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_geplgeb|
+|**Nationaal Georegister (NL)**|||| 
+|NL Luftbild Farbe|WMS|https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Actueel_ortho25|  
 
 
 ## Develop

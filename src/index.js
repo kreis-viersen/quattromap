@@ -30,7 +30,7 @@ var layer_id_2 = "osm_mapnik";
 var layer_id_3 = "krzn_vie_alkis";
 var layer_id_4 = "nw_dtk";
 
-var overlay_id_1 = "";
+var overlay_id_1 = "ol_nw_vdop_rgb";
 var overlay_id_2 = "";
 var overlay_id_3 = "ol_krzn_vie_geplgeb";
 var overlay_id_4 = "";
@@ -156,7 +156,8 @@ map_1.on("load", function() {
         "text-halo-width": 5,
         "text-halo-blur": 3
       }
-    })
+    }),
+    setOverlay1(ol_nw_vdop_rgb)
 });
 map_2.on("load", function() {
   // Basiskarte:
@@ -593,7 +594,7 @@ var ol_nw_vdop_rgb = {
   source: {
     type: "raster",
     attribution: "<br><b>Overlay: NRW vDOP Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_vdop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_vdop_rgb"],
+    tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_vdop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_vdop_rgb&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {

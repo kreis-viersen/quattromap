@@ -31,7 +31,7 @@ module.exports = {
         // https://github.com/codepunkt/webpack-license-plugin/issues/443
         '@mapbox/fusspot@0.4.0': 'BSD-2-Clause',
         // https://github.com/mapbox/mapbox-gl-js/tree/v1.12.0#license
-        'mapbox-gl@1.12.0': 'BSD-3-Clause',
+        'mapbox-gl@1.13.0': 'BSD-3-Clause',
       }
     }),
   ]

@@ -58,8 +58,8 @@ var default_style = {
   glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
   layers: []
 };
-var default_center = [6.39333, 51.25321];
-var default_zoom = 13;
+var default_center = [6.391263, 51.258812];
+var default_zoom = 16.04;
 var map_1 = new mapboxgl.Map({
   container: "map_1",
   style: default_style,

@@ -46,11 +46,11 @@
 				<form onchange="setOverlay1()">
 					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_1" class="selector">
-						<option value="none" selected>keins</option>
+						<option value="none">keins</option>
 						<optgroup label="GeoBasis NRW">
 							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
 							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
-							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
+							<option value="ol_nw_vdop_rgb" selected>NRW vDOP Farbe</option>
 							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
 							<option value="ol_nw_abk">NRW Amtliche Basiskarte (ABK)</option>
 							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
@@ -78,7 +78,7 @@
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_1' class="slider-label">50%</span>
+				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' value='100' /><span id='slider_value_1' class="slider-label">100%</span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer1()">
 					<label for="form_1" class="layer-label">Layer:</label>

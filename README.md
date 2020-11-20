@@ -7,18 +7,18 @@
 
 <a href="https://kreis-viersen.github.io/quattromap/"><img src="./quattromap_screenshot.png"></a>
 
-Kreiseigene Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann. 
+Kreiseigene Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann.
 
-Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. 
+Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar.
 
 Mit Hilfe der Anwendung können bis zu 4 verschiedene Karten mit gleichem Kartenausschnitt gleichzeitig dargestellt werden.
 Über die Schaltfläche in der linken unteren Ecke gelangt man zu den Einstellungen der Kartenfenster. Zur Auswahl der Kartenhintergründe stehen z. B.
-Luftbilder, Liegenschaftskataster, geplanteGebäude oder OpenStreetMap zur Verfügung. 
+Luftbilder, Liegenschaftskataster, geplanteGebäude oder OpenStreetMap zur Verfügung.
 
 In den Kartenfenstern können auch Überlagerungen (Overlays) benutzt werden, um bspw. Luftbilder und geplante Gebäude übereinander zu legen.
 
 Am rechten Bildschirmrand gibt es eine Suchfunktion (Mapbox GL Geocoder Control: https://github.com/mapbox/mapbox-gl-geocoder) sowie die Möglichkeit den Kartenausschnitt und den eigenen Standort über die Standortbestimmung des Geräts anzuzeigen (Standortbestimmung muss im Gerät eingeschaltet bzw. erlaubt sein).
-Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. Ein Klick auf das Kompass-Symbol richtet die Karte(n) wieder nach Norden aus. 
+Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. Ein Klick auf das Kompass-Symbol richtet die Karte(n) wieder nach Norden aus.
 
 ## Aktuell verfügbare Dienste
 
@@ -26,25 +26,26 @@ Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. E
 
 |Name|Art|URL|Dienste Layer|
 |:---|:---|:---|:---|
-|**Geobasis NRW**|||| 
+|**Geobasis NRW**||||
 |NRW Luftbild Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dop_rgb|  
 |NRW vDOP Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_vdop_rgb|  
 |NRW ALKIS FLURSTÜCKE|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_flurstuecke|  
 |NRW Amtliche Basiskarte (ABK)|WMS|https://www.wms.nrw.de/geobasis/wms_nw_abk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_ABK|  
-|NRW Alkis TN|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_tatsaechliche_nutzung| 
+|NRW Alkis TN|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_tatsaechliche_nutzung|
 |NRW Schummerung|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dgm-schummerung_pan|
 |NRW DTK|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dtk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dtk_col|
-|**OpenStreetMap**|||| 
+|**OpenStreetMap**||||
 |OSM Mapnik|XYZ Tiles|https://www.openstreetmap.org||
-|**RVR**|||| 
+|**RVR**||||
 |RVR Luftbild Farbe|WMS|https://geodaten.metropoleruhr.de/dop/dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|dop|
-|**KRZN-Dienste**|||| 
-|Kreis Viersen ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
-|Stadt Krefeld ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
-|Kreis Wesel ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude_oberirdisch, lagebezeichnungen|
-|Kreis Kleve ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
+|**KRZN-Dienste**||||
+|Kreis Viersen ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, FlurkarteAdV_Viersen|
+|Stadt Krefeld ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, FlurkarteAdV_Krefeld|
+|Kreis Wesel ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, FlurkarteAdV_Wesel|
+|Kreis Kleve ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, FlurkarteAdV_Kleve|
+|Stadt Bottrop ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, Flurkarte_Bottrop|
 |Kreis Viersen Geplante Gebäude|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_geplgeb|
-|**Nationaal Georegister (NL)**|||| 
+|**Nationaal Georegister (NL)**||||
 |NL Luftbild Farbe|WMS|https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Actueel_ortho25|  
 
 ### Overlays
@@ -53,7 +54,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 
 |Name|Art|URL|Dienste Layer|
 |:---|:---|:---|:---|
-|**Geobasis NRW**|||| 
+|**Geobasis NRW**||||
 |NRW Luftbild Overlay|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_DOP_OVERLAY|  
 |NRW LINFOS|WMS|https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Naturschutzgebiete, Landschaftsschutzgebiet|
 
@@ -93,5 +94,5 @@ npm run deploy
 
 For the search functionality https://github.com/mapbox/mapbox-gl-geocoder is used.
 
-For your own quattroMap please use your own access token: 
+For your own quattroMap please use your own access token:
 https://docs.mapbox.com/help/how-mapbox-works/access-tokens/.

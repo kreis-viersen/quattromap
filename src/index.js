@@ -27,7 +27,7 @@ if (document.fullscreenEnabled) {
 // Voreinstellung der dargestellten Layer:
 var layer_id_1 = "nw_dop_rgb";
 var layer_id_2 = "osm_mapnik";
-var layer_id_3 = "krzn_vie_alkis_light";
+var layer_id_3 = "krzn_vie_alkis";
 var layer_id_4 = "nw_dtk";
 
 var overlay_id_1 = "";
@@ -116,10 +116,11 @@ map_1.on("load", function() {
     map_1.addLayer(getPredefinedLayer("ol_nw_linfos")),
     map_1.addLayer(getPredefinedLayer("ol_osm_mapnik")),
     map_1.addLayer(getPredefinedLayer("ol_rvr_dop")),
-    map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-    map_1.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-    map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-    map_1.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_kre_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_1.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_1.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
     map_1.addLayer({
@@ -172,10 +173,11 @@ map_2.on("load", function() {
     map_2.addLayer(getPredefinedLayer("ol_nw_linfos")),
     map_2.addLayer(getPredefinedLayer("ol_osm_mapnik")),
     map_2.addLayer(getPredefinedLayer("ol_rvr_dop")),
-    map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-    map_2.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-    map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-    map_2.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_kre_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_2.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
 });
@@ -194,10 +196,11 @@ map_3.on("load", function() {
     map_3.addLayer(getPredefinedLayer("ol_nw_linfos")),
     map_3.addLayer(getPredefinedLayer("ol_osm_mapnik")),
     map_3.addLayer(getPredefinedLayer("ol_rvr_dop")),
-    map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-    map_3.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-    map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-    map_3.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_kre_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_3.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_3.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
     setOverlay3(ol_krzn_vie_geplgeb)
@@ -217,10 +220,11 @@ map_4.on("load", function() {
     map_4.addLayer(getPredefinedLayer("ol_nw_linfos")),
     map_4.addLayer(getPredefinedLayer("ol_osm_mapnik")),
     map_4.addLayer(getPredefinedLayer("ol_rvr_dop")),
-    map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
-    map_4.addLayer(getPredefinedLayer("ol_krzn_kre_alkis_light")),
-    map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis_light")),
-    map_4.addLayer(getPredefinedLayer("ol_krzn_kle_alkis_light")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_kre_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
 });
@@ -467,46 +471,57 @@ var rvr_dop = {
 };
 
 // KRZN-Dienste
-var krzn_vie_alkis_light = {
-  id: "krzn_vie_alkis_light",
+var krzn_vie_alkis = {
+  id: "krzn_vie_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<b>Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
+    attribution: "<b>Kreis Viersen ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Viersen&STYLES="],
     tileSize: 256
   },
   paint: {}
 };
-var krzn_kre_alkis_light = {
-  id: "krzn_kre_alkis_light",
+var krzn_kre_alkis = {
+  id: "krzn_kre_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<b>Stadt Krefeld ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
+    attribution: "<b>Stadt Krefeld ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Krefeld&STYLES="],
     tileSize: 256
   },
   paint: {}
 };
-var krzn_wes_alkis_light = {
-  id: "krzn_wes_alkis_light",
+var krzn_wes_alkis = {
+  id: "krzn_wes_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<b>Kreis Wesel ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,lagebezeichnungen&STYLES="],
+    attribution: "<b>Kreis Wesel ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Wesel&STYLES="],
     tileSize: 256
   },
   paint: {}
 };
-var krzn_kle_alkis_light = {
-  id: "krzn_kle_alkis_light",
+var krzn_kle_alkis = {
+  id: "krzn_kle_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<b>Kreis Kleve ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
+    attribution: "<b>Kreis Kleve ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Kleve&STYLES="],
+    tileSize: 256
+  },
+  paint: {}
+};
+var krzn_bot_alkis = {
+  id: "krzn_bot_alkis",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Kreis Bottrop ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Flurkarte_Bottrop&STYLES="],
     tileSize: 256
   },
   paint: {}
@@ -718,13 +733,13 @@ var ol_rvr_dop = {
 };
 
 // KRZN-Dienste
-var ol_krzn_vie_alkis_light = {
-  id: "ol_krzn_vie_alkis_light",
+var ol_krzn_vie_alkis = {
+  id: "ol_krzn_vie_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<br><b>Overlay: Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES=&TRANSPARENT=true"],
+    attribution: "<br><b>Overlay: Kreis Viersen ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Viersen&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {
@@ -732,13 +747,13 @@ var ol_krzn_vie_alkis_light = {
   },
   paint: {}
 };
-var ol_krzn_kre_alkis_light = {
-  id: "ol_krzn_kre_alkis_light",
+var ol_krzn_kre_alkis = {
+  id: "ol_krzn_kre_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<br><b>Overlay: Stadt Krefeld ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES=&TRANSPARENT=true"],
+    attribution: "<br><b>Overlay: Stadt Krefeld ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Krefeld&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {
@@ -746,13 +761,13 @@ var ol_krzn_kre_alkis_light = {
   },
   paint: {}
 };
-var ol_krzn_wes_alkis_light = {
-  id: "ol_krzn_wes_alkis_light",
+var ol_krzn_wes_alkis = {
+  id: "ol_krzn_wes_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<br><b>Overlay: Kreis Wesel ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude_oberirdisch,lagebezeichnungen&STYLES=&TRANSPARENT=true"],
+    attribution: "<br><b>Overlay: Kreis Wesel ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Wesel&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {
@@ -760,13 +775,27 @@ var ol_krzn_wes_alkis_light = {
   },
   paint: {}
 };
-var ol_krzn_kle_alkis_light = {
-  id: "ol_krzn_kle_alkis_light",
+var ol_krzn_kle_alkis = {
+  id: "ol_krzn_kle_alkis",
   type: "raster",
   source: {
     type: "raster",
-    attribution: "<br><b>Overlay: Kreis Kleve ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
-    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES=&TRANSPARENT=true"],
+    attribution: "<br><b>Overlay: Kreis Kleve ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Kleve&STYLES=&TRANSPARENT=true"],
+    tileSize: 256
+  },
+  layout: {
+    visibility: 'none'
+  },
+  paint: {}
+};
+var ol_krzn_bot_alkis = {
+  id: "ol_krzn_bot_alkis",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<br><b>Overlay: Stadt Bottrop ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Flurkarte_Bottrop&STYLES=&TRANSPARENT=true"],
     tileSize: 256
   },
   layout: {
@@ -826,10 +855,11 @@ var layers = {
   "nw_schummerung": nw_schummerung,
   "osm_mapnik": osm_mapnik,
   "rvr_dop": rvr_dop,
-  "krzn_vie_alkis_light": krzn_vie_alkis_light,
-  "krzn_kre_alkis_light": krzn_kre_alkis_light,
-  "krzn_wes_alkis_light": krzn_wes_alkis_light,
-  "krzn_kle_alkis_light": krzn_kle_alkis_light,
+  "krzn_vie_alkis": krzn_vie_alkis,
+  "krzn_kre_alkis": krzn_kre_alkis,
+  "krzn_wes_alkis": krzn_wes_alkis,
+  "krzn_kle_alkis": krzn_kle_alkis,
+  "krzn_bot_alkis": krzn_bot_alkis,
   "krzn_vie_geplgeb": krzn_vie_geplgeb,
   "Actueel_ortho25": Actueel_ortho25,
   // Overlays
@@ -844,10 +874,11 @@ var layers = {
   "ol_nw_linfos": ol_nw_linfos,
   "ol_osm_mapnik": ol_osm_mapnik,
   "ol_rvr_dop": ol_rvr_dop,
-  "ol_krzn_vie_alkis_light": ol_krzn_vie_alkis_light,
-  "ol_krzn_kre_alkis_light": ol_krzn_kre_alkis_light,
-  "ol_krzn_wes_alkis_light": ol_krzn_wes_alkis_light,
-  "ol_krzn_kle_alkis_light": ol_krzn_kle_alkis_light,
+  "ol_krzn_vie_alkis": ol_krzn_vie_alkis,
+  "ol_krzn_kre_alkis": ol_krzn_kre_alkis,
+  "ol_krzn_wes_alkis": ol_krzn_wes_alkis,
+  "ol_krzn_kle_alkis": ol_krzn_kle_alkis,
+  "ol_krzn_bot_alkis": ol_krzn_bot_alkis,
   "ol_krzn_vie_geplgeb": ol_krzn_vie_geplgeb,
   "ol_Actueel_ortho25": ol_Actueel_ortho25
 }

@@ -22,8 +22,8 @@ Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. E
 
 ### Messwerkzeuge
 
-Sobald nur eine Karte angezeigt, wird stehen Messwerkzeuge zur Verfügung:
-- LineString: zum Messen eine Entferneung in Metern
+Sobald nur eine Karte angezeigt wird, stehen Messwerkzeuge zur Verfügung:
+- LineString: zum Messen eine Entfernung in Metern
 - Polygon: zum Messen einer Fläche in Quadratmetern
 
 Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf der Karte zeichen und mit einem Klick auf den letzten Stützpunkt abschließen:

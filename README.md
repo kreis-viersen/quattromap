@@ -20,6 +20,16 @@ In den Kartenfenstern können auch Überlagerungen (Overlays) benutzt werden, um
 Am rechten Bildschirmrand gibt es eine Suchfunktion (Mapbox GL Geocoder Control: https://github.com/mapbox/mapbox-gl-geocoder) sowie die Möglichkeit den Kartenausschnitt und den eigenen Standort über die Standortbestimmung des Geräts anzuzeigen (Standortbestimmung muss im Gerät eingeschaltet bzw. erlaubt sein).
 Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. Ein Klick auf das Kompass-Symbol richtet die Karte(n) wieder nach Norden aus.
 
+### Messwerkzeuge
+
+Sobald nur eine Karte angezeigt, wird stehen Messwerkzeuge zur Verfügung:
+- LineString: zum Messen eine Entferneung in Metern
+- Polygon: zum Messen einer Fläche in Quadratmetern
+
+Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf der Karte zeichen und mit einem Klick auf den letzten Stützpunkt abschließen:
+
+<img src="./quattromap_measurement-tools.gif" width="715">
+
 ## Aktuell verfügbare Dienste
 
 ### Layer

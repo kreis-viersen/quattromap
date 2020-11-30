@@ -17,14 +17,18 @@
     "css-loader": "^5.0.1",
     "gh-pages": "^3.1.0",
     "style-loader": "^2.0.0",
-    "webpack": "^5.4.0",
+    "webpack": "^4.44.2",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0",
     "webpack-license-plugin": "^4.1.1"
   },
   "dependencies": {
+    "@mapbox/mapbox-gl-draw": "^1.2.0",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
     "@mapbox/mapbox-gl-sync-move": "^0.3.0",
+    "@turf/area": "^6.0.1",
+    "@turf/centroid": "^6.0.2",
+    "@turf/length": "^6.0.2",
     "mapbox-gl": "^1.13.0"
   }
 }

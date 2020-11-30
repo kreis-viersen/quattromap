@@ -1,11 +1,14 @@
-import mapboxgl from 'mapbox-gl'
+import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+var syncMaps = require('@mapbox/mapbox-gl-sync-move');
+import TurfArea from '@turf/area';
+import TurfCentroid from '@turf/centroid';
+import TurfLength from '@turf/length';
+import mapboxgl from 'mapbox-gl'
 import './style.css';
+import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
 import 'mapbox-gl/dist/mapbox-gl.css';
-
-var syncMaps = require('@mapbox/mapbox-gl-sync-move');
-
 
 // Access Token:
 mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
@@ -1201,3 +1204,101 @@ window.setMapNumber = function setMapNumber(map_number) {
       alert("ERROR: " + map_number);
   }
 }
+
+// Alle Labels zurücksetzen
+window.resetLabels = function resetLabels() {
+  var geojson = {
+    "type": "FeatureCollection",
+    "features": [{
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": []
+      },
+      "properties": {
+        "title": ""
+      }
+    }]
+  };
+  map_1.getSource("labels").setData(geojson);
+}
+
+// Angabe des Flächeninhalts in der Messfunktion aktualisieren
+window.updateArea = function updateArea(e) {
+  var data = draw.getAll();
+  resetLabels();
+  if (data.features.length > 0) {
+    var distance = TurfLength(data);
+    var area = TurfArea(data);
+    // restrict results to 2 decimal points
+    var rounded_distance = Math.round(distance * 100000) / 100;
+    var rounded_area = Math.round(area * 100) / 100;
+    var centroid = TurfCentroid(data);
+    // console.log("Centroid: "+centroid.geometry.coordinates);
+    if (area == 0) {
+      // console.log("Länge: "+rounded_distance + " m");
+      var geojson = {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": centroid.geometry.coordinates
+          },
+          "properties": {
+            "title": rounded_distance + " m"
+          }
+        }]
+      };
+      map_1.getSource("labels").setData(geojson);
+    } else {
+      // console.log("Fläche: "+rounded_area + ' m²');
+      var geojson = {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": centroid.geometry.coordinates
+          },
+          "properties": {
+            "title": rounded_area + " m²"
+          }
+        }]
+      };
+      map_1.getSource("labels").setData(geojson);
+    }
+  } else {
+    if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
+  }
+}
+
+// Messfunktionen hinzufügen:
+var draw = new MapboxDraw({
+  displayControlsDefault: false,
+  controls: {
+    line_string: true,
+    polygon: true,
+    trash: true
+  }
+});
+map_1.addControl(draw, "top-right");
+
+map_1.on('draw.create', updateArea);
+map_1.on('draw.delete', updateArea);
+map_1.on('draw.update', updateArea);
+
+map_1.on('draw.modechange', function() {
+  const data = draw.getAll();
+  if ((draw.getMode() == 'draw_polygon') || (draw.getMode() == 'draw_line_string')) {
+    var pids = []
+    const lid = data.features[data.features.length - 1].id
+    data.features.forEach((f) => {
+      if ((f.geometry.type === 'Polygon' && f.id !== lid) || (f.geometry.type === 'LineString' && f.id !== lid)) {
+        pids.push(f.id)
+      }
+    })
+    draw.delete(pids);
+    resetLabels();
+  }
+});

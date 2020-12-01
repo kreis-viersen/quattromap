@@ -54,6 +54,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |Kreis Wesel ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Wesel|
 |Kreis Kleve ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Kleve|
 |Stadt Bottrop ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Flurkarte_Bottrop|
+|Kreis Viersen ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
 |Kreis Viersen Geplante Gebäude|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_geplgeb|
 |**Nationaal Georegister (NL)**||||
 |NL Luftbild Farbe|WMS|https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Actueel_ortho25|  

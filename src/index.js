@@ -124,6 +124,7 @@ map_1.on("load", function() {
     map_1.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
     map_1.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
     map_1.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_1.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_1.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
     map_1.addLayer({
@@ -182,6 +183,7 @@ map_2.on("load", function() {
     map_2.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_2.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
 });
@@ -205,6 +207,7 @@ map_3.on("load", function() {
     map_3.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
     map_3.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
     map_3.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_3.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_3.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
     setOverlay3(ol_krzn_vie_geplgeb)
@@ -229,6 +232,7 @@ map_4.on("load", function() {
     map_4.addLayer(getPredefinedLayer("ol_krzn_wes_alkis")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_kle_alkis")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
 });
@@ -530,6 +534,17 @@ var krzn_bot_alkis = {
   },
   paint: {}
 };
+var krzn_vie_alkis_light = {
+  id: "krzn_vie_alkis_light",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
+    tileSize: 256
+  },
+  paint: {}
+};
 var krzn_vie_geplgeb = {
   id: "krzn_vie_geplgeb",
   type: "raster",
@@ -807,6 +822,20 @@ var ol_krzn_bot_alkis = {
   },
   paint: {}
 };
+var ol_krzn_vie_alkis_light = {
+  id: "ol_krzn_vie_alkis_light",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<br><b>Overlay: Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+    tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES=&TRANSPARENT=true"],
+    tileSize: 256
+  },
+  layout: {
+    visibility: 'none'
+  },
+  paint: {}
+};
 var ol_krzn_vie_geplgeb = {
   id: "ol_krzn_vie_geplgeb",
   type: "raster",
@@ -864,6 +893,7 @@ var layers = {
   "krzn_wes_alkis": krzn_wes_alkis,
   "krzn_kle_alkis": krzn_kle_alkis,
   "krzn_bot_alkis": krzn_bot_alkis,
+  "krzn_vie_alkis_light": krzn_vie_alkis_light,
   "krzn_vie_geplgeb": krzn_vie_geplgeb,
   "Actueel_ortho25": Actueel_ortho25,
   // Overlays
@@ -883,6 +913,7 @@ var layers = {
   "ol_krzn_wes_alkis": ol_krzn_wes_alkis,
   "ol_krzn_kle_alkis": ol_krzn_kle_alkis,
   "ol_krzn_bot_alkis": ol_krzn_bot_alkis,
+  "ol_krzn_vie_alkis_light": ol_krzn_vie_alkis_light,
   "ol_krzn_vie_geplgeb": ol_krzn_vie_geplgeb,
   "ol_Actueel_ortho25": ol_Actueel_ortho25
 }

@@ -127,6 +127,8 @@ map_1.on("load", function() {
     map_1.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_1.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_1.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
+    map_1.addLayer(getPredefinedLayer("ol_warendorf_alkis")),
+    map_1.addLayer(getPredefinedLayer("ol_warendorf_abk")),
     map_1.addLayer({
       "id": "labels",
       "type": "symbol",
@@ -185,7 +187,9 @@ map_2.on("load", function() {
     map_2.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_2.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-    map_2.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
+    map_2.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
+    map_2.addLayer(getPredefinedLayer("ol_warendorf_alkis")),
+    map_2.addLayer(getPredefinedLayer("ol_warendorf_abk"))
 });
 map_3.on("load", function() {
   // Basiskarte:
@@ -210,6 +214,8 @@ map_3.on("load", function() {
     map_3.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_3.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
     map_3.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
+    map_3.addLayer(getPredefinedLayer("ol_warendorf_alkis")),
+    map_3.addLayer(getPredefinedLayer("ol_warendorf_abk")),
     setOverlay3(ol_krzn_vie_geplgeb)
 });
 map_4.on("load", function() {
@@ -234,7 +240,9 @@ map_4.on("load", function() {
     map_4.addLayer(getPredefinedLayer("ol_krzn_bot_alkis")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_vie_alkis_light")),
     map_4.addLayer(getPredefinedLayer("ol_krzn_vie_geplgeb")),
-    map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25"))
+    map_4.addLayer(getPredefinedLayer("ol_Actueel_ortho25")),
+    map_4.addLayer(getPredefinedLayer("ol_warendorf_alkis")),
+    map_4.addLayer(getPredefinedLayer("ol_warendorf_abk"))
 });
 
 // Kartenfenster synchronisieren:
@@ -570,6 +578,31 @@ var Actueel_ortho25 = {
   paint: {}
 };
 
+// Kreis Warendorf
+var warendorf_alkis = {
+  id: "warendorf_alkis",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Kreis Warendorf ALKIS</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+    tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=alkis_lieka&STYLES=&FORMAT=image/png"],
+    tileSize: 256
+  },
+  paint: {}
+};
+
+var warendorf_abk = {
+  id: "warendorf_abk",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Kreis Warendorf ABK 1:5000</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+    tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=abk5000&STYLES=&FORMAT=image/png"],
+    tileSize: 256
+  },
+  paint: {}
+};
+
 
 
 /*
@@ -866,6 +899,37 @@ var ol_Actueel_ortho25 = {
   paint: {}
 };
 
+// Kreis Warendorf
+var ol_warendorf_alkis = {
+  id: "ol_warendorf_alkis",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Overlay: Kreis Warendorf ALKIS</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+    tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=alkis_lieka&STYLES=&FORMAT=image/png"],
+    tileSize: 256
+  },
+  layout: {
+    visibility: 'none'
+  },
+  paint: {}
+};
+
+var ol_warendorf_abk = {
+  id: "ol_warendorf_abk",
+  type: "raster",
+  source: {
+    type: "raster",
+    attribution: "<b>Overlay: Kreis Warendorf ABK 1:5000</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+    tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=abk5000&STYLES=&FORMAT=image/png"],
+    tileSize: 256
+  },
+  layout: {
+    visibility: 'none'
+  },
+  paint: {}
+};
+
 
 /*
 	Layerliste IDs
@@ -896,6 +960,8 @@ var layers = {
   "krzn_vie_alkis_light": krzn_vie_alkis_light,
   "krzn_vie_geplgeb": krzn_vie_geplgeb,
   "Actueel_ortho25": Actueel_ortho25,
+  "warendorf_alkis": warendorf_alkis,
+  "warendorf_abk": warendorf_abk,
   // Overlays
   "ol_nw_dop_rgb": ol_nw_dop_rgb,
   "ol_nw_vdop_rgb": ol_nw_vdop_rgb,
@@ -915,7 +981,9 @@ var layers = {
   "ol_krzn_bot_alkis": ol_krzn_bot_alkis,
   "ol_krzn_vie_alkis_light": ol_krzn_vie_alkis_light,
   "ol_krzn_vie_geplgeb": ol_krzn_vie_geplgeb,
-  "ol_Actueel_ortho25": ol_Actueel_ortho25
+  "ol_Actueel_ortho25": ol_Actueel_ortho25,
+  "ol_warendorf_alkis": ol_warendorf_alkis,
+  "ol_warendorf_abk": ol_warendorf_abk
 }
 
 /*

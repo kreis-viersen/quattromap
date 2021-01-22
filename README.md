@@ -58,6 +58,9 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |Kreis Viersen Geplante Gebäude|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_geplgeb|
 |**Nationaal Georegister (NL)**||||
 |NL Luftbild Farbe|WMS|https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Actueel_ortho25|  
+|**Kreis Warendorf**||||
+|Kreis Warendorf ALKIS|WMS|https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|alkis_lieka|  
+|Kreis Warendorf ABK 1:5000|WMS|https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|abk5000|  
 
 ### Overlays
 

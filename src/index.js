@@ -56,8 +56,8 @@ var deckkraft_4 = parseInt(slider_4.value, 10) / 100;
 var default_style = {
   version: 8,
   name: "default_style",
-  metadata: {},
   sources: {},
+  //glyphs needed for measurement tools (map_1)
   glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
   layers: []
 };
@@ -149,13 +149,9 @@ map_1.on("load", function() {
         }
       },
       "layout": {
-        "icon-image": "",
         "text-field": "{title}",
         "text-offset": [0, 0.6],
-        "text-size": 30,
-        "text-justify": "center",
-        "text-anchor": "center"
-      },
+        "text-size": 30,      },
       "paint": {
         "text-color": "#ffb200",
         "text-halo-color": "#FFFFFF",
@@ -362,22 +358,21 @@ slider_4.addEventListener('pointerup', function() {
   document.getElementById("myNav").style.background = "";
 });
 
-
-
-
 /*
-	Liste: Verfügbare Basis-Layer
 
-	Format der einzutragenden Layer:
+Liste: Verfügbare Basis-Layer
+Format der einzutragenden Layer:
+
 	var LAYER_ID = {
-	id:"LAYER_ID",
-	type:"raster",
-	source:{
-		type:"raster",
-		attribution:"attribution string"
-		tiles:["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
-		tileSize:256},
-	paint:{}};
+	  id: "LAYER_ID",
+	  type: "raster",
+	  source: {
+		  type: "raster",
+		  attribution: "attribution string"
+		  tiles: ["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
+		  tileSize: 256
+    }
+	};
 
 */
 
@@ -390,8 +385,7 @@ var nw_dop_rgb = {
     attribution: "<b>NRW Luftbild Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_dop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dop_rgb"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_vdop_rgb = {
   id: "nw_vdop_rgb",
@@ -401,8 +395,7 @@ var nw_vdop_rgb = {
     attribution: "<b>NRW vDOP Farbe</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_vdop?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_vdop_rgb"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_alkis_flurstuecke = {
   id: "nw_alkis_flurstuecke",
@@ -412,8 +405,7 @@ var nw_alkis_flurstuecke = {
     attribution: "<b>NRW ALKIS Flurstücke</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_flurstuecke&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_abk = {
   id: "nw_abk",
@@ -423,8 +415,7 @@ var nw_abk = {
     attribution: "<b>NRW Amtliche Basiskarte (ABK)</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_abk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_NW_ABK"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_alkis_tn = {
   id: "nw_alkis_tn",
@@ -434,8 +425,7 @@ var nw_alkis_tn = {
     attribution: "<b>NRW ALKIS TN</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_alkis?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=adv_alkis_tatsaechliche_nutzung&STYLES=Farbe"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_schummerung = {
   id: "nw_schummerung",
@@ -445,8 +435,7 @@ var nw_schummerung = {
     attribution: "<b>NRW Schummerung</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dgm-schummerung_pan"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var nw_dtk = {
   id: "nw_dtk",
@@ -456,8 +445,7 @@ var nw_dtk = {
     attribution: "<b>NRW DTK</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://www.wms.nrw.de/geobasis/wms_nw_dtk?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nw_dtk_col"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 // OSM-Dienste:
@@ -469,8 +457,7 @@ var osm_mapnik = {
     attribution: "<b>OpenStreetMap</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
     tiles: ["https://tile.openstreetmap.org/{z}/{x}/{y}.png"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 // RVR-Dienste:
@@ -482,8 +469,7 @@ var rvr_dop = {
     attribution: "<b>RVR Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/'>Regionalverband Ruhr</a>",
     tiles: ["https://geodaten.metropoleruhr.de/dop/dop?language=ger&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=dop&STYLES=&FORMAT=image/png"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 // KRZN-Dienste
@@ -495,8 +481,7 @@ var krzn_vie_alkis = {
     attribution: "<b>Kreis Viersen ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Viersen&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_kre_alkis = {
   id: "krzn_kre_alkis",
@@ -506,8 +491,7 @@ var krzn_kre_alkis = {
     attribution: "<b>Stadt Krefeld ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Krefeld&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_wes_alkis = {
   id: "krzn_wes_alkis",
@@ -517,8 +501,7 @@ var krzn_wes_alkis = {
     attribution: "<b>Kreis Wesel ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Wesel&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_kle_alkis = {
   id: "krzn_kle_alkis",
@@ -528,8 +511,7 @@ var krzn_kle_alkis = {
     attribution: "<b>Kreis Kleve ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=FlurkarteAdV_Kleve&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_bot_alkis = {
   id: "krzn_bot_alkis",
@@ -539,8 +521,7 @@ var krzn_bot_alkis = {
     attribution: "<b>Kreis Bottrop ALKIS</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Flurkarte_Bottrop&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_vie_alkis_light = {
   id: "krzn_vie_alkis_light",
@@ -550,8 +531,7 @@ var krzn_vie_alkis_light = {
     attribution: "<b>Kreis Viersen ALKIS light</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 var krzn_vie_geplgeb = {
   id: "krzn_vie_geplgeb",
@@ -561,8 +541,7 @@ var krzn_vie_geplgeb = {
     attribution: "<b>Kreis Viersen Geplante Gebäude</b> &copy; Land NRW (2020) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
     tiles: ["https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=kvie_geplgeb&STYLES="],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 // Nationaal-Georegister Dienste (NL)
@@ -574,8 +553,7 @@ var Actueel_ortho25 = {
     attribution: "<b>NL Luftbild Farbe</b> &copy; <a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>",
     tiles: ["https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=Actueel_ortho25&STYLES=&FORMAT=image/jpeg"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 // Kreis Warendorf
@@ -587,8 +565,7 @@ var warendorf_alkis = {
     attribution: "<b>Kreis Warendorf ALKIS</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
     tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=alkis_lieka&STYLES=&FORMAT=image/png"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 var warendorf_abk = {
@@ -599,28 +576,31 @@ var warendorf_abk = {
     attribution: "<b>Kreis Warendorf ABK 1:5000</b> &copy; <a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
     tiles: ["https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&BBOX={bbox-epsg-3857}&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=abk5000&STYLES=&FORMAT=image/png"],
     tileSize: 256
-  },
-  paint: {}
+  }
 };
 
 
 
 /*
-	Liste: Verfügbare Overlays
 
-	Format der einzutragenden Layer:
-	var LAYER_ID = {
-	id:"LAYER_ID",
-	type:"raster",
-	source:{
-		type:"raster",
-		attribution:"<br><b>Overlay: + attribution string"
-		tiles:["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
-		tileSize:256},
-	layout:{visibility:'none'},
-	paint:{}};
+Liste: Verfügbare Overlays
+Format der einzutragenden Layer:
 
-	Hinweis: Bei manchen Overlays empfielt es sich, den Parameter "&TRANSPARENT=true" in die URL einzubauen.
+  var LAYER_ID = {
+  	id: "LAYER_ID",
+  	type: "raster",
+  	source: {
+  		type: "raster",
+  		attribution: "<br><b>Overlay: + attribution string"
+  		tiles: ["WMS_BASIS_URL?BBOX={bbox-epsg-3857}&FORMAT=image/png&SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&WIDTH=256&HEIGHT=256&LAYERS=WMS_LAYERS"],
+  		tileSize: 256
+    },
+    layout: {
+      visibility: "none"
+    }
+  };
+
+Hinweis: Bei manchen Overlays empfielt es sich, den Parameter "&TRANSPARENT=true" in die URL einzubauen.
 
 */
 
@@ -635,9 +615,8 @@ var ol_nw_dop_rgb = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_vdop_rgb = {
   id: "ol_nw_vdop_rgb",
@@ -649,9 +628,8 @@ var ol_nw_vdop_rgb = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_alkis_flurstuecke = {
   id: "ol_nw_alkis_flurstuecke",
@@ -663,9 +641,8 @@ var ol_nw_alkis_flurstuecke = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_abk = {
   id: "ol_nw_abk",
@@ -677,9 +654,8 @@ var ol_nw_abk = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_alkis_tn = {
   id: "ol_nw_alkis_tn",
@@ -691,9 +667,8 @@ var ol_nw_alkis_tn = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_schummerung = {
   id: "ol_nw_schummerung",
@@ -705,9 +680,8 @@ var ol_nw_schummerung = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_dtk = {
   id: "ol_nw_dtk",
@@ -719,9 +693,8 @@ var ol_nw_dtk = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_dop_overlay = {
   id: "ol_nw_dop_overlay",
@@ -733,9 +706,8 @@ var ol_nw_dop_overlay = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_nw_linfos = {
   id: "ol_nw_linfos",
@@ -747,9 +719,8 @@ var ol_nw_linfos = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 // OSM-Dienste:
@@ -763,9 +734,8 @@ var ol_osm_mapnik = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 // RVR-Dienste:
@@ -779,9 +749,8 @@ var ol_rvr_dop = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 // KRZN-Dienste
@@ -795,9 +764,8 @@ var ol_krzn_vie_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_kre_alkis = {
   id: "ol_krzn_kre_alkis",
@@ -809,9 +777,8 @@ var ol_krzn_kre_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_wes_alkis = {
   id: "ol_krzn_wes_alkis",
@@ -823,9 +790,8 @@ var ol_krzn_wes_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_kle_alkis = {
   id: "ol_krzn_kle_alkis",
@@ -837,9 +803,8 @@ var ol_krzn_kle_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_bot_alkis = {
   id: "ol_krzn_bot_alkis",
@@ -851,9 +816,8 @@ var ol_krzn_bot_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_vie_alkis_light = {
   id: "ol_krzn_vie_alkis_light",
@@ -865,9 +829,8 @@ var ol_krzn_vie_alkis_light = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 var ol_krzn_vie_geplgeb = {
   id: "ol_krzn_vie_geplgeb",
@@ -879,9 +842,8 @@ var ol_krzn_vie_geplgeb = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 // Nationaal-Georegister Dienste (NL)
 var ol_Actueel_ortho25 = {
@@ -894,9 +856,8 @@ var ol_Actueel_ortho25 = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 // Kreis Warendorf
@@ -910,9 +871,8 @@ var ol_warendorf_alkis = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 var ol_warendorf_abk = {
@@ -925,13 +885,13 @@ var ol_warendorf_abk = {
     tileSize: 256
   },
   layout: {
-    visibility: 'none'
-  },
-  paint: {}
+    visibility: "none"
+  }
 };
 
 
 /*
+
 	Layerliste IDs
 
 	Hier alle Layer-IDs eintragen. Auf Anführungszeichen ist zu achten.

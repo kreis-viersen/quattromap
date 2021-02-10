@@ -46,39 +46,6 @@
 					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_1" class="selector">
 						<option value="none">keins</option>
-						<optgroup label="GeoBasis NRW">
-							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
-							<option value="ol_nw_vdop_rgb" selected>NRW vDOP Farbe</option>
-							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="ol_nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="ol_nw_schummerung">NRW Schummerung</option>
-							<option value="ol_nw_dtk">NRW DTK</option>
-							<option value="ol_nw_linfos">NRW LINFOS</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="ol_osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="ol_krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="ol_krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="ol_krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="ol_krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="ol_krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="ol_Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="ol_warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="ol_warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
@@ -86,39 +53,7 @@
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer1()">
 					<label for="form_1" class="layer-label">Layer:</label>
-					<select id="form_1" class="selector">
-						<optgroup label="GeoBasis NRW">
-							<option value="nw_dop_rgb" selected>NRW Luftbild Farbe</option>
-							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="nw_schummerung">NRW Schummerung</option>
-							<option value="nw_dtk">NRW DTK</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
-					</select>
+					<select id="form_1" class="selector"></select>
 				</form>
 			</div>
 			<!-- Einstellungen Karte 2 -->
@@ -128,40 +63,7 @@
 				<form onchange="setOverlay2()">
 					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_2" class="selector">
-						<option value="none" selected>keins</option>
-						<optgroup label="GeoBasis NRW">
-							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
-							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="ol_nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="ol_nw_schummerung">NRW Schummerung</option>
-							<option value="ol_nw_dtk">NRW DTK</option>
-							<option value="ol_nw_linfos">NRW LINFOS</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="ol_osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="ol_krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="ol_krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="ol_krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="ol_krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="ol_krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="ol_Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="ol_warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="ol_warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
+						<option value="none">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
@@ -169,39 +71,7 @@
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer2()">
 					<label for="form_2" class="layer-label">Layer:</label>
-					<select id="form_2" class="selector">
-						<optgroup label="GeoBasis NRW">
-							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="nw_schummerung">NRW Schummerung</option>
-							<option value="nw_dtk">NRW DTK</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="osm_mapnik" selected>OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
-					</select>
+					<select id="form_2" class="selector"></select>
 				</form>
 			</div>
 			<!-- Einstellungen Karte 3 -->
@@ -212,39 +82,6 @@
 					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_3" class="selector">
 						<option value="none">keins</option>
-						<optgroup label="GeoBasis NRW">
-							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
-							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="ol_nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="ol_nw_schummerung">NRW Schummerung</option>
-							<option value="ol_nw_dtk">NRW DTK</option>
-							<option value="ol_nw_linfos">NRW LINFOS</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="ol_osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="ol_krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="ol_krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="ol_krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="ol_krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="ol_krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="ol_krzn_vie_geplgeb" selected>Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="ol_Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="ol_warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="ol_warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
@@ -252,39 +89,7 @@
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer3()">
 					<label for="form_3" class="layer-label">Layer:</label>
-					<select id="form_3" class="selector">
-						<optgroup label="GeoBasis NRW">
-							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="nw_schummerung">NRW Schummerung</option>
-							<option value="nw_dtk">NRW DTK</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="krzn_vie_alkis" selected>Kreis Viersen ALKIS</option>
-							<option value="krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
-					</select>
+					<select id="form_3" class="selector"></select>
 				</form>
 			</div>
 			<!-- Einstellungen Karte 4 -->
@@ -294,40 +99,7 @@
 				<form onchange="setOverlay4()">
 					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_4" class="selector">
-						<option value="none" selected>keins</option>
-						<optgroup label="GeoBasis NRW">
-							<option value="ol_nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="ol_nw_dop_overlay">NRW Luftbild Overlay</option>
-							<option value="ol_nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="ol_nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="ol_nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="ol_nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="ol_nw_schummerung">NRW Schummerung</option>
-							<option value="ol_nw_dtk">NRW DTK</option>
-							<option value="ol_nw_linfos">NRW LINFOS</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="ol_osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="ol_rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="ol_krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="ol_krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="ol_krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="ol_krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="ol_krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="ol_krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="ol_krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="ol_Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="ol_warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="ol_warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
+						<option value="none">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
@@ -335,39 +107,7 @@
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer4()">
 					<label for="form_4" class="layer-label">Layer:</label>
-					<select id="form_4" class="selector">
-						<optgroup label="GeoBasis NRW">
-							<option value="nw_dop_rgb">NRW Luftbild Farbe</option>
-							<option value="nw_vdop_rgb">NRW vDOP Farbe</option>
-							<option value="nw_alkis_flurstuecke">NRW ALKIS Flurstücke</option>
-							<option value="nw_abk">NRW Amtliche Basiskarte (ABK)</option>
-							<option value="nw_alkis_tn">NRW ALKIS TN</option>
-							<option value="nw_schummerung">NRW Schummerung</option>
-							<option value="nw_dtk" selected>NRW DTK</option>
-						</optgroup>
-						<optgroup label="OpenStreetMap">
-							<option value="osm_mapnik">OSM Mapnik</option>
-						</optgroup>
-						<optgroup label="RVR">
-							<option value="rvr_dop">RVR Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="KRZN-Dienste">
-							<option value="krzn_vie_alkis">Kreis Viersen ALKIS</option>
-							<option value="krzn_kre_alkis">Stadt Krefeld ALKIS</option>
-							<option value="krzn_wes_alkis">Kreis Wesel ALKIS</option>
-							<option value="krzn_kle_alkis">Kreis Kleve ALKIS</option>
-							<option value="krzn_bot_alkis">Stadt Bottrop ALKIS</option>
-							<option value="krzn_vie_alkis_light">Kreis Viersen ALKIS light</option>
-							<option value="krzn_vie_geplgeb">Kreis Viersen Geplante Gebäude</option>
-						</optgroup>
-						<optgroup label="Nationaal Georegister (NL)">
-							<option value="Actueel_ortho25">NL Luftbild Farbe</option>
-						</optgroup>
-						<optgroup label="Kreis Warendorf">
-							<option value="warendorf_alkis">Kreis Warendorf ALKIS</option>
-							<option value="warendorf_abk">Kreis Warendorf ABK 1:5000</option>
-						</optgroup>
-					</select>
+					<select id="form_4" class="selector"></select>
 				</form>
 			</div>
 		</div>

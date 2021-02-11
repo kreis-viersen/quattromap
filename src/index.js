@@ -106,7 +106,7 @@ config.layer.forEach(function(item) {
     if (item.url == "https://tile.openstreetmap.org/{z}/{x}/{y}.png") {
       default_style.sources[item.name].tiles = [item.url];
     } else {
-      if (!item.style){
+      if (!item.style) {
         item.style = "";
       }
       default_style.sources[item.name].tiles = [item.url + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256&LAYERS=" + item.layer + "&STYLES=" + item.style + "&FORMAT=image/" + item.format];
@@ -147,7 +147,7 @@ config.layer.forEach(function(item) {
   if (item.url == "https://tile.openstreetmap.org/{z}/{x}/{y}.png") {
     default_style.sources[overlay_id].tiles = [item.url];
   } else {
-    if (!item.style){
+    if (!item.style) {
       item.style = "";
     }
     default_style.sources[overlay_id].tiles = [item.url + "?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetMap&CRS=EPSG:3857&BBOX={bbox-epsg-3857}&WIDTH=256&HEIGHT=256&LAYERS=" + item.layer + "&STYLES=" + item.style + "&FORMAT=image/" + item.format + "&TRANSPARENT=true"];

@@ -1,0 +1,210 @@
+{
+  "center": [6.391263, 51.258812],
+  "zoom": 16,
+  "map_1": {
+    "layer": "NRW Luftbild Farbe",
+    "overlay": "NRW vDOP Farbe"
+  },
+  "map_2": {
+    "layer": "OSM Mapnik",
+    "overlay": ""
+  },
+  "map_3": {
+    "layer": "Kreis Viersen ALKIS",
+    "overlay": "Kreis Viersen geplante Gebäude"
+  },
+  "map_4": {
+    "layer": "NRW DTK",
+    "overlay": ""
+  },
+  "layer": [
+    {
+      "name": "NRW Luftbild Farbe",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",
+      "layer": "nw_dop_rgb",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW vDOP Farbe",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
+      "layer": "nw_vdop_rgb",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW ALKIS Flurstücke",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
+      "layer": "adv_alkis_flurstuecke",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW Amtliche Basiskarte (ABK)",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_abk",
+      "layer": "WMS_NW_ABK",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW Alkis TN",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
+      "layer": "adv_alkis_tatsaechliche_nutzung",
+      "style": "Farbe",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW Schummerung",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung",
+      "layer": "nw_dgm-schummerung_pan",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW DTK",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dtk",
+      "layer": "nw_dtk_col",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW Luftbild Overlay",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay",
+      "layer": "WMS_NW_DOP_OVERLAY",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
+      "name": "NRW LINFOS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/umwelt/linfos",
+      "layer": "Naturschutzgebiete,Landschaftsschutzgebiet",
+      "style": "",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
+      "name": "OSM Mapnik",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
+      "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",
+      "category": "OpenStreetMap"
+    },
+    {
+      "name": "RVR Luftbild Farbe",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/'>Regionalverband Ruhr</a>",
+      "url": "https://geodaten.metropoleruhr.de/dop/dop?language=ger&",
+      "layer": "dop",
+      "style": "",
+      "format": "png",
+      "category": "RVR"
+    },
+    {
+      "name": "Kreis Viersen ALKIS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
+      "layer": "FlurkarteAdV_Viersen",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Stadt Krefeld ALKIS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
+      "layer": "FlurkarteAdV_Krefeld",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Wesel ALKIS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
+      "layer": "FlurkarteAdV_Wesel",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Kleve ALKIS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
+      "layer": "FlurkarteAdV_Kleve",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Stadt Bottrop ALKIS",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
+      "layer": "Flurkarte_Bottrop",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Viersen ALKIS light",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light",
+      "layer": "nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen",
+      "style": "",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Viersen geplante Gebäude",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb",
+      "layer": "kvie_geplgeb",
+      "style": "",
+      "format": "png",
+      "category": "Nationaal Georegister (NL)"
+    },
+    {
+      "name": "NL Luftbild Farbe",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>",
+      "url": "https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms",
+      "layer": "Actueel_ortho25",
+      "style": "",
+      "format": "jpeg",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Warendorf ALKIS",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+      "url": "https://www.kreis-warendorf.de/arcgis/service2",
+      "layer": "alkis_lieka",
+      "style": "",
+      "format": "png",
+      "category": "Kreis Warendorf"
+    },
+    {
+      "name": "Kreis Warendorf ABK 1:5000",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&REQUEST=GetCapabilities'>Geodaten: Kreis Warendorf</a>",
+      "url": "https://www.kreis-warendorf.de/arcgis/service2",
+      "layer": "abk5000",
+      "style": "",
+      "format": "png",
+      "category": "Kreis Warendorf"
+    }
+  ]
+}

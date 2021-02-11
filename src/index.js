@@ -142,7 +142,7 @@ config.layer.forEach(function(item) {
   const overlay_id = "ol_" + item.name
   default_style.sources[overlay_id] = {};
   default_style.sources[overlay_id].type = "raster";
-  default_style.sources[overlay_id].attribution = "<b>Overlay: </b>" + item.attribution;
+  default_style.sources[overlay_id].attribution = "<b>Overlay: " + item.name + "</b> &copy; " + item.attribution;
   // todo: check for XYZ Tilesources in general
   if (item.url == "https://tile.openstreetmap.org/{z}/{x}/{y}.png") {
     default_style.sources[overlay_id].tiles = [item.url];

@@ -185,6 +185,22 @@
       "layer": "abk5000",
       "format": "png",
       "category": "Kreis Warendorf"
+    },
+    {
+      "name": "Kreis Steinfurt ALKIS",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://gis-kreis-steinfurt.opendata.arcgis.com/'>Geodaten: Kreis Steinfurt</a>",
+      "url": "https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_Kreissuebersichtskarte_DTK_farbe/MapServer/WMSServer",
+      "layer": "0",
+      "format": "png",
+      "category": "Kreis Steinfurt"
+    },
+    {
+      "name": "Kreis Steinfurt ABK",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://gis-kreis-steinfurt.opendata.arcgis.com/'>Geodaten: Kreis Steinfurt</a>",
+      "url": "https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_ABK_farbe/MapServer/WMSServer",
+      "layer": "0",
+      "format": "png",
+      "category": "Kreis Steinfurt"
     }
   ]
 }

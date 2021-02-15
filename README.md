@@ -83,7 +83,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |:---|:---|:---|
 |"center"|Gibt die Zentrumskoordinate des Kartenfensters beim Starten an. Angabe geographisch mit Längen- und Breitenangabe in EPSG 4326.|"center": [6.391263, 51.258812]|
 |"zoom"|Definiert die Zoomstufe beim Start. Wertebereich: 0 (fern) - 22 (nah)|"zoom": 16|
-|"map_x": {"layer": "layername", "overlay": "layername"}|Voreinstellung der dargestellten Dienste des Kartenfensters x (1-4). *layer* und *overlay* enthalten jeweils einen Namen eines Dienstes, die beim Start dargestellt werden im jeweiligen Kartenfenster dargestellt werden. | "map_1": {"layer": "NRW Luftbild Farbe", "overlay": "NRW vDOP Farbe"}|
+|"map_x": {"layer": "layername", "overlay": "layername"}|Voreinstellung der dargestellten Dienste des Kartenfensters x (1-4). `layer` und `overlay` enthalten jeweils einen Namen eines Dienstes, die beim Start dargestellt werden im jeweiligen Kartenfenster dargestellt werden. | "map_1": {"layer": "NRW Luftbild Farbe", "overlay": "NRW vDOP Farbe"}|
 |"layer": [ .. ]|Enthält die Definitionen der wählbaren Dienste im Dropdown Menü||
 |"name"|Name des Dienstes, der im Dropdown Menü und beim Klick auf den Info-Button erscheint.|"name": "NRW Alkis TN"|
 |"attribution"|Attribution zur Beschreibung der verwendeten Dienste, die über den Info-Button dargestellt wird. HTML-Tags können verwendet werden.|"attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (`<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>`)"|

@@ -77,7 +77,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 
 ## Konfiguration
 
-Über die **_config.json_** können einige Einstellungen der QuattroMap vorgenommen werden.
+Über die [config.json](./src/config.json) können einige Einstellungen der QuattroMap vorgenommen werden.
 
 |Parameter|Erklärung|Beispiel|
 |:---|:---|:---|

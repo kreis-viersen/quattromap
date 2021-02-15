@@ -81,7 +81,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 
 |Parameter|Erklärung|Beispiel|
 |:---|:---|:---|
-|"center"|Gibt die Zentrumskoordinate des Kartenfensters beim Starten an. Angabe geographisch mit Breiten- und Längenangabe in EPSG 4326.|"center": [6.391263, 51.258812]|
+|"center"|Gibt die Zentrumskoordinate des Kartenfensters beim Starten an. Angabe geographisch mit Längen- und Breitenangabe in EPSG 4326.|"center": [6.391263, 51.258812]|
 |"zoom"|Definiert die Zoomstufe beim Start. Wertebereich: 0 (fern) - 22 (nah)|"zoom": 16|
 |"map_x": {"layer": "layername", "overlay": "layername"}|Voreinstellung der dargestellten Dienste des Kartenfensters x (1-4). *layer* und *overlay* enthalten jeweils einen Namen eines Dienstes, die beim Start dargestellt werden im jeweiligen Kartenfenster dargestellt werden. | "map_1": {"layer": "NRW Luftbild Farbe", "overlay": "NRW vDOP Farbe"}|
 |"layer": [ .. ]|Enthält die Definitionen der wählbaren Dienste im Dropdown Menü||

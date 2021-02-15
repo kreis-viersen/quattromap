@@ -86,7 +86,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |"map_x": {"layer": "layername", "overlay": "layername"}|Voreinstellung der dargestellten Dienste des Kartenfensters x (1-4). *layer* und *overlay* enthalten jeweils einen Namen eines Dienstes, die beim Start dargestellt werden im jeweiligen Kartenfenster dargestellt werden. | "map_1": {"layer": "NRW Luftbild Farbe", "overlay": "NRW vDOP Farbe"}|
 |"layer": [ .. ]|Enthält die Definitionen der wählbaren Dienste im Dropdown Menü||
 |"name"|Name des Dienstes, der im Dropdown Menü und beim Klick auf den Info-Button erscheint.|"name": "NRW Alkis TN"|
-|"attribution"|Attribution zur Beschreibung der verwendeten Dienste, die über den Info-Button dargestellt wird. HTML-Tags können verwendet werden.|"attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)"|
+|"attribution"|Attribution zur Beschreibung der verwendeten Dienste, die über den Info-Button dargestellt wird. HTML-Tags können verwendet werden.|"attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (`<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>`)"|
 |"url"|URL des Dienstes oder XYZ-Tiles|"url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis"|
 |"layer"|Darzustellender Layer des Dienstes|"layer": "adv_alkis_tatsaechliche_nutzung"|
 |"format"| Abzurufendes Rasterformat (png oder jpeg) der Kacheln. Da png Transparenz ermöglicht, ist png zu empfehlen. Jedoch können nicht alle Dienste png liefern.|"format": "png"|

@@ -3,19 +3,18 @@
   "zoom": 16,
   "map_1": {
     "layer": "NRW Luftbild Farbe",
-    "overlay": "NRW vDOP Farbe"
+    "overlay": "NRW vDOP Farbe",
+    "opacity": 1
   },
   "map_2": {
-    "layer": "OSM Mapnik",
-    "overlay": ""
+    "layer": "OSM Mapnik"
   },
   "map_3": {
     "layer": "Kreis Viersen ALKIS",
     "overlay": "Kreis Viersen geplante Gebäude"
   },
   "map_4": {
-    "layer": "NRW DTK",
-    "overlay": ""
+    "layer": "NRW DTK"
   },
   "layer": [
     {

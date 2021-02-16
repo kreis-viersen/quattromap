@@ -19,13 +19,13 @@
 		<div class="ch-dropdown">
 			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
 			<div id="ch_dropdown_content" class="ch-dropdown-content">
-				<img src="./img/cross_black.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_red.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_orange.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_yellow.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_green.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_blue.png" onclick="changeCrosshair(this.src)" />
-				<img src="./img/cross_pink.png" onclick="changeCrosshair(this.src)" />
+				<img src="./img/cross_black.png" onclick="changeCrosshair('black')" />
+				<img src="./img/cross_red.png" onclick="changeCrosshair('red')" />
+				<img src="./img/cross_orange.png" onclick="changeCrosshair('orange')" />
+				<img src="./img/cross_yellow.png" onclick="changeCrosshair('yellow')" />
+				<img src="./img/cross_green.png" onclick="changeCrosshair('green')" />
+				<img src="./img/cross_blue.png" onclick="changeCrosshair('blue')" />
+				<img src="./img/cross_pink.png" onclick="changeCrosshair('pink')" />
 			</div>
 		</div>
 		<!-- Anzahl der Kartenfenster -->
@@ -45,11 +45,11 @@
 				<form onchange="setOverlay1()">
 					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_1" class="selector">
-						<option value="none">keins</option>
+						<option value="">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' value='100' /><span id='slider_value_1' class="slider-label">100%</span>
+				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_1' class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer1()">
 					<label for="form_1" class="layer-label">Layer:</label>
@@ -63,11 +63,11 @@
 				<form onchange="setOverlay2()">
 					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_2" class="selector">
-						<option value="none">keins</option>
+						<option value="">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_2' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_2' class="slider-label">50%</span>
+				<input id='slider_2' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_2' class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer2()">
 					<label for="form_2" class="layer-label">Layer:</label>
@@ -81,11 +81,11 @@
 				<form onchange="setOverlay3()">
 					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_3" class="selector">
-						<option value="none">keins</option>
+						<option value="">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_3' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_3' class="slider-label">50%</span>
+				<input id='slider_3' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_3' class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer3()">
 					<label for="form_3" class="layer-label">Layer:</label>
@@ -99,11 +99,11 @@
 				<form onchange="setOverlay4()">
 					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
 					<select id="form_overlay_4" class="selector">
-						<option value="none">keins</option>
+						<option value="">keins</option>
 					</select>
 				</form>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_4' class="slider" type='range' min='0' max='100' step='0' value='50' /><span id='slider_value_4' class="slider-label">50%</span>
+				<input id='slider_4' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_4' class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer4()">
 					<label for="form_4" class="layer-label">Layer:</label>

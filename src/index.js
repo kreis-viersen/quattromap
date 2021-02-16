@@ -41,16 +41,16 @@ if ('URLSearchParams' in window) {
       "ch": config.crosshair || "black",
       "l1": config.map_1.layer,
       "o1": config.map_1.overlay || "",
-      "op1": config.map_1.opacity || 0.5,
+      "op1": config.map_1.overlay_opacity || 0.5,
       "l2": config.map_2.layer,
       "o2": config.map_2.overlay || "",
-      "op2": config.map_2.opacity || 0.5,
+      "op2": config.map_2.overlay_opacity || 0.5,
       "l3": config.map_3.layer,
       "o3": config.map_3.overlay || "",
-      "op3": config.map_3.opacity || 0.5,
+      "op3": config.map_3.overlay_opacity || 0.5,
       "l4": config.map_4.layer,
       "o4": config.map_4.overlay || "",
-      "op4": config.map_4.opacity || 0.5
+      "op4": config.map_4.overlay_opacity || 0.5
     }
   }
 }

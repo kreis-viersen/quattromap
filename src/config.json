@@ -4,7 +4,7 @@
   "map_1": {
     "layer": "NRW Luftbild Farbe",
     "overlay": "NRW vDOP Farbe",
-    "opacity": 1
+    "overlay_opacity": 1
   },
   "map_2": {
     "layer": "OSM Mapnik"

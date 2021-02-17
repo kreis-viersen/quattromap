@@ -55,8 +55,6 @@ if ('URLSearchParams' in window) {
   }
 }
 
-var allMapsLoaded = [false, false, false, false];
-
 function updateURLSearchParams() {
   var settingString = LZString.compressToEncodedURIComponent(JSON.stringify(settings));
   if ('URLSearchParams' in window) {
@@ -95,7 +93,6 @@ config.layer.forEach(function(item) {
 })
 
 var selectsLayer = ["form_1", "form_2", "form_3", "form_4"];
-
 var selectsOverlay = ["form_overlay_1", "form_overlay_2", "form_overlay_3", "form_overlay_4"];
 
 selectsLayer.forEach(function(form) {
@@ -207,7 +204,6 @@ config.layer.forEach(function(item) {
     }
     group.appendChild(opt);
   });
-
 })
 
 var map_1 = new mapboxgl.Map({
@@ -259,6 +255,7 @@ var map_4 = new mapboxgl.Map({
 }));
 
 var maps = [map_1, map_2, map_3, map_4];
+var allMapsLoaded = [false, false, false, false];
 
 map_1.on("load", function() {
   allMapsLoaded[0] = true;
@@ -579,7 +576,7 @@ window.changeCrosshair = function changeCrosshair(colour) {
   setTimeout("document.getElementById('ch_dropdown_content').style.display='';", 100);
 }
 
-// set initial crosshair current colour
+// set initial crosshair colour
 changeCrosshair(settings.ch);
 
 // choose number of map windows

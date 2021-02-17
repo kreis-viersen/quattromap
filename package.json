@@ -23,7 +23,7 @@
     "webpack-license-plugin": "^4.1.2"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-draw": "^1.2.0",
+    "@mapbox/mapbox-gl-draw": "^1.2.1",
     "@mapbox/mapbox-gl-geocoder": "^4.7.0",
     "@mapbox/mapbox-gl-sync-move": "^0.3.0",
     "@turf/area": "^6.3.0",

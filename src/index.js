@@ -1,4 +1,4 @@
-import MapboxDraw from '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw';
+import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
 var syncMaps = require('@mapbox/mapbox-gl-sync-move');
 import TurfArea from '@turf/area';

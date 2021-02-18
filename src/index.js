@@ -566,6 +566,7 @@ window.swapBars = function swapBars(x) {
 }
 
 window.copyPermalink = function copyPermalink() {
+  updateURLSearchParams();
   return navigator.clipboard.writeText(currentURL);
 }
 

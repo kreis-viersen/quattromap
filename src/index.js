@@ -55,6 +55,8 @@ if ('URLSearchParams' in window) {
   }
 }
 
+var currentURL;
+
 function updateURLSearchParams() {
   var settingString = LZString.compressToEncodedURIComponent(JSON.stringify(settings));
   if ('URLSearchParams' in window) {
@@ -62,6 +64,7 @@ function updateURLSearchParams() {
     searchParams.set("settings", settingString);
     var locationHash = window.location.hash
     window.history.pushState('', '', "?" + searchParams.toString() + locationHash);
+    currentURL = window.location.href;
   }
 }
 
@@ -560,6 +563,10 @@ window.toggleNav = function toggleNav() {
 }
 window.swapBars = function swapBars(x) {
   x.classList.toggle("change");
+}
+
+window.copyPermalink = function copyPermalink() {
+  return navigator.clipboard.writeText(currentURL);
 }
 
 // crosshair color

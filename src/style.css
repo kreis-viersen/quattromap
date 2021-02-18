@@ -294,6 +294,27 @@ body {
   background-color: #444;
 }
 
+.share-button {
+  position: fixed;
+  left: 10px;
+  bottom: 70px;
+  cursor: pointer;
+  background-color: #111;
+  padding: 5px 10px;
+  border: none;
+  border-radius: 5px;
+  z-index: 4;
+  display: inline-block;
+}
+
+.share-button:hover {
+  background-color: #444;
+}
+
+.share-button:active {
+  background-color: #d8d8d8;
+}
+
 .bar1, .bar2, .bar3 {
   width: 35px;
   height: 5px;

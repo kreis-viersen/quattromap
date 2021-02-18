@@ -484,6 +484,7 @@ window.setOverlay1 = function setOverlay1() {
       map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
     }
     settings.o1 = layer_id;
+    updateURLSearchParams();
     map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
     map_1.setLayoutProperty(settings.o1, 'visibility', 'visible');
   }

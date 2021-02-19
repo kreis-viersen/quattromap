@@ -295,22 +295,22 @@ map_1.on("load", function() {
       "text-halo-blur": 3
     }
   })
-  setOverlay1(settings.o1)
+  setOverlay1();
 });
 map_2.on("load", function() {
   allMapsLoaded[1] = true;
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-  setOverlay2(settings.o2)
+  setOverlay2();
 });
 map_3.on("load", function() {
   allMapsLoaded[2] = true;
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-  setOverlay3(settings.o3)
+  setOverlay3();
 });
 map_4.on("load", function() {
   allMapsLoaded[3] = true;
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
-  setOverlay4(settings.o4)
+  setOverlay4();
 });
 
 // sync map windows
@@ -474,11 +474,11 @@ window.setLayer4 = function setLayer4() {
 window.setOverlay1 = function setOverlay1() {
   var layer_id = document.getElementById("form_overlay_1").value;
   if (layer_id == "") {
-    settings.o1 = layer_id;
-    updateURLSearchParams();
     if (!settings.o1 == "") {
       map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
     }
+    settings.o1 = layer_id;
+    updateURLSearchParams();
   } else {
     if (!settings.o1 == "") {
       map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
@@ -494,11 +494,11 @@ window.setOverlay1 = function setOverlay1() {
 window.setOverlay2 = function setOverlay2() {
   var layer_id = document.getElementById("form_overlay_2").value;
   if (layer_id == "") {
-    settings.o2 = layer_id;
-    updateURLSearchParams();
     if (!settings.o2 == "") {
       map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
     }
+    settings.o2 = layer_id;
+    updateURLSearchParams();
   } else {
     if (!settings.o2 == "") {
       map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
@@ -514,11 +514,11 @@ window.setOverlay2 = function setOverlay2() {
 window.setOverlay3 = function setOverlay3() {
   var layer_id = document.getElementById("form_overlay_3").value;
   if (layer_id == "") {
-    settings.o3 = layer_id;
-    updateURLSearchParams();
     if (!settings.o3 == "") {
       map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
     }
+    settings.o3 = layer_id;
+    updateURLSearchParams();
   } else {
     if (!settings.o3 == "") {
       map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
@@ -534,11 +534,11 @@ window.setOverlay3 = function setOverlay3() {
 window.setOverlay4 = function setOverlay4() {
   var layer_id = document.getElementById("form_overlay_4").value;
   if (layer_id == "") {
-    settings.o4 = layer_id;
-    updateURLSearchParams();
     if (!settings.o4 == "") {
       map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
     }
+    settings.o4 = layer_id;
+    updateURLSearchParams();
   } else {
     if (!settings.o4 == "") {
       map_4.setLayoutProperty(settings.o4, 'visibility', 'none');

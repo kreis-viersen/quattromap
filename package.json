@@ -29,6 +29,7 @@
     "@turf/area": "^6.3.0",
     "@turf/centroid": "^6.3.0",
     "@turf/length": "^6.3.0",
+    "lz-string": "^1.4.4",
     "mapbox-gl": "^1.13.0"
   }
 }

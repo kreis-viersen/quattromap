@@ -568,6 +568,13 @@ window.swapBars = function swapBars(x) {
 
 window.copyPermalink = function copyPermalink() {
   updateURLSearchParams();
+  var message = document.createElement("div");
+  message.setAttribute("class", "overlayPermalink");
+  message.innerHTML = "Permalink wurde in die Zwischenablage kopiert";
+  setTimeout(function() {
+    message.parentNode.removeChild(message);
+  }, 800);
+  document.body.appendChild(message);
   return navigator.clipboard.writeText(currentURL);
 }
 

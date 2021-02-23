@@ -24,7 +24,8 @@
 
 QuattroMap ist eine vom Kreis Viersen entwickelte Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann.
 
-Das Tool ist unter https://kreis-viersen.github.io/quattromap/ von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. Die Anwendung ist kompatibel mit modernen Browsern, wie Mozilla Firefox, Google Chrome, Safari. Der Microsoft Internet Explorer wird nicht mehr unterstützt, da Mapbox-gl-js seine Unterstützung seit Verion 2.0.0 ablehnt!
+Das Tool ist unter https://kreis-viersen.github.io/quattromap/ von jedem internetfähigen Gerät, wie Tablet, Smartphone, Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. Die Anwendung ist kompatibel mit modernen Browsern, wie Mozilla Firefox, Google Chrome, Safari. Der Microsoft Internet Explorer wird nicht unterstützt.
+
 
 Mit Hilfe der Anwendung können bis zu 4 verschiedene Karten mit gleichem Kartenausschnitt gleichzeitig dargestellt werden.
 Über die Schaltfläche in der linken unteren Ecke gelangt man zu den Einstellungen der Kartenfenster. Zur Auswahl der Kartenhintergründe stehen z. B.

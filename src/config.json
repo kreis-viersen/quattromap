@@ -176,7 +176,7 @@
       "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb",
       "layer": "kvie_geplgeb",
       "format": "png",
-      "category": "Nationaal Georegister (NL)"
+      "category": "KRZN-Dienste"
     },
     {
       "name": "NL Luftbild Farbe",
@@ -184,7 +184,7 @@
       "url": "https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms",
       "layer": "Actueel_ortho25",
       "format": "jpeg",
-      "category": "KRZN-Dienste"
+      "category": "Nationaal Georegister (NL)"
     },
     {
       "name": "Kreis Warendorf ALKIS",

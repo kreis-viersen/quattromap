@@ -8,7 +8,7 @@
     - [Overlays](#overlays)
   - [Permalink](#permalink)
   - [Konfiguration](#konfiguration)
-  - [CodeSandbox](#codesandbox)
+  - [Testen von Pull Requests](#testen-von-pull-requests)
   - [Develop](#develop)
     - [Search](#search)
 

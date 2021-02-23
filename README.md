@@ -95,7 +95,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 
 ## Permalink
 
-Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu gehört die Anzahl und Einstellung der Kartenfenster inkl. Layerdefinitionen, das Kartenzentrum und die Zoomstufe. Über den Permalink können so vordefinierte Anwendungen als Lesezeichen gespeichert oder weitergegeben werden. Über die Schaltfläche *Permalink in die Zwischenablage kopieren* am linken Bildschirmrand wird die derzeitige URL in die Zwischenablage kopiert und kann dann bspw. per Mail geteilt werden.
+Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu gehört die Anzahl und Einstellung der Kartenfenster inkl. Layerdefinitionen, das Kartenzentrum, die Zoomstufe und die Farbe des Gitterkreuzes (Zentrumsmarkierung). Über den Permalink können so vordefinierte Einstellungen für bestimmte Anwendungszwecke als Lesezeichen gespeichert oder weitergegeben werden. Über die Schaltfläche *Permalink in die Zwischenablage kopieren* am linken Bildschirmrand wird die derzeitige URL in die Zwischenablage kopiert und kann dann bspw. per Mail geteilt werden.
 
 ## Konfiguration
 

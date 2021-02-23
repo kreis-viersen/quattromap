@@ -3,7 +3,6 @@
 - [QuattroMap](#quattromap)
     - [Messwerkzeuge](#messwerkzeuge)
   - [Aktuell verfügbare Dienste](#aktuell-verfügbare-dienste)
-
     - [Layer](#layer)
     - [Overlays](#overlays)
   - [Permalink](#permalink)
@@ -24,8 +23,7 @@
 
 QuattroMap ist eine vom Kreis Viersen entwickelte Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann.
 
-Das Tool ist unter https://kreis-viersen.github.io/quattromap/ von jedem internetfähigen Gerät, wie Tablet, Smartphone, Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. Die Anwendung ist kompatibel mit modernen Browsern, wie Mozilla Firefox, Google Chrome, Safari. Der Microsoft Internet Explorer wird nicht unterstützt.
-
+Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. Die Anwendung ist kompatibel mit modernen Browsern, wie Mozilla Firefox, Google Chrome, Safari. Der Microsoft Internet Explorer wird nicht unterstützt.
 
 Mit Hilfe der Anwendung können bis zu 4 verschiedene Karten mit gleichem Kartenausschnitt gleichzeitig dargestellt werden.
 Über die Schaltfläche in der linken unteren Ecke gelangt man zu den Einstellungen der Kartenfenster. Zur Auswahl der Kartenhintergründe stehen z. B.
@@ -118,7 +116,7 @@ Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu geh
 |"onlyOverlay"|Mit diesem optionalen Parameter lässt sich der entsprechende Dienst nur als Overlay verwenden.|"onlyOverlay": true|
 |"style"|Optionaler Parameter zur Auswahl eines bestimmten Stils. Stile können von Diensten angeboten werden.|"style": "Farbe"|
 
-## CodeSandbox
+## Testen von Pull Requests
 
 In diesem Repository werden für jeden Pull Request über einen CodeSandbox-Bot automatisch Änderungen in einer isolierten Testumgebung kompiliert und können so im Vorfeld getestet werden. Hierzu ist in einem Pull Request im Beitrag von CodeSandbox auf den Link *quattromap* zu klicken. Im neu geöffneten Fenster kann das Tool durch einen Klick auf die parallel versetzten Rechtecke in der oberen rechten Ecke des Kartenfenster auf Vollbild maximiert werden.
 

@@ -59,6 +59,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |NRW Schummerung|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dgm-schummerung_pan|
 |NRW DTK|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dtk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dtk_col|
 |NRW TDOM|WMS|https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_tdom|
+|NRW NDOM|WMS|https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_ndom|
 |**OpenStreetMap**||||
 |OSM Mapnik|XYZ Tiles|https://www.openstreetmap.org||
 |**RVR**||||
@@ -88,6 +89,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |:---|:---|:---|:---|
 |**Geobasis NRW**||||
 |NRW TDOM Metadaten|WMS|https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_tdom_info|
+|NRW NDOM Metadaten|WMS|https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_ndom_info|
 |NRW Luftbild Overlay|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_DOP_OVERLAY|  
 |NRW LINFOS|WMS|https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Naturschutzgebiete, Landschaftsschutzgebiet|
 

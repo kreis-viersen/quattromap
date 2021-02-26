@@ -74,6 +74,23 @@
       "category": "GeoBasis NRW"
     },
     {
+      "name": "NRW NDOM",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_ndom",
+      "layer": "nw_ndom",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW NDOM Metadaten",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_ndom",
+      "layer": "nw_ndom_info",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
       "name": "NRW TDOM",
       "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_tdom",

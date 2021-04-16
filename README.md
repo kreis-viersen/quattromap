@@ -1,3 +1,7 @@
+Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. gerne hier ein:<br>
+https://kreis-viersen.github.io/quattromap/<br>
+Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ). 
+
 # Inhaltsverzeichnis
 
 - [QuattroMap](#quattromap)

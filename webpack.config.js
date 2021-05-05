@@ -31,7 +31,7 @@ module.exports = {
         // https://github.com/codepunkt/webpack-license-plugin/issues/443
         '@mapbox/fusspot@0.4.0': 'BSD-2-Clause'
       },
-        // mapbox-gl uses a custom license
+      // mapbox-gl uses a custom license
       excludedPackageTest: name => name === 'mapbox-gl',
       additionalFiles: {
         'oss-licenses.json': packages => JSON.stringify([...packages, {

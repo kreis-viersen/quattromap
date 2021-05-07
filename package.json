@@ -1,12 +1,13 @@
 {
   "name": "quattromap",
   "description": "Compare up to 4 maps at once",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "license": "MIT",
   "scripts": {
     "start": "webpack-dev-server",
     "build": "webpack",
-    "deploy": "gh-pages -d dist"
+    "deploy": "gh-pages -d dist",
+    "preinstall": "npx npm-force-resolutions"
   },
   "repository": {
     "type": "git",
@@ -29,7 +30,15 @@
     "@turf/area": "^6.3.0",
     "@turf/centroid": "^6.3.0",
     "@turf/length": "^6.3.0",
+    "hosted-git-info": "^3.0.8",
     "lz-string": "^1.4.4",
-    "mapbox-gl": "^1.13.1"
+    "mapbox-gl": "^1.13.1",
+    "minimist": "^1.2.5",
+    "underscore": "^1.13.1"
+  },
+  "resolutions": {
+    "hosted-git-info": "3.0.8",
+    "minimist": "1.2.5",
+    "underscore": "1.13.1"
   }
 }

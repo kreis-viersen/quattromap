@@ -1,6 +1,6 @@
 Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. gerne hier ein:<br>
 https://kreis-viersen.github.io/quattromap/<br>
-Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ). 
+Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ).
 
 # Inhaltsverzeichnis
 
@@ -96,6 +96,8 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |NRW TDOM Metadaten|WMS|https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_tdom_info|
 |NRW Luftbild Overlay|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_DOP_OVERLAY|  
 |NRW LINFOS|WMS|https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Naturschutzgebiete, Landschaftsschutzgebiet|
+|**KRZN-Dienste**||||
+|Klassifizierte Gewässer Kreis Viersen|WMS|https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_klassgew|
 
 ## Permalink
 

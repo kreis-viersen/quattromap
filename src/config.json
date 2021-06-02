@@ -196,6 +196,15 @@
       "category": "KRZN-Dienste"
     },
     {
+      "name": "Klassifizierte Gewässer Kreis Viersen",
+      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew",
+      "layer": "kvie_klassgew",
+      "format": "png",
+      "category": "KRZN-Dienste",
+      "onlyOverlay": true
+    },
+    {
       "name": "NL Luftbild Farbe",
       "attribution": "<a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>",
       "url": "https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms",

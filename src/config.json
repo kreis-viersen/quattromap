@@ -206,11 +206,11 @@
     },
     {
       "name": "NL Luftbild Farbe",
-      "attribution": "<a target='_blank' rel='noopener noreferrer' href='http://geodata.nationaalgeoregister.nl'>Nationaal Georegister</a>",
-      "url": "https://geodata.nationaalgeoregister.nl/luchtfoto/rgb/wms",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.pdok.nl'>PDOK</a>",
+      "url": "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",
       "layer": "Actueel_ortho25",
       "format": "jpeg",
-      "category": "Nationaal Georegister (NL)"
+      "category": "PDOK (NL)"
     },
     {
       "name": "Kreis Warendorf ALKIS",

@@ -11,6 +11,17 @@ module.exports = {
       extractComments: false,
     })],
   },
+  devServer: {
+    client: {
+      overlay: {
+        errors: true,
+        warnings: false
+      }
+    },
+    devMiddleware: {
+      stats: 'minimal'
+    }
+  },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),

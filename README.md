@@ -52,52 +52,78 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 
 ### Layer
 
-|Name|Art|URL|Dienste Layer|
+|Name|Art|Dienst-URL|Dienst-Layer|
 |:---|:---|:---|:---|
 |**Geobasis NRW**||||
-|NRW Luftbild Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dop_rgb|  
-|NRW vDOP Farbe|WMS|https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_vdop_rgb|  
-|NRW ALKIS FLURSTÜCKE|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_flurstuecke|  
-|NRW Amtliche Basiskarte (ABK)|WMS|https://www.wms.nrw.de/geobasis/wms_nw_abk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_ABK|  
-|NRW Alkis TN|WMS|https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|adv_alkis_tatsaechliche_nutzung|
-|NRW Schummerung|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dgm-schummerung_pan|
-|NRW DTK|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dtk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_dtk_col|
-|NRW NDOM|WMS|https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_ndom|
-|NRW TDOM|WMS|https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_tdom|
+|NRW Luftbild Farbe|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_dop_rgb|  
+|NRW vDOP Farbe|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_vdop_rgb|  
+|NRW ALKIS FLURSTÜCKE|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|adv_alkis_flurstuecke|  
+|NRW Amtliche Basiskarte (ABK)|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_abk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|WMS_NW_ABK|  
+|NRW Alkis TN|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_alkis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|adv_alkis_tatsaechliche_nutzung|
+|NRW Schummerung|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_dgm-schummerung_pan|
+|NRW DTK|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dtk?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_dtk_col|
+|NRW NDOM|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_ndom|
+|NRW TDOM|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_tdom|
 |**OpenStreetMap**||||
-|OSM Mapnik|XYZ Tiles|https://www.openstreetmap.org||
+|OSM Mapnik|XYZ Tiles|[URL](https://www.openstreetmap.org)||
 |**RVR**||||
-|RVR Luftbild Farbe|WMS|https://geodaten.metropoleruhr.de/dop/dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|dop|
+|RVR Luftbild Farbe|WMS|[URL](https://geodaten.metropoleruhr.de/dop/dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|dop|
 |**KRZN-Dienste**||||
-|Kreis Viersen ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Viersen|
-|Stadt Krefeld ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Krefeld|
-|Kreis Wesel ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Wesel|
-|Kreis Kleve ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|FlurkarteAdV_Kleve|
-|Stadt Bottrop ALKIS|WMS|https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Flurkarte_Bottrop|
-|Kreis Viersen ALKIS light|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
-|Kreis Viersen Geplante Gebäude|WMS|https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_geplgeb|
+|Kreis Viersen ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|FlurkarteAdV_Viersen|
+|Stadt Krefeld ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|FlurkarteAdV_Krefeld|
+|Kreis Wesel ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|FlurkarteAdV_Wesel|
+|Kreis Kleve ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|FlurkarteAdV_Kleve|
+|Stadt Bottrop ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Flurkarte_Bottrop|
+|Kreis Viersen ALKIS light|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|
+|Kreis Viersen Geplante Gebäude|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_geplgeb|
 |**PDOK (NL)**||||
-|NL Luftbild Farbe|WMS|https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Actueel_ortho25|  
+|NL Luftbild Farbe|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_ortho25|  
 |**Kreis Warendorf**||||
-|Kreis Warendorf ALKIS|WMS|https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|alkis_lieka|  
-|Kreis Warendorf ABK 1:5000|WMS|https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|abk5000|  
+|Kreis Warendorf ALKIS|WMS|[URL](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|alkis_lieka|  
+|Kreis Warendorf ABK 1:5000|WMS|[URL](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|abk5000|  
 |**Kreis Steinfurt**||||
-|Kreis Steinfurt ALKIS|WMS|https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_Kreissuebersichtskarte_DTK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|0|
-|Kreis Steinfurt ABK|WMS|https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_ABK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|0|
+|Kreis Steinfurt ALKIS|WMS|[URL](https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_Kreissuebersichtskarte_DTK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|0|
+|Kreis Steinfurt ABK|WMS|[URL](https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_ABK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|0|
+|**Historische Luftbilder NRW**||||
+|NRW Luftbild 1996|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1996|
+|NRW Luftbild 1997|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1997|  
+|NRW Luftbild 1998|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1998|  
+|NRW Luftbild 1999|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1999|  
+|NRW Luftbild 2000|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2000|  
+|NRW Luftbild 2001|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2001|  
+|NRW Luftbild 2002|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2002|  
+|NRW Luftbild 2003|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2003|  
+|NRW Luftbild 2004|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2004|  
+|NRW Luftbild 2005|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2005|  
+|NRW Luftbild 2006|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2006|  
+|NRW Luftbild 2007|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2007|  
+|NRW Luftbild 2008|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2008|  
+|NRW Luftbild 2009|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2009|  
+|NRW Luftbild 2010|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2010|  
+|NRW Luftbild 2011|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2011|  
+|NRW Luftbild 2012|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2012|  
+|NRW Luftbild 2013|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2013|  
+|NRW Luftbild 2014|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2014|  
+|NRW Luftbild 2015|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2015|  
+|NRW Luftbild 2016|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2016|  
+|NRW Luftbild 2017|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2017|  
+|NRW Luftbild 2018|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2018|  
+|NRW Luftbild 2019|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2019|  
+
 
 ### Overlays
 
 Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#layer) gelisteten Diensten sind als Overlay verfügbar:
 
-|Name|Art|URL|Dienste Layer|
+|Name|Art|Dienst-URL|Dienst-Layer|
 |:---|:---|:---|:---|
 |**Geobasis NRW**||||
-|NRW NDOM Metadaten|WMS|https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_ndom_info|
-|NRW TDOM Metadaten|WMS|https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|nw_tdom_info|
-|NRW Luftbild Overlay|WMS|https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|WMS_NW_DOP_OVERLAY|  
-|NRW LINFOS|WMS|https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|Naturschutzgebiete, Landschaftsschutzgebiet|
+|NRW NDOM Metadaten|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_ndom_info|
+|NRW TDOM Metadaten|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_tdom_info|
+|NRW Luftbild Overlay|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|WMS_NW_DOP_OVERLAY|  
+|NRW LINFOS|WMS|[URL](https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Naturschutzgebiete, Landschaftsschutzgebiet|
 |**KRZN-Dienste**||||
-|Klassifizierte Gewässer Kreis Viersen|WMS|https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities|kvie_klassgew|
+|Klassifizierte Gewässer Kreis Viersen|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_klassgew|
 
 ## Permalink
 
@@ -123,6 +149,7 @@ Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu geh
 |"category"|Begriff zur Kategorisierung der Dienste im Dropdown-Menü.|"category": "GeoBasis NRW"|
 |"onlyOverlay"|Mit diesem optionalen Parameter lässt sich der entsprechende Dienst nur als Overlay verwenden.|"onlyOverlay": true|
 |"style"|Optionaler Parameter zur Auswahl eines bestimmten Stils. Stile können von Diensten angeboten werden.|"style": "Farbe"|
+|"compactAttribution"|Mit diesem optionalen Parameter lässt sich festlegen, ob die Attribution mit dem Layernamen bei Auswahl des Layers ausgeklappt (`false`) oder eingeklappt ist (`true` = Standardwert) |"compactAttribution": "false"|
 
 ## Testen von Pull Requests
 

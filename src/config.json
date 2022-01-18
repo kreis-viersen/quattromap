@@ -19,7 +19,7 @@
   "layer": [
     {
       "name": "NRW Luftbild Farbe",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",
       "layer": "nw_dop_rgb",
       "format": "png",
@@ -27,7 +27,7 @@
     },
     {
       "name": "NRW vDOP Farbe",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
       "layer": "nw_vdop_rgb",
       "format": "png",
@@ -35,7 +35,7 @@
     },
     {
       "name": "NRW ALKIS Flurstücke",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
       "layer": "adv_alkis_flurstuecke",
       "format": "png",
@@ -43,7 +43,7 @@
     },
     {
       "name": "NRW Amtliche Basiskarte (ABK)",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_abk",
       "layer": "WMS_NW_ABK",
       "format": "png",
@@ -51,7 +51,7 @@
     },
     {
       "name": "NRW Alkis TN",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
       "layer": "adv_alkis_tatsaechliche_nutzung",
       "format": "png",
@@ -59,7 +59,7 @@
     },
     {
       "name": "NRW Schummerung",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dgm-schummerung",
       "layer": "nw_dgm-schummerung_pan",
       "format": "png",
@@ -67,7 +67,7 @@
     },
     {
       "name": "NRW DTK",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dtk",
       "layer": "nw_dtk_col",
       "format": "png",
@@ -75,7 +75,7 @@
     },
     {
       "name": "NRW NDOM",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_ndom",
       "layer": "nw_ndom",
       "format": "png",
@@ -83,7 +83,7 @@
     },
     {
       "name": "NRW NDOM Metadaten",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_ndom",
       "layer": "nw_ndom_info",
       "format": "png",
@@ -92,7 +92,7 @@
     },
     {
       "name": "NRW TDOM",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_tdom",
       "layer": "nw_tdom",
       "format": "png",
@@ -100,7 +100,7 @@
     },
     {
       "name": "NRW TDOM Metadaten",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_tdom",
       "layer": "nw_tdom_info",
       "format": "png",
@@ -109,7 +109,7 @@
     },
     {
       "name": "NRW Luftbild Overlay",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay",
       "layer": "WMS_NW_DOP_OVERLAY",
       "format": "png",
@@ -118,7 +118,7 @@
     },
     {
       "name": "NRW LINFOS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://www.wms.nrw.de/umwelt/linfos",
       "layer": "Naturschutzgebiete,Landschaftsschutzgebiet",
       "format": "png",
@@ -141,7 +141,7 @@
     },
     {
       "name": "Kreis Viersen ALKIS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
       "layer": "FlurkarteAdV_Viersen",
       "format": "png",
@@ -149,7 +149,7 @@
     },
     {
       "name": "Stadt Krefeld ALKIS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
       "layer": "FlurkarteAdV_Krefeld",
       "format": "png",
@@ -157,7 +157,7 @@
     },
     {
       "name": "Kreis Wesel ALKIS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
       "layer": "FlurkarteAdV_Wesel",
       "format": "png",
@@ -165,7 +165,7 @@
     },
     {
       "name": "Kreis Kleve ALKIS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
       "layer": "FlurkarteAdV_Kleve",
       "format": "png",
@@ -173,7 +173,7 @@
     },
     {
       "name": "Stadt Bottrop ALKIS",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
       "layer": "Flurkarte_Bottrop",
       "format": "png",
@@ -181,7 +181,7 @@
     },
     {
       "name": "Kreis Viersen ALKIS light",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light",
       "layer": "nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen",
       "format": "png",
@@ -189,7 +189,7 @@
     },
     {
       "name": "Kreis Viersen geplante Gebäude",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb",
       "layer": "kvie_geplgeb",
       "format": "png",
@@ -197,7 +197,7 @@
     },
     {
       "name": "Klassifizierte Gewässer Kreis Viersen",
-      "attribution": "Land NRW (2021) Deutschland – Zero – Version 2.0 (<a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/zero-2-0'>www.govdata.de/dl-de/zero-2-0</a>)",
+      "attribution": "",
       "url": "https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew",
       "layer": "kvie_klassgew",
       "format": "png",
@@ -230,7 +230,7 @@
     },
     {
       "name": "Kreis Steinfurt ALKIS",
-      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://gis-kreis-steinfurt.opendata.arcgis.com/'>Geodaten: Kreis Steinfurt</a>",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https: //gis-kreis-steinfurt.opendata.arcgis.com/'>Geodaten: Kreis Steinfurt</a>",
       "url": "https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_Kreissuebersichtskarte_DTK_farbe/MapServer/WMSServer",
       "layer": "0",
       "format": "png",
@@ -243,6 +243,222 @@
       "layer": "0",
       "format": "png",
       "category": "Kreis Steinfurt"
+    },
+    {
+      "name": "NRW Luftbild 1996",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1996",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1997",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1997",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1998",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1998",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1999",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1999",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2000",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2000",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2001",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2001",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2002",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2002",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2003",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2003",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2004",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2004",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2005",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2005",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2006",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2006",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2007",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2007",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2008",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2008",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2009",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2009",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2010",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2010",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2011",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2011",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2012",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2012",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2013",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2013",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2014",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2014",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2015",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2015",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2016",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2016",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2017",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2017",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2018",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2018",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2019",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2019",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
     }
   ]
 }

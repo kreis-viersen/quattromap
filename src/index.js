@@ -55,6 +55,16 @@ if ('URLSearchParams' in window) {
   }
 }
 
+// status of compact attributions
+var ca_layer_1 = true;
+var ca_overlay_1 = true;
+var ca_layer_2 = true;
+var ca_overlay_2 = true;
+var ca_layer_3 = true;
+var ca_overlay_3 = true;
+var ca_layer_4 = true;
+var ca_overlay_4 = true;
+
 var currentURL;
 
 function updateURLSearchParams() {
@@ -133,7 +143,11 @@ config.layer.forEach(function(item) {
   if (item.onlyOverlay != true) {
     default_style.sources[item.name] = {};
     default_style.sources[item.name].type = "raster";
-    default_style.sources[item.name].attribution = "<b>" + item.name + "</b> &copy; " + item.attribution;
+    if (item.attribution == "") {
+      default_style.sources[item.name].attribution = "<b>" + item.name + "</b>";
+    } else {
+      default_style.sources[item.name].attribution = "<b>" + item.name + "</b> &copy; " + item.attribution;
+    }
     // ToDo: Check for XYZ Tilesources in general
     if (item.url == "https://tile.openstreetmap.org/{z}/{x}/{y}.png") {
       default_style.sources[item.name].tiles = [item.url];
@@ -152,6 +166,9 @@ config.layer.forEach(function(item) {
     lyr.layout = {
       visibility: "none"
     };
+    if (item.compactAttribution == false) {
+      lyr.compact_attribution = false
+    }
     default_style.layers.push(lyr);
 
     // populate layer select dropdowns
@@ -174,7 +191,11 @@ config.layer.forEach(function(item) {
   const overlay_id = "ol_" + item.name
   default_style.sources[overlay_id] = {};
   default_style.sources[overlay_id].type = "raster";
-  default_style.sources[overlay_id].attribution = "<b>Overlay: " + item.name + "</b> &copy; " + item.attribution;
+  if (item.attribution == "") {
+    default_style.sources[overlay_id].attribution = "<b>Overlay: " + item.name + "</b>";
+  } else {
+    default_style.sources[overlay_id].attribution = "<b>Overlay: " + item.name + "</b> &copy; " + item.attribution;
+  }
   // todo: check for XYZ Tilesources in general
   if (item.url == "https://tile.openstreetmap.org/{z}/{x}/{y}.png") {
     default_style.sources[overlay_id].tiles = [item.url];
@@ -193,6 +214,9 @@ config.layer.forEach(function(item) {
   olyr.layout = {
     visibility: "none"
   };
+  if (item.compactAttribution == false) {
+    olyr.compact_attribution = false
+  }
   default_style.layers.push(olyr);
 
   // populate overlay select dropdowns
@@ -217,9 +241,10 @@ var map_1 = new mapboxgl.Map({
   pitchWithRotate: false,
   attributionControl: false,
   hash: true
-}).addControl(new mapboxgl.AttributionControl({
+});
+const attribution_map_1 = new mapboxgl.AttributionControl({
   compact: true
-}));
+});
 
 var map_2 = new mapboxgl.Map({
   container: "map_2",
@@ -229,9 +254,12 @@ var map_2 = new mapboxgl.Map({
   pitchWithRotate: false,
   attributionControl: false,
   hash: true
-}).addControl(new mapboxgl.AttributionControl({
+});
+const attribution_map_2 = new mapboxgl.AttributionControl({
   compact: true
-}));
+});
+
+
 
 var map_3 = new mapboxgl.Map({
   container: "map_3",
@@ -241,9 +269,10 @@ var map_3 = new mapboxgl.Map({
   pitchWithRotate: false,
   attributionControl: false,
   hash: true
-}).addControl(new mapboxgl.AttributionControl({
+});
+const attribution_map_3 = new mapboxgl.AttributionControl({
   compact: true
-}));
+});
 
 var map_4 = new mapboxgl.Map({
   container: "map_4",
@@ -253,9 +282,10 @@ var map_4 = new mapboxgl.Map({
   pitchWithRotate: false,
   attributionControl: false,
   hash: true
-}).addControl(new mapboxgl.AttributionControl({
+});
+const attribution_map_4 = new mapboxgl.AttributionControl({
   compact: true
-}));
+});
 
 var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
@@ -295,21 +325,53 @@ map_1.on("load", function() {
       "text-halo-blur": 3
     }
   })
+
+  const layer = default_style.layers.find(el => el.id === settings.l1);
+  map_1.addControl(attribution_map_1)
+  if (layer.compact_attribution == false) {
+    ca_layer_1 = false
+    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
+
   setOverlay1();
 });
 map_2.on("load", function() {
   allMapsLoaded[1] = true;
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l2);
+  map_2.addControl(attribution_map_2)
+  if (layer.compact_attribution == false) {
+    ca_layer_2 = false
+    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
+
   setOverlay2();
 });
 map_3.on("load", function() {
   allMapsLoaded[2] = true;
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l3);
+  map_3.addControl(attribution_map_3)
+  if (layer.compact_attribution == false) {
+    ca_layer_3 = false
+    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
+
   setOverlay3();
 });
 map_4.on("load", function() {
   allMapsLoaded[3] = true;
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l4);
+  map_4.addControl(attribution_map_4)
+  if (layer.compact_attribution == false) {
+    ca_layer_4 = false
+    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
+
   setOverlay4();
 });
 
@@ -441,6 +503,18 @@ window.setLayer1 = function setLayer1() {
   map_1.setLayoutProperty(layer_id, 'visibility', 'visible');
   settings.l1 = layer_id;
   updateURLSearchParams();
+
+  map_1.removeControl(attribution_map_1);
+  map_1.addControl(attribution_map_1)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_1 = false
+  } else {
+    ca_layer_1 = true
+  }
+  if (ca_layer_1 == false || ca_overlay_1 == false) {
+    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
 }
 
 // switch layer for map_2
@@ -450,6 +524,18 @@ window.setLayer2 = function setLayer2() {
   map_2.setLayoutProperty(layer_id, 'visibility', 'visible');
   settings.l2 = layer_id;
   updateURLSearchParams();
+
+  map_2.removeControl(attribution_map_2);
+  map_2.addControl(attribution_map_2)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_2 = false
+  } else {
+    ca_layer_2 = true
+  }
+  if (ca_layer_2 == false || ca_overlay_2 == false) {
+    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
 }
 
 // switch layer for map_3
@@ -459,6 +545,18 @@ window.setLayer3 = function setLayer3() {
   map_3.setLayoutProperty(layer_id, 'visibility', 'visible');
   settings.l3 = layer_id;
   updateURLSearchParams();
+
+  map_3.removeControl(attribution_map_3);
+  map_3.addControl(attribution_map_3)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_3 = false
+  } else {
+    ca_layer_3 = true
+  }
+  if (ca_layer_3 == false || ca_overlay_3 == false) {
+    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
 }
 
 // switch layer for map_4
@@ -468,12 +566,25 @@ window.setLayer4 = function setLayer4() {
   map_4.setLayoutProperty(layer_id, 'visibility', 'visible');
   settings.l4 = layer_id;
   updateURLSearchParams();
+
+  map_4.removeControl(attribution_map_4);
+  map_4.addControl(attribution_map_4)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_4 = false
+  } else {
+    ca_layer_4 = true
+  }
+  if (ca_layer_4 == false || ca_overlay_4 == false) {
+    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+  }
 }
 
 // switch overlay for map_1
 window.setOverlay1 = function setOverlay1() {
   var layer_id = document.getElementById("form_overlay_1").value;
   if (layer_id == "") {
+    ca_overlay_1 = true
     if (!settings.o1 == "") {
       map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
     }
@@ -487,6 +598,18 @@ window.setOverlay1 = function setOverlay1() {
     updateURLSearchParams();
     map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
     map_1.setLayoutProperty(settings.o1, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_1 = false
+    } else {
+      ca_overlay_1 = true
+    }
+  }
+  map_1.removeControl(attribution_map_1);
+  map_1.addControl(attribution_map_1)
+  if (ca_layer_1 == false || ca_overlay_1 == false) {
+    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -494,6 +617,7 @@ window.setOverlay1 = function setOverlay1() {
 window.setOverlay2 = function setOverlay2() {
   var layer_id = document.getElementById("form_overlay_2").value;
   if (layer_id == "") {
+    ca_overlay_2 = true
     if (!settings.o2 == "") {
       map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
     }
@@ -507,6 +631,18 @@ window.setOverlay2 = function setOverlay2() {
     updateURLSearchParams();
     map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
     map_2.setLayoutProperty(settings.o2, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_2 = false
+    } else {
+      ca_overlay_2 = true
+    }
+  }
+  map_2.removeControl(attribution_map_2);
+  map_2.addControl(attribution_map_2)
+  if (ca_layer_2 == false || ca_overlay_2 == false) {
+    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -514,6 +650,7 @@ window.setOverlay2 = function setOverlay2() {
 window.setOverlay3 = function setOverlay3() {
   var layer_id = document.getElementById("form_overlay_3").value;
   if (layer_id == "") {
+    ca_overlay_3 = true
     if (!settings.o3 == "") {
       map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
     }
@@ -527,6 +664,18 @@ window.setOverlay3 = function setOverlay3() {
     updateURLSearchParams();
     map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
     map_3.setLayoutProperty(settings.o3, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_3 = false
+    } else {
+      ca_overlay_3 = true
+    }
+  }
+  map_3.removeControl(attribution_map_3);
+  map_3.addControl(attribution_map_3)
+  if (ca_layer_3 == false || ca_overlay_3 == false) {
+    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -534,6 +683,7 @@ window.setOverlay3 = function setOverlay3() {
 window.setOverlay4 = function setOverlay4() {
   var layer_id = document.getElementById("form_overlay_4").value;
   if (layer_id == "") {
+    ca_overlay_4 = true
     if (!settings.o4 == "") {
       map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
     }
@@ -547,6 +697,18 @@ window.setOverlay4 = function setOverlay4() {
     updateURLSearchParams();
     map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
     map_4.setLayoutProperty(settings.o4, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_4 = false
+    } else {
+      ca_overlay_4 = true
+    }
+  }
+  map_4.removeControl(attribution_map_4);
+  map_4.addControl(attribution_map_4)
+  if (ca_layer_4 == false || ca_overlay_4 == false) {
+    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
   }
 }
 

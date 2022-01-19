@@ -459,6 +459,24 @@
       "format": "png",
       "category": "Historische Luftbilder NRW",
       "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild aktuell",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",
+      "layer": "nw_dop_rgb",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW vDOP",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
+      "layer": "nw_vdop_rgb",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
     }
   ]
 }

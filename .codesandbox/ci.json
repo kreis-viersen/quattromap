@@ -1,3 +1,4 @@
 {
-  "sandboxes": ["/"]
+  "sandboxes": ["/"],
+  "node": "16"
 }

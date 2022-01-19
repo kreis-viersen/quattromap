@@ -118,7 +118,7 @@
     },
     {
       "name": "NRW LINFOS",
-      "attribution": "",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities'>Land NRW</a> <a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/by-2-0'>dl-de/by-2-0</a>",
       "url": "https://www.wms.nrw.de/umwelt/linfos",
       "layer": "Naturschutzgebiete,Landschaftsschutzgebiet",
       "format": "png",

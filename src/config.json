@@ -34,6 +34,14 @@
       "category": "GeoBasis NRW"
     },
     {
+      "name": "NRW aktuelles Satellitenbild DYMOS S2",
+      "attribution": "Enthält aktuelle, wolkenfreie, modifizierte Copernicus Sentinel-2 Daten, verarbeitet durch Geobasis NRW; <a target='_blank' rel='noopener noreferrer' href='https://www.govdata.de/dl-de/by-2-0'>dl-de/by-2-0</a>; <a target='_blank' rel='noopener noreferrer' href='https://www.wms.nrw.de/geobasis/wms_nw_dymos_s2'>https://www.wms.nrw.de/geobasis/wms_nw_dymos_s2</a>",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dymos_s2",
+      "layer": "nw_dymos_s2_rgb",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
       "name": "NRW ALKIS Flurstücke",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_alkis",
@@ -456,6 +464,15 @@
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
       "layer": "nw_hist_dop_2019",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 2020",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2020",
       "format": "png",
       "category": "Historische Luftbilder NRW",
       "compactAttribution": false

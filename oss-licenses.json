@@ -19,28 +19,28 @@
   },
   {
     "name": "@mapbox/mapbox-gl-geocoder",
-    "version": "5.0.0",
+    "version": "5.0.1",
     "author": "Mapbox",
     "repository": "git+ssh://git@github.com/mapbox/mapbox-gl-geocoder.git",
-    "source": "https://registry.npmjs.org/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-5.0.0.tgz",
+    "source": "https://registry.npmjs.org/@mapbox/mapbox-gl-geocoder/-/mapbox-gl-geocoder-5.0.1.tgz",
     "license": "ISC",
     "licenseText": "Copyright (c) 2016, Mapbox\n\nPermission to use, copy, modify, and/or distribute this software for any\npurpose with or without fee is hereby granted, provided that the above\ncopyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\nWITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\nMERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\nANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\nWHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\nACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\nOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n"
   },
   {
     "name": "@mapbox/mapbox-gl-sync-move",
-    "version": "0.3.0",
+    "version": "0.3.1",
     "author": "Mapbox",
     "repository": "git+https://github.com/mapbox/mapbox-gl-sync-move.git",
-    "source": "https://registry.npmjs.org/@mapbox/mapbox-gl-sync-move/-/mapbox-gl-sync-move-0.3.0.tgz",
+    "source": "https://registry.npmjs.org/@mapbox/mapbox-gl-sync-move/-/mapbox-gl-sync-move-0.3.1.tgz",
     "license": "ISC",
     "licenseText": "Copyright (c) 2016, Mapbox\n\nPermission to use, copy, modify, and/or distribute this software for any\npurpose with or without fee is hereby granted, provided that the above\ncopyright notice and this permission notice appear in all copies.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\" AND THE AUTHOR DISCLAIMS ALL WARRANTIES\nWITH REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF\nMERCHANTABILITY AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR\nANY SPECIAL, DIRECT, INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES\nWHATSOEVER RESULTING FROM LOSS OF USE, DATA OR PROFITS, WHETHER IN AN\nACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF\nOR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.\n"
   },
   {
     "name": "@mapbox/mapbox-sdk",
-    "version": "0.13.3",
+    "version": "0.13.4",
     "author": "Mapbox",
     "repository": "git+https://github.com/mapbox/mapbox-sdk-js.git",
-    "source": "https://registry.npmjs.org/@mapbox/mapbox-sdk/-/mapbox-sdk-0.13.3.tgz",
+    "source": "https://registry.npmjs.org/@mapbox/mapbox-sdk/-/mapbox-sdk-0.13.4.tgz",
     "license": "BSD-2-Clause",
     "licenseText": "Copyright (c) 2018, Mapbox\nAll rights reserved.\n\nRedistribution and use in source and binary forms, with or without\nmodification, are permitted provided that the following conditions are met:\n\n1. Redistributions of source code must retain the above copyright notice, this\n   list of conditions and the following disclaimer.\n2. Redistributions in binary form must reproduce the above copyright notice,\n   this list of conditions and the following disclaimer in the documentation\n   and/or other materials provided with the distribution.\n\nTHIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS \"AS IS\" AND\nANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED\nWARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE\nDISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE LIABLE FOR\nANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES\n(INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES;\nLOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND\nON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT\n(INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS\nSOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.\n\nThe views and conclusions contained in the software and documentation are those\nof the authors and should not be interpreted as representing official policies,\neither expressed or implied, of the FreeBSD Project."
   },

@@ -155,12 +155,6 @@ Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu geh
 |"style"|Optionaler Parameter zur Auswahl eines bestimmten Stils. Stile können von Diensten angeboten werden.|"style": "Farbe"|
 |"compactAttribution"|Mit diesem optionalen Parameter lässt sich festlegen, ob die Attribution mit dem Layernamen bei Auswahl des Layers ausgeklappt (`false`) oder eingeklappt ist (`true` = Standardwert).|"compactAttribution": "false"|
 
-## Testen von Pull Requests
-
-In diesem Repository werden für jeden Pull Request über einen CodeSandbox-Bot automatisch Änderungen in einer isolierten Testumgebung kompiliert und können so im Vorfeld getestet werden. Hierzu ist in einem Pull Request im Beitrag von CodeSandbox auf den Link *quattromap* zu klicken. Im neu geöffneten Fenster kann das Tool durch einen Klick auf die parallel versetzten Rechtecke in der oberen rechten Ecke des Kartenfenster auf Vollbild maximiert werden.
-
-<img src="./codesandbox_fullscreen.png">
-
 ## Develop
 
 ```bash

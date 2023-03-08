@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>QuattroMap</title>
+	<!-- <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"> -->
+	<meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+	<meta name="viewport"
+		content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
+	<meta http-equiv="ETag" content="000001" />
+</head>
+
+<body>
+	<!-- Vollbildmenü -->
+	<div id="myNav" class="overlay">
+		<!-- Fadenkreuz-Farbwahl -->
+		<div class="ch-dropdown">
+			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
+			<div id="ch_dropdown_content" class="ch-dropdown-content">
+				<img src="./img/cross_black.png" onclick="changeCrosshair('black')" />
+				<img src="./img/cross_red.png" onclick="changeCrosshair('red')" />
+				<img src="./img/cross_orange.png" onclick="changeCrosshair('orange')" />
+				<img src="./img/cross_yellow.png" onclick="changeCrosshair('yellow')" />
+				<img src="./img/cross_green.png" onclick="changeCrosshair('green')" />
+				<img src="./img/cross_blue.png" onclick="changeCrosshair('blue')" />
+				<img src="./img/cross_pink.png" onclick="changeCrosshair('pink')" />
+			</div>
+		</div>
+		<!-- Anzahl der Kartenfenster -->
+		<div class="button-box">
+			<label class="map-number-label">Anzahl Karten:</label>
+			<button id='button_1map' class="map-button" onclick="setMapNumber(1)">1</button>
+			<button id='button_2map' class="map-button" onclick="setMapNumber(2)">2</button>
+			<button id='button_3map' class="map-button" onclick="setMapNumber(3)">3</button>
+			<button id='button_4map' class="map-button" onclick="setMapNumber(4)"
+				style="background:#444;border: 1px solid buttonface;border-radius: 5px;">4</button>
+		</div>
+		<!-- Einstellungen der Kartenfenster -->
+		<div class="overlay-content">
+			<!-- Einstellungen Karte 1 -->
+			<div id="menu_map_1" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 1</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay1()">
+					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_1" class="selector">
+						<option value="">keins</option>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_1'
+					class="slider-label"></span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer1()">
+					<label for="form_1" class="layer-label">Layer:</label>
+					<select id="form_1" class="selector"></select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 2 -->
+			<div id="menu_map_2" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 2</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay2()">
+					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_2" class="selector">
+						<option value="">keins</option>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_2' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_2'
+					class="slider-label"></span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer2()">
+					<label for="form_2" class="layer-label">Layer:</label>
+					<select id="form_2" class="selector"></select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 3 -->
+			<div id="menu_map_3" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 3</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay3()">
+					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_3" class="selector">
+						<option value="">keins</option>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_3' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_3'
+					class="slider-label"></span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer3()">
+					<label for="form_3" class="layer-label">Layer:</label>
+					<select id="form_3" class="selector"></select>
+				</form>
+			</div>
+			<!-- Einstellungen Karte 4 -->
+			<div id="menu_map_4" class="menu_map">
+				<label class="menu-label"><b>Kartenfenster 4</b></label>
+				<!-- Overlay-Auswahl -->
+				<form onchange="setOverlay4()">
+					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
+					<select id="form_overlay_4" class="selector">
+						<option value="">keins</option>
+					</select>
+				</form>
+				<!-- Overlay-Deckkraft -->
+				<input id='slider_4' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_4'
+					class="slider-label"></span>
+				<!-- Layer-Auswahl -->
+				<form onchange="setLayer4()">
+					<label for="form_4" class="layer-label">Layer:</label>
+					<select id="form_4" class="selector"></select>
+				</form>
+			</div>
+		</div>
+	</div>
+	<!-- Menü-Button -->
+	<div class="menu-button" id="menu-button" title="Einstellungen" onclick="swapBars(this), toggleNav()">
+		<div class="bar1"></div>
+		<div class="bar2"></div>
+		<div class="bar3"></div>
+	</div>
+	<div class="share-button" id="share-button" title="Permalink in die Zwischenablage kopieren"
+		onclick="copyPermalink()">
+		<img src="./img/share.svg" />
+	</div>
+	<div id="mouse-info"></div>
+	<!-- Kartenfenster und Fadenkreuze -->
+	<div id="map_1" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_1" class="ch-image" />
+	</div>
+	<div id="map_2" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_2" class="ch-image" />
+	</div>
+	<div id="map_3" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_3" class="ch-image" />
+	</div>
+	<div id="map_4" class="mapboxgl-map">
+		<img src="./img/cross_black.png" id="cross_4" class="ch-image" />
+	</div>
+	</div>
+	<!--
+	https://github.com/tholman/github-corners
+	The MIT License (MIT)
+	Copyright (c) 2016 Tim Holman
+	Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+	The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+	THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+	-->
+	<a target='_blank' rel='noopener noreferrer' href="https://github.com/kreis-viersen/quattromap"
+		class="github-corner" aria-label="View source on GitHub"><svg xmlns="http://www.w3.org/2000/svg" width="80"
+			height="80" viewBox="0 0 250 250" fill:#151513; color:#fff; style="position: absolute; top: 0; right: 0">
+			<path d="M0 0l115 115h15l12 27 108 108V0z" />
+			<path class="octo-arm" fill="#fff"
+				d="M128 109c-15-9-9-19-9-19 3-7 2-11 2-11-1-7 3-2 3-2 4 5 2 11 2 11-3 10 5 15 9 16"
+				style="-webkit-transform-origin: 130px 106px; transform-origin: 130px 106px" />
+			<path class="octo-body" fill="#fff"
+				d="M115 115s4 2 5 0l14-14c3-2 6-3 8-3-8-11-15-24 2-41 5-5 10-7 16-7 1-2 3-7 12-11 0 0 5 3 7 16 4 2 8 5 12 9s7 8 9 12c14 3 17 7 17 7-4 8-9 11-11 11 0 6-2 11-7 16-16 16-30 10-41 2 0 3-1 7-5 11l-12 11c-1 1 1 5 1 5z" />
+		</svg>
+		<style>
+			.github-corner:hover .octo-arm {
+				animation: octocat-wave 560ms ease-in-out
+			}
+
+			@keyframes octocat-wave {
+
+				0%,
+				100% {
+					transform: rotate(0)
+				}
+
+				20%,
+				60% {
+					transform: rotate(-25deg)
+				}
+
+				40%,
+				80% {
+					transform: rotate(10deg)
+				}
+			}
+
+			@media (max-width:500px) {
+				.github-corner:hover .octo-arm {
+					animation: none
+				}
+
+				.github-corner .octo-arm {
+					animation: octocat-wave 560ms ease-in-out
+				}
+			}
+		</style>
+	</a>
+	<script src="bundle.js"></script>
+</body>
+
+</html>

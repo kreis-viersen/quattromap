@@ -383,58 +383,58 @@ map_1.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 
 // visibility of map controls
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // map_1
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // map_2
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // map_3
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // map_1
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // map_2
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // map_3
 
 // opacity slider
 slider_1.addEventListener('input', function(e) {
@@ -792,9 +792,13 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = ""; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = ""; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = ""; // Draw control trash
 
       settings.mc = 1
       updateURLSearchParams();
@@ -835,9 +839,15 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
+
+      mapbox-gl-draw_ctrl-draw-btn
 
       settings.mc = 2
       updateURLSearchParams();
@@ -882,9 +892,13 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = ""; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
       settings.mc = 3
       updateURLSearchParams();
@@ -930,9 +944,13 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
       settings.mc = 4
       updateURLSearchParams();
@@ -952,8 +970,8 @@ function intitialMapNumber() {
     return;
   }
   var mc = settings.mc
-  if (mc && (mc != 4)) {
-    setMapNumber(mc, 10);
+  if (mc) {
+    setMapNumber(mc);
   }
 }
 
@@ -1033,7 +1051,8 @@ var draw = new MapboxDraw({
     trash: true
   }
 });
-map_1.addControl(draw, "top-right");
+
+map_1.addControl(draw, "top-left");
 
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);

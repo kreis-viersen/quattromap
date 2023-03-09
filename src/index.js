@@ -847,8 +847,6 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
       document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
-      mapbox - gl - draw_ctrl - draw - btn
-
       settings.mc = 2
       updateURLSearchParams();
 
@@ -962,7 +960,7 @@ window.setMapNumber = function setMapNumber(map_number) {
   }
 }
 
-function qintitialMapNumber() {
+function intitialMapNumber() {
   if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
     setTimeout(function () {
       intitialMapNumber()

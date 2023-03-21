@@ -98,7 +98,7 @@ slider_value_4.textContent = slider_4.value + '%';
 
 // add groups for select drodowns
 var groups = [];
-config.layer.forEach(function(item) {
+config.layer.forEach(function (item) {
   var category = item.category
   if (!groups.includes(category)) {
     groups.push(item.category);
@@ -108,8 +108,8 @@ config.layer.forEach(function(item) {
 var selectsLayer = ["form_1", "form_2", "form_3", "form_4"];
 var selectsOverlay = ["form_overlay_1", "form_overlay_2", "form_overlay_3", "form_overlay_4"];
 
-selectsLayer.forEach(function(form) {
-  groups.forEach(function(category) {
+selectsLayer.forEach(function (form) {
+  groups.forEach(function (category) {
     var select = document.getElementById(form);
     var optg = document.createElement('optgroup');
     optg.id = form + "_" + category;
@@ -118,8 +118,8 @@ selectsLayer.forEach(function(form) {
   })
 });
 
-selectsOverlay.forEach(function(form) {
-  groups.forEach(function(category) {
+selectsOverlay.forEach(function (form) {
+  groups.forEach(function (category) {
     var select = document.getElementById(form);
     var optg = document.createElement('optgroup');
     optg.id = form + "_" + category;
@@ -139,7 +139,7 @@ var default_style = {
 };
 
 // add sources and layer from config
-config.layer.forEach(function(item) {
+config.layer.forEach(function (item) {
   if (item.onlyOverlay != true) {
     default_style.sources[item.name] = {};
     default_style.sources[item.name].type = "raster";
@@ -172,7 +172,7 @@ config.layer.forEach(function(item) {
     default_style.layers.push(lyr);
 
     // populate layer select dropdowns
-    selectsLayer.forEach(function(form) {
+    selectsLayer.forEach(function (form) {
       var category = form + "_" + item.category
       var group = document.getElementById(category);
       var opt = document.createElement('option');
@@ -187,7 +187,7 @@ config.layer.forEach(function(item) {
 });
 
 // add overlays from config on top of layers
-config.layer.forEach(function(item) {
+config.layer.forEach(function (item) {
   const overlay_id = "ol_" + item.name
   default_style.sources[overlay_id] = {};
   default_style.sources[overlay_id].type = "raster";
@@ -220,7 +220,7 @@ config.layer.forEach(function(item) {
   default_style.layers.push(olyr);
 
   // populate overlay select dropdowns
-  selectsOverlay.forEach(function(form) {
+  selectsOverlay.forEach(function (form) {
     var category = form + "_" + item.category
     var group = document.getElementById(category);
     var opt = document.createElement('option');
@@ -290,7 +290,7 @@ const attribution_map_4 = new mapboxgl.AttributionControl({
 var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
 
-map_1.on("load", function() {
+map_1.on("load", function () {
   allMapsLoaded[0] = true;
   map_1.setLayoutProperty(settings.l1, 'visibility', 'visible');
   // layer for measurement tools
@@ -335,7 +335,7 @@ map_1.on("load", function() {
 
   setOverlay1();
 });
-map_2.on("load", function() {
+map_2.on("load", function () {
   allMapsLoaded[1] = true;
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
 
@@ -348,7 +348,7 @@ map_2.on("load", function() {
 
   setOverlay2();
 });
-map_3.on("load", function() {
+map_3.on("load", function () {
   allMapsLoaded[2] = true;
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
 
@@ -361,7 +361,7 @@ map_3.on("load", function() {
 
   setOverlay3();
 });
-map_4.on("load", function() {
+map_4.on("load", function () {
   allMapsLoaded[3] = true;
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
 
@@ -383,61 +383,61 @@ map_1.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_1.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_2.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
   mapboxgl: mapboxgl,
   types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.NavigationControl({
   showZoom: false
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')
-}), 'top-right');
+}), 'top-left');
 map_3.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true
-}), 'top-right');
+}), 'top-left');
 
 // visibility of map controls
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // map_1
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // map_2
-document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // map_3
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // map_1
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // map_2
+document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // map_3
 
 // opacity slider
-slider_1.addEventListener('input', function(e) {
+slider_1.addEventListener('input', function (e) {
   settings.op1 = parseInt(e.target.value, 10) / 100;
   if (!settings.o1 == "") {
     map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
@@ -445,7 +445,7 @@ slider_1.addEventListener('input', function(e) {
   slider_value_1.textContent = e.target.value + '%';
   updateURLSearchParams();
 });
-slider_2.addEventListener('input', function(e) {
+slider_2.addEventListener('input', function (e) {
   settings.op2 = parseInt(e.target.value, 10) / 100;
   if (!settings.o2 == "") {
     map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
@@ -453,7 +453,7 @@ slider_2.addEventListener('input', function(e) {
   slider_value_2.textContent = e.target.value + '%';
   updateURLSearchParams();
 });
-slider_3.addEventListener('input', function(e) {
+slider_3.addEventListener('input', function (e) {
   settings.op3 = parseInt(e.target.value, 10) / 100;
   if (!settings.o3 == "") {
     map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
@@ -461,7 +461,7 @@ slider_3.addEventListener('input', function(e) {
   slider_value_3.textContent = e.target.value + '%';
   updateURLSearchParams();
 });
-slider_4.addEventListener('input', function(e) {
+slider_4.addEventListener('input', function (e) {
   settings.op4 = parseInt(e.target.value, 10) / 100;
   if (!settings.o4 == "") {
     map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
@@ -471,28 +471,28 @@ slider_4.addEventListener('input', function(e) {
 });
 
 // make manu transparent while using opacity sliders
-slider_1.addEventListener('pointerdown', function() {
+slider_1.addEventListener('pointerdown', function () {
   document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
 });
-slider_1.addEventListener('pointerup', function() {
+slider_1.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
-slider_2.addEventListener('pointerdown', function() {
+slider_2.addEventListener('pointerdown', function () {
   document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
 });
-slider_2.addEventListener('pointerup', function() {
+slider_2.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
-slider_3.addEventListener('pointerdown', function() {
+slider_3.addEventListener('pointerdown', function () {
   document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
 });
-slider_3.addEventListener('pointerup', function() {
+slider_3.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
-slider_4.addEventListener('pointerdown', function() {
+slider_4.addEventListener('pointerdown', function () {
   document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
 });
-slider_4.addEventListener('pointerup', function() {
+slider_4.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
 
@@ -713,7 +713,7 @@ window.setOverlay4 = function setOverlay4() {
 }
 
 /*
-	fullscreen menu
+  fullscreen menu
 */
 
 // toggle menu
@@ -733,7 +733,7 @@ window.copyPermalink = function copyPermalink() {
   var message = document.createElement("div");
   message.setAttribute("class", "overlayPermalink");
   message.innerHTML = "Permalink wurde in die Zwischenablage kopiert";
-  setTimeout(function() {
+  setTimeout(function () {
     message.parentNode.removeChild(message);
   }, 800);
   document.body.appendChild(message);
@@ -792,15 +792,19 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = ""; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = ""; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = ""; // Draw control trash
 
       settings.mc = 1
       updateURLSearchParams();
 
       break;
-      // Zwei Kartenfenster
+    // Zwei Kartenfenster
     case 2:
       // Sichtbare Kartenfenster definieren:
       map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
@@ -835,15 +839,19 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
       settings.mc = 2
       updateURLSearchParams();
 
       break;
-      // Drei Kartenfenster
+    // Drei Kartenfenster
     case 3:
       // Sichtbare Kartenfenster definieren:
       map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
@@ -882,15 +890,19 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = ""; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
       settings.mc = 3
       updateURLSearchParams();
 
       break;
-      // Vier Kartenfenster
+    // Vier Kartenfenster
     case 4:
       // Sichtbare Kartenfenster definieren:
       map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
@@ -930,9 +942,13 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[0].style.display = "none"; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[1].style.display = ""; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-right")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+
+      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
+      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
+      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
 
       settings.mc = 4
       updateURLSearchParams();
@@ -946,14 +962,14 @@ window.setMapNumber = function setMapNumber(map_number) {
 
 function intitialMapNumber() {
   if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
-    setTimeout(function() {
+    setTimeout(function () {
       intitialMapNumber()
     }, 100);
     return;
   }
   var mc = settings.mc
-  if (mc && (mc != 4)) {
-    setMapNumber(mc, 10);
+  if (mc) {
+    setMapNumber(mc);
   }
 }
 
@@ -1033,13 +1049,14 @@ var draw = new MapboxDraw({
     trash: true
   }
 });
-map_1.addControl(draw, "top-right");
+
+map_1.addControl(draw, "top-left");
 
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);
 map_1.on('draw.update', updateArea);
 
-map_1.on('draw.modechange', function() {
+map_1.on('draw.modechange', function () {
   const data = draw.getAll();
   if ((draw.getMode() == 'draw_polygon') || (draw.getMode() == 'draw_line_string')) {
     var pids = []

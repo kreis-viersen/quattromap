@@ -204,6 +204,22 @@
       "category": "KRZN-Dienste"
     },
     {
+      "name": "OSM Mapnik KRZN (WMS)",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
+      "url": "https://gdi-niederrhein-geodienste.de/osm/service",
+      "layer": "osm",
+      "format": "png",
+      "category": "KRZN-Dienste",
+      "compactAttribution": false
+    },
+    {
+      "name": "OSM Mapnik KRZN (XYZ-Tiles)",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
+      "url": "https://gdi-niederrhein-geodienste.de/openstreetmap/{z}/{x}/{y}.png",
+      "category": "KRZN-Dienste",
+      "compactAttribution": false
+    },
+    {
       "name": "Klassifizierte Gewässer Kreis Viersen",
       "attribution": "",
       "url": "https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew",

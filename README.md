@@ -66,7 +66,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |NRW NDOM|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_ndom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_ndom|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW TDOM|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_tdom|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |**OpenStreetMap**||||
-|OSM Mapnik|XYZ Tiles|[URL](https://www.openstreetmap.org)||[Link](https://www.openstreetmap.org/copyright)
+|OSM Mapnik|XYZ-Tiles|[URL](https://www.openstreetmap.org)||[Link](https://www.openstreetmap.org/copyright)
 |**RVR**||||
 |RVR Luftbild Farbe|WMS|[URL](https://geodaten.metropoleruhr.de/dop/dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|dop|[Link](https://www.rvr.ruhr/daten-digitales/geodaten/luftbilder/)
 |**KRZN-Dienste**||||
@@ -77,6 +77,8 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |Stadt Bottrop ALKIS|WMS|[URL](https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Flurkarte_Bottrop|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |Kreis Viersen ALKIS light|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_alkis_light?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nutzungsarten, flurstuecke, gebaeude, lagebezeichnungen|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |Kreis Viersen Geplante Gebäude|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_geplgeb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|OSM Mapnik KRZN (WMS)|WMS|[URL](https://gdi-niederrhein-geodienste.de/osm/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|osm|[Link](https://www.openstreetmap.org/copyright)|
+|OSM Mapnik KRZN (XYZ-Tiles)|XYZ-Tiles|[URL](https://gdi-niederrhein-geodienste.de/openstreetmap)||[Link](https://www.openstreetmap.org/copyright)|
 |**PDOK (NL)**||||
 |NL Luftbild Farbe|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_ortho25|[Link](https://www.pdok.nl/introductie/-/article/luchtfoto-pdok)|
 |**Kreis Warendorf**||||

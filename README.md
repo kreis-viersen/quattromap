@@ -129,6 +129,7 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |NRW TDOM Metadaten|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tdom?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_tdom_info|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild Overlay|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dop_overlay?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|WMS_NW_DOP_OVERLAY|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW LINFOS|WMS|[URL](https://www.wms.nrw.de/umwelt/linfos?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Naturschutzgebiete, Landschaftsschutzgebiet|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Freizeitkataster TFIS|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tfis?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_tfis|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |**KRZN-Dienste**||||
 |Klassifizierte Gewässer Kreis Viersen|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_klassgew|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 

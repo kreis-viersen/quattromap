@@ -134,6 +134,15 @@
       "onlyOverlay": true
     },
     {
+      "name": "NRW Freizeitkataster TFIS",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_tfis",
+      "layer": "nw_tfis",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
       "name": "OSM Mapnik",
       "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.openstreetmap.org/copyright'>OpenStreetMap</a>-Mitwirkende",
       "url": "https://tile.openstreetmap.org/{z}/{x}/{y}.png",

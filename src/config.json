@@ -26,12 +26,47 @@
       "category": "GeoBasis NRW"
     },
     {
+      "name": "NRW Luftbild Metadaten",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",
+      "layer": "nw_dop_utm_info",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
       "name": "NRW vDOP Farbe",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
       "layer": "nw_vdop_rgb",
       "format": "png",
       "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW vDOP Metadaten",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
+      "layer": "nw_vdop_info",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
+    },
+    {
+      "name": "NRW iDOP Farbe",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_idop",
+      "layer": "nw_idop_rgb",
+      "format": "png",
+      "category": "GeoBasis NRW"
+    },
+    {
+      "name": "NRW iDOP Metadaten",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_idop",
+      "layer": "nw_idop_info",
+      "format": "png",
+      "category": "GeoBasis NRW",
+      "onlyOverlay": true
     },
     {
       "name": "NRW aktuelles Satellitenbild DYMOS S2",
@@ -521,12 +556,21 @@
       "compactAttribution": false
     },
     {
-      "name": "NRW vDOP",
+      "name": "NRW vDOP aktuell",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_vdop",
       "layer": "nw_vdop_rgb",
       "format": "png",
       "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW iDOP aktuell",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_idop",
+      "layer": "nw_idop_rgb",
+      "format": "png",
+      "category": "GeoBasis NRW",
       "compactAttribution": false
     }
   ]

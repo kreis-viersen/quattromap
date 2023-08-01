@@ -1,7 +1,7 @@
 {
   "name": "quattromap",
   "description": "Compare up to 4 maps at once",
-  "version": "1.12.0",
+  "version": "1.12.1",
   "license": "MIT",
   "scripts": {
     "start": "webpack serve",

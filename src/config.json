@@ -570,7 +570,7 @@
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_idop",
       "layer": "nw_idop_rgb",
       "format": "png",
-      "category": "GeoBasis NRW",
+      "category": "Historische Luftbilder NRW",
       "compactAttribution": false
     }
   ]

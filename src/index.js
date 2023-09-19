@@ -385,7 +385,7 @@ map_1.addControl(new MapboxGeocoder({
   types: "country,region,postcode,district,place,locality,neighborhood,address"
 }), 'top-left');
 map_1.addControl(new mapboxgl.NavigationControl({
-  showZoom: false
+  showZoom: true
 }), 'top-left');
 map_1.addControl(new mapboxgl.FullscreenControl({
   container: document.querySelector('body')

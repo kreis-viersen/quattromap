@@ -29,7 +29,7 @@ if (document.fullscreenEnabled) {
   console.log('Fullscreen: NOT supported!');
 }
 
-// settings for layer and overlays
+// settings for layer and overlays and position from URL params
 var settings = {};
 if ('URLSearchParams' in window) {
   var searchParams = new URLSearchParams(window.location.search);
@@ -53,6 +53,12 @@ if ('URLSearchParams' in window) {
       "op4": config.map_4.overlay_opacity || 0.5
     }
   }
+  const lonParam = parseFloat(searchParams.get("lon"));
+  const latParam = parseFloat(searchParams.get("lat"));
+
+  if (!isNaN(lonParam) && !isNaN(latParam)) {
+    config.center = [lonParam, latParam];
+  }
 }
 
 // status of compact attributions
@@ -73,6 +79,8 @@ function updateURLSearchParams() {
     var searchParams = new URLSearchParams(window.location.search);
     searchParams.set("settings", settingString);
     var locationHash = window.location.hash
+    searchParams.delete("lon")
+    searchParams.delete("lat")
     window.history.pushState('', '', "?" + searchParams.toString() + locationHash);
     currentURL = window.location.href;
   }

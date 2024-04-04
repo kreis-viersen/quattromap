@@ -2,19 +2,6 @@ Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. ger
 https://kreis-viersen.github.io/quattromap/<br>
 Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ).
 
-# Inhaltsverzeichnis
-
-- [QuattroMap](#quattromap)
-    - [Messwerkzeuge](#messwerkzeuge)
-  - [Aktuell verfügbare Dienste](#aktuell-verfügbare-dienste)
-    - [Layer](#layer)
-    - [Overlays](#overlays)
-  - [Permalink](#permalink)
-  - [Konfiguration](#konfiguration)
-  - [Testen von Pull Requests](#testen-von-pull-requests)
-  - [Develop](#develop)
-    - [Search](#search)
-
 # QuattroMap
 
 [![GitHub CI status](https://github.com/kreis-viersen/quattromap/workflows/ci/badge.svg)][github-action-ci]
@@ -141,6 +128,13 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 ## Permalink
 
 Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu gehört die Anzahl und Einstellung der Kartenfenster inkl. Layerdefinitionen, das Kartenzentrum, die Zoomstufe und die Farbe des Gitterkreuzes (Zentrumsmarkierung). Über den Permalink können so vordefinierte Einstellungen für bestimmte Anwendungszwecke als Lesezeichen gespeichert oder weitergegeben werden. Über die Schaltfläche *Permalink in die Zwischenablage kopieren* am linken Bildschirmrand wird die derzeitige URL in die Zwischenablage kopiert und kann dann bspw. per Mail geteilt werden.
+
+## URL-Parameter lat / lon 
+
+Es können mit den URL-Parametern `lat` / `lon` geographische Koordinaten (EPSG:4326) übergeben werden, welche dann beim Aufruf der Karte für den Kartenmittelpunkt verwendet werden.  
+
+Beispiel:
+https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 
 ## Konfiguration
 

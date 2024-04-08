@@ -313,6 +313,402 @@
       "category": "Kreis Steinfurt"
     },
     {
+      "name": "NRW Luftbild 1951",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1951",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1952",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1952",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1953",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1953",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1954",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1954",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1955",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1955",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1956",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1956",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1957",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1957",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1958",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1958",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1959",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1959",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1960",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1960",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1961",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1961",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1962",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1962",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1963",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1963",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1964",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1964",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1966",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1966",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1967",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1967",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1968",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1968",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1969",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1969",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1970",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1970",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1971",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1971",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1972",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1972",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1973",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1973",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1974",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1974",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1975",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1975",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1976",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1976",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1977",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1977",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1978",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1978",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1979",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1979",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1980",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1980",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1981",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1981",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1982",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1982",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1983",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1983",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1984",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1984",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1985",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1985",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1986",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1986",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1987",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1987",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1988",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1988",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1989",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1989",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1990",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1990",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1991",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1991",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1992",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1992",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1993",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1993",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1994",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1994",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW Luftbild 1995",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_1995",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
       "name": "NRW Luftbild 1996",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",

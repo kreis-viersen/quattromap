@@ -53,10 +53,28 @@ if ('URLSearchParams' in window) {
       "op4": config.map_4.overlay_opacity || 0.5
     }
   }
-  const lonParam = parseFloat(searchParams.get("lon"));
-  const latParam = parseFloat(searchParams.get("lat"));
+  function parseQueryParam(param) {
+    if (param === null || param === undefined) {
+      return undefined;
+    }
 
-  if (!isNaN(lonParam) && !isNaN(latParam)) {
+    let normalizedParam = param;
+    if (param.includes(',')) {
+      normalizedParam = param.replace(',', '.');
+    }
+
+    const parsed = parseFloat(normalizedParam);
+    if (isNaN(parsed)) {
+      return undefined;
+    }
+
+    return parsed;
+  }
+
+  const lonParam = parseQueryParam(searchParams.get("lon"));
+  const latParam = parseQueryParam(searchParams.get("lat"));
+
+  if (lonParam !== undefined && latParam !== undefined) {
     config.center = [lonParam, latParam];
   }
 }

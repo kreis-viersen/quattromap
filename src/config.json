@@ -943,6 +943,15 @@
       "compactAttribution": false
     },
     {
+      "name": "NRW Luftbild 2022",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2022",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
       "name": "NRW Luftbild aktuell",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",

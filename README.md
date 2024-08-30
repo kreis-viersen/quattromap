@@ -146,6 +146,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |NRW Luftbild 2019|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2019|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild 2020|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2020|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild 2021|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2021|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|NRW Luftbild 2022|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_2022|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_dop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW vDOP aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_vdop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW iDOP aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_idop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|

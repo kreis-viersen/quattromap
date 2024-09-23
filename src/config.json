@@ -195,7 +195,7 @@
       "name": "Kreis Viersen ALKIS",
       "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
-      "layer": "FlurkarteAdV_Viersen",
+      "layer": "FlurkarteNW_Viersen",
       "format": "png",
       "category": "KRZN-Dienste"
     },
@@ -203,7 +203,7 @@
       "name": "Stadt Krefeld ALKIS",
       "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
-      "layer": "FlurkarteAdV_Krefeld",
+      "layer": "FlurkarteNW_Krefeld",
       "format": "png",
       "category": "KRZN-Dienste"
     },
@@ -211,7 +211,7 @@
       "name": "Kreis Wesel ALKIS",
       "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
-      "layer": "FlurkarteAdV_Wesel",
+      "layer": "FlurkarteNW_Wesel",
       "format": "png",
       "category": "KRZN-Dienste"
     },
@@ -219,7 +219,7 @@
       "name": "Kreis Kleve ALKIS",
       "attribution": "",
       "url": "https://gdi-niederrhein-geodienste.de/flurkarte_verb_sammeldienst/service",
-      "layer": "FlurkarteAdV_Kleve",
+      "layer": "FlurkarteNW_Kleve",
       "format": "png",
       "category": "KRZN-Dienste"
     },

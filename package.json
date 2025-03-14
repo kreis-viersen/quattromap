@@ -13,22 +13,22 @@
     "url": "https://github.com/kreis-viersen/quattromap"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^12.0.2",
+    "copy-webpack-plugin": "^13.0.0",
     "css-loader": "^7.1.2",
-    "gh-pages": "^6.1.1",
+    "gh-pages": "^6.3.0",
     "style-loader": "^4.0.0",
-    "webpack": "^5.94.0",
-    "webpack-cli": "^5.1.4",
-    "webpack-dev-server": "^5.0.4",
-    "webpack-license-plugin": "^4.5.0"
+    "webpack": "^5.98.0",
+    "webpack-cli": "^6.0.1",
+    "webpack-dev-server": "^5.2.0",
+    "webpack-license-plugin": "^4.5.1"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-draw": "^1.4.3",
-    "@mapbox/mapbox-gl-geocoder": "^5.0.2",
+    "@mapbox/mapbox-gl-draw": "^1.5.0",
+    "@mapbox/mapbox-gl-geocoder": "^5.0.3",
     "@mapbox/mapbox-gl-sync-move": "^0.3.1",
-    "@turf/area": "^7.1.0",
-    "@turf/centroid": "^7.1.0",
-    "@turf/length": "^7.1.0",
+    "@turf/area": "^7.2.0",
+    "@turf/centroid": "^7.2.0",
+    "@turf/length": "^7.2.0",
     "lz-string": "^1.5.0",
     "mapbox-gl": "^1.13.3"
   }

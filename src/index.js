@@ -420,7 +420,8 @@ map_1.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
-  trackUserLocation: true
+  trackUserLocation: true,
+  showUserHeading: true
 }), 'top-left');
 map_2.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
@@ -437,7 +438,8 @@ map_2.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
-  trackUserLocation: true
+  trackUserLocation: true,
+  showUserHeading: true
 }), 'top-left');
 map_3.addControl(new MapboxGeocoder({
   accessToken: mapboxgl.accessToken,
@@ -454,7 +456,8 @@ map_3.addControl(new mapboxgl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
-  trackUserLocation: true
+  trackUserLocation: true,
+  showUserHeading: true
 }), 'top-left');
 
 // visibility of map controls

@@ -952,6 +952,24 @@
       "compactAttribution": false
     },
     {
+      "name": "NRW Luftbild 2023",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dop",
+      "layer": "nw_hist_dop_2023",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
+      "name": "NRW iDOP 2023",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_idop",
+      "layer": "nw_hist_idop_2023",
+      "format": "png",
+      "category": "Historische Luftbilder NRW",
+      "compactAttribution": false
+    },
+    {
       "name": "NRW Luftbild aktuell",
       "attribution": "",
       "url": "https://www.wms.nrw.de/geobasis/wms_nw_dop",

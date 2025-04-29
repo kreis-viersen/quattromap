@@ -12,6 +12,10 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 import config from './config.json';
 import LZString from 'lz-string';
 
+const blue = '#3bb2d0';
+const orange = '#fbb03b';
+const white = '#fff';
+
 // access Token
 mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
 
@@ -998,7 +1002,9 @@ function intitialMapNumber() {
   }
   var mc = settings.mc
   if (mc) {
-    setMapNumber(mc);
+    setTimeout(() => {
+      setMapNumber(settings.mc);
+    }, 100);
   }
 }
 
@@ -1070,16 +1076,155 @@ window.updateArea = function updateArea(e) {
 }
 
 // Messfunktionen hinzufügen:
-var draw = new MapboxDraw({
+const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {
     line_string: true,
     polygon: true,
     trash: true
-  }
+  },
+  styles: [
+    // Polygons
+    {
+      'id': 'gl-draw-polygon-fill',
+      'type': 'fill',
+      'filter': ['all', ['==', '$type', 'Polygon']],
+      'paint': {
+        'fill-color': [
+          'case',
+          ['==', ['get', 'active'], 'true'], orange,
+          blue,
+        ],
+        'fill-opacity': 0.1,
+      },
+    },
+    // Lines
+    {
+      'id': 'gl-draw-lines',
+      'type': 'line',
+      'filter': [
+        'any',
+        ['==', '$type', 'LineString'],
+        ['==', '$type', 'Polygon'],
+      ],
+      'layout': {
+        'line-cap': 'round',
+        'line-join': 'round',
+      },
+      'paint': {
+        'line-color': [
+          'case',
+          ['==', ['get', 'active'], 'true'], orange,
+          blue,
+        ],
+        'line-dasharray': [
+          'literal', [0.2, 2]
+            ],
+        'line-width': 2,
+      },
+    },
+    // Points - outer circle
+    {
+      'id': 'gl-draw-point-outer',
+      'type': 'circle',
+      'filter': [
+        'all',
+        ['==', '$type', 'Point'],
+        ['==', 'meta', 'feature'],
+      ],
+      'paint': {
+        'circle-radius': [
+          'case',
+          ['==', ['get', 'active'], 'true'], 7,
+          5,
+        ],
+        'circle-color': white,
+      },
+    },
+    // Points - inner circle
+    {
+      'id': 'gl-draw-point-inner',
+      'type': 'circle',
+      'filter': [
+        'all',
+        ['==', '$type', 'Point'],
+        ['==', 'meta', 'feature'],
+      ],
+      'paint': {
+        'circle-radius': [
+          'case',
+          ['==', ['get', 'active'], 'true'], 5,
+          3,
+        ],
+        'circle-color': [
+          'case',
+          ['==', ['get', 'active'], 'true'], orange,
+          blue,
+        ],
+      },
+    },
+    // Vertex - outer circle
+    {
+      'id': 'gl-draw-vertex-outer',
+      'type': 'circle',
+      'filter': [
+        'all',
+        ['==', '$type', 'Point'],
+        ['==', 'meta', 'vertex'],
+        ['!=', 'mode', 'simple_select'],
+      ],
+      'paint': {
+        'circle-radius': [
+          'case',
+          ['==', ['get', 'active'], 'true'], 7,
+          5,
+        ],
+        'circle-color': white,
+      },
+    },
+    // Vertex - inner circle
+    {
+      'id': 'gl-draw-vertex-inner',
+      'type': 'circle',
+      'filter': [
+        'all',
+        ['==', '$type', 'Point'],
+        ['==', 'meta', 'vertex'],
+        ['!=', 'mode', 'simple_select'],
+      ],
+      'paint': {
+        'circle-radius': [
+          'case',
+          ['==', ['get', 'active'], 'true'], 5,
+          3,
+        ],
+        'circle-color': orange,
+      },
+    },
+    // Midpoint
+    {
+      'id': 'gl-draw-midpoint',
+      'type': 'circle',
+      'filter': [
+        'all',
+        ['==', 'meta', 'midpoint'],
+      ],
+      'paint': {
+        'circle-radius': 3,
+        'circle-color': orange,
+      },
+    },
+  ],
 });
 
-map_1.addControl(draw, "top-left");
+// Map laden
+map_1.on('load', () => {
+  map_1.addControl(draw, 'top-left');
+
+  setTimeout(() => {
+    intitialMapNumber();
+  }, 300);
+});
 
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);

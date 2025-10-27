@@ -273,12 +273,28 @@
       "onlyOverlay": true
     },
     {
-      "name": "NL Luftbild Farbe",
+      "name": "NL Luftbild 25 cm",
       "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.pdok.nl'>PDOK</a>",
       "url": "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",
       "layer": "Actueel_ortho25",
       "format": "jpeg",
       "category": "PDOK (NL)"
+    },
+    {
+      "name": "NL Luftbild 8 cm",
+      "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.pdok.nl'>PDOK</a>",
+      "url": "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",
+      "layer": "Actueel_orthoHR",
+      "format": "jpeg",
+      "category": "PDOK (NL)"
+    },
+    {
+      "name": "Bundesgrenze DE-NL NRW",
+      "attribution": "",
+      "url": "https://geo.kreis-viersen.de/ows/sammeldienst",
+      "layer": "Bundesgrenze_DE-NL_NRW",
+      "format": "png",
+      "category": "Kreis Viersen"
     },
     {
       "name": "Kreis Warendorf ALKIS",
@@ -995,6 +1011,46 @@
       "format": "png",
       "category": "Historische Luftbilder NRW",
       "compactAttribution": false
+    },
+    {
+      "name": "1801-1828 Tranchot",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_tranchot",
+      "layer": "nw_tranchot",
+      "format": "png",
+      "category": "Historisches"
+    },
+    {
+      "name": "1836–1850 Uraufnahme NRW",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_uraufnahme",
+      "layer": "nw_uraufnahme_rw",
+      "format": "png",
+      "category": "Historisches"
+    },
+    {
+      "name": "1891–1912 Neuaufnahme NRW",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_neuaufnahme",
+      "layer": "nw_neuaufnahme",
+      "format": "png",
+      "category": "Historisches"
+    },
+    {
+      "name": "1936-1945 TK25 NRW",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_tk25_1936-1945",
+      "layer": "nw_tk25_1936-1945",
+      "format": "png",
+      "category": "Historisches"
+    },
+    {
+      "name": "2003 DTK10 NRW",
+      "attribution": "",
+      "url": "https://www.wms.nrw.de/geobasis/wms_nw_hist_dtk10",
+      "layer": "nw_hist_dtk10_col_2003",
+      "format": "png",
+      "category": "Historisches"
     }
   ]
 }

@@ -68,7 +68,10 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |OSM Mapnik KRZN<br>(WMS)|WMS|[URL](https://gdi-niederrhein-geodienste.de/osm/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|osm|[Link](https://www.openstreetmap.org/copyright)|
 |OSM Mapnik KRZN<br>(XYZ-Tiles)|XYZ-Tiles|[URL](https://gdi-niederrhein-geodienste.de/openstreetmap)||[Link](https://www.openstreetmap.org/copyright)|
 |**PDOK (NL)**||||
-|NL Luftbild Farbe|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_ortho25|[Link](https://www.pdok.nl/introductie/-/article/luchtfoto-pdok)|
+|NL Luftbild 25 cm|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_ortho25|[Link](https://www.pdok.nl/introductie/-/article/pdok-luchtfoto-rgb-open-)|
+|NL Luftbild 8 cm|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_orthoHR|[Link](https://www.pdok.nl/introductie/-/article/pdok-luchtfoto-rgb-open-)|
+|**Kreis Viersen**||||
+|Bundesgrenze DE-NL NRW|WMS|[URL](https://geo.kreis-viersen.de/ows/sammeldienst?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Bundesgrenze_DE-NL_NRW|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |**Kreis Warendorf**||||
 |Kreis Warendorf ALKIS|WMS|[URL](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|alkis_lieka|[Link](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|
 |Kreis Warendorf ABK 1:5000|WMS|[URL](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|abk5000|[Link](https://www.kreis-warendorf.de/arcgis/service2?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|
@@ -152,6 +155,13 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |NRW Luftbild aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_dop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW vDOP aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_vdop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_vdop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW iDOP aktuell|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_idop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|**Historisches**||||
+|1801-1828 Tranchot|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tranchot?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|1836–1850 Uraufnahme NRW|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_uraufnahme?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|1891–1912 Neuaufnahme NRW|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_neuaufnahme?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|1936-1945 TK25 NRW|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_tk25_1936-1945?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|2003 DTK10 NRW|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dtk10?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_idop_rgb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+
 
 
 ### Overlays

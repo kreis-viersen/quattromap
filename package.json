@@ -13,7 +13,7 @@
     "url": "https://github.com/kreis-viersen/quattromap"
   },
   "devDependencies": {
-    "copy-webpack-plugin": "^13.0.1",
+    "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.2",
     "gh-pages": "^6.3.0",
     "style-loader": "^4.0.0",

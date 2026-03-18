@@ -10,7 +10,7 @@
     "layer": "OSM Mapnik"
   },
   "map_3": {
-    "layer": "Kreis Viersen ALKIS",
+    "layer": "Kreis Viersen ALKIS light",
     "overlay": "Kreis Viersen geplante Gebäude"
   },
   "map_4": {

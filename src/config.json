@@ -273,6 +273,14 @@
       "onlyOverlay": true
     },
     {
+      "name": "Kreis Viersen Schilderstandorte Natur",
+      "attribution": "",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_kvie_schilder",
+      "layer": "kvie_schilder",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
       "name": "NL Luftbild 25 cm",
       "attribution": "<a target='_blank' rel='noopener noreferrer' href='https://www.pdok.nl'>PDOK</a>",
       "url": "https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0",

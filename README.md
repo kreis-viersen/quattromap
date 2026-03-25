@@ -67,6 +67,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 |Kreis Viersen Geplante Gebäude|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_geplgeb?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_geplgeb|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |OSM Mapnik KRZN<br>(WMS)|WMS|[URL](https://gdi-niederrhein-geodienste.de/osm/service?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|osm|[Link](https://www.openstreetmap.org/copyright)|
 |OSM Mapnik KRZN<br>(XYZ-Tiles)|XYZ-Tiles|[URL](https://gdi-niederrhein-geodienste.de/openstreetmap)||[Link](https://www.openstreetmap.org/copyright)|
+|Kreis Viersen Schilderstandorte Natur|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_kvie_schilder?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_schilder|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |**PDOK (NL)**||||
 |NL Luftbild 25 cm|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_ortho25|[Link](https://www.pdok.nl/introductie/-/article/pdok-luchtfoto-rgb-open-)|
 |NL Luftbild 8 cm|WMS|[URL](https://service.pdok.nl/hwh/luchtfotorgb/wms/v1_0?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|Actueel_orthoHR|[Link](https://www.pdok.nl/introductie/-/article/pdok-luchtfoto-rgb-open-)|

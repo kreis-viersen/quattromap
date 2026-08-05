@@ -1,14 +1,15 @@
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
+import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder';
 var syncMaps = require('@mapbox/mapbox-gl-sync-move');
 import TurfArea from '@turf/area';
 import TurfCentroid from '@turf/centroid';
 import TurfLength from '@turf/length';
-import mapboxgl from 'mapbox-gl'
+
+import * as maplibregl from 'maplibre-gl';
 import './style.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
+import 'maplibre-gl/dist/maplibre-gl.css';
 import config from './config.json';
 import LZString from 'lz-string';
 
@@ -16,17 +17,8 @@ const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
 
-// access Token
-mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
 
-// check if mapboxgl and fullscreen supported
-if (mapboxgl.supported()) {
-  console.log('MapGL: supported');
-} else {
-  console.log('MapGL: NOT supported!');
-  alert('Your browser does not support Mapbox GL');
-}
-
+// check if fullscreen supported
 if (document.fullscreenEnabled) {
   console.log('Fullscreen: supported');
 } else {
@@ -164,7 +156,7 @@ var default_style = {
   name: "default_style",
   sources: {},
   //glyphs needed for measurement tools (map_1)
-  glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   layers: []
 };
 
@@ -263,7 +255,7 @@ config.layer.forEach(function (item) {
   });
 })
 
-var map_1 = new mapboxgl.Map({
+var map_1 = new maplibregl.Map({
   container: "map_1",
   style: default_style,
   zoom: config.zoom,
@@ -272,11 +264,11 @@ var map_1 = new mapboxgl.Map({
   attributionControl: false,
   hash: true
 });
-const attribution_map_1 = new mapboxgl.AttributionControl({
+const attribution_map_1 = new maplibregl.AttributionControl({
   compact: true
 });
 
-var map_2 = new mapboxgl.Map({
+var map_2 = new maplibregl.Map({
   container: "map_2",
   style: default_style,
   zoom: config.zoom,
@@ -285,13 +277,13 @@ var map_2 = new mapboxgl.Map({
   attributionControl: false,
   hash: true
 });
-const attribution_map_2 = new mapboxgl.AttributionControl({
+const attribution_map_2 = new maplibregl.AttributionControl({
   compact: true
 });
 
 
 
-var map_3 = new mapboxgl.Map({
+var map_3 = new maplibregl.Map({
   container: "map_3",
   style: default_style,
   zoom: config.zoom,
@@ -300,11 +292,11 @@ var map_3 = new mapboxgl.Map({
   attributionControl: false,
   hash: true
 });
-const attribution_map_3 = new mapboxgl.AttributionControl({
+const attribution_map_3 = new maplibregl.AttributionControl({
   compact: true
 });
 
-var map_4 = new mapboxgl.Map({
+var map_4 = new maplibregl.Map({
   container: "map_4",
   style: default_style,
   zoom: config.zoom,
@@ -313,7 +305,7 @@ var map_4 = new mapboxgl.Map({
   attributionControl: false,
   hash: true
 });
-const attribution_map_4 = new mapboxgl.AttributionControl({
+const attribution_map_4 = new maplibregl.AttributionControl({
   compact: true
 });
 
@@ -360,7 +352,7 @@ map_1.on("load", function () {
   map_1.addControl(attribution_map_1)
   if (layer.compact_attribution == false) {
     ca_layer_1 = false
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 
   setOverlay1();
@@ -373,7 +365,7 @@ map_2.on("load", function () {
   map_2.addControl(attribution_map_2)
   if (layer.compact_attribution == false) {
     ca_layer_2 = false
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 
   setOverlay2();
@@ -386,7 +378,7 @@ map_3.on("load", function () {
   map_3.addControl(attribution_map_3)
   if (layer.compact_attribution == false) {
     ca_layer_3 = false
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 
   setOverlay3();
@@ -399,7 +391,7 @@ map_4.on("load", function () {
   map_4.addControl(attribution_map_4)
   if (layer.compact_attribution == false) {
     ca_layer_4 = false
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 
   setOverlay4();
@@ -408,55 +400,102 @@ map_4.on("load", function () {
 // sync map windows
 syncMaps(map_1, map_3, map_2, map_4);
 
+// Geocoding API for MapLibre Geocoder using OpenStreetMap Nominatim.
+// Queries are only sent after the user submits a search (no autocomplete).
+const geocodingApi = {
+  forwardGeocode: async (searchConfig) => {
+    const query = searchConfig.query?.trim();
+    if (!query) {
+      return { features: [] };
+    }
+
+    const url = new URL('https://nominatim.openstreetmap.org/search');
+    url.searchParams.set('q', query);
+    url.searchParams.set('format', 'geojson');
+    url.searchParams.set('addressdetails', '1');
+    url.searchParams.set('limit', '5');
+
+    try {
+      const response = await fetch(url.toString(), {
+        headers: {
+          'Accept': 'application/geo+json, application/json'
+        }
+      });
+
+      if (!response.ok) {
+        throw new Error(`Geocoding failed with HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+      const features = (data.features || []).map((feature) => {
+        const coordinates = feature.geometry.coordinates;
+        const properties = feature.properties || {};
+
+        return {
+          type: 'Feature',
+          geometry: feature.geometry,
+          properties,
+          place_name: properties.display_name || query,
+          text: properties.name || properties.display_name || query,
+          center: coordinates,
+          bbox: feature.bbox
+        };
+      });
+
+      return { features };
+    } catch (error) {
+      console.error('Geocoding error:', error);
+      return { features: [] };
+    }
+  }
+};
+
+function createGeocoder() {
+  return new MaplibreGeocoder(geocodingApi, {
+    maplibregl,
+    marker: false,
+    showResultsWhileTyping: false,
+    placeholder: 'Ort oder Adresse suchen'
+  });
+}
+
 // add controls
-map_1.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_1.addControl(new mapboxgl.NavigationControl({
+map_1.addControl(createGeocoder(), 'top-left');
+map_1.addControl(new maplibregl.NavigationControl({
   showZoom: true
 }), 'top-left');
-map_1.addControl(new mapboxgl.FullscreenControl({
+map_1.addControl(new maplibregl.FullscreenControl({
   container: document.querySelector('body')
 }), 'top-left');
-map_1.addControl(new mapboxgl.GeolocateControl({
+map_1.addControl(new maplibregl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true,
   showUserHeading: true
 }), 'top-left');
-map_2.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_2.addControl(new mapboxgl.NavigationControl({
+map_2.addControl(createGeocoder(), 'top-left');
+map_2.addControl(new maplibregl.NavigationControl({
   showZoom: false
 }), 'top-left');
-map_2.addControl(new mapboxgl.FullscreenControl({
+map_2.addControl(new maplibregl.FullscreenControl({
   container: document.querySelector('body')
 }), 'top-left');
-map_2.addControl(new mapboxgl.GeolocateControl({
+map_2.addControl(new maplibregl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
   trackUserLocation: true,
   showUserHeading: true
 }), 'top-left');
-map_3.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_3.addControl(new mapboxgl.NavigationControl({
+map_3.addControl(createGeocoder(), 'top-left');
+map_3.addControl(new maplibregl.NavigationControl({
   showZoom: false
 }), 'top-left');
-map_3.addControl(new mapboxgl.FullscreenControl({
+map_3.addControl(new maplibregl.FullscreenControl({
   container: document.querySelector('body')
 }), 'top-left');
-map_3.addControl(new mapboxgl.GeolocateControl({
+map_3.addControl(new maplibregl.GeolocateControl({
   positionOptions: {
     enableHighAccuracy: true
   },
@@ -465,9 +504,9 @@ map_3.addControl(new mapboxgl.GeolocateControl({
 }), 'top-left');
 
 // visibility of map controls
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // map_1
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // map_2
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // map_3
+document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // map_1
+document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // map_2
+document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // map_3
 
 // opacity slider
 slider_1.addEventListener('input', function (e) {
@@ -546,7 +585,7 @@ window.setLayer1 = function setLayer1() {
     ca_layer_1 = true
   }
   if (ca_layer_1 == false || ca_overlay_1 == false) {
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -567,7 +606,7 @@ window.setLayer2 = function setLayer2() {
     ca_layer_2 = true
   }
   if (ca_layer_2 == false || ca_overlay_2 == false) {
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -588,7 +627,7 @@ window.setLayer3 = function setLayer3() {
     ca_layer_3 = true
   }
   if (ca_layer_3 == false || ca_overlay_3 == false) {
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -609,7 +648,7 @@ window.setLayer4 = function setLayer4() {
     ca_layer_4 = true
   }
   if (ca_layer_4 == false || ca_overlay_4 == false) {
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -642,7 +681,7 @@ window.setOverlay1 = function setOverlay1() {
   map_1.removeControl(attribution_map_1);
   map_1.addControl(attribution_map_1)
   if (ca_layer_1 == false || ca_overlay_1 == false) {
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -675,7 +714,7 @@ window.setOverlay2 = function setOverlay2() {
   map_2.removeControl(attribution_map_2);
   map_2.addControl(attribution_map_2)
   if (ca_layer_2 == false || ca_overlay_2 == false) {
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -708,7 +747,7 @@ window.setOverlay3 = function setOverlay3() {
   map_3.removeControl(attribution_map_3);
   map_3.addControl(attribution_map_3)
   if (ca_layer_3 == false || ca_overlay_3 == false) {
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -741,7 +780,7 @@ window.setOverlay4 = function setOverlay4() {
   map_4.removeControl(attribution_map_4);
   map_4.addControl(attribution_map_4)
   if (ca_layer_4 == false || ca_overlay_4 == false) {
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
+    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 }
 
@@ -825,9 +864,9 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
 
       document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = ""; // Draw control line
       document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = ""; // Draw control polygon
@@ -872,9 +911,9 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
 
       document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
       document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
@@ -923,9 +962,9 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       document.getElementById("button_4map").style = "";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
 
       document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
       document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
@@ -975,9 +1014,9 @@ window.setMapNumber = function setMapNumber(map_number) {
       document.getElementById("button_3map").style = "";
       document.getElementById("button_4map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
       // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
+      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
 
       document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
       document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
@@ -1076,6 +1115,14 @@ window.updateArea = function updateArea(e) {
 }
 
 // Messfunktionen hinzufügen:
+// Mapbox Draw is renderer-compatible with MapLibre, but its DOM class names
+// must be redirected to MapLibre's CSS classes.
+MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
+MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
+MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
+MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
+MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
+
 const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {

@@ -64,57 +64,57 @@ body {
 }
 
 /* Suchfunktion */
-.mapboxgl-ctrl-top-right {
+.maplibregl-ctrl-top-right {
   width: auto;
 }
 
-.mapboxgl-ctrl-geocoder {
-  width: 0px;
+.maplibregl-ctrl-geocoder {
+  width: 30px;
   height: 30px;
   min-width: 30px;
   max-width: 500px;
+  overflow: hidden;
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
-  -webkit-transition: width 0.4s ease-in-out;
   transition: width 0.4s ease-in-out;
 }
 
-.mapboxgl-ctrl-geocoder--icon {
+.maplibregl-ctrl-geocoder--icon {
   display: inline-block;
   vertical-align: middle;
-  speak: none;
   fill: #757575;
   top: 5px;
   left: 5px;
 }
 
-.mapboxgl-ctrl-geocoder--input {
-  width: 0px;
+.maplibregl-ctrl-geocoder--input {
+  width: 30px;
   height: 30px;
   max-width: 500px;
   padding-left: 30px;
-  padding-right: 0px;
-  -webkit-transition: width 0.4s ease-in-out;
+  padding-right: 0;
   transition: width 0.4s ease-in-out;
 }
 
-.mapboxgl-ctrl-geocoder--input:focus {
+.maplibregl-ctrl-geocoder--input:focus {
   width: 500px;
 }
 
-.mapboxgl-ctrl-geocoder--input:focus>.mapboxgl-ctrl-geocoder {
+.maplibregl-ctrl-geocoder:focus-within {
   width: 500px;
 }
 
-.mapboxgl-ctrl-geocoder:focus-within {
+.maplibregl-ctrl-geocoder:focus-within
+  .maplibregl-ctrl-geocoder--input {
   width: 500px;
 }
 
-.mapboxgl-ctrl-geocoder:hover>.mapboxgl-ctrl-geocoder--input {
+.maplibregl-ctrl-geocoder:hover {
   width: 500px;
 }
 
-.mapboxgl-ctrl-geocoder:hover {
-  width: 100%;
+.maplibregl-ctrl-geocoder:hover
+  .maplibregl-ctrl-geocoder--input {
+  width: 500px;
 }
 
 /* Vollbild-Menü */

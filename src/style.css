@@ -109,8 +109,7 @@ body {
   width: 500px;
 }
 
-.maplibregl-ctrl-geocoder:focus-within
-  .maplibregl-ctrl-geocoder--input {
+.maplibregl-ctrl-geocoder:focus-within .maplibregl-ctrl-geocoder--input {
   width: 500px;
 }
 
@@ -118,8 +117,7 @@ body {
   width: 500px;
 }
 
-.maplibregl-ctrl-geocoder:hover
-  .maplibregl-ctrl-geocoder--input {
+.maplibregl-ctrl-geocoder:hover .maplibregl-ctrl-geocoder--input {
   width: 500px;
 }
 
@@ -336,7 +334,9 @@ body {
   overflow-x: hidden;
 }
 
-.bar1, .bar2, .bar3 {
+.bar1,
+.bar2,
+.bar3 {
   width: 35px;
   height: 5px;
   background-color: buttonface;
@@ -396,6 +396,48 @@ body {
 	However, delay the fade out process for 2.5 seconds */
   -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
   animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+/* Mapbox Draw: Cursor-Klassen für MapLibre */
+
+/* Zeichnen */
+.maplibregl-map.mouse-add .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: crosshair;
+}
+
+/* Auswahl eines Objekts */
+.maplibregl-map.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: pointer;
+}
+
+/* Fertiges Objekt verschieben */
+.maplibregl-map.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+
+/* Ausgewähltes Objekt anfassen */
+.maplibregl-map.mode-simple_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+
+/* Objekt im Direktbearbeitungsmodus */
+.maplibregl-map.mode-direct_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+
+/* Eckpunkt verschieben */
+.maplibregl-map.mode-direct_select.feature-vertex.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+
+/* Zwischenpunkt zum Einfügen eines neuen Eckpunkts */
+.maplibregl-map.mode-direct_select.feature-midpoint.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: cell;
+}
+
+/* Statischer Modus */
+.maplibregl-map.mode-static.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: grab;
 }
 
 /* Animations to fade the snackbar in and out */

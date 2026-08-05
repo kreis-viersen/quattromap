@@ -1,15 +1,20 @@
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
 import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder';
-var syncMaps = require('@mapbox/mapbox-gl-sync-move');
+import syncMaps from '@mapbox/mapbox-gl-sync-move';
+
 import TurfArea from '@turf/area';
 import TurfCentroid from '@turf/centroid';
 import TurfLength from '@turf/length';
 
-import * as maplibregl from 'maplibre-gl';
-import './style.css';
+import maplibregl from 'maplibre-gl';
+
+import 'maplibre-gl/dist/maplibre-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
-import 'maplibre-gl/dist/maplibre-gl.css';
+
+// Eigene CSS-Datei zuletzt laden
+import './style.css';
+
 import config from './config.json';
 import LZString from 'lz-string';
 
@@ -17,8 +22,23 @@ const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
 
+MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
+MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
+MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
+MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
+MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
 
-// check if fullscreen supported
+// Nur vorübergehend für Tests in der Browserkonsole
+window.maplibregl = maplibregl;
+
+window.addEventListener('error', (event) => {
+  console.error('GLOBALER FEHLER:', event.error || event.message);
+});
+
+window.addEventListener('unhandledrejection', (event) => {
+  console.error('UNBEHANDELTE PROMISE:', event.reason);
+});
+
 if (document.fullscreenEnabled) {
   console.log('Fullscreen: supported');
 } else {
@@ -257,7 +277,7 @@ config.layer.forEach(function (item) {
 
 var map_1 = new maplibregl.Map({
   container: "map_1",
-  style: default_style,
+  style: structuredClone(default_style),
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
@@ -268,29 +288,34 @@ const attribution_map_1 = new maplibregl.AttributionControl({
   compact: true
 });
 
+map_1.on('error', (event) => {
+  console.error(
+    'MAPLIBRE-FEHLER:',
+    event.error || event
+  );
+});
+
 var map_2 = new maplibregl.Map({
   container: "map_2",
-  style: default_style,
+  style: structuredClone(default_style),
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
 const attribution_map_2 = new maplibregl.AttributionControl({
   compact: true
 });
 
-
-
 var map_3 = new maplibregl.Map({
   container: "map_3",
-  style: default_style,
+  style: structuredClone(default_style),
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
 const attribution_map_3 = new maplibregl.AttributionControl({
   compact: true
@@ -298,12 +323,12 @@ const attribution_map_3 = new maplibregl.AttributionControl({
 
 var map_4 = new maplibregl.Map({
   container: "map_4",
-  style: default_style,
+  style: structuredClone(default_style),
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
 const attribution_map_4 = new maplibregl.AttributionControl({
   compact: true
@@ -311,6 +336,21 @@ const attribution_map_4 = new maplibregl.AttributionControl({
 
 var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
+
+const drawStyles = [{'id': 'gl-draw-polygon-fill-inactive','type': 'fill','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'paint': {'fill-color': '#3bb2d0','fill-outline-color': '#3bb2d0','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-fill-active','type': 'fill','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#fbb03b','fill-outline-color': '#fbb03b','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-midpoint','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'meta', 'midpoint']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-stroke-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-polygon-stroke-active','type': 'line','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-line-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'LineString'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-line-active','type': 'line','filter': ['all',['==', '$type', 'LineString'],['==', 'active', 'true']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-color': '#fff'}},{'id': 'gl-draw-polygon-and-line-vertex-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-point-point-stroke-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-opacity': 1,'circle-color': '#fff'}},{'id': 'gl-draw-point-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#3bb2d0'}},{'id': 'gl-draw-point-stroke-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'active', 'true'],['!=', 'meta', 'midpoint']],'paint': {'circle-radius': 7,'circle-color': '#fff'}},{'id': 'gl-draw-point-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['!=', 'meta', 'midpoint'],['==', 'active', 'true']],'paint': {'circle-radius': 5,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-fill-static','type': 'fill','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#404040','fill-outline-color': '#404040','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-stroke-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-line-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'LineString']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-point-static','type': 'circle','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Point']],'paint': {'circle-radius': 5,'circle-color': '#404040'}}];
+
+const draw = new MapboxDraw({
+  displayControlsDefault: false,
+  controls: {
+    line_string: true,
+    polygon: true,
+    trash: true
+  },
+  styles: drawStyles
+});
+
+map_1.addControl(draw, 'top-left');
+
 
 map_1.on("load", function () {
   allMapsLoaded[0] = true;
@@ -323,20 +363,11 @@ map_1.on("load", function () {
       "type": "geojson",
       "data": {
         "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": []
-          },
-          "properties": {
-            "title": ""
-          }
-        }]
+        "features": []
       }
     },
     "layout": {
-      "text-field": "{title}",
+      "text-field": ["get", "title"],
       "text-offset": [0, 0.6],
       "text-size": 30,
     },
@@ -357,6 +388,7 @@ map_1.on("load", function () {
 
   setOverlay1();
 });
+
 map_2.on("load", function () {
   allMapsLoaded[1] = true;
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
@@ -370,6 +402,7 @@ map_2.on("load", function () {
 
   setOverlay2();
 });
+
 map_3.on("load", function () {
   allMapsLoaded[2] = true;
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
@@ -383,6 +416,7 @@ map_3.on("load", function () {
 
   setOverlay3();
 });
+
 map_4.on("load", function () {
   allMapsLoaded[3] = true;
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
@@ -976,20 +1010,13 @@ intitialMapNumber();
 
 // Alle Labels zurücksetzen
 window.resetLabels = function resetLabels() {
-  var geojson = {
-    "type": "FeatureCollection",
-    "features": [{
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": []
-      },
-      "properties": {
-        "title": ""
-      }
-    }]
-  };
-  map_1.getSource("labels").setData(geojson);
+  const source = map_1.getSource("labels");
+  if (!source) return;
+
+  source.setData({
+    type: "FeatureCollection",
+    features: []
+  });
 }
 
 // Angabe des Flächeninhalts in der Messfunktion aktualisieren
@@ -1039,180 +1066,9 @@ window.updateArea = function updateArea(e) {
   }
 }
 
-// Messfunktionen hinzufügen:
-// Mapbox Draw is renderer-compatible with MapLibre, but its DOM class names
-// must be redirected to MapLibre's CSS classes.
-MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
-MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
-MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
-MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
-MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
-
-const draw = new MapboxDraw({
-  displayControlsDefault: false,
-  controls: {
-    line_string: true,
-    polygon: true,
-    trash: true
-  },
-  styles: [
-    // Polygons
-    {
-      'id': 'gl-draw-polygon-fill',
-      'type': 'fill',
-      'filter': ['all', ['==', '$type', 'Polygon']],
-      'paint': {
-        'fill-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-        'fill-opacity': 0.1,
-      },
-    },
-    // Lines
-    {
-      'id': 'gl-draw-lines',
-      'type': 'line',
-      'filter': [
-        'any',
-        ['==', '$type', 'LineString'],
-        ['==', '$type', 'Polygon'],
-      ],
-      'layout': {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      'paint': {
-        'line-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-        'line-dasharray': [
-          'literal', [0.2, 2]
-            ],
-        'line-width': 2,
-      },
-    },
-    // Points - outer circle
-    {
-      'id': 'gl-draw-point-outer',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'feature'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 7,
-          5,
-        ],
-        'circle-color': white,
-      },
-    },
-    // Points - inner circle
-    {
-      'id': 'gl-draw-point-inner',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'feature'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 5,
-          3,
-        ],
-        'circle-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-      },
-    },
-    // Vertex - outer circle
-    {
-      'id': 'gl-draw-vertex-outer',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'vertex'],
-        ['!=', 'mode', 'simple_select'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 7,
-          5,
-        ],
-        'circle-color': white,
-      },
-    },
-    // Vertex - inner circle
-    {
-      'id': 'gl-draw-vertex-inner',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'vertex'],
-        ['!=', 'mode', 'simple_select'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 5,
-          3,
-        ],
-        'circle-color': orange,
-      },
-    },
-    // Midpoint
-    {
-      'id': 'gl-draw-midpoint',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', 'meta', 'midpoint'],
-      ],
-      'paint': {
-        'circle-radius': 3,
-        'circle-color': orange,
-      },
-    },
-  ],
-});
-
-// Map laden
-map_1.on('load', () => {
-  map_1.addControl(draw, 'top-left');
-
-  setTimeout(() => {
-    intitialMapNumber();
-  }, 300);
-});
-
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);
 map_1.on('draw.update', updateArea);
 
-map_1.on('draw.modechange', function () {
-  const data = draw.getAll();
-  if ((draw.getMode() == 'draw_polygon') || (draw.getMode() == 'draw_line_string')) {
-    var pids = []
-    const lid = data.features[data.features.length - 1].id
-    data.features.forEach((f) => {
-      if ((f.geometry.type === 'Polygon' && f.id !== lid) || (f.geometry.type === 'LineString' && f.id !== lid)) {
-        pids.push(f.id)
-      }
-    })
-    draw.delete(pids);
-    resetLabels();
-  }
-});
+window.map1 = map_1;
+window.draw = draw;

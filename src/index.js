@@ -459,54 +459,34 @@ function createGeocoder() {
   });
 }
 
-// add controls
+// add controls (main map)
 map_1.addControl(createGeocoder(), 'top-left');
-map_1.addControl(new maplibregl.NavigationControl({
-  showZoom: true
-}), 'top-left');
-map_1.addControl(new maplibregl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_1.addControl(new maplibregl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
-map_2.addControl(createGeocoder(), 'top-left');
-map_2.addControl(new maplibregl.NavigationControl({
-  showZoom: false
-}), 'top-left');
-map_2.addControl(new maplibregl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_2.addControl(new maplibregl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
-map_3.addControl(createGeocoder(), 'top-left');
-map_3.addControl(new maplibregl.NavigationControl({
-  showZoom: false
-}), 'top-left');
-map_3.addControl(new maplibregl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_3.addControl(new maplibregl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
 
-// visibility of map controls
-document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // map_1
-document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // map_2
-document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // map_3
+map_1.addControl(
+  new maplibregl.NavigationControl({
+    showZoom: true,
+    showCompass: true
+  }),
+  'top-left'
+);
+
+map_1.addControl(
+  new maplibregl.FullscreenControl({
+    container: document.querySelector('body')
+  }),
+  'top-left'
+);
+
+map_1.addControl(
+  new maplibregl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserHeading: true
+  }),
+  'top-left'
+);
 
 // opacity slider
 slider_1.addEventListener('input', function (e) {
@@ -830,207 +810,152 @@ window.changeCrosshair = function changeCrosshair(colour) {
 changeCrosshair(settings.ch);
 
 // choose number of map windows
-window.setMapNumber = function setMapNumber(map_number) {
-  switch (map_number) {
-    // Ein Kartenfenster
-    case 1:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'none');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "100%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "0";
-      document.getElementById("map_2").style.height = "0";
-      document.getElementById("map_3").style.width = "0";
-      document.getElementById("map_3").style.height = "0";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "50%";
-      document.getElementById("cross_2").style.display = "none";
-      document.getElementById("cross_3").style.display = "none";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+window.setMapNumber = function setMapNumber(mapNumber) {
+  const layouts = {
+    1: {
+      maps: [
+        { width: '100%', height: '100%', top: '0', left: '0' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '50%', visible: true },
+        { visible: false },
+        { visible: false },
+        { visible: false }
+      ]
+    },
 
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = ""; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = ""; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = ""; // Draw control trash
+    2: {
+      maps: [
+        { width: '50%', height: '100%', top: '0', left: '0' },
+        { width: '50%', height: '100%', top: '0', left: '50%' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '25%', visible: true },
+        { top: '50%', left: '75%', visible: true },
+        { visible: false },
+        { visible: false }
+      ]
+    },
 
-      settings.mc = 1
-      updateURLSearchParams();
+    3: {
+      maps: [
+        { width: '33.333%', height: '100%', top: '0', left: '0' },
+        { width: '33.333%', height: '100%', top: '0', left: '33.333%' },
+        { width: '33.334%', height: '100%', top: '0', left: '66.666%' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '16.666%', visible: true },
+        { top: '50%', left: '50%', visible: true },
+        { top: '50%', left: '83.333%', visible: true },
+        { visible: false }
+      ]
+    },
 
-      break;
-    // Zwei Kartenfenster
-    case 2:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "50%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "50%";
-      document.getElementById("map_2").style.height = "100%";
-      document.getElementById("map_2").style.left = "50%";
-      document.getElementById("map_3").style.width = "0";
-      document.getElementById("map_3").style.height = "0";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "25%";
-      document.getElementById("cross_2").style.top = "50%";
-      document.getElementById("cross_2").style.left = "75%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "none";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
+    4: {
+      maps: [
+        { width: '50%', height: '50%', top: '0', left: '0' },
+        { width: '50%', height: '50%', top: '0', left: '50%' },
+        { width: '50%', height: '50%', top: '50%', left: '0' },
+        { width: '50%', height: '50%', top: '50%', left: '50%' }
+      ],
+      crosses: [
+        { top: '25%', left: '25%', visible: true },
+        { top: '25%', left: '75%', visible: true },
+        { top: '75%', left: '25%', visible: true },
+        { top: '75%', left: '75%', visible: true }
+      ]
+    }
+  };
 
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
+  const layout = layouts[mapNumber];
 
-      settings.mc = 2
-      updateURLSearchParams();
-
-      break;
-    // Drei Kartenfenster
-    case 3:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "33.333%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "33.333%";
-      document.getElementById("map_2").style.height = "100%";
-      document.getElementById("map_2").style.left = "33.333%";
-      document.getElementById("map_3").style.width = "33.333%";
-      document.getElementById("map_3").style.height = "100%";
-      document.getElementById("map_3").style.top = "0";
-      document.getElementById("map_3").style.left = "66.666%";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "16.666%";
-      document.getElementById("cross_2").style.top = "50%";
-      document.getElementById("cross_2").style.left = "50%";
-      document.getElementById("cross_3").style.top = "50%";
-      document.getElementById("cross_3").style.left = "83.333%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
-
-      settings.mc = 3
-      updateURLSearchParams();
-
-      break;
-    // Vier Kartenfenster
-    case 4:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "50%";
-      document.getElementById("map_1").style.height = "50%";
-      document.getElementById("map_2").style.width = "50%";
-      document.getElementById("map_2").style.height = "50%";
-      document.getElementById("map_2").style.left = "50%";
-      document.getElementById("map_3").style.width = "50%";
-      document.getElementById("map_3").style.height = "50%";
-      document.getElementById("map_3").style.top = "";
-      document.getElementById("map_3").style.bottom = "0";
-      document.getElementById("map_3").style.left = "0";
-      document.getElementById("map_4").style.width = "50%";
-      document.getElementById("map_4").style.height = "50%";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "25%";
-      document.getElementById("cross_1").style.left = "25%";
-      document.getElementById("cross_2").style.top = "25%";
-      document.getElementById("cross_2").style.left = "75%";
-      document.getElementById("cross_3").style.top = "75%";
-      document.getElementById("cross_3").style.left = "25%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "";
-      document.getElementById("cross_4").style.display = "";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("maplibregl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
-
-      settings.mc = 4
-      updateURLSearchParams();
-
-      break;
-    default:
-      // Fehler melden
-      alert("ERROR: " + map_number);
+  if (!layout) {
+    console.error(`Ungültige Kartenanzahl: ${mapNumber}`);
+    return;
   }
-}
+
+  const mapInstances = [map_1, map_2, map_3, map_4];
+  const mapElements = mapInstances.map(
+    (_, index) => document.getElementById(`map_${index + 1}`)
+  );
+  const crossElements = mapInstances.map(
+    (_, index) => document.getElementById(`cross_${index + 1}`)
+  );
+  const buttonElements = mapInstances.map(
+    (_, index) => document.getElementById(`button_${index + 1}map`)
+  );
+
+  // Kartencontainer anordnen
+  mapElements.forEach((element, index) => {
+    const mapLayout = layout.maps[index];
+
+    element.style.width = mapLayout.width;
+    element.style.height = mapLayout.height;
+    element.style.top = mapLayout.top ?? '0';
+    element.style.left = mapLayout.left ?? '0';
+
+    // Alte Positionsangaben aus vorherigen Layouts zurücksetzen
+    element.style.right = 'auto';
+    element.style.bottom = 'auto';
+  });
+
+  // Kartenlayer ein- oder ausblenden
+  mapInstances.forEach((map, index) => {
+    const isVisible = index < mapNumber;
+
+    map.setLayoutProperty(
+      settings[`l${index + 1}`],
+      'visibility',
+      isVisible ? 'visible' : 'none'
+    );
+  });
+
+  // Fadenkreuze positionieren
+  crossElements.forEach((element, index) => {
+    const crossLayout = layout.crosses[index];
+
+    element.style.display = crossLayout.visible ? '' : 'none';
+
+    if (crossLayout.visible) {
+      element.style.top = crossLayout.top;
+      element.style.left = crossLayout.left;
+    }
+  });
+
+  // Aktiven Auswahlbutton markieren
+  buttonElements.forEach((button, index) => {
+    button.classList.toggle('active', index + 1 === mapNumber);
+  });
+
+  // Messwerkzeuge nur bei einer einzelnen Karte anzeigen
+  const showDrawControls = mapNumber === 1;
+
+  [
+    '.mapbox-gl-draw_line',
+    '.mapbox-gl-draw_polygon',
+    '.mapbox-gl-draw_trash'
+  ].forEach((selector) => {
+    const control = document.querySelector(selector);
+
+    if (control) {
+      control.style.display = showDrawControls ? '' : 'none';
+    }
+  });
+
+  // Karten nach der Größenänderung neu zeichnen
+  requestAnimationFrame(() => {
+    mapInstances.forEach((map) => map.resize());
+  });
+
+  settings.mc = mapNumber;
+  updateURLSearchParams();
+};
 
 function intitialMapNumber() {
   if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {

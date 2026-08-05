@@ -35,6 +35,12 @@ body {
   height: 50%;
 }
 
+.map-button.active {
+  background-color: #444;
+  border: 1px solid buttonface;
+  border-radius: 5px;
+}
+
 /* Fadenkreuze Position */
 .ch-image {
   position: fixed;

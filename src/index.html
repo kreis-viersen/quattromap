@@ -2,15 +2,13 @@
 <html>
 
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<meta charset="UTF-8">
 	<title>QuattroMap</title>
-	<!-- <meta name="viewport" content="initial-scale=1,maximum-scale=1,user-scalable=no"> -->
 	<meta name="apple-mobile-web-app-capable" content="yes" />
 	<meta name="mobile-web-app-capable" content="yes" />
 	<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 	<meta name="viewport"
 		content="width=device-width, initial-scale=1, minimum-scale=1.0, maximum-scale=1.0, minimal-ui" />
-	<meta http-equiv="ETag" content="000001" />
 </head>
 
 <body>
@@ -31,7 +29,7 @@
 		</div>
 		<!-- Anzahl der Kartenfenster -->
 		<div class="button-box">
-			<label class="map-number-label">Anzahl Karten:</label>
+			<span class="map-number-label">Anzahl Karten:</span>
 			<button id="button_1map" class="map-button" onclick="setMapNumber(1)">1</button>
 			<button id="button_2map" class="map-button" onclick="setMapNumber(2)">2</button>
 			<button id="button_3map" class="map-button" onclick="setMapNumber(3)">3</button>
@@ -41,16 +39,16 @@
 		<div class="overlay-content">
 			<!-- Einstellungen Karte 1 -->
 			<div id="menu_map_1" class="menu_map">
-				<label class="menu-label"><b>Kartenfenster 1</b></label>
+				<h2 class="menu-label"><b>Kartenfenster 1</b></h2>
 				<!-- Overlay-Auswahl -->
-				<form onchange="setOverlay1()">
+				<div class="map-setting">
 					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_1" class="selector">
+					<select id="form_overlay_1" class="selector" onchange="setOverlay1()">
 						<option value="">keins</option>
 					</select>
-				</form>
+				</div>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_1' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_1'
+				<input id='slider_1' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_1'
 					class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer1()">
@@ -60,16 +58,16 @@
 			</div>
 			<!-- Einstellungen Karte 2 -->
 			<div id="menu_map_2" class="menu_map">
-				<label class="menu-label"><b>Kartenfenster 2</b></label>
+				<h2 class="menu-label"><b>Kartenfenster 2</b></h2>
 				<!-- Overlay-Auswahl -->
-				<form onchange="setOverlay2()">
+				<div class="map-setting">
 					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_2" class="selector">
+					<select id="form_overlay_2" class="selector" onchange="setOverlay2()">
 						<option value="">keins</option>
 					</select>
-				</form>
+				</div>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_2' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_2'
+				<input id='slider_2' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_2'
 					class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer2()">
@@ -79,16 +77,16 @@
 			</div>
 			<!-- Einstellungen Karte 3 -->
 			<div id="menu_map_3" class="menu_map">
-				<label class="menu-label"><b>Kartenfenster 3</b></label>
+				<h2 class="menu-label"><b>Kartenfenster 3</b></h2>
 				<!-- Overlay-Auswahl -->
-				<form onchange="setOverlay3()">
+				<div class="map-setting">
 					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_3" class="selector">
+					<select id="form_overlay_3" class="selector" onchange="setOverlay3()">
 						<option value="">keins</option>
 					</select>
-				</form>
+				</div>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_3' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_3'
+				<input id='slider_3' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_3'
 					class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer3()">
@@ -98,16 +96,16 @@
 			</div>
 			<!-- Einstellungen Karte 4 -->
 			<div id="menu_map_4" class="menu_map">
-				<label class="menu-label"><b>Kartenfenster 4</b></label>
+				<h2 class="menu-label"><b>Kartenfenster 4</b></h2>
 				<!-- Overlay-Auswahl -->
-				<form onchange="setOverlay4()">
+				<div class="map-setting">
 					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_4" class="selector">
+					<select id="form_overlay_4" class="selector" onchange="setOverlay4()">
 						<option value="">keins</option>
 					</select>
-				</form>
+				</div>
 				<!-- Overlay-Deckkraft -->
-				<input id='slider_4' class="slider" type='range' min='0' max='100' step='0' /><span id='slider_value_4'
+				<input id='slider_4' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_4'
 					class="slider-label"></span>
 				<!-- Layer-Auswahl -->
 				<form onchange="setLayer4()">
@@ -128,7 +126,6 @@
 		<img src="./img/share.svg" />
 	</div>
 	<div id="mouse-info"></div>
-	<!-- Kartenfenster und Fadenkreuze -->
 	<!-- Kartenfenster und Fadenkreuze -->
 	<div id="map_1">
 		<img src="./img/cross_black.png" id="cross_1" class="ch-image" alt="" />

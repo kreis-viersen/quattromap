@@ -11,8 +11,6 @@ import maplibregl from 'maplibre-gl';
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
 import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
-
-// Eigene CSS-Datei zuletzt laden
 import './style.css';
 
 import config from './config.json';
@@ -22,23 +20,14 @@ const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
 
+// patch Mapbox Draw to use MapLibre CSS class names instead of Mapbox GL JS
 MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
 MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
 MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
 MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
 MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
 
-// Nur vorübergehend für Tests in der Browserkonsole
-window.maplibregl = maplibregl;
-
-window.addEventListener('error', (event) => {
-  console.error('GLOBALER FEHLER:', event.error || event.message);
-});
-
-window.addEventListener('unhandledrejection', (event) => {
-  console.error('UNBEHANDELTE PROMISE:', event.reason);
-});
-
+// check if fullscreen is supported
 if (document.fullscreenEnabled) {
   console.log('Fullscreen: supported');
 } else {
@@ -275,9 +264,10 @@ config.layer.forEach(function (item) {
   });
 })
 
+// create main map
 var map_1 = new maplibregl.Map({
   container: "map_1",
-  style: structuredClone(default_style),
+  style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
@@ -288,16 +278,10 @@ const attribution_map_1 = new maplibregl.AttributionControl({
   compact: true
 });
 
-map_1.on('error', (event) => {
-  console.error(
-    'MAPLIBRE-FEHLER:',
-    event.error || event
-  );
-});
-
+// create 2nd map
 var map_2 = new maplibregl.Map({
   container: "map_2",
-  style: structuredClone(default_style),
+  style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
@@ -308,9 +292,10 @@ const attribution_map_2 = new maplibregl.AttributionControl({
   compact: true
 });
 
+// create 3rd map
 var map_3 = new maplibregl.Map({
   container: "map_3",
-  style: structuredClone(default_style),
+  style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
@@ -321,9 +306,10 @@ const attribution_map_3 = new maplibregl.AttributionControl({
   compact: true
 });
 
+//create 4th map
 var map_4 = new maplibregl.Map({
   container: "map_4",
-  style: structuredClone(default_style),
+  style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
@@ -337,8 +323,10 @@ const attribution_map_4 = new maplibregl.AttributionControl({
 var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
 
+// define custom drawing styles for Mapbox Draw (lines, polygons, measurements)
 const drawStyles = [{'id': 'gl-draw-polygon-fill-inactive','type': 'fill','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'paint': {'fill-color': '#3bb2d0','fill-outline-color': '#3bb2d0','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-fill-active','type': 'fill','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#fbb03b','fill-outline-color': '#fbb03b','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-midpoint','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'meta', 'midpoint']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-stroke-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-polygon-stroke-active','type': 'line','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-line-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'LineString'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-line-active','type': 'line','filter': ['all',['==', '$type', 'LineString'],['==', 'active', 'true']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-color': '#fff'}},{'id': 'gl-draw-polygon-and-line-vertex-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-point-point-stroke-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-opacity': 1,'circle-color': '#fff'}},{'id': 'gl-draw-point-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#3bb2d0'}},{'id': 'gl-draw-point-stroke-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'active', 'true'],['!=', 'meta', 'midpoint']],'paint': {'circle-radius': 7,'circle-color': '#fff'}},{'id': 'gl-draw-point-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['!=', 'meta', 'midpoint'],['==', 'active', 'true']],'paint': {'circle-radius': 5,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-fill-static','type': 'fill','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#404040','fill-outline-color': '#404040','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-stroke-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-line-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'LineString']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-point-static','type': 'circle','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Point']],'paint': {'circle-radius': 5,'circle-color': '#404040'}}];
 
+// initialize Mapbox Draw
 const draw = new MapboxDraw({
   displayControlsDefault: false,
   controls: {
@@ -349,13 +337,89 @@ const draw = new MapboxDraw({
   styles: drawStyles
 });
 
-map_1.addControl(draw, 'top-left');
+// function that limits drawn geometries to one at a time
+map_1.on('draw.modechange', () => {
+  if (!['draw_polygon', 'draw_line_string'].includes(draw.getMode())) {
+    return;
+  }
 
+  const features = draw.getAll().features;
 
+  if (features.length <= 1) {
+    resetLabels();
+    return;
+  }
+
+  const idsToDelete = features
+    .slice(0, -1)
+    .filter(f =>
+      f.geometry.type === 'Polygon' ||
+      f.geometry.type === 'LineString'
+    )
+    .map(f => f.id);
+
+  draw.delete(idsToDelete);
+  resetLabels();
+});
+
+// update the measurement label (length, area)
+window.updateArea = function updateArea(e) {
+  var data = draw.getAll();
+  resetLabels();
+  if (data.features.length > 0) {
+    var distance = TurfLength(data);
+    var area = TurfArea(data);
+    // restrict results to 2 decimal points
+    var rounded_distance = Math.round(distance * 100000) / 100;
+    var rounded_area = Math.round(area * 100) / 100;
+    var centroid = TurfCentroid(data);
+    if (area == 0) {
+      var geojson = {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": centroid.geometry.coordinates
+          },
+          "properties": {
+            "title": rounded_distance + " m"
+          }
+        }]
+      };
+      map_1.getSource("labels").setData(geojson);
+    } else {
+      var geojson = {
+        "type": "FeatureCollection",
+        "features": [{
+          "type": "Feature",
+          "geometry": {
+            "type": "Point",
+            "coordinates": centroid.geometry.coordinates
+          },
+          "properties": {
+            "title": rounded_area + " m²"
+          }
+        }]
+      };
+      map_1.getSource("labels").setData(geojson);
+    }
+  } else {
+    if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
+  }
+}
+
+// trigger label update
+map_1.on('draw.create', updateArea);
+map_1.on('draw.delete', updateArea);
+map_1.on('draw.update', updateArea);
+
+// initialize the primary map after loading
 map_1.on("load", function () {
   allMapsLoaded[0] = true;
   map_1.setLayoutProperty(settings.l1, 'visibility', 'visible');
-  // layer for measurement tools
+  
+  // add a label layer for measurement results
   map_1.addLayer({
     "id": "labels",
     "type": "symbol",
@@ -381,20 +445,26 @@ map_1.on("load", function () {
 
   const layer = default_style.layers.find(el => el.id === settings.l1);
   map_1.addControl(attribution_map_1)
+
+  // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_1 = false
     document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
   }
 
   setOverlay1();
+  map_1.addControl(draw, 'top-left');
 });
 
+// initialize the 2nd map after loading
 map_2.on("load", function () {
   allMapsLoaded[1] = true;
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l2);
   map_2.addControl(attribution_map_2)
+
+  // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_2 = false
     document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
@@ -403,12 +473,15 @@ map_2.on("load", function () {
   setOverlay2();
 });
 
+// initialize the 3rd map after loading
 map_3.on("load", function () {
   allMapsLoaded[2] = true;
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l3);
   map_3.addControl(attribution_map_3)
+
+  // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_3 = false
     document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
@@ -417,12 +490,15 @@ map_3.on("load", function () {
   setOverlay3();
 });
 
+// initialize the 4th map after loading
 map_4.on("load", function () {
   allMapsLoaded[3] = true;
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l4);
   map_4.addControl(attribution_map_4)
+
+  // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_4 = false
     document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
@@ -434,8 +510,7 @@ map_4.on("load", function () {
 // sync map windows
 syncMaps(map_1, map_3, map_2, map_4);
 
-// Geocoding API for MapLibre Geocoder using OpenStreetMap Nominatim.
-// Queries are only sent after the user submits a search (no autocomplete).
+// geocoding API for MapLibre Geocoder using OpenStreetMap Nominatim (instead of Mapbox)
 const geocodingApi = {
   forwardGeocode: async (searchConfig) => {
     const query = searchConfig.query?.trim();
@@ -484,16 +559,21 @@ const geocodingApi = {
   }
 };
 
+// initialize geocoding API (for search)
 function createGeocoder() {
   return new MaplibreGeocoder(geocodingApi, {
     maplibregl,
     marker: false,
     showResultsWhileTyping: false,
-    placeholder: 'Ort oder Adresse suchen'
+    placeholder: 'Ort oder Adresse suchen',
+
+    flyTo: {
+      zoom: 14
+    }
   });
 }
 
-// add controls (main map)
+// add controls
 map_1.addControl(createGeocoder(), 'top-left');
 
 map_1.addControl(
@@ -556,7 +636,7 @@ slider_4.addEventListener('input', function (e) {
   updateURLSearchParams();
 });
 
-// make manu transparent while using opacity sliders
+// make menu transparent while using opacity sliders
 slider_1.addEventListener('pointerdown', function () {
   document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
 });
@@ -925,7 +1005,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     (_, index) => document.getElementById(`button_${index + 1}map`)
   );
 
-  // Kartencontainer anordnen
+  // order map containers
   mapElements.forEach((element, index) => {
     const mapLayout = layout.maps[index];
 
@@ -939,7 +1019,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     element.style.bottom = 'auto';
   });
 
-  // Kartenlayer ein- oder ausblenden
+  // set visibility of map layers
   mapInstances.forEach((map, index) => {
     const isVisible = index < mapNumber;
 
@@ -950,7 +1030,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     );
   });
 
-  // Fadenkreuze positionieren
+  // position of cross
   crossElements.forEach((element, index) => {
     const crossLayout = layout.crosses[index];
 
@@ -962,12 +1042,12 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     }
   });
 
-  // Aktiven Auswahlbutton markieren
+  // mark active map number button
   buttonElements.forEach((button, index) => {
     button.classList.toggle('active', index + 1 === mapNumber);
   });
 
-  // Messwerkzeuge nur bei einer einzelnen Karte anzeigen
+  // only show measuring tools when view limited to main map
   const showDrawControls = mapNumber === 1;
 
   [
@@ -982,7 +1062,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     }
   });
 
-  // Karten nach der Größenänderung neu zeichnen
+  // resize maps
   requestAnimationFrame(() => {
     mapInstances.forEach((map) => map.resize());
   });
@@ -991,10 +1071,10 @@ window.setMapNumber = function setMapNumber(mapNumber) {
   updateURLSearchParams();
 };
 
-function intitialMapNumber() {
+function initialMapNumber() {
   if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
     setTimeout(function () {
-      intitialMapNumber()
+      initialMapNumber()
     }, 100);
     return;
   }
@@ -1006,9 +1086,9 @@ function intitialMapNumber() {
   }
 }
 
-intitialMapNumber();
+initialMapNumber();
 
-// Alle Labels zurücksetzen
+// reset all labels
 window.resetLabels = function resetLabels() {
   const source = map_1.getSource("labels");
   if (!source) return;
@@ -1019,56 +1099,3 @@ window.resetLabels = function resetLabels() {
   });
 }
 
-// Angabe des Flächeninhalts in der Messfunktion aktualisieren
-window.updateArea = function updateArea(e) {
-  var data = draw.getAll();
-  resetLabels();
-  if (data.features.length > 0) {
-    var distance = TurfLength(data);
-    var area = TurfArea(data);
-    // restrict results to 2 decimal points
-    var rounded_distance = Math.round(distance * 100000) / 100;
-    var rounded_area = Math.round(area * 100) / 100;
-    var centroid = TurfCentroid(data);
-    if (area == 0) {
-      var geojson = {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": centroid.geometry.coordinates
-          },
-          "properties": {
-            "title": rounded_distance + " m"
-          }
-        }]
-      };
-      map_1.getSource("labels").setData(geojson);
-    } else {
-      var geojson = {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": centroid.geometry.coordinates
-          },
-          "properties": {
-            "title": rounded_area + " m²"
-          }
-        }]
-      };
-      map_1.getSource("labels").setData(geojson);
-    }
-  } else {
-    if (e.type !== 'draw.delete') alert("Use the draw tools to draw a polygon!");
-  }
-}
-
-map_1.on('draw.create', updateArea);
-map_1.on('draw.delete', updateArea);
-map_1.on('draw.update', updateArea);
-
-window.map1 = map_1;
-window.draw = draw;

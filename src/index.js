@@ -659,25 +659,25 @@ slider_4.addEventListener('input', function (e) {
 
 // make menu transparent while using opacity sliders
 slider_1.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
 });
 slider_1.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
 slider_2.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
 });
 slider_2.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
 slider_3.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
 });
 slider_3.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";
 });
 slider_4.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
 });
 slider_4.addEventListener('pointerup', function () {
   document.getElementById("myNav").style.background = "";

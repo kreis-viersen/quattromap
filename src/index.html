@@ -13,109 +13,180 @@
 
 <body>
 	<!-- Vollbildmenü -->
-	<div id="myNav" class="overlay">
-		<!-- Fadenkreuz-Farbwahl -->
-		<div class="ch-dropdown">
-			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
-			<div id="ch_dropdown_content" class="ch-dropdown-content">
-				<img src="./img/cross_black.png" onclick="changeCrosshair('black')"
-					alt="Schwarzes Fadenkreuz auswählen" />
-				<img src="./img/cross_red.png" onclick="changeCrosshair('red')" alt="Rotes Fadenkreuz auswählen" />
-				<img src="./img/cross_orange.png" onclick="changeCrosshair('orange')"
-					alt="Oranges Fadenkreuz auswählen" />
-				<img src="./img/cross_yellow.png" onclick="changeCrosshair('yellow')"
-					alt="Gelbes Fadenkreuz auswählen" />
-				<img src="./img/cross_green.png" onclick="changeCrosshair('green')" alt="Grünes Fadenkreuz auswählen" />
-				<img src="./img/cross_blue.png" onclick="changeCrosshair('blue')" alt="Blaues Fadenkreuz auswählen" />
-				<img src="./img/cross_pink.png" onclick="changeCrosshair('pink')" alt="Pinkes Fadenkreuz auswählen" />
+	<div id="myNav" class="settings-panel" aria-hidden="true">
+		<div class="settings-header">
+			<div>
+				<div class="settings-title">Einstellungen</div>
+				<div class="settings-subtitle">Kartendarstellung anpassen</div>
+			</div>
+
+			<button type="button" class="settings-close" aria-label="Einstellungen schließen" title="Schließen"
+				onclick="swapBars(document.getElementById('menu-button')); toggleNav();">
+				✕
+			</button>
+		</div>
+
+		<div class="settings-general">
+			<div class="setting-group">
+				<label for="map-count-select" class="setting-label">
+					Anzahl Karten
+				</label>
+
+				<select id="map-count-select" class="setting-select">
+					<option value="1">1 Karte</option>
+					<option value="2">2 Karten</option>
+					<option value="3">3 Karten</option>
+					<option value="4">4 Karten</option>
+				</select>
+			</div>
+
+			<div class="setting-group">
+				<span class="setting-label">Fadenkreuz</span>
+
+				<div class="crosshair-options" role="group" aria-label="Fadenkreuzfarbe">
+					<button type="button" class="crosshair-option" data-colour="black" title="Schwarz">
+						<img src="./img/cross_black.png" alt="Schwarz" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="red" title="Rot">
+						<img src="./img/cross_red.png" alt="Rot" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="orange" title="Orange">
+						<img src="./img/cross_orange.png" alt="Orange" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="yellow" title="Gelb">
+						<img src="./img/cross_yellow.png" alt="Gelb" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="green" title="Grün">
+						<img src="./img/cross_green.png" alt="Grün" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="blue" title="Blau">
+						<img src="./img/cross_blue.png" alt="Blau" />
+					</button>
+
+					<button type="button" class="crosshair-option" data-colour="pink" title="Pink">
+						<img src="./img/cross_pink.png" alt="Pink" />
+					</button>
+				</div>
 			</div>
 		</div>
-		<!-- Anzahl der Kartenfenster -->
-		<div class="button-box">
-			<span class="map-number-label">Anzahl Karten:</span>
-			<button id="button_1map" class="map-button" onclick="setMapNumber(1)">1</button>
-			<button id="button_2map" class="map-button" onclick="setMapNumber(2)">2</button>
-			<button id="button_3map" class="map-button" onclick="setMapNumber(3)">3</button>
-			<button id="button_4map" class="map-button" onclick="setMapNumber(4)">4</button>
-		</div>
-		<!-- Einstellungen der Kartenfenster -->
-		<div class="overlay-content">
-			<!-- Einstellungen Karte 1 -->
-			<div id="menu_map_1" class="menu_map">
-				<h2 class="menu-label"><b>Kartenfenster 1</b></h2>
-				<!-- Overlay-Auswahl -->
-				<div class="map-setting">
-					<label for="form_overlay_1" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_1" class="selector" onchange="setOverlay1()">
-						<option value="">keins</option>
+
+		<div class="map-settings-grid">
+			<section id="menu_map_1" class="map-settings-card">
+				<div class="map-settings-header">
+					<span class="map-settings-number">1</span>
+					<span>Kartenfenster 1</span>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_1" class="setting-label">Karte</label>
+					<select id="form_1" class="setting-select" onchange="setLayer1()"></select>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_overlay_1" class="setting-label">Overlay</label>
+					<select id="form_overlay_1" class="setting-select" onchange="setOverlay1()">
+						<option value="">Keins</option>
 					</select>
 				</div>
-				<!-- Overlay-Deckkraft -->
-				<input id='slider_1' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_1'
-					class="slider-label"></span>
-				<!-- Layer-Auswahl -->
-				<form onchange="setLayer1()">
-					<label for="form_1" class="layer-label">Layer:</label>
-					<select id="form_1" class="selector"></select>
-				</form>
-			</div>
-			<!-- Einstellungen Karte 2 -->
-			<div id="menu_map_2" class="menu_map">
-				<h2 class="menu-label"><b>Kartenfenster 2</b></h2>
-				<!-- Overlay-Auswahl -->
-				<div class="map-setting">
-					<label for="form_overlay_2" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_2" class="selector" onchange="setOverlay2()">
-						<option value="">keins</option>
+
+				<div class="setting-group">
+					<div class="slider-heading">
+						<label for="slider_1" class="setting-label">Deckkraft</label>
+						<span id="slider_value_1" class="slider-value"></span>
+					</div>
+
+					<input id="slider_1" class="opacity-slider" type="range" min="0" max="100" step="1" />
+				</div>
+			</section>
+
+			<section id="menu_map_2" class="map-settings-card">
+				<div class="map-settings-header">
+					<span class="map-settings-number">2</span>
+					<span>Kartenfenster 2</span>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_2" class="setting-label">Karte</label>
+					<select id="form_2" class="setting-select" onchange="setLayer2()"></select>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_overlay_2" class="setting-label">Overlay</label>
+					<select id="form_overlay_2" class="setting-select" onchange="setOverlay2()">
+						<option value="">Keins</option>
 					</select>
 				</div>
-				<!-- Overlay-Deckkraft -->
-				<input id='slider_2' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_2'
-					class="slider-label"></span>
-				<!-- Layer-Auswahl -->
-				<form onchange="setLayer2()">
-					<label for="form_2" class="layer-label">Layer:</label>
-					<select id="form_2" class="selector"></select>
-				</form>
-			</div>
-			<!-- Einstellungen Karte 3 -->
-			<div id="menu_map_3" class="menu_map">
-				<h2 class="menu-label"><b>Kartenfenster 3</b></h2>
-				<!-- Overlay-Auswahl -->
-				<div class="map-setting">
-					<label for="form_overlay_3" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_3" class="selector" onchange="setOverlay3()">
-						<option value="">keins</option>
+
+				<div class="setting-group">
+					<div class="slider-heading">
+						<label for="slider_2" class="setting-label">Deckkraft</label>
+						<span id="slider_value_2" class="slider-value"></span>
+					</div>
+
+					<input id="slider_2" class="opacity-slider" type="range" min="0" max="100" step="1" />
+				</div>
+			</section>
+
+			<section id="menu_map_3" class="map-settings-card">
+				<div class="map-settings-header">
+					<span class="map-settings-number">3</span>
+					<span>Kartenfenster 3</span>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_3" class="setting-label">Karte</label>
+					<select id="form_3" class="setting-select" onchange="setLayer3()"></select>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_overlay_3" class="setting-label">Overlay</label>
+					<select id="form_overlay_3" class="setting-select" onchange="setOverlay3()">
+						<option value="">Keins</option>
 					</select>
 				</div>
-				<!-- Overlay-Deckkraft -->
-				<input id='slider_3' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_3'
-					class="slider-label"></span>
-				<!-- Layer-Auswahl -->
-				<form onchange="setLayer3()">
-					<label for="form_3" class="layer-label">Layer:</label>
-					<select id="form_3" class="selector"></select>
-				</form>
-			</div>
-			<!-- Einstellungen Karte 4 -->
-			<div id="menu_map_4" class="menu_map">
-				<h2 class="menu-label"><b>Kartenfenster 4</b></h2>
-				<!-- Overlay-Auswahl -->
-				<div class="map-setting">
-					<label for="form_overlay_4" class="overlay-label">Overlay:</label>
-					<select id="form_overlay_4" class="selector" onchange="setOverlay4()">
-						<option value="">keins</option>
+
+				<div class="setting-group">
+					<div class="slider-heading">
+						<label for="slider_3" class="setting-label">Deckkraft</label>
+						<span id="slider_value_3" class="slider-value"></span>
+					</div>
+
+					<input id="slider_3" class="opacity-slider" type="range" min="0" max="100" step="1" />
+				</div>
+			</section>
+
+			<section id="menu_map_4" class="map-settings-card">
+				<div class="map-settings-header">
+					<span class="map-settings-number">4</span>
+					<span>Kartenfenster 4</span>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_4" class="setting-label">Karte</label>
+					<select id="form_4" class="setting-select" onchange="setLayer4()"></select>
+				</div>
+
+				<div class="setting-group">
+					<label for="form_overlay_4" class="setting-label">Overlay</label>
+					<select id="form_overlay_4" class="setting-select" onchange="setOverlay4()">
+						<option value="">Keins</option>
 					</select>
 				</div>
-				<!-- Overlay-Deckkraft -->
-				<input id='slider_4' class="slider" type='range' min='0' max='100' step='1' /><span id='slider_value_4'
-					class="slider-label"></span>
-				<!-- Layer-Auswahl -->
-				<form onchange="setLayer4()">
-					<label for="form_4" class="layer-label">Layer:</label>
-					<select id="form_4" class="selector"></select>
-				</form>
-			</div>
+
+				<div class="setting-group">
+					<div class="slider-heading">
+						<label for="slider_4" class="setting-label">Deckkraft</label>
+						<span id="slider_value_4" class="slider-value"></span>
+					</div>
+
+					<input id="slider_4" class="opacity-slider" type="range" min="0" max="100" step="1" />
+				</div>
+			</section>
 		</div>
 	</div>
 	<!-- application panel -->

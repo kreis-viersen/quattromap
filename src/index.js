@@ -109,6 +109,19 @@ function updateURLSearchParams() {
   }
 }
 
+// collapses the attribution of map frames (for initial start setup)
+function collapseAttribution(mapId) {
+  requestAnimationFrame(() => {
+    const attribution = document
+      .getElementById(mapId)
+      .querySelector('.maplibregl-ctrl-attrib');
+
+    if (attribution?.open) {
+      attribution.querySelector('.maplibregl-ctrl-attrib-button')?.click();
+    }
+  });
+}
+
 // initial settings for opacity sliders:
 var slider_1 = document.getElementById('slider_1');
 var slider_value_1 = document.getElementById('slider_value_1');
@@ -324,7 +337,7 @@ var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
 
 // define custom drawing styles for Mapbox Draw (lines, polygons, measurements)
-const drawStyles = [{'id': 'gl-draw-polygon-fill-inactive','type': 'fill','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'paint': {'fill-color': '#3bb2d0','fill-outline-color': '#3bb2d0','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-fill-active','type': 'fill','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#fbb03b','fill-outline-color': '#fbb03b','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-midpoint','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'meta', 'midpoint']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-stroke-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Polygon'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-polygon-stroke-active','type': 'line','filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-line-inactive','type': 'line','filter': ['all',['==', 'active', 'false'],['==', '$type', 'LineString'],['!=', 'mode', 'static']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#3bb2d0','line-width': 2}},{'id': 'gl-draw-line-active','type': 'line','filter': ['all',['==', '$type', 'LineString'],['==', 'active', 'true']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#fbb03b','line-dasharray': [0.2, 2],'line-width': 2}},{'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-color': '#fff'}},{'id': 'gl-draw-polygon-and-line-vertex-inactive','type': 'circle','filter': ['all',['==', 'meta', 'vertex'],['==', '$type', 'Point'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#fbb03b'}},{'id': 'gl-draw-point-point-stroke-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 5,'circle-opacity': 1,'circle-color': '#fff'}},{'id': 'gl-draw-point-inactive','type': 'circle','filter': ['all',['==', 'active', 'false'],['==', '$type', 'Point'],['==', 'meta', 'feature'],['!=', 'mode', 'static']],'paint': {'circle-radius': 3,'circle-color': '#3bb2d0'}},{'id': 'gl-draw-point-stroke-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['==', 'active', 'true'],['!=', 'meta', 'midpoint']],'paint': {'circle-radius': 7,'circle-color': '#fff'}},{'id': 'gl-draw-point-active','type': 'circle','filter': ['all',['==', '$type', 'Point'],['!=', 'meta', 'midpoint'],['==', 'active', 'true']],'paint': {'circle-radius': 5,'circle-color': '#fbb03b'}},{'id': 'gl-draw-polygon-fill-static','type': 'fill','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'paint': {'fill-color': '#404040','fill-outline-color': '#404040','fill-opacity': 0.1}},{'id': 'gl-draw-polygon-stroke-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-line-static','type': 'line','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'LineString']],'layout': {'line-cap': 'round','line-join': 'round'},'paint': {'line-color': '#404040','line-width': 2}},{'id': 'gl-draw-point-static','type': 'circle','filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Point']],'paint': {'circle-radius': 5,'circle-color': '#404040'}}];
+const drawStyles = [{ 'id': 'gl-draw-polygon-fill-inactive', 'type': 'fill', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']], 'paint': { 'fill-color': '#3bb2d0', 'fill-outline-color': '#3bb2d0', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-fill-active', 'type': 'fill', 'filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']], 'paint': { 'fill-color': '#fbb03b', 'fill-outline-color': '#fbb03b', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-midpoint', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['==', 'meta', 'midpoint']], 'paint': { 'circle-radius': 3, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-polygon-stroke-inactive', 'type': 'line', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#3bb2d0', 'line-width': 2 } }, { 'id': 'gl-draw-polygon-stroke-active', 'type': 'line', 'filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#fbb03b', 'line-dasharray': [0.2, 2], 'line-width': 2 } }, { 'id': 'gl-draw-line-inactive', 'type': 'line', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'LineString'], ['!=', 'mode', 'static']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#3bb2d0', 'line-width': 2 } }, { 'id': 'gl-draw-line-active', 'type': 'line', 'filter': ['all', ['==', '$type', 'LineString'], ['==', 'active', 'true']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#fbb03b', 'line-dasharray': [0.2, 2], 'line-width': 2 } }, { 'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive', 'type': 'circle', 'filter': ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 5, 'circle-color': '#fff' } }, { 'id': 'gl-draw-polygon-and-line-vertex-inactive', 'type': 'circle', 'filter': ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 3, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-point-point-stroke-inactive', 'type': 'circle', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Point'], ['==', 'meta', 'feature'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 5, 'circle-opacity': 1, 'circle-color': '#fff' } }, { 'id': 'gl-draw-point-inactive', 'type': 'circle', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Point'], ['==', 'meta', 'feature'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 3, 'circle-color': '#3bb2d0' } }, { 'id': 'gl-draw-point-stroke-active', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['==', 'active', 'true'], ['!=', 'meta', 'midpoint']], 'paint': { 'circle-radius': 7, 'circle-color': '#fff' } }, { 'id': 'gl-draw-point-active', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['!=', 'meta', 'midpoint'], ['==', 'active', 'true']], 'paint': { 'circle-radius': 5, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-polygon-fill-static', 'type': 'fill', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']], 'paint': { 'fill-color': '#404040', 'fill-outline-color': '#404040', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-stroke-static', 'type': 'line', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#404040', 'line-width': 2 } }, { 'id': 'gl-draw-line-static', 'type': 'line', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'LineString']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#404040', 'line-width': 2 } }, { 'id': 'gl-draw-point-static', 'type': 'circle', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Point']], 'paint': { 'circle-radius': 5, 'circle-color': '#404040' } }];
 
 // initialize Mapbox Draw
 const draw = new MapboxDraw({
@@ -418,7 +431,7 @@ map_1.on('draw.update', updateArea);
 map_1.on("load", function () {
   allMapsLoaded[0] = true;
   map_1.setLayoutProperty(settings.l1, 'visibility', 'visible');
-  
+
   // add a label layer for measurement results
   map_1.addLayer({
     "id": "labels",
@@ -444,13 +457,15 @@ map_1.on("load", function () {
   })
 
   const layer = default_style.layers.find(el => el.id === settings.l1);
-  map_1.addControl(attribution_map_1)
+  
+  // attribution settings
+  map_1.addControl(attribution_map_1);
+  collapseAttribution('map_1'); // collapse by default
 
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_1 = false
-    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
-  }
+  } 
 
   setOverlay1();
   map_1.addControl(draw, 'top-left');
@@ -462,13 +477,15 @@ map_2.on("load", function () {
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l2);
-  map_2.addControl(attribution_map_2)
+  
+  // attribution settings
+  map_2.addControl(attribution_map_2);
+  collapseAttribution('map_2'); // collapse by default
 
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_2 = false
-    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
-  }
+  } 
 
   setOverlay2();
 });
@@ -479,13 +496,15 @@ map_3.on("load", function () {
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l3);
-  map_3.addControl(attribution_map_3)
+  
+  // attribution settings
+  map_3.addControl(attribution_map_3);
+  collapseAttribution('map_3'); // collapse by default
 
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_3 = false
-    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
-  }
+  } 
 
   setOverlay3();
 });
@@ -496,13 +515,15 @@ map_4.on("load", function () {
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l4);
-  map_4.addControl(attribution_map_4)
+  
+  // attribution settings
+  map_4.addControl(attribution_map_4);
+  collapseAttribution('map_4'); // collapse by default
 
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_4 = false
-    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
-  }
+  } 
 
   setOverlay4();
 });
@@ -884,12 +905,12 @@ window.setOverlay4 = function setOverlay4() {
 
 // toggle menu
 window.toggleNav = function toggleNav() {
-  if (document.getElementById("myNav").style.height == "100%") {
-    document.getElementById("myNav").style.height = "0%";
-  } else {
-    document.getElementById("myNav").style.height = "100%";
-  }
-}
+  const panel = document.getElementById('myNav');
+  const isOpen = panel.classList.toggle('open');
+
+  panel.setAttribute('aria-hidden', String(!isOpen));
+};
+
 window.swapBars = function swapBars(x) {
   x.classList.toggle("change");
 }
@@ -906,21 +927,34 @@ window.copyPermalink = function copyPermalink() {
   return navigator.clipboard.writeText(currentURL);
 }
 
-// crosshair color
+// update the crosshair colour
 window.changeCrosshair = function changeCrosshair(colour) {
-  settings.ch = colour
+  settings.ch = colour;
   updateURLSearchParams();
-  var image_source = "./img/cross_" + settings.ch + ".png";
-  document.getElementById('ch_dd_img').src = image_source;
-  document.getElementById('cross_1').src = image_source;
-  document.getElementById('cross_2').src = image_source;
-  document.getElementById('cross_3').src = image_source;
-  document.getElementById('cross_4').src = image_source;
-  document.getElementById('ch_dropdown_content').style.display = "none";
-  setTimeout("document.getElementById('ch_dropdown_content').style.display='';", 100);
-}
 
-// set initial crosshair colour
+  const imageSource = `./img/cross_${colour}.png`;
+
+  document.getElementById('cross_1').src = imageSource;
+  document.getElementById('cross_2').src = imageSource;
+  document.getElementById('cross_3').src = imageSource;
+  document.getElementById('cross_4').src = imageSource;
+
+  document.querySelectorAll('.crosshair-option').forEach((option) => {
+    option.classList.toggle(
+      'active',
+      option.dataset.colour === colour
+    );
+  });
+};
+
+// select the crosshair colour
+document.querySelectorAll('.crosshair-option').forEach((button) => {
+  button.addEventListener('click', function () {
+    changeCrosshair(this.dataset.colour);
+  });
+});
+
+// set the initial crosshair colour
 changeCrosshair(settings.ch);
 
 // choose number of map windows
@@ -995,17 +1029,25 @@ window.setMapNumber = function setMapNumber(mapNumber) {
   }
 
   const mapInstances = [map_1, map_2, map_3, map_4];
+
   const mapElements = mapInstances.map(
     (_, index) => document.getElementById(`map_${index + 1}`)
   );
+
   const crossElements = mapInstances.map(
     (_, index) => document.getElementById(`cross_${index + 1}`)
   );
-  const buttonElements = mapInstances.map(
-    (_, index) => document.getElementById(`button_${index + 1}map`)
-  );
 
-  // order map containers
+  // only show settings for visible maps
+  mapInstances.forEach((_, index) => {
+    const settingsCard = document.getElementById(`menu_map_${index + 1}`);
+
+    if (settingsCard) {
+      settingsCard.hidden = index >= mapNumber;
+    }
+  });
+
+  // arrange map containers
   mapElements.forEach((element, index) => {
     const mapLayout = layout.maps[index];
 
@@ -1013,8 +1055,6 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     element.style.height = mapLayout.height;
     element.style.top = mapLayout.top ?? '0';
     element.style.left = mapLayout.left ?? '0';
-
-    // Alte Positionsangaben aus vorherigen Layouts zurücksetzen
     element.style.right = 'auto';
     element.style.bottom = 'auto';
   });
@@ -1030,7 +1070,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     );
   });
 
-  // position of cross
+  // position crosshairs
   crossElements.forEach((element, index) => {
     const crossLayout = layout.crosses[index];
 
@@ -1042,12 +1082,7 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     }
   });
 
-  // mark active map number button
-  buttonElements.forEach((button, index) => {
-    button.classList.toggle('active', index + 1 === mapNumber);
-  });
-
-  // only show measuring tools when view limited to main map
+  // only show measuring tools when view is limited to the primary map
   const showDrawControls = mapNumber === 1;
 
   [
@@ -1062,14 +1097,28 @@ window.setMapNumber = function setMapNumber(mapNumber) {
     }
   });
 
-  // resize maps
+  // resize maps after changing their containers
   requestAnimationFrame(() => {
     mapInstances.forEach((map) => map.resize());
   });
 
+  // update the map count selector
+  const mapCountSelect = document.getElementById('map-count-select');
+
+  if (mapCountSelect) {
+    mapCountSelect.value = String(mapNumber);
+  }
+
   settings.mc = mapNumber;
   updateURLSearchParams();
 };
+
+// change the number of visible maps
+const mapCountSelect = document.getElementById('map-count-select');
+
+mapCountSelect.addEventListener('change', function () {
+  setMapNumber(Number(this.value));
+});
 
 function initialMapNumber() {
   if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
@@ -1098,4 +1147,3 @@ window.resetLabels = function resetLabels() {
     features: []
   });
 }
-

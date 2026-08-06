@@ -18,13 +18,16 @@
 		<div class="ch-dropdown">
 			<img id="ch_dd_img" class="ch-dropdown-image" src="./img/cross_black.png" />
 			<div id="ch_dropdown_content" class="ch-dropdown-content">
-				<img src="./img/cross_black.png" onclick="changeCrosshair('black')" />
-				<img src="./img/cross_red.png" onclick="changeCrosshair('red')" />
-				<img src="./img/cross_orange.png" onclick="changeCrosshair('orange')" />
-				<img src="./img/cross_yellow.png" onclick="changeCrosshair('yellow')" />
-				<img src="./img/cross_green.png" onclick="changeCrosshair('green')" />
-				<img src="./img/cross_blue.png" onclick="changeCrosshair('blue')" />
-				<img src="./img/cross_pink.png" onclick="changeCrosshair('pink')" />
+				<img src="./img/cross_black.png" onclick="changeCrosshair('black')"
+					alt="Schwarzes Fadenkreuz auswählen" />
+				<img src="./img/cross_red.png" onclick="changeCrosshair('red')" alt="Rotes Fadenkreuz auswählen" />
+				<img src="./img/cross_orange.png" onclick="changeCrosshair('orange')"
+					alt="Oranges Fadenkreuz auswählen" />
+				<img src="./img/cross_yellow.png" onclick="changeCrosshair('yellow')"
+					alt="Gelbes Fadenkreuz auswählen" />
+				<img src="./img/cross_green.png" onclick="changeCrosshair('green')" alt="Grünes Fadenkreuz auswählen" />
+				<img src="./img/cross_blue.png" onclick="changeCrosshair('blue')" alt="Blaues Fadenkreuz auswählen" />
+				<img src="./img/cross_pink.png" onclick="changeCrosshair('pink')" alt="Pinkes Fadenkreuz auswählen" />
 			</div>
 		</div>
 		<!-- Anzahl der Kartenfenster -->
@@ -115,15 +118,33 @@
 			</div>
 		</div>
 	</div>
-	<!-- Menü-Button -->
-	<div class="menu-button" id="menu-button" title="Einstellungen" onclick="swapBars(this), toggleNav()">
-		<div class="bar1"></div>
-		<div class="bar2"></div>
-		<div class="bar3"></div>
-	</div>
-	<div class="share-button" id="share-button" title="Permalink in die Zwischenablage kopieren"
-		onclick="copyPermalink()">
-		<img src="./img/share.svg" />
+	<!-- application panel -->
+	<div class="app-panel">
+		<div class="panel-header">
+			<img class="panel-icon" src="./img/icon_quattromap.png" alt="" />
+
+			<div class="panel-title">
+				<div class="title-main">QuattroMap</div>
+				<div class="title-sub">by Kreis Viersen</div>
+			</div>
+		</div>
+
+		<div class="panel-actions">
+			<button type="button" class="panel-button share-button" id="share-button"
+				title="Permalink in die Zwischenablage kopieren" aria-label="Permalink kopieren"
+				onclick="copyPermalink()">
+				<img src="./img/share.svg" alt="" />
+			</button>
+
+			<button type="button" class="panel-button menu-button" id="menu-button" title="Einstellungen"
+				aria-label="Einstellungen öffnen" onclick="swapBars(this); toggleNav();">
+				<span class="menu-icon">
+					<span class="bar1"></span>
+					<span class="bar2"></span>
+					<span class="bar3"></span>
+				</span>
+			</button>
+		</div>
 	</div>
 	<div id="mouse-info"></div>
 	<!-- Kartenfenster und Fadenkreuze -->

@@ -8,6 +8,7 @@ body {
 #map_1 {
   position: absolute;
   top: 0;
+  left: 0;
   width: 50%;
   height: 50%;
 }
@@ -15,22 +16,23 @@ body {
 #map_2 {
   position: absolute;
   top: 0;
-  right: 0;
+  left: 50%;
   width: 50%;
   height: 50%;
 }
 
 #map_3 {
   position: absolute;
-  bottom: 0;
+  top: 50%;
+  left: 0;
   width: 50%;
   height: 50%;
 }
 
 #map_4 {
   position: absolute;
-  bottom: 0;
-  right: 0;
+  top: 50%;
+  left: 50%;
   width: 50%;
   height: 50%;
 }
@@ -101,24 +103,18 @@ body {
   transition: width 0.4s ease-in-out;
 }
 
-.maplibregl-ctrl-geocoder--input:focus {
-  width: 500px;
+.maplibregl-ctrl-geocoder {
+  max-width: min(500px, calc(100vw - 80px));
 }
 
-.maplibregl-ctrl-geocoder:focus-within {
-  width: 500px;
-}
-
-.maplibregl-ctrl-geocoder:focus-within .maplibregl-ctrl-geocoder--input {
-  width: 500px;
-}
-
+.maplibregl-ctrl-geocoder:focus-within,
 .maplibregl-ctrl-geocoder:hover {
-  width: 500px;
+  width: min(500px, calc(100vw - 80px));
 }
 
+.maplibregl-ctrl-geocoder--input:focus,
 .maplibregl-ctrl-geocoder:hover .maplibregl-ctrl-geocoder--input {
-  width: 500px;
+  width: min(500px, calc(100vw - 80px));
 }
 
 /* Vollbild-Menü */
@@ -267,8 +263,8 @@ body {
   z-index: 3;
 }
 
-.ch-dropdown-content .ch-image:hover {
-  background-color: buttonface;
+.ch-dropdown-content img:hover {
+  background-color: #f0f0f0;
 }
 
 .ch-dropdown:hover .ch-dropdown-content {

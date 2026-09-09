@@ -1,8 +1,6 @@
-Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. gerne hier ein:<br>
-https://kreis-viersen.github.io/quattromap/<br>
-Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ).
 
-# QuattroMap
+
+# <img src="src/img/icon_quattromap.png" width="70" style="vertical-align: middle;" /> QuattroMap
 
 [![GitHub CI status](https://github.com/kreis-viersen/quattromap/workflows/ci/badge.svg)][github-action-ci]
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)][license]
@@ -10,32 +8,77 @@ Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto
 [github-action-ci]: https://github.com/kreis-viersen/quattromap/actions?query=workflow%3Aci
 [license]:          https://tldrlegal.com/license/mit-license
 
-<a href="https://kreis-viersen.github.io/quattromap/"><img src="./quattromap_screenshot.png"></a>
+**Browsertool zur synchronen Darstellung von bis zu vier verschiedenen Kartenfenstern**
 
-QuattroMap ist eine vom Kreis Viersen entwickelte Kartenanwendung, die vor allem die Außendiensttätigkeiten unterstützen kann.
+**Zur Anwendung:**  
+https://kreis-viersen.github.io/quattromap/
 
-Unter https://kreis-viersen.github.io/quattromap/ ist eine Demo des Tools von jedem internetfähigen Gerät, wie Tablet, Smartphone, Laptop und PC, erreichbar. Die Anwendung ist kompatibel mit modernen Browsern, wie Mozilla Firefox, Google Chrome, Safari. Der Microsoft Internet Explorer wird nicht unterstützt.
+[QuattroMap](https://kreis-viersen.github.io/quattromap/) ist eine vom Kreis Viersen entwickelte Kartenanwendung, mit welcher 
+bis zu vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und synchron bewegt werden können. Dadurch können verschiedene Karteninhalte eines Gebietes direkt miteinander verglichen werden. Zur Auswahl der Karten stehen z.B. Luftbilder, Liegenschaftskataster, geplante Gebäude und OpenStreetMap zur Verfügung.
 
-Mit Hilfe der Anwendung können bis zu 4 verschiedene Karten mit gleichem Kartenausschnitt gleichzeitig dargestellt werden.
-Über die Schaltfläche in der linken unteren Ecke gelangt man zu den Einstellungen der Kartenfenster. Zur Auswahl der Kartenhintergründe stehen z. B.
-Luftbilder, Liegenschaftskataster, geplante Gebäude oder OpenStreetMap zur Verfügung.
+<img src="screenshots/screenshot_082026.png"/>
 
-In den Kartenfenstern können auch Überlagerungen (Overlays) benutzt werden, um bspw. Luftbilder und geplante Gebäude übereinander zu legen.
+## Funktionen
 
-Am linken Bildschirmrand gibt es eine Suchfunktion (Mapbox GL Geocoder Control: https://github.com/mapbox/mapbox-gl-geocoder) sowie die Möglichkeit den Kartenausschnitt und den eigenen Standort über die Standortbestimmung des Geräts anzuzeigen (Standortbestimmung muss im Gerät eingeschaltet bzw. erlaubt sein).
-Dazu gibt es dort eine Schaltfläche, um die Anwendung im Vollbild anzuzeigen. Ein Klick auf das Kompass-Symbol richtet die Karte(n) wieder nach Norden aus.
+- Gleichzeitige Darstellung von bis zu vier Kartenfenstern
+- Synchronisierte Bewegung aller Karten
+- Unabhängige Auswahl des Kartenhintergrundes für jedes Kartenfenster
+- Einblendung zusätzlicher Overlays mit stufenlos einstellbarer Deckkraft in den einzelnen Kartenfenstern
+- Messwerkzeuge zum Messen von Strecken und Flächen
+- Adresssuche und Standortbestimmung zur schnellen Navigation zum gewünschten Kartenausschnitt
+- Erstellung eines Permalinks zum Teilen der aktuellen Kartenfenster und der gewählten Karteneinstellungen
+
+### Karteneinstellungen
+
+Das Einstellungsmenü öffnet sich mit einem Klick auf die Schaltfläche *Einstellungen*. Folgende Optionen können Sie hier festlegen:
+- die Anzahl der Kartenfenster (1, 2, 3 oder 4)
+- die dargestellten Inhalte (Layer) jedes Kartenfensters (siehe [Layer](#aktuell-verfügbare-karteninhalte))
+- optionale Overlays, die als zusätzliche Kartenebene auf eine Karte gezeichnet werden
+- die Deckkraft/Transparenz eines Overlays
+- Farbe des Gitterkreuzes (Zentrumsmarkierung)
+
+### Permalink
+
+Zu jedem Zeitpunkt werden die derzeitgen Karteneinstellungen in der aktuellen URL (Permalink) gespeichert. Hierzu gehört die Anzahl und Einstellung der Kartenfenster inkl. Layerdefinitionen, Kartenzentrum, Zoomstufe und Farbe des Gitterkreuzes (Zentrumsmarkierung).
+Mit einem Klick auf die Schaltfläche *Permalink in die Zwischenablage kopieren* wird die derzeitige URL kopiert. Dies ermöglicht das bequeme
+- Speichern derzeitiger Einstellungen als Lesezeichen für bestimmte Anwendungszwecke
+- Teilen (z.B per Mail) der eingestellten Kartenansichten
+
+#### Geographische Koordinaten als URL-Parameter 
+
+Um den Kartenmittelpunkt beim Aufrufen von [QuattroMap](https://kreis-viersen.github.io/quattromap/) manuell zu steuern, können Sie in der URL die geographische Koordinaten (EPSG:4326) als Parameter `lat` / `lon` übergeben. 
+
+Beispiel:
+https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 
 ### Messwerkzeuge
 
-Sobald nur eine Karte angezeigt wird, stehen Messwerkzeuge zur Verfügung:
-- LineString: zum Messen einer Entfernung in Metern
-- Polygon: zum Messen einer Fläche in Quadratmetern
+[QuattroMap](https://kreis-viersen.github.io/quattromap/) bietet die Möglichkeit, Strecken und Flächen innerhalb des Kartenfensters zu messen:
+1) Wählen Sie in den Einstellungen unter *Anzahl Karten* nur eine Karte aus 
+2) Links oben in den Kartenoptionen erscheinen nun drei neue Optionen zum
+    - Messen von Strecken
+    - Messen von Flächeninhalten
+    - Löschen der aktuellen Messung
+3) Nach dem Aktivieren einer der Messoptionen, können Sie mit der Maus die zu messende Geometrie per Klick erfassen
+3) Um eine aktuelle Messung zu verändern, können Sie die komplette Geometrie oder einzelne Stützpunkte verschieben
 
-Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf der Karte zeichen und mit einem Klick auf den letzten Stützpunkt abschließen:
+## Technik und Kompatibilität
 
-<img src="./quattromap_measurement-tools.gif" width="715">
+- Browserbasierte Webanwendung, nutzbar auf Desktop-PCs, Laptops, Tablets und Smartphones (dadurch auch für den Einsatz im Außendienst geeignet)
+- Kompatibel mit gängigen Webbrowsern wie Mozilla Firefox, Google Chrome und Safari
+- Kartendarstellung mit [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/)
+- Adresssuche über [Photon](https://photon.komoot.io/)
 
-## Aktuell verfügbare Dienste
+
+
+- Der Microsoft Internet Explorer wird nicht unterstützt?.
+
+## Aktuell verfügbare Karteninhalte
+
+Nachfolgend finden Sie eine Liste der aktuell in [QuattroMap](https://kreis-viersen.github.io/quattromap/) eingebunden Karteninhalte.
+
+Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. gerne ein.
+Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ).
 
 ### Layer
 
@@ -167,7 +210,7 @@ Einfach das gewünschte Werkzeug auswählen, den LineString oder das Polygon auf
 
 ### Overlays
 
-Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#layer) gelisteten Diensten sind als Overlay verfügbar:
+Zusätzlich zu den unter [Layer](#layer) gelisteten Diensten sind als Overlay verfügbar:
 
 |Name|Art|Dienst-URL|Dienst-Layer|Lizenz|
 |:---|:---|:---|:---|:---|
@@ -183,20 +226,10 @@ Zusätzlich zu den unter [Layer](https://github.com/kreis-viersen/quattromap#lay
 |**KRZN-Dienste**||||
 |Klassifizierte Gewässer Kreis Viersen|WMS|[URL](https://geoservices.krzn.de/security-proxy/services/wms_verb_klassgew?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|kvie_klassgew|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 
-## Permalink
-
-Die URL enthält die derzeitige Einstellung der QuattroMap (Permalink). Dazu gehört die Anzahl und Einstellung der Kartenfenster inkl. Layerdefinitionen, das Kartenzentrum, die Zoomstufe und die Farbe des Gitterkreuzes (Zentrumsmarkierung). Über den Permalink können so vordefinierte Einstellungen für bestimmte Anwendungszwecke als Lesezeichen gespeichert oder weitergegeben werden. Über die Schaltfläche *Permalink in die Zwischenablage kopieren* am linken Bildschirmrand wird die derzeitige URL in die Zwischenablage kopiert und kann dann bspw. per Mail geteilt werden.
-
-## URL-Parameter lat / lon 
-
-Es können mit den URL-Parametern `lat` / `lon` geographische Koordinaten (EPSG:4326) übergeben werden, welche dann beim Aufruf der Karte für den Kartenmittelpunkt verwendet werden.  
-
-Beispiel:
-https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
-
 ## Konfiguration
 
-Über die [config.json](./src/config.json) können einige Standardeinstellungen der QuattroMap vorgenommen werden.
+Sie können einige Standardeinstellungen von [QuattroMap](https://kreis-viersen.github.io/quattromap/) festlegen, indem Sie diese in der [config.json](./src/config.json) bearbeiten:
+
 
 |Parameter|Erklärung|Beispiel|
 |:---|:---|:---|
@@ -246,10 +279,3 @@ Once the build is finished, you'll find it at `dist/`.
 # publish files to a gh-pages branch on GitHub
 npm run deploy
 ```
-
-### Search
-
-For the search functionality https://github.com/mapbox/mapbox-gl-geocoder is used.
-
-For your own QuattroMap please use your own access token:
-https://docs.mapbox.com/help/how-mapbox-works/access-tokens/.

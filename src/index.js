@@ -1,14 +1,18 @@
 import MapboxDraw from '@mapbox/mapbox-gl-draw';
-import MapboxGeocoder from '@mapbox/mapbox-gl-geocoder';
-var syncMaps = require('@mapbox/mapbox-gl-sync-move');
+import MaplibreGeocoder from '@maplibre/maplibre-gl-geocoder';
+import syncMaps from '@mapbox/mapbox-gl-sync-move';
+
 import TurfArea from '@turf/area';
 import TurfCentroid from '@turf/centroid';
 import TurfLength from '@turf/length';
-import mapboxgl from 'mapbox-gl'
-import './style.css';
+
+import maplibregl from 'maplibre-gl';
+
+import 'maplibre-gl/dist/maplibre-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
-import '@mapbox/mapbox-gl-geocoder/dist/mapbox-gl-geocoder.css';
-import 'mapbox-gl/dist/mapbox-gl.css';
+import '@maplibre/maplibre-gl-geocoder/dist/maplibre-gl-geocoder.css';
+import './style.css';
+
 import config from './config.json';
 import LZString from 'lz-string';
 
@@ -16,17 +20,16 @@ const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
 
-// access Token
-mapboxgl.accessToken = 'pk.eyJ1IjoidHR2aWUiLCJhIjoiY2pzeWtpbnlmMTQ2bDQ0cHBmMG83cDc2cCJ9.PbFiXjCzENBncs0mErVLHQ';
+const PHOTON_NRW_BBOX = [5.75, 50.25, 9.65, 52.65];
 
-// check if mapboxgl and fullscreen supported
-if (mapboxgl.supported()) {
-  console.log('MapGL: supported');
-} else {
-  console.log('MapGL: NOT supported!');
-  alert('Your browser does not support Mapbox GL');
-}
+// patch Mapbox Draw to use MapLibre CSS class names instead of Mapbox GL JS
+MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
+MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
+MapboxDraw.constants.classes.CONTROL_PREFIX = 'maplibregl-ctrl-';
+MapboxDraw.constants.classes.CONTROL_GROUP = 'maplibregl-ctrl-group';
+MapboxDraw.constants.classes.ATTRIBUTION = 'maplibregl-ctrl-attrib';
 
+// check if fullscreen is supported
 if (document.fullscreenEnabled) {
   console.log('Fullscreen: supported');
 } else {
@@ -108,6 +111,19 @@ function updateURLSearchParams() {
   }
 }
 
+// collapses the attribution of map frames (for initial start setup)
+function collapseAttribution(mapId) {
+  requestAnimationFrame(() => {
+    const attribution = document
+      .getElementById(mapId)
+      .querySelector('.maplibregl-ctrl-attrib');
+
+    if (attribution?.open) {
+      attribution.querySelector('.maplibregl-ctrl-attrib-button')?.click();
+    }
+  });
+}
+
 // initial settings for opacity sliders:
 var slider_1 = document.getElementById('slider_1');
 var slider_value_1 = document.getElementById('slider_value_1');
@@ -164,7 +180,7 @@ var default_style = {
   name: "default_style",
   sources: {},
   //glyphs needed for measurement tools (map_1)
-  glyphs: "mapbox://fonts/mapbox/{fontstack}/{range}.pbf",
+  glyphs: "https://demotiles.maplibre.org/font/{fontstack}/{range}.pbf",
   layers: []
 };
 
@@ -263,7 +279,8 @@ config.layer.forEach(function (item) {
   });
 })
 
-var map_1 = new mapboxgl.Map({
+// create main map
+var map_1 = new maplibregl.Map({
   container: "map_1",
   style: default_style,
   zoom: config.zoom,
@@ -272,763 +289,95 @@ var map_1 = new mapboxgl.Map({
   attributionControl: false,
   hash: true
 });
-const attribution_map_1 = new mapboxgl.AttributionControl({
+const attribution_map_1 = new maplibregl.AttributionControl({
   compact: true
 });
 
-var map_2 = new mapboxgl.Map({
+// create 2nd map
+var map_2 = new maplibregl.Map({
   container: "map_2",
   style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
-const attribution_map_2 = new mapboxgl.AttributionControl({
+const attribution_map_2 = new maplibregl.AttributionControl({
   compact: true
 });
 
-
-
-var map_3 = new mapboxgl.Map({
+// create 3rd map
+var map_3 = new maplibregl.Map({
   container: "map_3",
   style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
-const attribution_map_3 = new mapboxgl.AttributionControl({
+const attribution_map_3 = new maplibregl.AttributionControl({
   compact: true
 });
 
-var map_4 = new mapboxgl.Map({
+//create 4th map
+var map_4 = new maplibregl.Map({
   container: "map_4",
   style: default_style,
   zoom: config.zoom,
   center: config.center,
   pitchWithRotate: false,
   attributionControl: false,
-  hash: true
+  hash: false
 });
-const attribution_map_4 = new mapboxgl.AttributionControl({
+const attribution_map_4 = new maplibregl.AttributionControl({
   compact: true
 });
 
 var maps = [map_1, map_2, map_3, map_4];
 var allMapsLoaded = [false, false, false, false];
 
-map_1.on("load", function () {
-  allMapsLoaded[0] = true;
-  map_1.setLayoutProperty(settings.l1, 'visibility', 'visible');
-  // layer for measurement tools
-  map_1.addLayer({
-    "id": "labels",
-    "type": "symbol",
-    "source": {
-      "type": "geojson",
-      "data": {
-        "type": "FeatureCollection",
-        "features": [{
-          "type": "Feature",
-          "geometry": {
-            "type": "Point",
-            "coordinates": []
-          },
-          "properties": {
-            "title": ""
-          }
-        }]
-      }
-    },
-    "layout": {
-      "text-field": "{title}",
-      "text-offset": [0, 0.6],
-      "text-size": 30,
-    },
-    "paint": {
-      "text-color": "#ffb200",
-      "text-halo-color": "#FFFFFF",
-      "text-halo-width": 5,
-      "text-halo-blur": 3
-    }
-  })
+// define custom drawing styles for Mapbox Draw (lines, polygons, measurements)
+const drawStyles = [{ 'id': 'gl-draw-polygon-fill-inactive', 'type': 'fill', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']], 'paint': { 'fill-color': '#3bb2d0', 'fill-outline-color': '#3bb2d0', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-fill-active', 'type': 'fill', 'filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']], 'paint': { 'fill-color': '#fbb03b', 'fill-outline-color': '#fbb03b', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-midpoint', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['==', 'meta', 'midpoint']], 'paint': { 'circle-radius': 3, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-polygon-stroke-inactive', 'type': 'line', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Polygon'], ['!=', 'mode', 'static']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#3bb2d0', 'line-width': 2 } }, { 'id': 'gl-draw-polygon-stroke-active', 'type': 'line', 'filter': ['all', ['==', 'active', 'true'], ['==', '$type', 'Polygon']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#fbb03b', 'line-dasharray': [0.2, 2], 'line-width': 2 } }, { 'id': 'gl-draw-line-inactive', 'type': 'line', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'LineString'], ['!=', 'mode', 'static']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#3bb2d0', 'line-width': 2 } }, { 'id': 'gl-draw-line-active', 'type': 'line', 'filter': ['all', ['==', '$type', 'LineString'], ['==', 'active', 'true']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#fbb03b', 'line-dasharray': [0.2, 2], 'line-width': 2 } }, { 'id': 'gl-draw-polygon-and-line-vertex-stroke-inactive', 'type': 'circle', 'filter': ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 5, 'circle-color': '#fff' } }, { 'id': 'gl-draw-polygon-and-line-vertex-inactive', 'type': 'circle', 'filter': ['all', ['==', 'meta', 'vertex'], ['==', '$type', 'Point'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 3, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-point-point-stroke-inactive', 'type': 'circle', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Point'], ['==', 'meta', 'feature'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 5, 'circle-opacity': 1, 'circle-color': '#fff' } }, { 'id': 'gl-draw-point-inactive', 'type': 'circle', 'filter': ['all', ['==', 'active', 'false'], ['==', '$type', 'Point'], ['==', 'meta', 'feature'], ['!=', 'mode', 'static']], 'paint': { 'circle-radius': 3, 'circle-color': '#3bb2d0' } }, { 'id': 'gl-draw-point-stroke-active', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['==', 'active', 'true'], ['!=', 'meta', 'midpoint']], 'paint': { 'circle-radius': 7, 'circle-color': '#fff' } }, { 'id': 'gl-draw-point-active', 'type': 'circle', 'filter': ['all', ['==', '$type', 'Point'], ['!=', 'meta', 'midpoint'], ['==', 'active', 'true']], 'paint': { 'circle-radius': 5, 'circle-color': '#fbb03b' } }, { 'id': 'gl-draw-polygon-fill-static', 'type': 'fill', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']], 'paint': { 'fill-color': '#404040', 'fill-outline-color': '#404040', 'fill-opacity': 0.1 } }, { 'id': 'gl-draw-polygon-stroke-static', 'type': 'line', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Polygon']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#404040', 'line-width': 2 } }, { 'id': 'gl-draw-line-static', 'type': 'line', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'LineString']], 'layout': { 'line-cap': 'round', 'line-join': 'round' }, 'paint': { 'line-color': '#404040', 'line-width': 2 } }, { 'id': 'gl-draw-point-static', 'type': 'circle', 'filter': ['all', ['==', 'mode', 'static'], ['==', '$type', 'Point']], 'paint': { 'circle-radius': 5, 'circle-color': '#404040' } }];
 
-  const layer = default_style.layers.find(el => el.id === settings.l1);
-  map_1.addControl(attribution_map_1)
-  if (layer.compact_attribution == false) {
-    ca_layer_1 = false
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-
-  setOverlay1();
-});
-map_2.on("load", function () {
-  allMapsLoaded[1] = true;
-  map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-
-  const layer = default_style.layers.find(el => el.id === settings.l2);
-  map_2.addControl(attribution_map_2)
-  if (layer.compact_attribution == false) {
-    ca_layer_2 = false
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-
-  setOverlay2();
-});
-map_3.on("load", function () {
-  allMapsLoaded[2] = true;
-  map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-
-  const layer = default_style.layers.find(el => el.id === settings.l3);
-  map_3.addControl(attribution_map_3)
-  if (layer.compact_attribution == false) {
-    ca_layer_3 = false
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-
-  setOverlay3();
-});
-map_4.on("load", function () {
-  allMapsLoaded[3] = true;
-  map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
-
-  const layer = default_style.layers.find(el => el.id === settings.l4);
-  map_4.addControl(attribution_map_4)
-  if (layer.compact_attribution == false) {
-    ca_layer_4 = false
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-
-  setOverlay4();
-});
-
-// sync map windows
-syncMaps(map_1, map_3, map_2, map_4);
-
-// add controls
-map_1.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_1.addControl(new mapboxgl.NavigationControl({
-  showZoom: true
-}), 'top-left');
-map_1.addControl(new mapboxgl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_1.addControl(new mapboxgl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
+// initialize Mapbox Draw
+const draw = new MapboxDraw({
+  displayControlsDefault: false,
+  controls: {
+    line_string: true,
+    polygon: true,
+    trash: true
   },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
-map_2.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_2.addControl(new mapboxgl.NavigationControl({
-  showZoom: false
-}), 'top-left');
-map_2.addControl(new mapboxgl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_2.addControl(new mapboxgl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
-map_3.addControl(new MapboxGeocoder({
-  accessToken: mapboxgl.accessToken,
-  mapboxgl: mapboxgl,
-  types: "country,region,postcode,district,place,locality,neighborhood,address"
-}), 'top-left');
-map_3.addControl(new mapboxgl.NavigationControl({
-  showZoom: false
-}), 'top-left');
-map_3.addControl(new mapboxgl.FullscreenControl({
-  container: document.querySelector('body')
-}), 'top-left');
-map_3.addControl(new mapboxgl.GeolocateControl({
-  positionOptions: {
-    enableHighAccuracy: true
-  },
-  trackUserLocation: true,
-  showUserHeading: true
-}), 'top-left');
-
-// visibility of map controls
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // map_1
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // map_2
-document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // map_3
-
-// opacity slider
-slider_1.addEventListener('input', function (e) {
-  settings.op1 = parseInt(e.target.value, 10) / 100;
-  if (!settings.o1 == "") {
-    map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
-  }
-  slider_value_1.textContent = e.target.value + '%';
-  updateURLSearchParams();
-});
-slider_2.addEventListener('input', function (e) {
-  settings.op2 = parseInt(e.target.value, 10) / 100;
-  if (!settings.o2 == "") {
-    map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
-  }
-  slider_value_2.textContent = e.target.value + '%';
-  updateURLSearchParams();
-});
-slider_3.addEventListener('input', function (e) {
-  settings.op3 = parseInt(e.target.value, 10) / 100;
-  if (!settings.o3 == "") {
-    map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
-  }
-  slider_value_3.textContent = e.target.value + '%';
-  updateURLSearchParams();
-});
-slider_4.addEventListener('input', function (e) {
-  settings.op4 = parseInt(e.target.value, 10) / 100;
-  if (!settings.o4 == "") {
-    map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
-  }
-  slider_value_4.textContent = e.target.value + '%';
-  updateURLSearchParams();
+  styles: drawStyles
 });
 
-// make manu transparent while using opacity sliders
-slider_1.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
-});
-slider_1.addEventListener('pointerup', function () {
-  document.getElementById("myNav").style.background = "";
-});
-slider_2.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
-});
-slider_2.addEventListener('pointerup', function () {
-  document.getElementById("myNav").style.background = "";
-});
-slider_3.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
-});
-slider_3.addEventListener('pointerup', function () {
-  document.getElementById("myNav").style.background = "";
-});
-slider_4.addEventListener('pointerdown', function () {
-  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.2)";
-});
-slider_4.addEventListener('pointerup', function () {
-  document.getElementById("myNav").style.background = "";
-});
-
-// switch layer for map_1
-window.setLayer1 = function setLayer1() {
-  var layer_id = document.getElementById("form_1").value;
-  map_1.setLayoutProperty(settings.l1, 'visibility', 'none');
-  map_1.setLayoutProperty(layer_id, 'visibility', 'visible');
-  settings.l1 = layer_id;
-  updateURLSearchParams();
-
-  map_1.removeControl(attribution_map_1);
-  map_1.addControl(attribution_map_1)
-  const layer = default_style.layers.find(el => el.id === layer_id);
-  if (layer.compact_attribution == false) {
-    ca_layer_1 = false
-  } else {
-    ca_layer_1 = true
-  }
-  if (ca_layer_1 == false || ca_overlay_1 == false) {
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch layer for map_2
-window.setLayer2 = function setLayer2() {
-  var layer_id = document.getElementById("form_2").value;
-  map_2.setLayoutProperty(settings.l2, 'visibility', 'none');
-  map_2.setLayoutProperty(layer_id, 'visibility', 'visible');
-  settings.l2 = layer_id;
-  updateURLSearchParams();
-
-  map_2.removeControl(attribution_map_2);
-  map_2.addControl(attribution_map_2)
-  const layer = default_style.layers.find(el => el.id === layer_id);
-  if (layer.compact_attribution == false) {
-    ca_layer_2 = false
-  } else {
-    ca_layer_2 = true
-  }
-  if (ca_layer_2 == false || ca_overlay_2 == false) {
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch layer for map_3
-window.setLayer3 = function setLayer3() {
-  var layer_id = document.getElementById("form_3").value;
-  map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
-  map_3.setLayoutProperty(layer_id, 'visibility', 'visible');
-  settings.l3 = layer_id;
-  updateURLSearchParams();
-
-  map_3.removeControl(attribution_map_3);
-  map_3.addControl(attribution_map_3)
-  const layer = default_style.layers.find(el => el.id === layer_id);
-  if (layer.compact_attribution == false) {
-    ca_layer_3 = false
-  } else {
-    ca_layer_3 = true
-  }
-  if (ca_layer_3 == false || ca_overlay_3 == false) {
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch layer for map_4
-window.setLayer4 = function setLayer4() {
-  var layer_id = document.getElementById("form_4").value;
-  map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-  map_4.setLayoutProperty(layer_id, 'visibility', 'visible');
-  settings.l4 = layer_id;
-  updateURLSearchParams();
-
-  map_4.removeControl(attribution_map_4);
-  map_4.addControl(attribution_map_4)
-  const layer = default_style.layers.find(el => el.id === layer_id);
-  if (layer.compact_attribution == false) {
-    ca_layer_4 = false
-  } else {
-    ca_layer_4 = true
-  }
-  if (ca_layer_4 == false || ca_overlay_4 == false) {
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch overlay for map_1
-window.setOverlay1 = function setOverlay1() {
-  var layer_id = document.getElementById("form_overlay_1").value;
-  if (layer_id == "") {
-    ca_overlay_1 = true
-    if (!settings.o1 == "") {
-      map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
-    }
-    settings.o1 = layer_id;
-    updateURLSearchParams();
-  } else {
-    if (!settings.o1 == "") {
-      map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
-    }
-    settings.o1 = layer_id;
-    updateURLSearchParams();
-    map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
-    map_1.setLayoutProperty(settings.o1, 'visibility', 'visible');
-
-    const layer = default_style.layers.find(el => el.id === layer_id);
-    if (layer.compact_attribution == false) {
-      ca_overlay_1 = false
-    } else {
-      ca_overlay_1 = true
-    }
-  }
-  map_1.removeControl(attribution_map_1);
-  map_1.addControl(attribution_map_1)
-  if (ca_layer_1 == false || ca_overlay_1 == false) {
-    document.getElementById('map_1').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch overlay for map_2
-window.setOverlay2 = function setOverlay2() {
-  var layer_id = document.getElementById("form_overlay_2").value;
-  if (layer_id == "") {
-    ca_overlay_2 = true
-    if (!settings.o2 == "") {
-      map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
-    }
-    settings.o2 = layer_id;
-    updateURLSearchParams();
-  } else {
-    if (!settings.o2 == "") {
-      map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
-    }
-    settings.o2 = layer_id;
-    updateURLSearchParams();
-    map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
-    map_2.setLayoutProperty(settings.o2, 'visibility', 'visible');
-
-    const layer = default_style.layers.find(el => el.id === layer_id);
-    if (layer.compact_attribution == false) {
-      ca_overlay_2 = false
-    } else {
-      ca_overlay_2 = true
-    }
-  }
-  map_2.removeControl(attribution_map_2);
-  map_2.addControl(attribution_map_2)
-  if (ca_layer_2 == false || ca_overlay_2 == false) {
-    document.getElementById('map_2').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch overlay for map_3
-window.setOverlay3 = function setOverlay3() {
-  var layer_id = document.getElementById("form_overlay_3").value;
-  if (layer_id == "") {
-    ca_overlay_3 = true
-    if (!settings.o3 == "") {
-      map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
-    }
-    settings.o3 = layer_id;
-    updateURLSearchParams();
-  } else {
-    if (!settings.o3 == "") {
-      map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
-    }
-    settings.o3 = layer_id;
-    updateURLSearchParams();
-    map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
-    map_3.setLayoutProperty(settings.o3, 'visibility', 'visible');
-
-    const layer = default_style.layers.find(el => el.id === layer_id);
-    if (layer.compact_attribution == false) {
-      ca_overlay_3 = false
-    } else {
-      ca_overlay_3 = true
-    }
-  }
-  map_3.removeControl(attribution_map_3);
-  map_3.addControl(attribution_map_3)
-  if (ca_layer_3 == false || ca_overlay_3 == false) {
-    document.getElementById('map_3').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-// switch overlay for map_4
-window.setOverlay4 = function setOverlay4() {
-  var layer_id = document.getElementById("form_overlay_4").value;
-  if (layer_id == "") {
-    ca_overlay_4 = true
-    if (!settings.o4 == "") {
-      map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
-    }
-    settings.o4 = layer_id;
-    updateURLSearchParams();
-  } else {
-    if (!settings.o4 == "") {
-      map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
-    }
-    settings.o4 = layer_id;
-    updateURLSearchParams();
-    map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
-    map_4.setLayoutProperty(settings.o4, 'visibility', 'visible');
-
-    const layer = default_style.layers.find(el => el.id === layer_id);
-    if (layer.compact_attribution == false) {
-      ca_overlay_4 = false
-    } else {
-      ca_overlay_4 = true
-    }
-  }
-  map_4.removeControl(attribution_map_4);
-  map_4.addControl(attribution_map_4)
-  if (ca_layer_4 == false || ca_overlay_4 == false) {
-    document.getElementById('map_4').getElementsByClassName('mapboxgl-ctrl-attrib-button')[0].click();
-  }
-}
-
-/*
-  fullscreen menu
-*/
-
-// toggle menu
-window.toggleNav = function toggleNav() {
-  if (document.getElementById("myNav").style.height == "100%") {
-    document.getElementById("myNav").style.height = "0%";
-  } else {
-    document.getElementById("myNav").style.height = "100%";
-  }
-}
-window.swapBars = function swapBars(x) {
-  x.classList.toggle("change");
-}
-
-window.copyPermalink = function copyPermalink() {
-  updateURLSearchParams();
-  var message = document.createElement("div");
-  message.setAttribute("class", "overlayPermalink");
-  message.innerHTML = "Permalink wurde in die Zwischenablage kopiert";
-  setTimeout(function () {
-    message.parentNode.removeChild(message);
-  }, 800);
-  document.body.appendChild(message);
-  return navigator.clipboard.writeText(currentURL);
-}
-
-// crosshair color
-window.changeCrosshair = function changeCrosshair(colour) {
-  settings.ch = colour
-  updateURLSearchParams();
-  var image_source = "./img/cross_" + settings.ch + ".png";
-  document.getElementById('ch_dd_img').src = image_source;
-  document.getElementById('cross_1').src = image_source;
-  document.getElementById('cross_2').src = image_source;
-  document.getElementById('cross_3').src = image_source;
-  document.getElementById('cross_4').src = image_source;
-  document.getElementById('ch_dropdown_content').style.display = "none";
-  setTimeout("document.getElementById('ch_dropdown_content').style.display='';", 100);
-}
-
-// set initial crosshair colour
-changeCrosshair(settings.ch);
-
-// choose number of map windows
-window.setMapNumber = function setMapNumber(map_number) {
-  switch (map_number) {
-    // Ein Kartenfenster
-    case 1:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'none');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "100%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "0";
-      document.getElementById("map_2").style.height = "0";
-      document.getElementById("map_3").style.width = "0";
-      document.getElementById("map_3").style.height = "0";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "50%";
-      document.getElementById("cross_2").style.display = "none";
-      document.getElementById("cross_3").style.display = "none";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = ""; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = ""; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = ""; // Draw control trash
-
-      settings.mc = 1
-      updateURLSearchParams();
-
-      break;
-    // Zwei Kartenfenster
-    case 2:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "50%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "50%";
-      document.getElementById("map_2").style.height = "100%";
-      document.getElementById("map_2").style.left = "50%";
-      document.getElementById("map_3").style.width = "0";
-      document.getElementById("map_3").style.height = "0";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "25%";
-      document.getElementById("cross_2").style.top = "50%";
-      document.getElementById("cross_2").style.left = "75%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "none";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
-
-      settings.mc = 2
-      updateURLSearchParams();
-
-      break;
-    // Drei Kartenfenster
-    case 3:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "33.333%";
-      document.getElementById("map_1").style.height = "100%";
-      document.getElementById("map_2").style.width = "33.333%";
-      document.getElementById("map_2").style.height = "100%";
-      document.getElementById("map_2").style.left = "33.333%";
-      document.getElementById("map_3").style.width = "33.333%";
-      document.getElementById("map_3").style.height = "100%";
-      document.getElementById("map_3").style.top = "0";
-      document.getElementById("map_3").style.left = "66.666%";
-      document.getElementById("map_4").style.width = "0";
-      document.getElementById("map_4").style.height = "0";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "50%";
-      document.getElementById("cross_1").style.left = "16.666%";
-      document.getElementById("cross_2").style.top = "50%";
-      document.getElementById("cross_2").style.left = "50%";
-      document.getElementById("cross_3").style.top = "50%";
-      document.getElementById("cross_3").style.left = "83.333%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "";
-      document.getElementById("cross_4").style.display = "none";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      document.getElementById("button_4map").style = "";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
-
-      settings.mc = 3
-      updateURLSearchParams();
-
-      break;
-    // Vier Kartenfenster
-    case 4:
-      // Sichtbare Kartenfenster definieren:
-      map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
-      map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
-      map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
-      // Position und Größe der Kartenfenster anpassen
-      document.getElementById("map_1").style.width = "50%";
-      document.getElementById("map_1").style.height = "50%";
-      document.getElementById("map_2").style.width = "50%";
-      document.getElementById("map_2").style.height = "50%";
-      document.getElementById("map_2").style.left = "50%";
-      document.getElementById("map_3").style.width = "50%";
-      document.getElementById("map_3").style.height = "50%";
-      document.getElementById("map_3").style.top = "";
-      document.getElementById("map_3").style.bottom = "0";
-      document.getElementById("map_3").style.left = "0";
-      document.getElementById("map_4").style.width = "50%";
-      document.getElementById("map_4").style.height = "50%";
-      // Fensterinhalt neu zeichnen um Darstellungsfehler zu vermeiden
-      map_1.resize();
-      map_2.resize();
-      map_3.resize();
-      map_4.resize();
-      // Fadenkreuzpositionen und -sichtbarkeiten anpassen
-      document.getElementById("cross_1").style.top = "25%";
-      document.getElementById("cross_1").style.left = "25%";
-      document.getElementById("cross_2").style.top = "25%";
-      document.getElementById("cross_2").style.left = "75%";
-      document.getElementById("cross_3").style.top = "75%";
-      document.getElementById("cross_3").style.left = "25%";
-      document.getElementById("cross_2").style.display = "";
-      document.getElementById("cross_3").style.display = "";
-      document.getElementById("cross_4").style.display = "";
-      // Darstellung der Buttons zur Auswahl der Kartenfenster anpassen
-      document.getElementById("button_1map").style = "";
-      document.getElementById("button_2map").style = "";
-      document.getElementById("button_3map").style = "";
-      document.getElementById("button_4map").style = "background:#444;border: 1px solid buttonface;border-radius: 5px;";
-      // Sichtbarkeit der Controls einstellen
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[0].style.display = ""; // Karte 1: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[1].style.display = "none"; // Karte 2: Controls
-      document.getElementsByClassName("mapboxgl-ctrl-top-left")[2].style.display = "none"; // Karte 3: Controls
-
-      document.getElementsByClassName("mapbox-gl-draw_line")[0].style.display = "none"; // Draw control line
-      document.getElementsByClassName("mapbox-gl-draw_polygon")[0].style.display = "none"; // Draw control polygon
-      document.getElementsByClassName("mapbox-gl-draw_trash")[0].style.display = "none"; // Draw control trash
-
-      settings.mc = 4
-      updateURLSearchParams();
-
-      break;
-    default:
-      // Fehler melden
-      alert("ERROR: " + map_number);
-  }
-}
-
-function intitialMapNumber() {
-  if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
-    setTimeout(function () {
-      intitialMapNumber()
-    }, 100);
+// function that limits drawn geometries to one at a time
+map_1.on('draw.modechange', () => {
+  if (!['draw_polygon', 'draw_line_string'].includes(draw.getMode())) {
     return;
   }
-  var mc = settings.mc
-  if (mc) {
-    setTimeout(() => {
-      setMapNumber(settings.mc);
-    }, 100);
+
+  const features = draw.getAll().features;
+
+  if (features.length <= 1) {
+    resetLabels();
+    return;
   }
-}
 
-intitialMapNumber();
+  const idsToDelete = features
+    .slice(0, -1)
+    .filter(f =>
+      f.geometry.type === 'Polygon' ||
+      f.geometry.type === 'LineString'
+    )
+    .map(f => f.id);
 
-// Alle Labels zurücksetzen
-window.resetLabels = function resetLabels() {
-  var geojson = {
-    "type": "FeatureCollection",
-    "features": [{
-      "type": "Feature",
-      "geometry": {
-        "type": "Point",
-        "coordinates": []
-      },
-      "properties": {
-        "title": ""
-      }
-    }]
-  };
-  map_1.getSource("labels").setData(geojson);
-}
+  draw.delete(idsToDelete);
+  resetLabels();
+});
 
-// Angabe des Flächeninhalts in der Messfunktion aktualisieren
+// update the measurement label (length, area)
 window.updateArea = function updateArea(e) {
   var data = draw.getAll();
   resetLabels();
@@ -1075,172 +424,763 @@ window.updateArea = function updateArea(e) {
   }
 }
 
-// Messfunktionen hinzufügen:
-const draw = new MapboxDraw({
-  displayControlsDefault: false,
-  controls: {
-    line_string: true,
-    polygon: true,
-    trash: true
-  },
-  styles: [
-    // Polygons
-    {
-      'id': 'gl-draw-polygon-fill',
-      'type': 'fill',
-      'filter': ['all', ['==', '$type', 'Polygon']],
-      'paint': {
-        'fill-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-        'fill-opacity': 0.1,
-      },
-    },
-    // Lines
-    {
-      'id': 'gl-draw-lines',
-      'type': 'line',
-      'filter': [
-        'any',
-        ['==', '$type', 'LineString'],
-        ['==', '$type', 'Polygon'],
-      ],
-      'layout': {
-        'line-cap': 'round',
-        'line-join': 'round',
-      },
-      'paint': {
-        'line-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-        'line-dasharray': [
-          'literal', [0.2, 2]
-            ],
-        'line-width': 2,
-      },
-    },
-    // Points - outer circle
-    {
-      'id': 'gl-draw-point-outer',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'feature'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 7,
-          5,
-        ],
-        'circle-color': white,
-      },
-    },
-    // Points - inner circle
-    {
-      'id': 'gl-draw-point-inner',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'feature'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 5,
-          3,
-        ],
-        'circle-color': [
-          'case',
-          ['==', ['get', 'active'], 'true'], orange,
-          blue,
-        ],
-      },
-    },
-    // Vertex - outer circle
-    {
-      'id': 'gl-draw-vertex-outer',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'vertex'],
-        ['!=', 'mode', 'simple_select'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 7,
-          5,
-        ],
-        'circle-color': white,
-      },
-    },
-    // Vertex - inner circle
-    {
-      'id': 'gl-draw-vertex-inner',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', '$type', 'Point'],
-        ['==', 'meta', 'vertex'],
-        ['!=', 'mode', 'simple_select'],
-      ],
-      'paint': {
-        'circle-radius': [
-          'case',
-          ['==', ['get', 'active'], 'true'], 5,
-          3,
-        ],
-        'circle-color': orange,
-      },
-    },
-    // Midpoint
-    {
-      'id': 'gl-draw-midpoint',
-      'type': 'circle',
-      'filter': [
-        'all',
-        ['==', 'meta', 'midpoint'],
-      ],
-      'paint': {
-        'circle-radius': 3,
-        'circle-color': orange,
-      },
-    },
-  ],
-});
-
-// Map laden
-map_1.on('load', () => {
-  map_1.addControl(draw, 'top-left');
-
-  setTimeout(() => {
-    intitialMapNumber();
-  }, 300);
-});
-
+// trigger label update
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);
 map_1.on('draw.update', updateArea);
 
-map_1.on('draw.modechange', function () {
-  const data = draw.getAll();
-  if ((draw.getMode() == 'draw_polygon') || (draw.getMode() == 'draw_line_string')) {
-    var pids = []
-    const lid = data.features[data.features.length - 1].id
-    data.features.forEach((f) => {
-      if ((f.geometry.type === 'Polygon' && f.id !== lid) || (f.geometry.type === 'LineString' && f.id !== lid)) {
-        pids.push(f.id)
+// initialize the primary map after loading
+map_1.on("load", function () {
+  allMapsLoaded[0] = true;
+  map_1.setLayoutProperty(settings.l1, 'visibility', 'visible');
+
+  // add a label layer for measurement results
+  map_1.addLayer({
+    "id": "labels",
+    "type": "symbol",
+    "source": {
+      "type": "geojson",
+      "data": {
+        "type": "FeatureCollection",
+        "features": []
       }
-    })
-    draw.delete(pids);
-    resetLabels();
+    },
+    "layout": {
+      "text-field": ["get", "title"],
+      "text-offset": [0, 0.6],
+      "text-size": 30,
+    },
+    "paint": {
+      "text-color": "#ffb200",
+      "text-halo-color": "#FFFFFF",
+      "text-halo-width": 5,
+      "text-halo-blur": 3
+    }
+  })
+
+  const layer = default_style.layers.find(el => el.id === settings.l1);
+
+  // attribution settings
+  map_1.addControl(attribution_map_1);
+  collapseAttribution('map_1'); // collapse by default
+
+  // expand attribution when compact mode is disabled
+  if (layer.compact_attribution == false) {
+    ca_layer_1 = false
   }
+
+  setOverlay1();
+  map_1.addControl(draw, 'top-left');
 });
+
+// initialize the 2nd map after loading
+map_2.on("load", function () {
+  allMapsLoaded[1] = true;
+  map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l2);
+
+  // attribution settings
+  map_2.addControl(attribution_map_2);
+  collapseAttribution('map_2'); // collapse by default
+
+  // expand attribution when compact mode is disabled
+  if (layer.compact_attribution == false) {
+    ca_layer_2 = false
+  }
+
+  setOverlay2();
+});
+
+// initialize the 3rd map after loading
+map_3.on("load", function () {
+  allMapsLoaded[2] = true;
+  map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l3);
+
+  // attribution settings
+  map_3.addControl(attribution_map_3);
+  collapseAttribution('map_3'); // collapse by default
+
+  // expand attribution when compact mode is disabled
+  if (layer.compact_attribution == false) {
+    ca_layer_3 = false
+  }
+
+  setOverlay3();
+});
+
+// initialize the 4th map after loading
+map_4.on("load", function () {
+  allMapsLoaded[3] = true;
+  map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
+
+  const layer = default_style.layers.find(el => el.id === settings.l4);
+
+  // attribution settings
+  map_4.addControl(attribution_map_4);
+  collapseAttribution('map_4'); // collapse by default
+
+  // expand attribution when compact mode is disabled
+  if (layer.compact_attribution == false) {
+    ca_layer_4 = false
+  }
+
+  setOverlay4();
+});
+
+// sync map windows
+syncMaps(map_1, map_3, map_2, map_4);
+
+// geocoding API for MapLibre Geocoder using Photon (komoot)
+let photonAbortController = null;
+
+const geocodingApi = {
+  forwardGeocode: async (config) => {
+    const query = config.query?.trim();
+    if (!query || query.length < 3) {
+      return { features: [] };
+    }
+
+    photonAbortController?.abort();
+    const controller = new AbortController();
+    photonAbortController = controller;
+
+    try {
+      const params = new URLSearchParams({
+        q: query,
+        limit: '5',
+        lang: 'de',
+        bbox: PHOTON_NRW_BBOX.join(',')
+      });
+
+      const response = await fetch(
+        `https://photon.komoot.io/api/?${params.toString()}`,
+        { signal: controller.signal }
+      );
+
+      if (!response.ok) {
+        throw new Error(`Photon HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      const features = (data.features || []).map(feature => {
+        const extent = feature.properties?.extent;
+        const bbox = Array.isArray(extent) && extent.length === 4
+          ? [extent[0], extent[3], extent[2], extent[1]]
+          : undefined;
+
+        return {
+          type: 'Feature',
+          geometry: feature.geometry,
+          properties: feature.properties,
+          center: feature.geometry.coordinates,
+          ...(bbox ? { bbox } : {}),
+          place_name: [
+            feature.properties.name,
+            feature.properties.street,
+            feature.properties.housenumber,
+            feature.properties.postcode,
+            feature.properties.city
+          ].filter(Boolean).join(', '),
+          text: feature.properties.name || query
+        };
+      });
+
+      return { features };
+    } catch (error) {
+      if (error.name === 'AbortError') {
+        return { features: [] };
+      }
+      console.error('Photon-Adresssuche fehlgeschlagen:', error);
+      return { features: [] };
+    } finally {
+      if (photonAbortController === controller) {
+        photonAbortController = null;
+      }
+    }
+  }
+};
+
+// initialize geocoding API (for search)
+function createGeocoder() {
+  return new MaplibreGeocoder(geocodingApi, {
+    maplibregl,
+    marker: false,
+
+    collapsed: false,
+    clearOnBlur: false,
+    clearAndBlurOnEsc: true,
+
+    showResultsWhileTyping: true,
+    debounceSearch: 350,
+    minLength: 3,
+
+    flyTo: { zoom: 14, duration: 800 },
+    bbox: PHOTON_NRW_BBOX, 
+
+    placeholder: 'Adresse in NRW suchen',
+
+    enableEventLogging: false,
+    trackProximity: false,
+    showResultMarkers: false,
+    popup: false
+  });
+}
+
+// add controls
+const geocoder = createGeocoder();
+map_1.addControl(geocoder, 'top-left');
+
+map_1.addControl(
+  new maplibregl.NavigationControl({
+    showZoom: true,
+    showCompass: true
+  }),
+  'top-left'
+);
+
+map_1.addControl(
+  new maplibregl.FullscreenControl({
+    container: document.querySelector('body')
+  }),
+  'top-left'
+);
+
+map_1.addControl(
+  new maplibregl.GeolocateControl({
+    positionOptions: {
+      enableHighAccuracy: true
+    },
+    trackUserLocation: true,
+    showUserHeading: true
+  }),
+  'top-left'
+);
+
+// opacity slider
+slider_1.addEventListener('input', function (e) {
+  settings.op1 = parseInt(e.target.value, 10) / 100;
+  if (!settings.o1 == "") {
+    map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
+  }
+  slider_value_1.textContent = e.target.value + '%';
+  updateURLSearchParams();
+});
+slider_2.addEventListener('input', function (e) {
+  settings.op2 = parseInt(e.target.value, 10) / 100;
+  if (!settings.o2 == "") {
+    map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
+  }
+  slider_value_2.textContent = e.target.value + '%';
+  updateURLSearchParams();
+});
+slider_3.addEventListener('input', function (e) {
+  settings.op3 = parseInt(e.target.value, 10) / 100;
+  if (!settings.o3 == "") {
+    map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
+  }
+  slider_value_3.textContent = e.target.value + '%';
+  updateURLSearchParams();
+});
+slider_4.addEventListener('input', function (e) {
+  settings.op4 = parseInt(e.target.value, 10) / 100;
+  if (!settings.o4 == "") {
+    map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
+  }
+  slider_value_4.textContent = e.target.value + '%';
+  updateURLSearchParams();
+});
+
+// make menu transparent while using opacity sliders
+slider_1.addEventListener('pointerdown', function () {
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
+});
+slider_1.addEventListener('pointerup', function () {
+  document.getElementById("myNav").style.background = "";
+});
+slider_2.addEventListener('pointerdown', function () {
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
+});
+slider_2.addEventListener('pointerup', function () {
+  document.getElementById("myNav").style.background = "";
+});
+slider_3.addEventListener('pointerdown', function () {
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
+});
+slider_3.addEventListener('pointerup', function () {
+  document.getElementById("myNav").style.background = "";
+});
+slider_4.addEventListener('pointerdown', function () {
+  document.getElementById("myNav").style.background = "rgba(0,0,0, 0.0)";
+});
+slider_4.addEventListener('pointerup', function () {
+  document.getElementById("myNav").style.background = "";
+});
+
+// switch layer for map_1
+window.setLayer1 = function setLayer1() {
+  var layer_id = document.getElementById("form_1").value;
+  map_1.setLayoutProperty(settings.l1, 'visibility', 'none');
+  map_1.setLayoutProperty(layer_id, 'visibility', 'visible');
+  settings.l1 = layer_id;
+  updateURLSearchParams();
+
+  map_1.removeControl(attribution_map_1);
+  map_1.addControl(attribution_map_1)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_1 = false
+  } else {
+    ca_layer_1 = true
+  }
+  if (ca_layer_1 == false || ca_overlay_1 == false) {
+    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch layer for map_2
+window.setLayer2 = function setLayer2() {
+  var layer_id = document.getElementById("form_2").value;
+  map_2.setLayoutProperty(settings.l2, 'visibility', 'none');
+  map_2.setLayoutProperty(layer_id, 'visibility', 'visible');
+  settings.l2 = layer_id;
+  updateURLSearchParams();
+
+  map_2.removeControl(attribution_map_2);
+  map_2.addControl(attribution_map_2)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_2 = false
+  } else {
+    ca_layer_2 = true
+  }
+  if (ca_layer_2 == false || ca_overlay_2 == false) {
+    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch layer for map_3
+window.setLayer3 = function setLayer3() {
+  var layer_id = document.getElementById("form_3").value;
+  map_3.setLayoutProperty(settings.l3, 'visibility', 'none');
+  map_3.setLayoutProperty(layer_id, 'visibility', 'visible');
+  settings.l3 = layer_id;
+  updateURLSearchParams();
+
+  map_3.removeControl(attribution_map_3);
+  map_3.addControl(attribution_map_3)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_3 = false
+  } else {
+    ca_layer_3 = true
+  }
+  if (ca_layer_3 == false || ca_overlay_3 == false) {
+    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch layer for map_4
+window.setLayer4 = function setLayer4() {
+  var layer_id = document.getElementById("form_4").value;
+  map_4.setLayoutProperty(settings.l4, 'visibility', 'none');
+  map_4.setLayoutProperty(layer_id, 'visibility', 'visible');
+  settings.l4 = layer_id;
+  updateURLSearchParams();
+
+  map_4.removeControl(attribution_map_4);
+  map_4.addControl(attribution_map_4)
+  const layer = default_style.layers.find(el => el.id === layer_id);
+  if (layer.compact_attribution == false) {
+    ca_layer_4 = false
+  } else {
+    ca_layer_4 = true
+  }
+  if (ca_layer_4 == false || ca_overlay_4 == false) {
+    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch overlay for map_1
+window.setOverlay1 = function setOverlay1() {
+  var layer_id = document.getElementById("form_overlay_1").value;
+  if (layer_id == "") {
+    ca_overlay_1 = true
+    if (!settings.o1 == "") {
+      map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
+    }
+    settings.o1 = layer_id;
+    updateURLSearchParams();
+  } else {
+    if (!settings.o1 == "") {
+      map_1.setLayoutProperty(settings.o1, 'visibility', 'none');
+    }
+    settings.o1 = layer_id;
+    updateURLSearchParams();
+    map_1.setPaintProperty(settings.o1, 'raster-opacity', settings.op1);
+    map_1.setLayoutProperty(settings.o1, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_1 = false
+    } else {
+      ca_overlay_1 = true
+    }
+  }
+  map_1.removeControl(attribution_map_1);
+  map_1.addControl(attribution_map_1)
+  if (ca_layer_1 == false || ca_overlay_1 == false) {
+    document.getElementById('map_1').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch overlay for map_2
+window.setOverlay2 = function setOverlay2() {
+  var layer_id = document.getElementById("form_overlay_2").value;
+  if (layer_id == "") {
+    ca_overlay_2 = true
+    if (!settings.o2 == "") {
+      map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
+    }
+    settings.o2 = layer_id;
+    updateURLSearchParams();
+  } else {
+    if (!settings.o2 == "") {
+      map_2.setLayoutProperty(settings.o2, 'visibility', 'none');
+    }
+    settings.o2 = layer_id;
+    updateURLSearchParams();
+    map_2.setPaintProperty(settings.o2, 'raster-opacity', settings.op2);
+    map_2.setLayoutProperty(settings.o2, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_2 = false
+    } else {
+      ca_overlay_2 = true
+    }
+  }
+  map_2.removeControl(attribution_map_2);
+  map_2.addControl(attribution_map_2)
+  if (ca_layer_2 == false || ca_overlay_2 == false) {
+    document.getElementById('map_2').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch overlay for map_3
+window.setOverlay3 = function setOverlay3() {
+  var layer_id = document.getElementById("form_overlay_3").value;
+  if (layer_id == "") {
+    ca_overlay_3 = true
+    if (!settings.o3 == "") {
+      map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
+    }
+    settings.o3 = layer_id;
+    updateURLSearchParams();
+  } else {
+    if (!settings.o3 == "") {
+      map_3.setLayoutProperty(settings.o3, 'visibility', 'none');
+    }
+    settings.o3 = layer_id;
+    updateURLSearchParams();
+    map_3.setPaintProperty(settings.o3, 'raster-opacity', settings.op3);
+    map_3.setLayoutProperty(settings.o3, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_3 = false
+    } else {
+      ca_overlay_3 = true
+    }
+  }
+  map_3.removeControl(attribution_map_3);
+  map_3.addControl(attribution_map_3)
+  if (ca_layer_3 == false || ca_overlay_3 == false) {
+    document.getElementById('map_3').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+// switch overlay for map_4
+window.setOverlay4 = function setOverlay4() {
+  var layer_id = document.getElementById("form_overlay_4").value;
+  if (layer_id == "") {
+    ca_overlay_4 = true
+    if (!settings.o4 == "") {
+      map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
+    }
+    settings.o4 = layer_id;
+    updateURLSearchParams();
+  } else {
+    if (!settings.o4 == "") {
+      map_4.setLayoutProperty(settings.o4, 'visibility', 'none');
+    }
+    settings.o4 = layer_id;
+    updateURLSearchParams();
+    map_4.setPaintProperty(settings.o4, 'raster-opacity', settings.op4);
+    map_4.setLayoutProperty(settings.o4, 'visibility', 'visible');
+
+    const layer = default_style.layers.find(el => el.id === layer_id);
+    if (layer.compact_attribution == false) {
+      ca_overlay_4 = false
+    } else {
+      ca_overlay_4 = true
+    }
+  }
+  map_4.removeControl(attribution_map_4);
+  map_4.addControl(attribution_map_4)
+  if (ca_layer_4 == false || ca_overlay_4 == false) {
+    document.getElementById('map_4').getElementsByClassName('maplibregl-ctrl-attrib-button')[0].click();
+  }
+}
+
+/*
+  fullscreen menu
+*/
+
+// toggle menu
+window.toggleNav = function toggleNav() {
+  const panel = document.getElementById('myNav');
+  const isOpen = panel.classList.toggle('open');
+
+  panel.setAttribute('aria-hidden', String(!isOpen));
+};
+
+window.swapBars = function swapBars(x) {
+  x.classList.toggle("change");
+}
+
+window.copyPermalink = function copyPermalink() {
+  updateURLSearchParams();
+  var message = document.createElement("div");
+  message.setAttribute("class", "overlayPermalink");
+  message.innerHTML = "Permalink wurde in die Zwischenablage kopiert";
+  setTimeout(function () {
+    message.parentNode.removeChild(message);
+  }, 800);
+  document.body.appendChild(message);
+  return navigator.clipboard.writeText(currentURL);
+}
+
+// update the crosshair colour
+window.changeCrosshair = function changeCrosshair(colour) {
+  settings.ch = colour;
+  updateURLSearchParams();
+
+  const imageSource = `./img/cross_${colour}.png`;
+
+  document.getElementById('cross_1').src = imageSource;
+  document.getElementById('cross_2').src = imageSource;
+  document.getElementById('cross_3').src = imageSource;
+  document.getElementById('cross_4').src = imageSource;
+
+  document.querySelectorAll('.crosshair-option').forEach((option) => {
+    option.classList.toggle(
+      'active',
+      option.dataset.colour === colour
+    );
+  });
+};
+
+// select the crosshair colour
+document.querySelectorAll('.crosshair-option').forEach((button) => {
+  button.addEventListener('click', function () {
+    changeCrosshair(this.dataset.colour);
+  });
+});
+
+// set the initial crosshair colour
+changeCrosshair(settings.ch);
+
+// choose number of map windows
+window.setMapNumber = function setMapNumber(mapNumber) {
+  const layouts = {
+    1: {
+      maps: [
+        { width: '100%', height: '100%', top: '0', left: '0' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '50%', visible: true },
+        { visible: false },
+        { visible: false },
+        { visible: false }
+      ]
+    },
+
+    2: {
+      maps: [
+        { width: '50%', height: '100%', top: '0', left: '0' },
+        { width: '50%', height: '100%', top: '0', left: '50%' },
+        { width: '0', height: '0' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '25%', visible: true },
+        { top: '50%', left: '75%', visible: true },
+        { visible: false },
+        { visible: false }
+      ]
+    },
+
+    3: {
+      maps: [
+        { width: '33.333%', height: '100%', top: '0', left: '0' },
+        { width: '33.333%', height: '100%', top: '0', left: '33.333%' },
+        { width: '33.334%', height: '100%', top: '0', left: '66.666%' },
+        { width: '0', height: '0' }
+      ],
+      crosses: [
+        { top: '50%', left: '16.666%', visible: true },
+        { top: '50%', left: '50%', visible: true },
+        { top: '50%', left: '83.333%', visible: true },
+        { visible: false }
+      ]
+    },
+
+    4: {
+      maps: [
+        { width: '50%', height: '50%', top: '0', left: '0' },
+        { width: '50%', height: '50%', top: '0', left: '50%' },
+        { width: '50%', height: '50%', top: '50%', left: '0' },
+        { width: '50%', height: '50%', top: '50%', left: '50%' }
+      ],
+      crosses: [
+        { top: '25%', left: '25%', visible: true },
+        { top: '25%', left: '75%', visible: true },
+        { top: '75%', left: '25%', visible: true },
+        { top: '75%', left: '75%', visible: true }
+      ]
+    }
+  };
+
+  const layout = layouts[mapNumber];
+
+  if (!layout) {
+    console.error(`Ungültige Kartenanzahl: ${mapNumber}`);
+    return;
+  }
+
+  const mapInstances = [map_1, map_2, map_3, map_4];
+
+  const mapElements = mapInstances.map(
+    (_, index) => document.getElementById(`map_${index + 1}`)
+  );
+
+  const crossElements = mapInstances.map(
+    (_, index) => document.getElementById(`cross_${index + 1}`)
+  );
+
+  // only show settings for visible maps
+  mapInstances.forEach((_, index) => {
+    const settingsCard = document.getElementById(`menu_map_${index + 1}`);
+
+    if (settingsCard) {
+      settingsCard.hidden = index >= mapNumber;
+    }
+  });
+
+  // arrange map containers
+  mapElements.forEach((element, index) => {
+    const mapLayout = layout.maps[index];
+
+    element.style.width = mapLayout.width;
+    element.style.height = mapLayout.height;
+    element.style.top = mapLayout.top ?? '0';
+    element.style.left = mapLayout.left ?? '0';
+    element.style.right = 'auto';
+    element.style.bottom = 'auto';
+  });
+
+  // set visibility of map layers
+  mapInstances.forEach((map, index) => {
+    const isVisible = index < mapNumber;
+
+    map.setLayoutProperty(
+      settings[`l${index + 1}`],
+      'visibility',
+      isVisible ? 'visible' : 'none'
+    );
+  });
+
+  // position crosshairs
+  crossElements.forEach((element, index) => {
+    const crossLayout = layout.crosses[index];
+
+    element.style.display = crossLayout.visible ? '' : 'none';
+
+    if (crossLayout.visible) {
+      element.style.top = crossLayout.top;
+      element.style.left = crossLayout.left;
+    }
+  });
+
+  // only show measuring tools when view is limited to the primary map
+  const showDrawControls = mapNumber === 1;
+
+  [
+    '.mapbox-gl-draw_line',
+    '.mapbox-gl-draw_polygon',
+    '.mapbox-gl-draw_trash'
+  ].forEach((selector) => {
+    const control = document.querySelector(selector);
+
+    if (control) {
+      control.style.display = showDrawControls ? '' : 'none';
+    }
+  });
+
+  // resize maps after changing their containers
+  requestAnimationFrame(() => {
+    mapInstances.forEach((map) => map.resize());
+  });
+
+  // update the map count selector
+  const mapCountSelect = document.getElementById('map-count-select');
+
+  if (mapCountSelect) {
+    mapCountSelect.value = String(mapNumber);
+  }
+
+  settings.mc = mapNumber;
+  updateURLSearchParams();
+};
+
+// change the number of visible maps
+const mapCountSelect = document.getElementById('map-count-select');
+
+mapCountSelect.addEventListener('change', function () {
+  setMapNumber(Number(this.value));
+});
+
+function initialMapNumber() {
+  if (JSON.stringify(allMapsLoaded) !== "[true,true,true,true]") {
+    setTimeout(function () {
+      initialMapNumber()
+    }, 100);
+    return;
+  }
+  var mc = settings.mc
+  if (mc) {
+    setTimeout(() => {
+      setMapNumber(settings.mc);
+    }, 100);
+  }
+}
+
+initialMapNumber();
+
+// reset all labels
+window.resetLabels = function resetLabels() {
+  const source = map_1.getSource("labels");
+  if (!source) return;
+
+  source.setData({
+    type: "FeatureCollection",
+    features: []
+  });
+}

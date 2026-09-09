@@ -1,5 +1,5 @@
 const CopyPlugin = require('copy-webpack-plugin');
-const LicensePlugin = require('webpack-license-plugin')
+const LicensePlugin = require('webpack-license-plugin');
 const TerserPlugin = require('terser-webpack-plugin');
 const path = require('path');
 
@@ -7,41 +7,46 @@ module.exports = {
   mode: 'production',
   entry: './src/index.js',
   optimization: {
-    minimizer: [new TerserPlugin({
-      extractComments: false,
-    })],
+    minimizer: [
+      new TerserPlugin({
+        extractComments: false,
+      }),
+    ],
   },
   devServer: {
     client: {
       overlay: {
         errors: true,
-        warnings: false
-      }
+        warnings: false,
+      },
     },
     devMiddleware: {
-      stats: 'minimal'
-    }
+      stats: 'minimal',
+    },
   },
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'dist'),
   },
   module: {
-    rules: [{
-      test: /\.css$/i,
-      use: ['style-loader', 'css-loader'],
-    }, ],
+    rules: [
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      },
+    ],
   },
   plugins: [
     new CopyPlugin({
-      patterns: [{
+      patterns: [
+        {
           from: './src/index.html',
-          to: 'index.html'
+          to: 'index.html',
         },
         {
           from: './src/img',
-          to: 'img'
-        }
+          to: 'img',
+        },
       ],
     }),
     new LicensePlugin({
@@ -61,5 +66,5 @@ module.exports = {
         }], null, 2)
       }
     }),
-  ]
+  ],
 };

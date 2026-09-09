@@ -67,7 +67,7 @@ https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 - Browserbasierte Webanwendung, nutzbar auf Desktop-PCs, Laptops, Tablets und Smartphones (dadurch auch für den Einsatz im Außendienst geeignet)
 - Kompatibel mit gängigen Webbrowsern wie Mozilla Firefox, Google Chrome und Safari
 - Kartendarstellung mit [MapLibre GL JS](https://maplibre.org/maplibre-gl-js/docs/)
-- Adresssuche über [Nominatim](https://nominatim.org/)
+- Adresssuche über [Photon](https://photon.komoot.io/)
 
 
 

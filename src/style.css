@@ -88,23 +88,13 @@ body {
 
 .maplibregl-ctrl-geocoder {
   width: 30px;
-  height: 30px;
   min-width: 30px;
   max-width: min(500px, calc(100vw - 80px));
 
-  overflow: hidden;
+  overflow: visible;
 
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
   transition: width 0.4s ease-in-out;
-}
-
-.maplibregl-ctrl-geocoder--icon {
-  display: inline-block;
-  top: 5px;
-  left: 5px;
-
-  vertical-align: middle;
-  fill: #757575;
 }
 
 .maplibregl-ctrl-geocoder--input {
@@ -125,6 +115,20 @@ body {
 .maplibregl-ctrl-geocoder--input:focus,
 .maplibregl-ctrl-geocoder:hover .maplibregl-ctrl-geocoder--input {
   width: min(500px, calc(100vw - 80px));
+}
+
+/* Nur die Such-Lupe anzeigen */
+.maplibregl-ctrl-geocoder--icon-search {
+  display: block;
+  top: 5px;
+  left: 5px;
+  fill: #757575;
+}
+
+/* Kein zusätzliches Schließen-/Clear-Icon */
+.maplibregl-ctrl-geocoder--icon-close,
+.maplibregl-ctrl-geocoder--button {
+  display: none;
 }
 
 /* application panel */

@@ -20,6 +20,8 @@ const blue = '#3bb2d0';
 const orange = '#fbb03b';
 const white = '#fff';
 
+const PHOTON_NRW_BBOX = [5.75, 50.25, 9.65, 52.65];
+
 // patch Mapbox Draw to use MapLibre CSS class names instead of Mapbox GL JS
 MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
 MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
@@ -457,7 +459,7 @@ map_1.on("load", function () {
   })
 
   const layer = default_style.layers.find(el => el.id === settings.l1);
-  
+
   // attribution settings
   map_1.addControl(attribution_map_1);
   collapseAttribution('map_1'); // collapse by default
@@ -465,7 +467,7 @@ map_1.on("load", function () {
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_1 = false
-  } 
+  }
 
   setOverlay1();
   map_1.addControl(draw, 'top-left');
@@ -477,7 +479,7 @@ map_2.on("load", function () {
   map_2.setLayoutProperty(settings.l2, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l2);
-  
+
   // attribution settings
   map_2.addControl(attribution_map_2);
   collapseAttribution('map_2'); // collapse by default
@@ -485,7 +487,7 @@ map_2.on("load", function () {
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_2 = false
-  } 
+  }
 
   setOverlay2();
 });
@@ -496,7 +498,7 @@ map_3.on("load", function () {
   map_3.setLayoutProperty(settings.l3, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l3);
-  
+
   // attribution settings
   map_3.addControl(attribution_map_3);
   collapseAttribution('map_3'); // collapse by default
@@ -504,7 +506,7 @@ map_3.on("load", function () {
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_3 = false
-  } 
+  }
 
   setOverlay3();
 });
@@ -515,7 +517,7 @@ map_4.on("load", function () {
   map_4.setLayoutProperty(settings.l4, 'visibility', 'visible');
 
   const layer = default_style.layers.find(el => el.id === settings.l4);
-  
+
   // attribution settings
   map_4.addControl(attribution_map_4);
   collapseAttribution('map_4'); // collapse by default
@@ -523,7 +525,7 @@ map_4.on("load", function () {
   // expand attribution when compact mode is disabled
   if (layer.compact_attribution == false) {
     ca_layer_4 = false
-  } 
+  }
 
   setOverlay4();
 });
@@ -531,51 +533,73 @@ map_4.on("load", function () {
 // sync map windows
 syncMaps(map_1, map_3, map_2, map_4);
 
-// geocoding API for MapLibre Geocoder using OpenStreetMap Nominatim (instead of Mapbox)
+// geocoding API for MapLibre Geocoder using Photon (komoot)
+let photonAbortController = null;
+
 const geocodingApi = {
-  forwardGeocode: async (searchConfig) => {
-    const query = searchConfig.query?.trim();
-    if (!query) {
+  forwardGeocode: async (config) => {
+    const query = config.query?.trim();
+    if (!query || query.length < 3) {
       return { features: [] };
     }
 
-    const url = new URL('https://nominatim.openstreetmap.org/search');
-    url.searchParams.set('q', query);
-    url.searchParams.set('format', 'geojson');
-    url.searchParams.set('addressdetails', '1');
-    url.searchParams.set('limit', '5');
+    photonAbortController?.abort();
+    const controller = new AbortController();
+    photonAbortController = controller;
 
     try {
-      const response = await fetch(url.toString(), {
-        headers: {
-          'Accept': 'application/geo+json, application/json'
-        }
+      const params = new URLSearchParams({
+        q: query,
+        limit: '5',
+        lang: 'de',
+        bbox: PHOTON_NRW_BBOX.join(',')
       });
 
+      const response = await fetch(
+        `https://photon.komoot.io/api/?${params.toString()}`,
+        { signal: controller.signal }
+      );
+
       if (!response.ok) {
-        throw new Error(`Geocoding failed with HTTP ${response.status}`);
+        throw new Error(`Photon HTTP ${response.status}`);
       }
 
       const data = await response.json();
-      const features = (data.features || []).map((feature) => {
-        const coordinates = feature.geometry.coordinates;
-        const properties = feature.properties || {};
+
+      const features = (data.features || []).map(feature => {
+        const extent = feature.properties?.extent;
+        const bbox = Array.isArray(extent) && extent.length === 4
+          ? [extent[0], extent[3], extent[2], extent[1]]
+          : undefined;
 
         return {
           type: 'Feature',
           geometry: feature.geometry,
-          properties,
-          place_name: properties.display_name || query,
-          text: properties.name || properties.display_name || query,
-          center: coordinates,
-          bbox: feature.bbox
+          properties: feature.properties,
+          center: feature.geometry.coordinates,
+          ...(bbox ? { bbox } : {}),
+          place_name: [
+            feature.properties.name,
+            feature.properties.street,
+            feature.properties.housenumber,
+            feature.properties.postcode,
+            feature.properties.city
+          ].filter(Boolean).join(', '),
+          text: feature.properties.name || query
         };
       });
 
       return { features };
     } catch (error) {
-      console.error('Geocoding error:', error);
+      if (error.name === 'AbortError') {
+        return { features: [] };
+      }
+      console.error('Photon-Adresssuche fehlgeschlagen:', error);
       return { features: [] };
+    } finally {
+      if (photonAbortController === controller) {
+        photonAbortController = null;
+      }
     }
   }
 };
@@ -585,17 +609,30 @@ function createGeocoder() {
   return new MaplibreGeocoder(geocodingApi, {
     maplibregl,
     marker: false,
-    showResultsWhileTyping: false,
-    placeholder: 'Ort oder Adresse suchen',
 
-    flyTo: {
-      zoom: 14
-    }
+    collapsed: false,
+    clearOnBlur: false,
+    clearAndBlurOnEsc: true,
+
+    showResultsWhileTyping: true,
+    debounceSearch: 350,
+    minLength: 3,
+
+    flyTo: { zoom: 14, duration: 800 },
+    bbox: PHOTON_NRW_BBOX, 
+
+    placeholder: 'Adresse in NRW suchen',
+
+    enableEventLogging: false,
+    trackProximity: false,
+    showResultMarkers: false,
+    popup: false
   });
 }
 
 // add controls
-map_1.addControl(createGeocoder(), 'top-left');
+const geocoder = createGeocoder();
+map_1.addControl(geocoder, 'top-left');
 
 map_1.addControl(
   new maplibregl.NavigationControl({

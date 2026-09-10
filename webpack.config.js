@@ -47,6 +47,14 @@ module.exports = {
           from: './src/img',
           to: 'img',
         },
+        {
+          from: './node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs',
+          to: 'vendor/maplibre/maplibre-gl-worker.mjs',
+        },
+        {
+          from: './node_modules/maplibre-gl/dist/maplibre-gl-shared.mjs',
+          to: 'vendor/maplibre/maplibre-gl-shared.mjs',
+        },
       ],
     }),
     new LicensePlugin({

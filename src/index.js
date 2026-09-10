@@ -6,7 +6,7 @@ import TurfArea from '@turf/area';
 import TurfCentroid from '@turf/centroid';
 import TurfLength from '@turf/length';
 
-import maplibregl from 'maplibre-gl';
+import * as maplibregl from 'maplibre-gl';
 
 import 'maplibre-gl/dist/maplibre-gl.css';
 import '@mapbox/mapbox-gl-draw/dist/mapbox-gl-draw.css';
@@ -15,6 +15,12 @@ import './style.css';
 
 import config from './config.json';
 import LZString from 'lz-string';
+
+const maplibreWorkerUrl = new URL(
+  './vendor/maplibre/maplibre-gl-worker.mjs',
+  window.location.href
+).toString();
+maplibregl.setWorkerUrl(maplibreWorkerUrl);
 
 const blue = '#3bb2d0';
 const orange = '#fbb03b';
@@ -352,31 +358,6 @@ const draw = new MapboxDraw({
   styles: drawStyles
 });
 
-// function that limits drawn geometries to one at a time
-map_1.on('draw.modechange', () => {
-  if (!['draw_polygon', 'draw_line_string'].includes(draw.getMode())) {
-    return;
-  }
-
-  const features = draw.getAll().features;
-
-  if (features.length <= 1) {
-    resetLabels();
-    return;
-  }
-
-  const idsToDelete = features
-    .slice(0, -1)
-    .filter(f =>
-      f.geometry.type === 'Polygon' ||
-      f.geometry.type === 'LineString'
-    )
-    .map(f => f.id);
-
-  draw.delete(idsToDelete);
-  resetLabels();
-});
-
 // update the measurement label (length, area)
 window.updateArea = function updateArea(e) {
   var data = draw.getAll();
@@ -424,6 +405,31 @@ window.updateArea = function updateArea(e) {
   }
 }
 
+// function that limits drawn geometries to one at a time
+map_1.on('draw.modechange', (e) => {
+  if (!['draw_polygon', 'draw_line_string'].includes(e.mode)) {
+    return;
+  }
+
+  const features = draw.getAll().features;
+
+  if (features.length <= 1) {
+    resetLabels();
+    return;
+  }
+
+  const idsToDelete = features
+    .slice(0, -1)
+    .filter(f =>
+      f.geometry.type === 'Polygon' ||
+      f.geometry.type === 'LineString'
+    )
+    .map(f => f.id);
+
+  draw.delete(idsToDelete);
+  resetLabels();
+});
+
 // trigger label update
 map_1.on('draw.create', updateArea);
 map_1.on('draw.delete', updateArea);
@@ -470,7 +476,6 @@ map_1.on("load", function () {
   }
 
   setOverlay1();
-  map_1.addControl(draw, 'top-left');
 });
 
 // initialize the 2nd map after loading
@@ -659,6 +664,8 @@ map_1.addControl(
   }),
   'top-left'
 );
+
+map_1.addControl(draw, 'top-left');
 
 // opacity slider
 slider_1.addEventListener('input', function (e) {

@@ -589,54 +589,40 @@ body {
   background-color: rgba(0, 0, 0, 0.12);
 }
 
-/* Mapbox Draw cursor classes for MapLibre */
-
-/* drawing */
-.maplibregl-map.mouse-add
-  .maplibregl-canvas-container.maplibregl-interactive {
-  cursor: crosshair;
-}
-
-/* feature selection */
-.maplibregl-map.mouse-pointer
-  .maplibregl-canvas-container.maplibregl-interactive {
+.maplibregl-map.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
   cursor: pointer;
 }
 
-/* move feature */
-.maplibregl-map.mouse-move
-  .maplibregl-canvas-container.maplibregl-interactive {
+.maplibregl-map.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
   cursor: move;
 }
 
-/* move selected feature */
-.maplibregl-map.mode-simple_select.feature-feature.mouse-move
-  .maplibregl-canvas-container.maplibregl-interactive {
+.maplibregl-map.mouse-add .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: crosshair;
+}
+
+.maplibregl-map.mouse-move.mode-direct_select .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
+}
+
+.maplibregl-map.mode-direct_select.feature-vertex.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
   cursor: move;
 }
 
-/* direct selection */
-.maplibregl-map.mode-direct_select.feature-feature.mouse-move
-  .maplibregl-canvas-container.maplibregl-interactive {
-  cursor: move;
-}
-
-/* move vertex */
-.maplibregl-map.mode-direct_select.feature-vertex.mouse-move
-  .maplibregl-canvas-container.maplibregl-interactive {
-  cursor: move;
-}
-
-/* add vertex at midpoint */
-.maplibregl-map.mode-direct_select.feature-midpoint.mouse-pointer
-  .maplibregl-canvas-container.maplibregl-interactive {
+.maplibregl-map.mode-direct_select.feature-midpoint.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
   cursor: cell;
 }
 
-/* static mode */
-.maplibregl-map.mode-static.mouse-pointer
-  .maplibregl-canvas-container.maplibregl-interactive {
+.maplibregl-map.mode-direct_select.feature-feature.mouse-move .maplibregl-canvas-container.maplibregl-interactive {
+  cursor: move;
+}
+
+.maplibregl-map.mode-static.mouse-pointer .maplibregl-canvas-container.maplibregl-interactive {
   cursor: grab;
+  cursor: -moz-grab;
+  cursor: -webkit-grab;
 }
 
 /* responsive settings */

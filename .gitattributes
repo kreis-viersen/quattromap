@@ -1,0 +1,25 @@
+* text=auto
+
+.gitattributes text eol=lf
+.gitignore text eol=lf
+LICENSE text eol=lf
+
+*.sh text eol=lf
+*.ini text eol=lf
+*.conf text eol=lf
+*.py text eol=lf
+*.sql text eol=lf
+*.md text eol=lf
+*.qgs text eol=lf
+*.model3 text eol=lf
+*.js text eol=lf
+*.json text eol=lf
+*.html text eol=lf
+*.css text eol=lf
+*.svg text eol=lf
+*.mjs text eol=lf
+*.yml text eol=lf
+
+*.bat text eol=crlf
+*.cmd text eol=crlf
+*.ps1 text eol=crlf

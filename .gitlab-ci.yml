@@ -1,0 +1,52 @@
+image: node:24
+
+stages:
+  - test
+
+create-pages:
+  stage: test
+
+  pages:
+    publish: dist
+
+  rules:
+    - if: $CI_COMMIT_REF_NAME == $CI_DEFAULT_BRANCH
+
+  before_script:
+    - npm ci
+
+  script:
+    - npm run build
+
+include:
+  - remote: "https://gitlab.opencode.de/l3montree/devguard-ci-components/-/raw/v1.13.0/templates/secret-scanning.yml"
+    inputs:
+      devguard_asset_name: "$DEVGUARD_ASSET_NAME"
+      devguard_token: "$DEVGUARD_TOKEN"
+      devguard_api_url: "$DEVGUARD_API_URL"
+      devguard_web_ui: "https://devguard.opencode.de"
+      stage: test
+
+  - remote: "https://gitlab.opencode.de/l3montree/devguard-ci-components/-/raw/v1.13.0/templates/static-application-security-testing.yml"
+    inputs:
+      devguard_asset_name: "$DEVGUARD_ASSET_NAME"
+      devguard_token: "$DEVGUARD_TOKEN"
+      devguard_api_url: "$DEVGUARD_API_URL"
+      devguard_web_ui: "https://devguard.opencode.de"
+      stage: test
+
+  - remote: "https://gitlab.opencode.de/l3montree/devguard-ci-components/-/raw/v1.13.0/templates/infrastructure-as-code-scanning.yml"
+    inputs:
+      devguard_asset_name: "$DEVGUARD_ASSET_NAME"
+      devguard_token: "$DEVGUARD_TOKEN"
+      devguard_api_url: "$DEVGUARD_API_URL"
+      devguard_web_ui: "https://devguard.opencode.de"
+      stage: test
+
+  - remote: "https://gitlab.opencode.de/l3montree/devguard-ci-components/-/raw/v1.13.0/templates/software-composition-analysis.yml"
+    inputs:
+      devguard_asset_name: "$DEVGUARD_ASSET_NAME"
+      devguard_token: "$DEVGUARD_TOKEN"
+      devguard_api_url: "$DEVGUARD_API_URL"
+      devguard_web_ui: "https://devguard.opencode.de"
+      stage: test

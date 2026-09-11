@@ -249,6 +249,12 @@ Sie können einige Standardeinstellungen von [QuattroMap](https://kreis-viersen.
 |"style"|Optionaler Parameter zur Auswahl eines bestimmten Stils. Stile können von Diensten angeboten werden.|"style": "Farbe"|
 |"compactAttribution"|Mit diesem optionalen Parameter lässt sich festlegen, ob die Attribution mit dem Layernamen bei Auswahl des Layers ausgeklappt (`false`) oder eingeklappt ist (`true` = Standardwert).|"compactAttribution": "false"|
 
+## Lizenz
+
+QuattroMap steht unter der [MIT-Lizenz](LICENSE) als Open-Source-Software zur Verfügung.
+
+Das in der Anwendung verwendete openCode-Logo ist nicht Bestandteil dieser Lizenz. Die Verwendung des Logos erfolgt mit freundlicher Genehmigung von [openCode](https://opencode.de/) und unterliegt dem Markenrecht.
+
 ## Develop
 
 ```bash

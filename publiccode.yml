@@ -1,0 +1,85 @@
+# This repository adheres to the publiccode.yml standard by including this 
+# metadata file that makes public software easily discoverable.
+# More info at https://github.com/italia/publiccode.yml
+
+publiccodeYmlVersion: '0.2'
+name: QuattroMap
+url: 'https://gitlab.opencode.de/kreis-viersen/quattromap'
+softwareVersion: 2.0.0
+releaseDate: '2026-09-10'
+logo: logo_quattromap_opencode.png
+platforms:
+  - web
+usedBy:
+  - Kreis Viersen
+categories:
+  - geographic-information-systems
+  - data-visualization
+developmentStatus: stable
+softwareType: standalone/web
+maintenance:
+  type: internal
+  contacts:
+    - name: Kreis Viersen - Amt für Kataster und Geoinformation
+      email: open@kreis-viersen.de
+legal:
+  license: MIT
+intendedAudience:
+  countries:
+    - de
+  scope:
+    - local-authorities
+    - society
+localisation:
+  localisationReady: false
+  availableLanguages:
+    - de
+description:
+  de:
+    genericName: Geoinformationsanwendung
+    shortDescription: >
+      Browsertool zur synchronen Darstellung von bis zu vier verschiedenen Kartenfenstern.
+    longDescription: |
+      **Webanwendung:** [https://kreis-viersen.github.io/quattromap/](https://kreis-viersen.github.io/quattromap/)
+    
+      QuattroMap ist eine browserbasierte Kartenanwendung, mit welcher bis zu
+      vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und
+      synchron bewegt werden können. Durch die synchrone Navigation lassen sich
+      beispielsweise Luftbilder zu verschiedenen Aufnahmezeitpunkten oder
+      unterschiedliche Karteninformationen unmittelbar miteinander vergleichen.
+
+      Die Kartenansichten können unabhängig voneinander mit verschiedenen
+      Hintergrundkarten und zusätzlichen Overlays kombiniert werden. Die
+      Deckkraft der Overlays lässt sich dabei für jedes Kartenfenster
+      individuell einstellen.
+
+      Die Anwendung unterstützt die Suche nach Adressen und Orten innerhalb
+      von Nordrhein-Westfalen. Suchergebnisse können direkt auf der Karte
+      angezeigt und als Ausgangspunkt für die weitere Kartenbetrachtung
+      verwendet werden.
+
+      Für die Bearbeitung und Analyse von Geodaten stehen verschiedene
+      Karteninteraktionen zur Verfügung. Dazu gehören unter anderem das
+      Zeichnen und Messen von Geometrien.
+
+      Die aktuelle Kartenansicht einschließlich der gewählten Karteneinstellungen
+      kann über einen Permalink geteilt und von anderen Nutzern wieder aufgerufen
+      werden. QuattroMap ist als browserbasierte Anwendung ohne Installation
+      nutzbar und für die Darstellung auf Desktop-Rechnern ausgelegt.
+    features:
+      - >-
+        Gleichzeitige Darstellung von bis zu vier unterschiedlichen Karten
+      - >-
+        Synchrone Bewegung und Navigation aller Kartenansichten
+      - >-
+        Unabhängige Auswahl des Kartenhintergrundes für jedes Kartenfenster
+      - >-
+        Einblendung zusätzlicher Overlays mit stufenlos einstellbarer Deckkraft in den einzelnen Kartenfenstern
+      - >-
+        Adress- und Ortssuche innerhalb von Nordrhein-Westfalen
+      - >-
+        Messwerkzeuge zum Messen von Strecken und Flächen
+      - >-
+        Erstellung eines Permalinks zum Teilen der aktuellen Kartenfenster und der gewählten Karteneinstellungen
+    screenshots:
+      - screenshots/screenshot_082026.png

@@ -1,0 +1,26 @@
+name: oc
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  sync:
+    name: Git Repo Sync
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout GitHub Repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+
+      - name: Configure Git and Sync to GitLab
+        run: |
+          git remote add gitlab https://oauth2:${{ secrets.TARGET_TOKEN }}@${{ secrets.TARGET_URL }}
+          git push gitlab HEAD:main

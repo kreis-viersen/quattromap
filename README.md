@@ -71,7 +71,7 @@ https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 
 
 
-- Der Microsoft Internet Explorer wird nicht unterstützt?.
+- Der Microsoft Internet Explorer wird nicht unterstützt.
 
 ## Aktuell verfügbare Karteninhalte
 

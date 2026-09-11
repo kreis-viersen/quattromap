@@ -40,7 +40,7 @@ description:
     shortDescription: >
       Browsertool zur synchronen Darstellung von bis zu vier verschiedenen Kartenfenstern.
     longDescription: |
-      **Webanwendung:** [https://kreis-viersen.github.io/quattromap/](https://kreis-viersen.github.io/quattromap/)
+      **Webanwendung:** [https://kreis-viersen.usercontent.opencode.de/quattromap](https://kreis-viersen.usercontent.opencode.de/quattromap)
     
       QuattroMap ist eine browserbasierte Kartenanwendung, mit welcher bis zu
       vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und

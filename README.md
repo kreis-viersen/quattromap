@@ -11,9 +11,9 @@
 **Browsertool zur synchronen Darstellung von bis zu vier verschiedenen Kartenfenstern**
 
 **Zur Anwendung:**  
-https://kreis-viersen.github.io/quattromap/
+https://kreis-viersen.usercontent.opencode.de/quattromap
 
-[QuattroMap](https://kreis-viersen.github.io/quattromap/) ist eine vom Kreis Viersen entwickelte Kartenanwendung, mit welcher 
+[QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) ist eine vom Kreis Viersen entwickelte Kartenanwendung, mit welcher 
 bis zu vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und synchron bewegt werden können. Dadurch können verschiedene Karteninhalte eines Gebietes direkt miteinander verglichen werden. Zur Auswahl der Karten stehen z.B. Luftbilder, Liegenschaftskataster, geplante Gebäude und OpenStreetMap zur Verfügung.
 
 <img src="screenshots/screenshot_082026.png"/>
@@ -46,14 +46,14 @@ Mit einem Klick auf die Schaltfläche *Permalink in die Zwischenablage kopieren*
 
 #### Geographische Koordinaten als URL-Parameter 
 
-Um den Kartenmittelpunkt beim Aufrufen von [QuattroMap](https://kreis-viersen.github.io/quattromap/) manuell zu steuern, können Sie in der URL die geographische Koordinaten (EPSG:4326) als Parameter `lat` / `lon` übergeben. 
+Um den Kartenmittelpunkt beim Aufrufen von [QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) manuell zu steuern, können Sie in der URL die geographische Koordinaten (EPSG:4326) als Parameter `lat` / `lon` übergeben. 
 
 Beispiel:
 https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 
 ### Messwerkzeuge
 
-[QuattroMap](https://kreis-viersen.github.io/quattromap/) bietet die Möglichkeit, Strecken und Flächen innerhalb des Kartenfensters zu messen:
+[QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) bietet die Möglichkeit, Strecken und Flächen innerhalb des Kartenfensters zu messen:
 1) Wählen Sie in den Einstellungen unter *Anzahl Karten* nur eine Karte aus 
 2) Links oben in den Kartenoptionen erscheinen nun drei neue Optionen zum
     - Messen von Strecken
@@ -75,7 +75,7 @@ https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
 
 ## Aktuell verfügbare Karteninhalte
 
-Nachfolgend finden Sie eine Liste der aktuell in [QuattroMap](https://kreis-viersen.github.io/quattromap/) eingebunden Karteninhalte.
+Nachfolgend finden Sie eine Liste der aktuell in [QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) eingebunden Karteninhalte.
 
 Wenn Sie eine Verwaltung aus NRW sind, binden wir auch Ihre WMS Dienste ggf. gerne ein.
 Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto:open@kreis-viersen.de?subject=QuattroMap ).
@@ -228,7 +228,7 @@ Zusätzlich zu den unter [Layer](#layer) gelisteten Diensten sind als Overlay ve
 
 ## Konfiguration
 
-Sie können einige Standardeinstellungen von [QuattroMap](https://kreis-viersen.github.io/quattromap/) festlegen, indem Sie diese in der [config.json](./src/config.json) bearbeiten:
+Sie können einige Standardeinstellungen von [QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) festlegen, indem Sie diese in der [config.json](./src/config.json) bearbeiten:
 
 
 |Parameter|Erklärung|Beispiel|

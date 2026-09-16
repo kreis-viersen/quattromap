@@ -82,6 +82,8 @@ Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto
 
 ### Layer
 
+> **Hinweis zu historischen NRW-Luftbildern 1951–1969:** Für diese Jahrgänge gilt die [Datenlizenz Deutschland – Namensnennung – Version 2.0](https://www.govdata.de/dl-de/by-2-0). Quellenvermerk: Geobasis NRW, Hansa Luftbild AG, Landesarchiv NRW, Bestand RW 0230.
+
 |Name|Art|Dienst-URL|Dienst-Layer|Lizenz|
 |:---|:---|:---|:---|:---|
 |**Geobasis NRW**||||
@@ -123,24 +125,24 @@ Kontaktieren Sie uns dazu gerne per E-Mail unter [open@kreis-viersen.de]( mailto
 |Kreis Steinfurt ALKIS|WMS|[URL](https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_Kreissuebersichtskarte_DTK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|0|[Link](https://gis-kreis-steinfurt.opendata.arcgis.com/)|
 |Kreis Steinfurt ABK|WMS|[URL](https://gis.kreis-steinfurt.de/arcgis13/services/Geobasisdaten/Geobasisdaten_ABK_farbe/MapServer/WMSServer?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|0|[Link](https://gis-kreis-steinfurt.opendata.arcgis.com/)|
 |**Historische Luftbilder NRW**||||
-|NRW Luftbild 1951|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1951|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1952|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1952|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1953|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1953|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1954|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1954|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1955|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1955|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1956|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1956|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1957|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1957|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1958|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1958|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1959|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1959|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1960|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1960|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1961|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1961|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1962|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1962|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1963|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1963|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1964|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1964|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1966|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1966|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1967|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1967|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1968|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1968|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
-|NRW Luftbild 1969|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1969|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
+|NRW Luftbild 1951|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1951|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1952|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1952|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1953|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1953|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1954|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1954|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1955|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1955|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1956|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1956|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1957|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1957|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1958|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1958|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1959|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1959|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1960|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1960|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1961|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1961|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1962|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1962|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1963|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1963|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1964|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1964|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1966|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1966|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1967|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1967|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1968|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1968|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
+|NRW Luftbild 1969|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1969|[dl&#x2011;by&#x2011;de/2.0](https://www.govdata.de/dl-de/by-2-0)|
 |NRW Luftbild 1970|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1970|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild 1971|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1971|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|
 |NRW Luftbild 1972|WMS|[URL](https://www.wms.nrw.de/geobasis/wms_nw_hist_dop?SERVICE=WMS&VERSION=1.3.0&REQUEST=GetCapabilities)|nw_hist_dop_1972|[dl&#x2011;zero&#x2011;de/2.0](https://www.govdata.de/dl-de/zero-2-0)|

@@ -17,6 +17,8 @@ create-pages:
 
   script:
     - npm run build
+    - find dist -type f -regex '.*\.\(htm\|html\|xml\|txt\|text\|js\|css\|svg\|json\|geojson\|map\)$' -exec gzip -f -k {} \;
+    - find dist -type f -name '*.gz' -ls
 
 include:
   - remote: "https://gitlab.opencode.de/l3montree/devguard-ci-components/-/raw/v1.13.0/templates/secret-scanning.yml"

@@ -16,7 +16,7 @@ https://kreis-viersen.usercontent.opencode.de/quattromap
 [QuattroMap](https://kreis-viersen.usercontent.opencode.de/quattromap) ist eine vom Kreis Viersen entwickelte Kartenanwendung, mit welcher 
 bis zu vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und synchron bewegt werden können. Dadurch können verschiedene Karteninhalte eines Gebietes direkt miteinander verglichen werden. Zur Auswahl der Karten stehen z.B. Luftbilder, Liegenschaftskataster, geplante Gebäude und OpenStreetMap zur Verfügung.
 
-<img src="screenshots/screenshot_082026.png"/>
+<img src="screenshots/screenshot_092026.png"/>
 
 ## Funktionen
 

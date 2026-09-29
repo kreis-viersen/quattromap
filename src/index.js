@@ -1443,6 +1443,12 @@ async function syncParcelSelectorsFromFeature(feature) {
 }
 
 async function handleParcelDirectSearch() {
+  if (!parcelSearchElements.directInput.value.trim()) {
+    parcelSearchElements.searchStatus.textContent = '';
+    updateParcelSearchButtonState();
+    return;
+  }
+
   parcelSearchElements.searchStatus.textContent = 'Flurstück wird gesucht …';
   parcelSearchElements.directSearchButton.disabled = true;
   parcelSearchElements.selectSearchButton.disabled = true;
@@ -1478,6 +1484,7 @@ async function handleParcelDirectSearch() {
       error?.message ?? 'Flurstück konnte nicht gesucht werden.';
   } finally {
     parcelSearchElements.directSearchButton.disabled = false;
+    updateParcelSearchButtonState();
   }
 }
 

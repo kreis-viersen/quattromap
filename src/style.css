@@ -1178,3 +1178,6 @@ body {
   }
 }
 
+.maplibregl-ctrl-bottom-right {
+  z-index: 6;
+}

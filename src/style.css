@@ -87,9 +87,13 @@ body {
 }
 
 .quattromap-search-controls {
+  position: relative;
+  z-index: 2;
+
   display: flex;
+  flex-direction: column;
   align-items: flex-start;
-  gap: 6px;
+  gap: 0;
   background: transparent;
   box-shadow: none;
 }
@@ -107,6 +111,7 @@ body {
   overflow: visible;
 
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 0 0;
   transition: width 0.4s ease-in-out;
 }
 
@@ -123,6 +128,7 @@ body {
 .maplibregl-ctrl-geocoder:focus-within,
 .maplibregl-ctrl-geocoder:hover {
   width: min(500px, calc(100vw - 120px));
+  border-radius: 4px 4px 4px 0;
 }
 
 .maplibregl-ctrl-geocoder--input:focus,
@@ -131,19 +137,32 @@ body {
 }
 
 .parcel-search-map-control {
-  flex: 0 0 auto;
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
 }
 
 .parcel-search-map-button {
   display: flex;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  box-sizing: border-box;
   align-items: center;
   justify-content: center;
+  border: 0;
+  border-radius: 0 0 4px 4px;
 }
 
 .parcel-search-map-button img {
   width: 20px;
   height: 20px;
-  opacity: 0.78;
+  opacity: 1;
+  transform: translateY(1px);
 }
 
 .parcel-search-map-button:hover img {

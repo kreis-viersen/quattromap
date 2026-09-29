@@ -26,6 +26,7 @@ bis zu vier unterschiedliche Karten gleichzeitig nebeneinander dargestellt und s
 - Einblendung zusätzlicher Overlays mit stufenlos einstellbarer Deckkraft in den einzelnen Kartenfenstern
 - Messwerkzeuge zum Messen von Strecken und Flächen
 - Adresssuche und Standortbestimmung zur schnellen Navigation zum gewünschten Kartenausschnitt
+- Flurstückssuche in Nordrhein-Westfalen mit Hervorhebung des gefundenen Flurstücks
 - Erstellung eines Permalinks zum Teilen der aktuellen Kartenfenster und der gewählten Karteneinstellungen
 
 ### Karteneinstellungen
@@ -50,6 +51,17 @@ Um den Kartenmittelpunkt beim Aufrufen von [QuattroMap](https://kreis-viersen.us
 
 Beispiel:
 https://kreis-viersen.github.io/quattromap?lat=51.34119&lon=6.35583
+
+### Flurstückssuche
+
+Über die Schaltfläche unterhalb der Adresssuche können Flurstücke in Nordrhein-Westfalen gefunden werden. Das gefundene Flurstück wird in den Karten hervorgehoben; die Hervorhebung kann optional dauerhaft angezeigt werden.
+
+Es gibt zwei Suchwege:
+
+- Auswählen: Katasteramt → Gemarkung → Flur → Flurstück. Nach Auswahl einer Flur werden die dort verfügbaren Flurstücke dynamisch aus der OGC API geladen.
+- Direktsuche: über ein verkürztes Kennzeichen wie 3230-1-1, eine ALKIS-ID wie DENW33AL00009NPL oder ein 20-stelliges Flurstückskennzeichen wie 05320308900675______.
+
+Die Flurstücksdaten und -geometrien werden über die [OGC API NRW – Daten des Liegenschaftskatasters](https://ogc-api.nrw.de/lika/v1/) bezogen.
 
 ### Messwerkzeuge
 

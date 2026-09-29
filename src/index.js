@@ -641,7 +641,7 @@ function createGeocoder() {
     debounceSearch: 350,
     minLength: 3,
 
-    flyTo: { zoom: 14, duration: 800 },
+    flyTo: { zoom: 17, duration: 800 },
     bbox: PHOTON_NRW_BBOX, 
 
     placeholder: 'Adresse in NRW suchen',
@@ -655,6 +655,14 @@ function createGeocoder() {
 
 // add address and parcel search as one control row
 const geocoder = createGeocoder();
+
+let addressSearchMarkers = [];
+let addressMarkerRemoveControl = null;
+
+function getAddressSearchCenter(result) {
+  const center = result?.center || result?.geometry?.coordinates;
+  return Array.isArray(center) && center.length >= 2 ? center : null;
+}
 
 class SearchControlRow {
   constructor(geocoderControl) {
@@ -700,6 +708,40 @@ class SearchControlRow {
 
 map_1.addControl(new SearchControlRow(geocoder), 'top-left');
 
+function clearAddressSearchMarkers() {
+  addressSearchMarkers.forEach(marker => marker.remove());
+  addressSearchMarkers = [];
+  addressMarkerRemoveControl?.setVisible(false);
+}
+
+function showAddressSearchMarker(center) {
+  clearAddressSearchMarkers();
+
+  addressSearchMarkers = maps.map(map => {
+    const markerElement = document.createElement('div');
+    markerElement.className = 'address-search-marker';
+
+    return new maplibregl.Marker({
+      element: markerElement,
+      anchor: 'center'
+    }).setLngLat(center).addTo(map);
+  });
+
+  addressMarkerRemoveControl?.setVisible(true);
+}
+
+geocoder.on('result', (event) => {
+  const center = getAddressSearchCenter(event.result);
+
+  if (!center) {
+    return;
+  }
+
+  showAddressSearchMarker(center);
+});
+
+geocoder.on('clear', clearAddressSearchMarkers);
+
 map_1.addControl(
   new maplibregl.NavigationControl({
     showZoom: true,
@@ -726,6 +768,43 @@ map_1.addControl(
   'top-left'
 );
 
+class AddressMarkerRemoveControl {
+  onAdd() {
+    this.container = document.createElement('div');
+    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group address-marker-remove-control';
+    this.container.hidden = true;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'address-marker-remove-button';
+    button.title = 'Suchmarker entfernen';
+    button.setAttribute('aria-label', 'Suchmarker entfernen');
+
+    const icon = document.createElement('img');
+    icon.src = './img/remove-search-marker.svg';
+    icon.alt = '';
+    icon.setAttribute('aria-hidden', 'true');
+    button.appendChild(icon);
+    button.addEventListener('click', clearAddressSearchMarkers);
+
+    this.container.appendChild(button);
+    return this.container;
+  }
+
+  onRemove() {
+    this.container?.remove();
+    this.container = undefined;
+  }
+
+  setVisible(visible) {
+    if (this.container) {
+      this.container.hidden = !visible;
+    }
+  }
+}
+
+addressMarkerRemoveControl = new AddressMarkerRemoveControl();
+map_1.addControl(addressMarkerRemoveControl, 'top-left');
 
 map_1.addControl(draw, 'top-left');
 

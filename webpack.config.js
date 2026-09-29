@@ -48,6 +48,10 @@ module.exports = {
           to: 'img',
         },
         {
+          from: './src/data',
+          to: 'data',
+        },
+        {
           from: './node_modules/maplibre-gl/dist/maplibre-gl-worker.mjs',
           to: 'vendor/maplibre/maplibre-gl-worker.mjs',
         },

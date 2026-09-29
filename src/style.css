@@ -81,26 +81,44 @@ body {
   left: 75%;
 }
 
-/* geocoder */
+/* geocoder + parcel search */
 .maplibregl-ctrl-top-left {
   width: auto;
+}
+
+.quattromap-search-controls {
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.quattromap-search-controls > .maplibregl-ctrl-geocoder,
+.quattromap-search-controls > .parcel-search-map-control {
+  margin: 0;
 }
 
 .maplibregl-ctrl-geocoder {
   width: 30px;
   min-width: 30px;
-  max-width: min(500px, calc(100vw - 80px));
+  max-width: min(500px, calc(100vw - 120px));
 
   overflow: visible;
 
   box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+  border-radius: 4px 4px 0 0;
   transition: width 0.4s ease-in-out;
 }
 
 .maplibregl-ctrl-geocoder--input {
   width: 30px;
   height: 30px;
-  max-width: min(500px, calc(100vw - 80px));
+  max-width: min(500px, calc(100vw - 120px));
   padding-right: 0;
   padding-left: 30px;
 
@@ -109,12 +127,46 @@ body {
 
 .maplibregl-ctrl-geocoder:focus-within,
 .maplibregl-ctrl-geocoder:hover {
-  width: min(500px, calc(100vw - 80px));
+  width: min(500px, calc(100vw - 120px));
+  border-radius: 4px 4px 4px 0;
 }
 
 .maplibregl-ctrl-geocoder--input:focus,
 .maplibregl-ctrl-geocoder:hover .maplibregl-ctrl-geocoder--input {
-  width: min(500px, calc(100vw - 80px));
+  width: min(500px, calc(100vw - 120px));
+}
+
+.parcel-search-map-control {
+  flex: 0 0 30px;
+  width: 30px;
+  height: 30px;
+  box-sizing: border-box;
+  overflow: hidden;
+  border-radius: 0 0 4px 4px;
+  box-shadow: 0 0 0 2px rgba(0, 0, 0, 0.1);
+}
+
+.parcel-search-map-button {
+  display: flex;
+  width: 30px;
+  height: 30px;
+  padding: 0;
+  box-sizing: border-box;
+  align-items: center;
+  justify-content: center;
+  border: 0;
+  border-radius: 0 0 4px 4px;
+}
+
+.parcel-search-map-button img {
+  width: 20px;
+  height: 20px;
+  opacity: 1;
+  transform: translateY(1px);
+}
+
+.parcel-search-map-button:hover img {
+  opacity: 1;
 }
 
 /* Nur die Such-Lupe anzeigen */
@@ -576,6 +628,305 @@ body {
   -webkit-backdrop-filter: blur(6px);
 }
 
+/* parcel search dialog */
+.parcel-search-dialog {
+  width: min(620px, calc(100vw - 28px));
+  max-height: min(88dvh, 760px);
+  padding: 0;
+
+  color: #404040;
+  background: rgba(255, 255, 255, 0.98);
+
+  border: 0;
+  border-radius: 12px;
+
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+}
+
+.parcel-search-dialog::backdrop {
+  background: rgba(47, 46, 48, 0.52);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.parcel-search-dialog form {
+  position: relative;
+
+  max-height: min(88dvh, 760px);
+  padding: 24px;
+
+  overflow-y: auto;
+
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.parcel-search-dialog h2 {
+  margin: 0 42px 18px 0;
+
+  color: #404040;
+
+  font-size: 22px;
+  line-height: 1.15;
+}
+
+.parcel-eyebrow {
+  margin: 0 42px 4px 0;
+
+  color: #3c7aab;
+
+  font-size: 11px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.parcel-dialog-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+
+  width: 34px;
+  height: 34px;
+  padding: 0;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  color: #606060;
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 6px;
+
+  font: inherit;
+  font-size: 22px;
+  line-height: 1;
+
+  cursor: pointer;
+}
+
+.parcel-dialog-close:hover {
+  color: #202020;
+  background: #ffffff;
+  border-color: rgba(0, 0, 0, 0.3);
+}
+
+.parcel-dialog-close:focus-visible {
+  outline: 2px solid rgba(60, 122, 171, 0.65);
+  outline-offset: 2px;
+}
+
+.parcel-search-section {
+  display: grid;
+  gap: 12px;
+}
+
+.parcel-search-section h3 {
+  margin: 0 0 2px;
+
+  color: #505050;
+
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.parcel-search-section label {
+  display: grid;
+  gap: 6px;
+
+  color: #505050;
+
+  font-size: 13px;
+  font-weight: bold;
+}
+
+.parcel-search-section select,
+.parcel-search-section input {
+  width: 100%;
+  min-width: 0;
+  min-height: 40px;
+  padding: 8px 10px;
+
+  color: #404040;
+  background: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  border-radius: 7px;
+
+  font: inherit;
+  font-size: 14px;
+}
+
+.parcel-search-section select:hover:not(:disabled),
+.parcel-search-section input:hover {
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.parcel-search-section select:focus,
+.parcel-search-section input:focus {
+  outline: 2px solid rgba(60, 122, 171, 0.35);
+  outline-offset: 1px;
+}
+
+.parcel-search-section select:disabled {
+  color: #858585;
+  background: #f0f0f0;
+}
+
+.parcel-search-divider {
+  margin: 18px 0 14px;
+
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  color: #777777;
+
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.parcel-search-divider::before,
+.parcel-search-divider::after {
+  content: "";
+
+  height: 1px;
+  flex: 1;
+
+  background: rgba(0, 0, 0, 0.14);
+}
+
+.parcel-search-divider span {
+  white-space: nowrap;
+}
+
+.parcel-direct-search-section {
+  padding-top: 2px;
+}
+
+.parcel-search-help,
+.parcel-search-status {
+  margin: 0;
+
+  color: #707070;
+
+  font-size: 12px;
+  font-weight: normal;
+  line-height: 1.4;
+}
+
+.parcel-search-status {
+  min-height: 1.2em;
+}
+
+.parcel-primary-button,
+.parcel-secondary-button {
+  min-height: 38px;
+  padding: 8px 14px;
+
+  border-radius: 7px;
+
+  font: inherit;
+  font-size: 14px;
+  font-weight: bold;
+
+  cursor: pointer;
+  appearance: none;
+}
+
+.parcel-primary-button {
+  color: #ffffff;
+  background: #3c7aab;
+
+  border: 1px solid #3c7aab;
+}
+
+.parcel-primary-button:hover:not(:disabled) {
+  background: #326994;
+  border-color: #326994;
+}
+
+.parcel-secondary-button {
+  justify-self: start;
+
+  color: #404040;
+  background: #ffffff;
+
+  border: 1px solid rgba(0, 0, 0, 0.2);
+}
+
+.parcel-secondary-button:hover:not(:disabled) {
+  background: #f3f3f3;
+  border-color: rgba(0, 0, 0, 0.35);
+}
+
+.parcel-primary-button:focus-visible,
+.parcel-secondary-button:focus-visible {
+  outline: 2px solid rgba(60, 122, 171, 0.5);
+  outline-offset: 2px;
+}
+
+.parcel-primary-button:disabled,
+.parcel-secondary-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.parcel-highlight-option {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+
+  color: #404040;
+
+  font-size: 14px;
+  line-height: 1.4;
+  cursor: pointer;
+}
+
+.parcel-highlight-option input {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  flex: 0 0 auto;
+}
+
+.parcel-highlight-help {
+  margin-top: 4px;
+  margin-left: 24px;
+}
+
+.parcel-search-submit {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.parcel-search-toast {
+  position: fixed;
+  bottom: 100px;
+  left: 10px;
+  z-index: 5;
+
+  max-width: min(500px, calc(100vw - 20px));
+  padding: 10px 12px;
+
+  color: #404040;
+  background: rgba(255, 255, 255, 0.94);
+
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 7px;
+
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.14);
+
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 14px;
+
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
 /* Mapbox Draw buttons */
 .maplibregl-ctrl-group .mapbox-gl-draw_ctrl-draw-btn {
   cursor: pointer;
@@ -678,5 +1029,124 @@ body {
 
   .settings-panel {
     padding: 12px;
+  }
+}
+
+/* responsive parcel search */
+.parcel-search-dialog,
+.parcel-search-dialog form {
+  box-sizing: border-box;
+}
+
+.parcel-search-dialog form {
+  overscroll-behavior: contain;
+}
+
+@media (max-width: 640px) {
+  .parcel-search-dialog {
+    width: calc(100vw - 12px);
+    max-width: none;
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+    margin: auto;
+    border-radius: 10px;
+  }
+
+  .parcel-search-dialog form {
+    width: 100%;
+    max-height: calc(100vh - 12px);
+    max-height: calc(100dvh - 12px);
+    padding: 18px 14px 16px;
+  }
+
+  .parcel-search-dialog h2 {
+    margin-right: 44px;
+    margin-bottom: 15px;
+    font-size: 20px;
+  }
+
+  .parcel-eyebrow {
+    margin-right: 44px;
+  }
+
+  .parcel-dialog-close {
+    top: 10px;
+    right: 10px;
+    width: 36px;
+    height: 36px;
+  }
+
+  .parcel-search-section {
+    gap: 10px;
+  }
+
+  .parcel-search-section select,
+  .parcel-search-section input,
+  .parcel-primary-button,
+  .parcel-secondary-button {
+    min-height: 44px;
+    font-size: 16px;
+  }
+
+  .parcel-secondary-button {
+    width: 100%;
+    justify-self: stretch;
+  }
+
+  .parcel-highlight-option {
+    align-items: flex-start;
+  }
+
+  .parcel-highlight-option input {
+    width: 18px;
+    height: 18px;
+    margin-top: 1px;
+  }
+
+  .parcel-highlight-help {
+    margin-left: 26px;
+  }
+}
+
+@media (max-width: 380px) {
+  .parcel-search-dialog {
+    width: calc(100vw - 8px);
+    max-height: calc(100vh - 8px);
+    max-height: calc(100dvh - 8px);
+    border-radius: 8px;
+  }
+
+  .parcel-search-dialog form {
+    max-height: calc(100vh - 8px);
+    max-height: calc(100dvh - 8px);
+    padding: 16px 12px 14px;
+  }
+
+  .parcel-search-dialog h2 {
+    font-size: 19px;
+  }
+
+  .parcel-search-divider {
+    margin: 14px 0 12px;
+  }
+}
+
+@media (max-height: 600px) {
+  .parcel-search-dialog form {
+    padding-top: 14px;
+    padding-bottom: 12px;
+  }
+
+  .parcel-search-dialog h2 {
+    margin-bottom: 12px;
+  }
+
+  .parcel-search-section {
+    gap: 8px;
+  }
+
+  .parcel-search-divider {
+    margin-top: 12px;
+    margin-bottom: 10px;
   }
 }

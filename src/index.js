@@ -656,6 +656,14 @@ function createGeocoder() {
 // add address and parcel search as one control row
 const geocoder = createGeocoder();
 
+let addressSearchMarkers = [];
+let addressMarkerRemoveControl = null;
+
+function getAddressSearchCenter(result) {
+  const center = result?.center || result?.geometry?.coordinates;
+  return Array.isArray(center) && center.length >= 2 ? center : null;
+}
+
 class SearchControlRow {
   constructor(geocoderControl) {
     this.geocoderControl = geocoderControl;
@@ -700,30 +708,18 @@ class SearchControlRow {
 
 map_1.addControl(new SearchControlRow(geocoder), 'top-left');
 
-let addressSearchMarkers = [];
-let addressSearchMarkerTimeout = null;
-
 function clearAddressSearchMarkers() {
-  if (addressSearchMarkerTimeout) {
-    clearTimeout(addressSearchMarkerTimeout);
-    addressSearchMarkerTimeout = null;
-  }
-
   addressSearchMarkers.forEach(marker => marker.remove());
   addressSearchMarkers = [];
+  addressMarkerRemoveControl?.setVisible(false);
 }
 
-function showTemporaryAddressMarker(center) {
+function showAddressSearchMarker(center) {
   clearAddressSearchMarkers();
 
   addressSearchMarkers = maps.map(map => {
     const markerElement = document.createElement('div');
-    markerElement.style.width = '12px';
-    markerElement.style.height = '12px';
-    markerElement.style.borderRadius = '50%';
-    markerElement.style.background = '#d7191c';
-    markerElement.style.border = '2px solid #fff';
-    markerElement.style.boxShadow = '0 0 0 1px rgba(0, 0, 0, 0.25)';
+    markerElement.className = 'address-search-marker';
 
     return new maplibregl.Marker({
       element: markerElement,
@@ -731,20 +727,20 @@ function showTemporaryAddressMarker(center) {
     }).setLngLat(center).addTo(map);
   });
 
-  addressSearchMarkerTimeout = setTimeout(() => {
-    clearAddressSearchMarkers();
-  }, 5000);
+  addressMarkerRemoveControl?.setVisible(true);
 }
 
 geocoder.on('result', (event) => {
-  const center = event.result?.center || event.result?.geometry?.coordinates;
+  const center = getAddressSearchCenter(event.result);
 
-  if (!Array.isArray(center) || center.length < 2) {
+  if (!center) {
     return;
   }
 
-  showTemporaryAddressMarker(center);
+  showAddressSearchMarker(center);
 });
+
+geocoder.on('clear', clearAddressSearchMarkers);
 
 map_1.addControl(
   new maplibregl.NavigationControl({
@@ -772,6 +768,43 @@ map_1.addControl(
   'top-left'
 );
 
+class AddressMarkerRemoveControl {
+  onAdd() {
+    this.container = document.createElement('div');
+    this.container.className = 'maplibregl-ctrl maplibregl-ctrl-group address-marker-remove-control';
+    this.container.hidden = true;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'address-marker-remove-button';
+    button.title = 'Suchmarker entfernen';
+    button.setAttribute('aria-label', 'Suchmarker entfernen');
+
+    const icon = document.createElement('img');
+    icon.src = './img/remove-search-marker.svg';
+    icon.alt = '';
+    icon.setAttribute('aria-hidden', 'true');
+    button.appendChild(icon);
+    button.addEventListener('click', clearAddressSearchMarkers);
+
+    this.container.appendChild(button);
+    return this.container;
+  }
+
+  onRemove() {
+    this.container?.remove();
+    this.container = undefined;
+  }
+
+  setVisible(visible) {
+    if (this.container) {
+      this.container.hidden = !visible;
+    }
+  }
+}
+
+addressMarkerRemoveControl = new AddressMarkerRemoveControl();
+map_1.addControl(addressMarkerRemoveControl, 'top-left');
 
 map_1.addControl(draw, 'top-left');
 

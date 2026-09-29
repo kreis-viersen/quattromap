@@ -183,6 +183,33 @@ body {
   display: none;
 }
 
+/* address search marker + remove control */
+.address-search-marker {
+  width: 12px;
+  height: 12px;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  background: #d7191c;
+  box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.25);
+}
+
+.address-marker-remove-control[hidden] {
+  display: none;
+}
+
+.address-marker-remove-button {
+  display: grid !important;
+  place-items: center;
+  padding: 0 !important;
+}
+
+.address-marker-remove-button img {
+  display: block;
+  width: 26px;
+  height: 26px;
+  margin: 0;
+}
+
 /* application panel */
 .app-panel {
   position: fixed;
@@ -1150,3 +1177,4 @@ body {
     margin-bottom: 10px;
   }
 }
+

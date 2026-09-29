@@ -641,7 +641,7 @@ function createGeocoder() {
     debounceSearch: 350,
     minLength: 3,
 
-    flyTo: { zoom: 14, duration: 800 },
+    flyTo: { zoom: 17, duration: 800 },
     bbox: PHOTON_NRW_BBOX, 
 
     placeholder: 'Adresse in NRW suchen',
@@ -699,6 +699,52 @@ class SearchControlRow {
 }
 
 map_1.addControl(new SearchControlRow(geocoder), 'top-left');
+
+let addressSearchMarkers = [];
+let addressSearchMarkerTimeout = null;
+
+function clearAddressSearchMarkers() {
+  if (addressSearchMarkerTimeout) {
+    clearTimeout(addressSearchMarkerTimeout);
+    addressSearchMarkerTimeout = null;
+  }
+
+  addressSearchMarkers.forEach(marker => marker.remove());
+  addressSearchMarkers = [];
+}
+
+function showTemporaryAddressMarker(center) {
+  clearAddressSearchMarkers();
+
+  addressSearchMarkers = maps.map(map => {
+    const markerElement = document.createElement('div');
+    markerElement.style.width = '12px';
+    markerElement.style.height = '12px';
+    markerElement.style.borderRadius = '50%';
+    markerElement.style.background = '#d7191c';
+    markerElement.style.border = '2px solid #fff';
+    markerElement.style.boxShadow = '0 0 0 1px rgba(0, 0, 0, 0.25)';
+
+    return new maplibregl.Marker({
+      element: markerElement,
+      anchor: 'center'
+    }).setLngLat(center).addTo(map);
+  });
+
+  addressSearchMarkerTimeout = setTimeout(() => {
+    clearAddressSearchMarkers();
+  }, 5000);
+}
+
+geocoder.on('result', (event) => {
+  const center = event.result?.center || event.result?.geometry?.coordinates;
+
+  if (!Array.isArray(center) || center.length < 2) {
+    return;
+  }
+
+  showTemporaryAddressMarker(center);
+});
 
 map_1.addControl(
   new maplibregl.NavigationControl({

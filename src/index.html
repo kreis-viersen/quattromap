@@ -217,6 +217,74 @@
 			</button>
 		</div>
 	</div>
+	<!-- NRW-wide cadastral parcel search -->
+	<dialog id="parcel-search-dialog" class="parcel-search-dialog">
+		<form method="dialog" id="parcel-search-form">
+			<button class="parcel-dialog-close" type="submit" value="cancel"
+				aria-label="Dialog schließen" title="Schließen">×</button>
+
+			<p class="parcel-eyebrow">NRW-weite Suche</p>
+			<h2>Flurstück suchen</h2>
+
+			<section class="parcel-search-section">
+				<h3>Auswahl über Katasterdaten</h3>
+
+				<label>
+					<span>Katasteramt</span>
+					<select id="parcel-office-select">
+						<option value="">Bitte auswählen</option>
+					</select>
+				</label>
+
+				<label>
+					<span>Gemarkung</span>
+					<select id="parcel-district-select" disabled>
+						<option value="">Bitte auswählen</option>
+					</select>
+				</label>
+
+				<label>
+					<span>Flur</span>
+					<select id="parcel-flur-select" disabled>
+						<option value="">Bitte auswählen</option>
+					</select>
+				</label>
+
+				<label>
+					<span>Flurstück</span>
+					<select id="parcel-number-select" disabled>
+						<option value="">Bitte auswählen</option>
+					</select>
+				</label>
+
+				<p id="parcel-list-status" class="parcel-search-status" aria-live="polite"></p>
+			</section>
+
+			<div class="parcel-search-divider"><span>oder</span></div>
+
+			<section class="parcel-search-section parcel-direct-search-section">
+				<h3>Direktsuche</h3>
+				<label>
+					<span>Suchbegriff</span>
+					<input id="parcel-direct-input" type="search" autocomplete="off"
+						placeholder="z. B. 3230-1-1, DENW33AL00009NPL oder 05320308900675______">
+				</label>
+				<button id="parcel-direct-search-button" class="parcel-secondary-button" type="button">Suchen</button>
+				<p class="parcel-search-help">Gemarkung-Flur-Flurstück, ALKIS-ID oder Flurstückskennzeichen.</p>
+			</section>
+
+			<label class="parcel-highlight-option">
+				<input id="parcel-persistent-highlight" type="checkbox">
+				<span>Flurstück dauerhaft hervorheben</span>
+			</label>
+			<p class="parcel-search-help parcel-highlight-help">Ohne Auswahl verschwindet die Hervorhebung nach 5 Sekunden.</p>
+
+			<button id="parcel-select-search-button" class="parcel-primary-button parcel-search-submit"
+				type="button" disabled>Flurstück anzeigen</button>
+			<p id="parcel-search-status" class="parcel-search-status" role="status" aria-live="polite"></p>
+		</form>
+	</dialog>
+
 	<div id="mouse-info"></div>
 	<!-- Kartenfenster und Fadenkreuze -->
 	<div id="map_1">

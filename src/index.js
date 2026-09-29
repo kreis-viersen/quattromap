@@ -28,6 +28,24 @@ const white = '#fff';
 
 const PHOTON_NRW_BBOX = [5.75, 50.25, 9.65, 52.65];
 
+const CADASTRAL_INDEX_ASSET_URL = './data/katasteraemter-gemarkungen-fluren-nrw.json';
+const ALKIS_OAPIF_PARCELS_URL = 'https://ogc-api.nrw.de/lika/v1/collections/flurstueck';
+const ALKIS_OAPIF_PARCEL_POINTS_URL = 'https://ogc-api.nrw.de/lika/v1/collections/flurstueck_punkt';
+const PARCEL_SEARCH_SOURCE_ID = 'parcel-search-source';
+const PARCEL_SEARCH_FILL_LAYER_ID = 'parcel-search-fill';
+const PARCEL_SEARCH_LINE_LAYER_ID = 'parcel-search-line';
+const PARCEL_SEARCH_TEMPORARY_HIGHLIGHT_MS = 5000;
+
+const parcelSearchState = {
+  cadastralIndex: null,
+  cadastralIndexPromise: null,
+  parcelFeatures: [],
+  syncingParcelSelectors: false,
+  parcelSearchSerial: 0,
+  highlightTimeout: null
+};
+
+
 // patch Mapbox Draw to use MapLibre CSS class names instead of Mapbox GL JS
 MapboxDraw.constants.classes.CANVAS = 'maplibregl-canvas';
 MapboxDraw.constants.classes.CONTROL_BASE = 'maplibregl-ctrl';
@@ -635,9 +653,52 @@ function createGeocoder() {
   });
 }
 
-// add controls
+// add address and parcel search as one control row
 const geocoder = createGeocoder();
-map_1.addControl(geocoder, 'top-left');
+
+class SearchControlRow {
+  constructor(geocoderControl) {
+    this.geocoderControl = geocoderControl;
+  }
+
+  onAdd(map) {
+    this.map = map;
+    this.container = document.createElement('div');
+    this.container.className = 'maplibregl-ctrl quattromap-search-controls';
+
+    const geocoderContainer = this.geocoderControl.onAdd(map);
+    geocoderContainer.classList.add('quattromap-geocoder-control');
+    this.container.appendChild(geocoderContainer);
+
+    const parcelGroup = document.createElement('div');
+    parcelGroup.className = 'maplibregl-ctrl-group parcel-search-map-control';
+
+    const parcelButton = document.createElement('button');
+    parcelButton.type = 'button';
+    parcelButton.id = 'parcel-search-button';
+    parcelButton.className = 'parcel-search-map-button';
+    parcelButton.title = 'Flurstück suchen';
+    parcelButton.setAttribute('aria-label', 'Flurstück suchen');
+
+    const parcelIcon = document.createElement('img');
+    parcelIcon.src = './img/parcel-search.svg';
+    parcelIcon.alt = '';
+    parcelButton.appendChild(parcelIcon);
+
+    parcelGroup.appendChild(parcelButton);
+    this.container.appendChild(parcelGroup);
+
+    return this.container;
+  }
+
+  onRemove() {
+    this.geocoderControl.onRemove();
+    this.container?.remove();
+    this.map = undefined;
+  }
+}
+
+map_1.addControl(new SearchControlRow(geocoder), 'top-left');
 
 map_1.addControl(
   new maplibregl.NavigationControl({
@@ -665,7 +726,799 @@ map_1.addControl(
   'top-left'
 );
 
+
 map_1.addControl(draw, 'top-left');
+
+// NRW-wide cadastral parcel search
+const parcelSearchElements = {
+  button: document.getElementById('parcel-search-button'),
+  dialog: document.getElementById('parcel-search-dialog'),
+  officeSelect: document.getElementById('parcel-office-select'),
+  districtSelect: document.getElementById('parcel-district-select'),
+  flurSelect: document.getElementById('parcel-flur-select'),
+  numberSelect: document.getElementById('parcel-number-select'),
+  listStatus: document.getElementById('parcel-list-status'),
+  selectSearchButton: document.getElementById('parcel-select-search-button'),
+  directInput: document.getElementById('parcel-direct-input'),
+  directSearchButton: document.getElementById('parcel-direct-search-button'),
+  persistentHighlight: document.getElementById('parcel-persistent-highlight'),
+  searchStatus: document.getElementById('parcel-search-status')
+};
+
+function populateParcelSelect(select, items, { placeholder = 'Bitte auswählen' } = {}) {
+  select.replaceChildren();
+
+  const empty = document.createElement('option');
+  empty.value = '';
+  empty.textContent = placeholder;
+  select.append(empty);
+
+  for (const item of items) {
+    const option = document.createElement('option');
+    option.value = String(item.value);
+    option.textContent = item.label;
+    select.append(option);
+  }
+}
+
+async function loadCadastralIndex() {
+  if (parcelSearchState.cadastralIndex) {
+    return parcelSearchState.cadastralIndex;
+  }
+
+  if (!parcelSearchState.cadastralIndexPromise) {
+    parcelSearchState.cadastralIndexPromise = (async () => {
+      const response = await fetch(CADASTRAL_INDEX_ASSET_URL, {
+        headers: { Accept: 'application/json' }
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP ${response.status}`);
+      }
+
+      const data = await response.json();
+
+      if (!data || typeof data !== 'object' || Array.isArray(data)) {
+        throw new Error('Ungültiges JSON-Format');
+      }
+
+      parcelSearchState.cadastralIndex = data;
+      return data;
+    })().finally(() => {
+      if (!parcelSearchState.cadastralIndex) {
+        parcelSearchState.cadastralIndexPromise = null;
+      }
+    });
+  }
+
+  return parcelSearchState.cadastralIndexPromise;
+}
+
+function toOgcGemarkungKey(shortKey) {
+  const digits = String(shortKey ?? '')
+    .replace(/\D/g, '')
+    .padStart(4, '0')
+    .slice(-4);
+
+  return `05${digits}`;
+}
+
+function toOgcFlurKey(shortKey, flur) {
+  const gemaschl = toOgcGemarkungKey(shortKey);
+  const flurDigits = String(flur ?? '')
+    .replace(/\D/g, '')
+    .padStart(3, '0')
+    .slice(-3);
+
+  return `${gemaschl}${flurDigits}`;
+}
+
+function toOgcParcelKey(shortKey, flur, zaehler, nenner) {
+  const flurschl = toOgcFlurKey(shortKey, flur);
+  const zaehlerDigits = String(zaehler ?? '')
+    .replace(/\D/g, '')
+    .padStart(5, '0')
+    .slice(-5);
+
+  const nennerRaw = String(nenner ?? '').replace(/\D/g, '');
+  const nennerPart = nennerRaw
+    ? nennerRaw.padStart(4, '0').slice(-4)
+    : '____';
+
+  return `${flurschl}${zaehlerDigits}${nennerPart}__`;
+}
+
+function getParcelNumberLabel(properties = {}) {
+  const zaehler =
+    properties.flstnrzae ??
+    properties.flurstuecksnummer_zaehler ??
+    properties.zaehler;
+
+  const nenner =
+    properties.flstnrnen ??
+    properties.flurstuecksnummer_nenner ??
+    properties.nenner;
+
+  if (zaehler == null) {
+    return String(
+      properties.flstkennz ??
+      properties.flurstueckskennzeichen ??
+      properties.id ??
+      'Flurstück'
+    );
+  }
+
+  const z = String(zaehler).replace(/^0+/, '') || '0';
+  const n = nenner == null
+    ? ''
+    : (String(nenner).replace(/^0+/, '') || '0');
+
+  return n && n !== '0' ? `${z}/${n}` : z;
+}
+
+function createAlkisItemsUrl(collectionUrl, params = {}, properties = []) {
+  const url = new URL(`${collectionUrl}/items`);
+  url.searchParams.set('f', 'json');
+  url.searchParams.set('profile', 'rfc7946');
+
+  if (properties.length) {
+    url.searchParams.set('properties', properties.join(','));
+  }
+
+  for (const [key, value] of Object.entries(params)) {
+    if (value !== undefined && value !== null && value !== '') {
+      url.searchParams.set(key, String(value));
+    }
+  }
+
+  return url;
+}
+
+async function fetchAlkisFeatures(
+  collectionUrl,
+  params,
+  { limit = 10000, properties = [] } = {}
+) {
+  const url = createAlkisItemsUrl(
+    collectionUrl,
+    { ...params, limit },
+    properties
+  );
+
+  const response = await fetch(url, {
+    headers: { Accept: 'application/geo+json, application/json' }
+  });
+
+  if (!response.ok) {
+    throw new Error(`ALKIS-Abfrage fehlgeschlagen (HTTP ${response.status}).`);
+  }
+
+  const data = await response.json();
+  return Array.isArray(data?.features) ? data.features : [];
+}
+
+function fetchParcelFeatures(params, options = {}) {
+  return fetchAlkisFeatures(ALKIS_OAPIF_PARCELS_URL, params, options);
+}
+
+function fetchParcelPointFeatures(params, options = {}) {
+  return fetchAlkisFeatures(ALKIS_OAPIF_PARCEL_POINTS_URL, params, options);
+}
+
+function createBoundsFromParcelFeature(feature) {
+  const bounds = new maplibregl.LngLatBounds();
+  let hasCoordinates = false;
+
+  function extendCoordinates(coordinates) {
+    if (!Array.isArray(coordinates)) {
+      return;
+    }
+
+    if (
+      coordinates.length >= 2 &&
+      Number.isFinite(Number(coordinates[0])) &&
+      Number.isFinite(Number(coordinates[1]))
+    ) {
+      bounds.extend([Number(coordinates[0]), Number(coordinates[1])]);
+      hasCoordinates = true;
+      return;
+    }
+
+    coordinates.forEach(extendCoordinates);
+  }
+
+  extendCoordinates(feature?.geometry?.coordinates);
+  return hasCoordinates ? bounds : null;
+}
+
+function installParcelHighlightOnMap(targetMap, feature) {
+  if (!feature?.geometry || !targetMap.isStyleLoaded()) {
+    return;
+  }
+
+  const data = {
+    type: 'FeatureCollection',
+    features: [feature]
+  };
+
+  const source = targetMap.getSource(PARCEL_SEARCH_SOURCE_ID);
+
+  if (source) {
+    source.setData(data);
+  } else {
+    targetMap.addSource(PARCEL_SEARCH_SOURCE_ID, {
+      type: 'geojson',
+      data
+    });
+  }
+
+  if (!targetMap.getLayer(PARCEL_SEARCH_FILL_LAYER_ID)) {
+    targetMap.addLayer({
+      id: PARCEL_SEARCH_FILL_LAYER_ID,
+      type: 'fill',
+      source: PARCEL_SEARCH_SOURCE_ID,
+      paint: {
+        'fill-color': '#478bca',
+        'fill-opacity': 0.18
+      }
+    });
+  }
+
+  if (!targetMap.getLayer(PARCEL_SEARCH_LINE_LAYER_ID)) {
+    targetMap.addLayer({
+      id: PARCEL_SEARCH_LINE_LAYER_ID,
+      type: 'line',
+      source: PARCEL_SEARCH_SOURCE_ID,
+      paint: {
+        'line-color': '#d61f2c',
+        'line-width': 3
+      }
+    });
+  }
+}
+
+function installParcelHighlight(feature) {
+  maps.forEach(targetMap => installParcelHighlightOnMap(targetMap, feature));
+}
+
+function clearParcelHighlight() {
+  const emptyData = {
+    type: 'FeatureCollection',
+    features: []
+  };
+
+  maps.forEach(targetMap => {
+    const source = targetMap.getSource(PARCEL_SEARCH_SOURCE_ID);
+    if (source) {
+      source.setData(emptyData);
+    }
+  });
+}
+
+function cancelParcelHighlightTimeout() {
+  if (parcelSearchState.highlightTimeout !== null) {
+    window.clearTimeout(parcelSearchState.highlightTimeout);
+    parcelSearchState.highlightTimeout = null;
+  }
+}
+
+function scheduleParcelHighlightRemoval() {
+  cancelParcelHighlightTimeout();
+
+  if (parcelSearchElements.persistentHighlight.checked) {
+    return;
+  }
+
+  parcelSearchState.highlightTimeout = window.setTimeout(() => {
+    clearParcelHighlight();
+    parcelSearchState.highlightTimeout = null;
+  }, PARCEL_SEARCH_TEMPORARY_HIGHLIGHT_MS);
+}
+
+function showParcelSearchMessage(message) {
+  document.querySelectorAll('.parcel-search-toast').forEach(element => element.remove());
+
+  const element = document.createElement('div');
+  element.className = 'parcel-search-toast';
+  element.textContent = message;
+  document.body.appendChild(element);
+
+  window.setTimeout(() => {
+    element.remove();
+  }, 2500);
+}
+
+function zoomToParcelFeature(feature) {
+  cancelParcelHighlightTimeout();
+  installParcelHighlight(feature);
+  scheduleParcelHighlightRemoval();
+
+  const bounds = createBoundsFromParcelFeature(feature);
+
+  if (bounds && !bounds.isEmpty()) {
+    map_1.fitBounds(bounds, {
+      padding: 90,
+      maxZoom: 19,
+      duration: 900
+    });
+  }
+
+  parcelSearchElements.dialog.close();
+  showParcelSearchMessage('Flurstück gefunden und in allen Karten hervorgehoben.');
+}
+
+async function openParcelSearch() {
+  if (!parcelSearchElements.dialog.open) {
+    parcelSearchElements.dialog.showModal();
+  }
+
+  if (!parcelSearchState.cadastralIndex) {
+    await initializeParcelSearch();
+  }
+}
+
+async function initializeParcelSearch() {
+  parcelSearchElements.searchStatus.textContent = 'Katasterdaten werden geladen …';
+
+  try {
+    const index = await loadCadastralIndex();
+
+    const offices = Object.keys(index)
+      .sort((a, b) => a.localeCompare(b, 'de'))
+      .map(name => ({ value: name, label: name }));
+
+    populateParcelSelect(parcelSearchElements.officeSelect, offices);
+    parcelSearchElements.searchStatus.textContent = '';
+  } catch (error) {
+    console.error(error);
+    parcelSearchElements.searchStatus.textContent =
+      'Katasterämter, Gemarkungen und Fluren konnten nicht geladen werden.';
+  }
+}
+
+function resetParcelDistricts() {
+  populateParcelSelect(parcelSearchElements.districtSelect, []);
+  populateParcelSelect(parcelSearchElements.flurSelect, []);
+  populateParcelSelect(parcelSearchElements.numberSelect, []);
+
+  parcelSearchElements.districtSelect.disabled = true;
+  parcelSearchElements.flurSelect.disabled = true;
+  parcelSearchElements.numberSelect.disabled = true;
+  parcelSearchElements.selectSearchButton.disabled = true;
+  parcelSearchElements.listStatus.textContent = '';
+}
+
+function handleParcelOfficeChange() {
+  resetParcelDistricts();
+
+  const office = parcelSearchElements.officeSelect.value;
+  const districts = parcelSearchState.cadastralIndex?.[office];
+
+  if (!districts || typeof districts !== 'object') {
+    return;
+  }
+
+  const items = Object.entries(districts)
+    .map(([name]) => ({ value: name, label: name }))
+    .sort((a, b) => a.label.localeCompare(b.label, 'de', { numeric: true }));
+
+  populateParcelSelect(parcelSearchElements.districtSelect, items);
+  parcelSearchElements.districtSelect.disabled = false;
+}
+
+function handleParcelDistrictChange() {
+  populateParcelSelect(parcelSearchElements.flurSelect, []);
+  populateParcelSelect(parcelSearchElements.numberSelect, []);
+
+  parcelSearchElements.flurSelect.disabled = true;
+  parcelSearchElements.numberSelect.disabled = true;
+  parcelSearchElements.selectSearchButton.disabled = true;
+  parcelSearchElements.listStatus.textContent = '';
+
+  const district =
+    parcelSearchState.cadastralIndex?.[parcelSearchElements.officeSelect.value]
+      ?.[parcelSearchElements.districtSelect.value];
+
+  if (!district) {
+    return;
+  }
+
+  const fluren = Array.isArray(district.fluren) ? district.fluren : [];
+
+  populateParcelSelect(
+    parcelSearchElements.flurSelect,
+    fluren.map(value => ({ value, label: String(value) }))
+  );
+
+  parcelSearchElements.flurSelect.disabled = false;
+}
+
+async function handleParcelFlurChange() {
+  populateParcelSelect(parcelSearchElements.numberSelect, []);
+  parcelSearchElements.numberSelect.disabled = true;
+  parcelSearchElements.selectSearchButton.disabled = true;
+  parcelSearchState.parcelFeatures = [];
+
+  const flur = parcelSearchElements.flurSelect.value;
+  const district =
+    parcelSearchState.cadastralIndex?.[parcelSearchElements.officeSelect.value]
+      ?.[parcelSearchElements.districtSelect.value];
+
+  if (!flur || !district?.schluessel) {
+    return;
+  }
+
+  const serial = ++parcelSearchState.parcelSearchSerial;
+  parcelSearchElements.listStatus.textContent = 'Flurstücke werden geladen …';
+
+  try {
+    const gemaschl = toOgcGemarkungKey(district.schluessel);
+    const flurschl = toOgcFlurKey(district.schluessel, flur);
+
+    const features = await fetchParcelPointFeatures(
+      { gemaschl, flurschl },
+      { properties: ['flstnrzae', 'flstnrnen'] }
+    );
+
+    if (serial !== parcelSearchState.parcelSearchSerial) {
+      return;
+    }
+
+    const sorted = features.slice().sort((a, b) =>
+      getParcelNumberLabel(a.properties).localeCompare(
+        getParcelNumberLabel(b.properties),
+        'de',
+        { numeric: true }
+      )
+    );
+
+    parcelSearchState.parcelFeatures = sorted;
+
+    populateParcelSelect(
+      parcelSearchElements.numberSelect,
+      sorted.map((feature, index) => ({
+        value: index,
+        label: getParcelNumberLabel(feature.properties)
+      }))
+    );
+
+    parcelSearchElements.numberSelect.disabled = sorted.length === 0;
+    parcelSearchElements.listStatus.textContent = sorted.length
+      ? `${sorted.length} Flurstücke verfügbar.`
+      : 'Keine Flurstücke gefunden.';
+  } catch (error) {
+    console.error(error);
+
+    if (serial !== parcelSearchState.parcelSearchSerial) {
+      return;
+    }
+
+    parcelSearchElements.listStatus.textContent =
+      'Flurstücke konnten nicht geladen werden.';
+  }
+}
+
+function updateParcelSearchButtonState() {
+  parcelSearchElements.selectSearchButton.disabled =
+    parcelSearchElements.numberSelect.value === '';
+}
+
+function clearParcelDirectSearchOnManualSelection() {
+  if (parcelSearchState.syncingParcelSelectors) {
+    return;
+  }
+
+  if (parcelSearchElements.directInput.value) {
+    parcelSearchElements.directInput.value = '';
+    parcelSearchElements.searchStatus.textContent = '';
+  }
+}
+
+function handleParcelNumberChange() {
+  updateParcelSearchButtonState();
+}
+
+async function searchSelectedParcel() {
+  const selectedValue = parcelSearchElements.numberSelect.value;
+
+  if (selectedValue === '') {
+    return;
+  }
+
+  const index = Number(selectedValue);
+  const pointFeature = Number.isInteger(index)
+    ? parcelSearchState.parcelFeatures[index]
+    : null;
+
+  const district =
+    parcelSearchState.cadastralIndex?.[parcelSearchElements.officeSelect.value]
+      ?.[parcelSearchElements.districtSelect.value];
+
+  const flur = parcelSearchElements.flurSelect.value;
+
+  if (!pointFeature || !district?.schluessel || !flur) {
+    return;
+  }
+
+  const properties = pointFeature.properties ?? {};
+  const zaehler = properties.flstnrzae;
+  const nenner = properties.flstnrnen;
+
+  if (zaehler == null) {
+    return;
+  }
+
+  parcelSearchElements.selectSearchButton.disabled = true;
+  parcelSearchElements.listStatus.textContent = 'Flurstück wird geladen …';
+
+  try {
+    const flstkennz = toOgcParcelKey(
+      district.schluessel,
+      flur,
+      zaehler,
+      nenner
+    );
+
+    const features = await fetchParcelFeatures(
+      { flstkennz },
+      { limit: 5 }
+    );
+
+    const feature = features.find(item => item?.geometry) ?? null;
+
+    if (!feature) {
+      parcelSearchElements.listStatus.textContent =
+        'Flurstücksgeometrie konnte nicht geladen werden.';
+      return;
+    }
+
+    parcelSearchElements.listStatus.textContent = '';
+    zoomToParcelFeature(feature);
+  } catch (error) {
+    console.error(error);
+    parcelSearchElements.listStatus.textContent =
+      'Flurstücksgeometrie konnte nicht geladen werden.';
+  } finally {
+    updateParcelSearchButtonState();
+  }
+}
+
+async function fetchDirectParcel(query) {
+  const value = String(query ?? '').trim();
+
+  if (!value) {
+    throw new Error('Bitte ein Suchkennzeichen eingeben.');
+  }
+
+  const properties = [
+    'gemaschl',
+    'flurschl',
+    'flur',
+    'flstnrzae',
+    'flstnrnen',
+    'flstkennz'
+  ];
+
+  const shortened = value.match(/^(\d{4})-(\d+)-(\d+)(?:\/(\d+))?$/);
+
+  if (shortened) {
+    const [, gemarkung, flur, zaehler, nenner] = shortened;
+    const flstkennz = toOgcParcelKey(
+      gemarkung,
+      flur,
+      zaehler,
+      nenner
+    );
+
+    const features = await fetchParcelFeatures(
+      { flstkennz },
+      { limit: 1, properties }
+    );
+
+    return features[0] ?? null;
+  }
+
+  if (/^DENW[A-Z0-9]+$/i.test(value)) {
+    const features = await fetchParcelFeatures(
+      { flurstid: value },
+      { limit: 1, properties: [...properties, 'flurstid'] }
+    );
+
+    return features[0] ?? null;
+  }
+
+  if (value.length === 20) {
+    const features = await fetchParcelFeatures(
+      { flstkennz: value },
+      { limit: 1, properties }
+    );
+
+    return features[0] ?? null;
+  }
+
+  throw new Error('Format nicht erkannt.');
+}
+
+function normalizeParcelNumericValue(value) {
+  const digits = String(value ?? '').replace(/\D/g, '');
+  return digits ? String(Number(digits)) : '';
+}
+
+function findCadastralDistrictByKey(shortKey) {
+  const wanted = String(shortKey ?? '')
+    .replace(/\D/g, '')
+    .padStart(4, '0')
+    .slice(-4);
+
+  for (const [officeName, districts] of Object.entries(
+    parcelSearchState.cadastralIndex ?? {}
+  )) {
+    for (const [districtName, district] of Object.entries(districts ?? {})) {
+      const key = String(district?.schluessel ?? '')
+        .replace(/\D/g, '')
+        .padStart(4, '0')
+        .slice(-4);
+
+      if (key === wanted) {
+        return { officeName, districtName, district };
+      }
+    }
+  }
+
+  return null;
+}
+
+async function syncParcelSelectorsFromFeature(feature) {
+  parcelSearchState.syncingParcelSelectors = true;
+
+  try {
+    const properties = feature?.properties ?? {};
+    const gemaschl = String(properties.gemaschl ?? '').replace(/\D/g, '');
+    const flurschl = String(properties.flurschl ?? '').replace(/\D/g, '');
+
+    const shortKey = gemaschl.length >= 4
+      ? gemaschl.slice(-4)
+      : flurschl.slice(2, 6);
+
+    if (!shortKey) {
+      return false;
+    }
+
+    const match = findCadastralDistrictByKey(shortKey);
+
+    if (!match) {
+      return false;
+    }
+
+    parcelSearchElements.officeSelect.value = match.officeName;
+    handleParcelOfficeChange();
+
+    parcelSearchElements.districtSelect.value = match.districtName;
+    handleParcelDistrictChange();
+
+    const featureFlur = normalizeParcelNumericValue(
+      properties.flur ??
+      (flurschl.length >= 3 ? flurschl.slice(-3) : '')
+    );
+
+    const matchingFlurOption = Array.from(
+      parcelSearchElements.flurSelect.options
+    ).find(
+      option =>
+        normalizeParcelNumericValue(option.value) === featureFlur
+    );
+
+    if (!matchingFlurOption) {
+      return false;
+    }
+
+    parcelSearchElements.flurSelect.value = matchingFlurOption.value;
+    await handleParcelFlurChange();
+
+    const wantedZaehler = normalizeParcelNumericValue(properties.flstnrzae);
+    const wantedNenner = normalizeParcelNumericValue(properties.flstnrnen);
+
+    const matchingIndex = parcelSearchState.parcelFeatures.findIndex(item => {
+      const itemProperties = item?.properties ?? {};
+
+      return (
+        normalizeParcelNumericValue(itemProperties.flstnrzae) ===
+          wantedZaehler &&
+        normalizeParcelNumericValue(itemProperties.flstnrnen) ===
+          wantedNenner
+      );
+    });
+
+    if (matchingIndex < 0) {
+      return false;
+    }
+
+    parcelSearchElements.numberSelect.value = String(matchingIndex);
+    handleParcelNumberChange();
+
+    return true;
+  } finally {
+    parcelSearchState.syncingParcelSelectors = false;
+  }
+}
+
+async function handleParcelDirectSearch() {
+  parcelSearchElements.searchStatus.textContent = 'Flurstück wird gesucht …';
+  parcelSearchElements.directSearchButton.disabled = true;
+  parcelSearchElements.selectSearchButton.disabled = true;
+
+  try {
+    if (!parcelSearchState.cadastralIndex) {
+      await initializeParcelSearch();
+    }
+
+    const feature = await fetchDirectParcel(
+      parcelSearchElements.directInput.value
+    );
+
+    if (!feature) {
+      parcelSearchElements.searchStatus.textContent =
+        'Kein Flurstück gefunden.';
+      return;
+    }
+
+    const synchronized = await syncParcelSelectorsFromFeature(feature);
+
+    if (!synchronized) {
+      parcelSearchElements.searchStatus.textContent =
+        'Flurstück gefunden, die Auswahllisten konnten aber nicht vollständig gesetzt werden.';
+      return;
+    }
+
+    parcelSearchElements.searchStatus.textContent = 'Flurstück gefunden.';
+    updateParcelSearchButtonState();
+  } catch (error) {
+    console.error(error);
+    parcelSearchElements.searchStatus.textContent =
+      error?.message ?? 'Flurstück konnte nicht gesucht werden.';
+  } finally {
+    parcelSearchElements.directSearchButton.disabled = false;
+  }
+}
+
+parcelSearchElements.button.addEventListener('click', openParcelSearch);
+
+parcelSearchElements.officeSelect.addEventListener('change', () => {
+  clearParcelDirectSearchOnManualSelection();
+  handleParcelOfficeChange();
+});
+
+parcelSearchElements.districtSelect.addEventListener('change', () => {
+  clearParcelDirectSearchOnManualSelection();
+  handleParcelDistrictChange();
+});
+
+parcelSearchElements.flurSelect.addEventListener('change', () => {
+  clearParcelDirectSearchOnManualSelection();
+  handleParcelFlurChange();
+});
+
+parcelSearchElements.numberSelect.addEventListener('change', () => {
+  clearParcelDirectSearchOnManualSelection();
+  handleParcelNumberChange();
+});
+
+parcelSearchElements.selectSearchButton.addEventListener(
+  'click',
+  searchSelectedParcel
+);
+
+parcelSearchElements.directSearchButton.addEventListener(
+  'click',
+  handleParcelDirectSearch
+);
+
+parcelSearchElements.directInput.addEventListener('keydown', event => {
+  if (event.key === 'Enter') {
+    event.preventDefault();
+    handleParcelDirectSearch();
+  }
+});
 
 // opacity slider
 slider_1.addEventListener('input', function (e) {

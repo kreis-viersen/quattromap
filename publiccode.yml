@@ -5,8 +5,8 @@
 publiccodeYmlVersion: '0.2'
 name: QuattroMap
 url: 'https://gitlab.opencode.de/kreis-viersen/quattromap'
-softwareVersion: 2.0.0
-releaseDate: '2026-09-10'
+softwareVersion: 2.1.0
+releaseDate: '2026-09-29'
 logo: logo_quattromap_opencode.png
 platforms:
   - web

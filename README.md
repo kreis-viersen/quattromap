@@ -294,8 +294,3 @@ The build process will watch for changes to the filesystem, rebuild and autorelo
 npm run build
 ```
 Once the build is finished, you'll find it at `dist/`.
-
-```bash
-# publish files to a gh-pages branch on GitHub
-npm run deploy
-```

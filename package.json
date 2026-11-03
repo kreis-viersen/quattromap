@@ -1,12 +1,11 @@
 {
   "name": "quattromap",
   "description": "Compare up to 4 maps at once",
-  "version": "2.1.0",
+  "version": "2.2.0",
   "license": "MIT",
   "scripts": {
     "start": "webpack serve",
-    "build": "webpack",
-    "deploy": "gh-pages -d dist"
+    "build": "webpack"
   },
   "repository": {
     "type": "git",
@@ -15,22 +14,21 @@
   "devDependencies": {
     "copy-webpack-plugin": "^14.0.0",
     "css-loader": "^7.1.5",
-    "gh-pages": "^6.3.0",
     "style-loader": "^4.0.0",
     "terser-webpack-plugin": "^5.6.1",
-    "webpack": "^5.110.3",
+    "webpack": "^5.112.2",
     "webpack-cli": "^7.2.3",
-    "webpack-dev-server": "^6.0.0",
+    "webpack-dev-server": "^6.1.0",
     "webpack-license-plugin": "^4.5.1"
   },
   "dependencies": {
-    "@mapbox/mapbox-gl-draw": "1.5.1",
+    "@mapbox/mapbox-gl-draw": "1.5.2",
     "@mapbox/mapbox-gl-sync-move": "^0.3.1",
     "@maplibre/maplibre-gl-geocoder": "^1.9.4",
     "@turf/area": "^7.4.0",
     "@turf/centroid": "^7.4.0",
     "@turf/length": "^7.4.0",
     "lz-string": "^1.5.0",
-    "maplibre-gl": "6.9.0"
+    "maplibre-gl": "6.16.0"
   }
 }

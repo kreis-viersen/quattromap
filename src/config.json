@@ -239,6 +239,30 @@
       "format": "png",
       "category": "KRZN-Dienste"
     },
+        {
+      "name": "Stadt Krefeld ALKIS light",
+      "attribution": "",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_skre_alkis_light",
+      "layer": "nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Wesel ALKIS light",
+      "attribution": "",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_kwes_alkis_light",
+      "layer": "nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
+    {
+      "name": "Kreis Kleve ALKIS light",
+      "attribution": "",
+      "url": "https://geoservices.krzn.de/security-proxy/services/wms_kkle_alkis_light",
+      "layer": "nutzungsarten,flurstuecke,gebaeude,lagebezeichnungen",
+      "format": "png",
+      "category": "KRZN-Dienste"
+    },
     {
       "name": "Kreis Viersen geplante Gebäude",
       "attribution": "",
